@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apple-Style Design System */
+
+@layer base {
+  :root {
+    /* Colors - Apple Inspired */
+    --color-primary: #0071E3;
+    --color-primary-dark: #0051D0;
+    --color-text: #1D1D1F;
+    --color-text-secondary: #86868B;
+    --color-background: #FAFAFA;
+    --color-surface: #FFFFFF;
+    --color-success: #34C759;
+    --color-warning: #FF9500;
+    --color-danger: #FF3B30;
+    
+    /* Spacing - Generous */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 48px;
+    --space-xl: 80px;
+    --space-2xl: 120px;
+    
+    /* Typography */
+    --font-display: 600 64px/1.1 'Inter', system-ui, sans-serif;
+    --font-headline: 600 40px/1.2 'Inter', system-ui, sans-serif;
+    --font-title: 600 28px/1.3 'Inter', system-ui, sans-serif;
+    --font-body: 400 17px/1.6 'Inter', system-ui, sans-serif;
+    --font-caption: 400 14px/1.5 'Inter', system-ui, sans-serif;
+    
+    /* Shadows - Subtle depth */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.08);
+    --shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.1);
+    
+    /* Border radius */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Apple-Style Buttons */
+  .btn-apple {
+    @apply inline-flex items-center justify-center font-medium transition-all duration-300;
+    padding: 14px 28px;
+    border-radius: 980px; /* Apple pill shape */
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+  
+  .btn-apple-primary {
+    @apply btn-apple;
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 16px rgba(0, 113, 227, 0.3);
+  }
+  
+  .btn-apple-primary:hover {
+    background: var(--color-primary-dark);
+    transform: scale(1.02);
+    box-shadow: 0 6px 24px rgba(0, 113, 227, 0.4);
+  }
+  
+  .btn-apple-secondary {
+    @apply btn-apple;
+    background: rgba(0, 113, 227, 0.08);
+    color: var(--color-primary);
+    border: 1px solid transparent;
+  }
+  
+  .btn-apple-secondary:hover {
+    background: rgba(0, 113, 227, 0.12);
+    border-color: var(--color-primary);
+  }
+  
+  /* Apple-Style Cards */
+  .card-apple {
+    @apply transition-all duration-500;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+  }
+  
+  .card-apple:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  /* Section spacing - Generous */
+  .section-apple {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+  
+  .section-apple-sm {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
+  
+  /* Container - Constrained */
+  .container-apple {
+    @apply mx-auto px-6;
+    max-width: 1200px;
+  }
+  
+  /* Typography - Apple style */
+  .text-display {
+    font: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  
+  .text-headline {
+    font: var(--font-headline);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  
+  .text-title {
+    font: var(--font-title);
+    letter-spacing: -0.01em;
+  }
+  
+  .text-body {
+    font: var(--font-body);
+    color: var(--color-text-secondary);
+  }
+  
+  .text-caption {
+    font: var(--font-caption);
+    color: var(--color-text-secondary);
+  }
+  
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #0071E3 0%, #00C7BE 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Subtle gradients */
+  .gradient-subtle {
+    background: linear-gradient(180deg, #FAFAFA 0%, #F5F5F7 100%);
+  }
+  
+  .gradient-hero {
+    background: radial-gradient(ellipse at top, rgba(0, 113, 227, 0.08) 0%, transparent 50%),
+                linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
+  }
+  
+  /* Animations - Smooth */
+  .animate-fade-up {
+    animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    opacity: 0;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  
+  /* Stagger delays */
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
+  
+  /* Scroll-triggered animations */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Micro-interactions */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  /* Problem/Solution cards */
+  .problem-card {
+    @apply p-8 rounded-2xl;
+    background: linear-gradient(135deg, #FFF5F5 0%, #FFF 100%);
+    border: 1px solid rgba(255, 59, 48, 0.1);
+  }
+  
+  .solution-card {
+    @apply p-8 rounded-2xl;
+    background: linear-gradient(135deg, #F0FFF4 0%, #FFF 100%);
+    border: 1px solid rgba(52, 199, 89, 0.1);
+  }
+  
+  /* Stats counter */
+  .stat-number {
+    font: 600 56px/1 'Inter', sans-serif;
+    background: linear-gradient(135deg, #1D1D1F 0%, #86868B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Feature showcase */
+  .feature-bubble {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium;
+    background: rgba(0, 113, 227, 0.08);
+    color: var(--color-primary);
+  }
+  
+  /* Product mockup frame */
+  .mockup-frame {
+    @apply rounded-2xl overflow-hidden;
+    box-shadow: 
+      0 25px 80px rgba(0, 0, 0, 0.12),
+      0 10px 30px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+  }
+  
+  /* Before/After comparison */
+  .comparison-item {
+    @apply flex items-start gap-4 p-6;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+  }
+  
+  .comparison-before {
+    background: #FFF5F5;
+  }
+  
+  .comparison-after {
+    background: #F0FFF4;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Keyframes */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #000000;
+    --color-surface: #1C1C1E;
+    --color-text: #FFFFFF;
+    --color-text-secondary: #98989D;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  :root {
+    --font-display: 600 40px/1.1 'Inter', sans-serif;
+    --font-headline: 600 32px/1.2 'Inter', sans-serif;
+    --font-title: 600 24px/1.3 'Inter', sans-serif;
+  }
+  
+  .section-apple {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}

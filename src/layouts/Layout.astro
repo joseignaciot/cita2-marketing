@@ -1,0 +1,170 @@
+---
+import '../styles/global.css';
+import DarkModeToggle from '../components/DarkModeToggle.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import ChatWidget from '../components/ChatWidget.astro';
+import LiveChat from '../components/LiveChat.astro';
+import StickyCTA from '../components/StickyCTA.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  noindex?: boolean;
+  schema?: Record<string, any>;
+}
+
+const { 
+  title, 
+  description, 
+  ogImage = '/og-image.jpg',
+  canonicalUrl,
+  noindex = false,
+  schema
+} = Astro.props;
+
+const siteUrl = 'https://cita2.tecelia.com';
+const fullCanonical = canonicalUrl || `${siteUrl}${Astro.url.pathname}`;
+
+// Analytics config from environment
+const GA_ID = import.meta.env.PUBLIC_GA_ID || 'GA_MEASUREMENT_ID';
+const PLAUSIBLE_DOMAIN = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN || '';
+
+// Default WebSite schema
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Cita2',
+  url: siteUrl,
+  description: 'Software de gestión de citas y reservas para peluquerías, estética, restaurantes y turismo. Sin comisiones, setup en 2 minutos.',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${siteUrl}/search?q={search_term_string}`,
+    'query-input': 'required name=search_term_string'
+  }
+};
+
+const finalSchema = schema ? [websiteSchema, schema] : websiteSchema;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="generator" content={Astro.generator} />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <!-- Canonical -->
+  <link rel="canonical" href={fullCanonical} />
+  
+  <!-- Robots -->
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Cita2" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={fullCanonical} />
+  <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+  <meta property="og:locale" content="es_ES" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+  
+  <!-- Title -->
+  <title>{title}</title>
+  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(finalSchema)} />
+  
+  <!-- Google Analytics 4 with Partytown -->
+  {GA_ID && GA_ID !== 'GA_MEASUREMENT_ID' && (
+    <>
+      <script type="text/partytown" src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+      <script type="text/partytown" define:vars={{ GA_ID }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', GA_ID, {
+          'send_page_view': true,
+          'anonymize_ip': true,
+          'allow_google_signals': false,
+          'allow_ad_personalization_signals': false
+        });
+      </script>
+    </>
+  )}
+  
+  <!-- Plausible Analytics (privacy-friendly alternative) -->
+  {PLAUSIBLE_DOMAIN && (
+    <script 
+      type="text/partytown" 
+      defer 
+      data-domain={PLAUSIBLE_DOMAIN} 
+      src="https://plausible.io/js/script.js"
+    ></script>
+  )}
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID'); // Reemplazar con Pixel ID real
+    fbq('track', 'PageView');
+  </script>
+  
+  <!-- Event Tracking for CTAs -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Track primary CTA clicks
+      document.querySelectorAll('.btn-apple-primary, .btn-primary').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+          if (typeof gtag !== 'undefined') gtag('event', 'conversion', {'send_to': 'AW-CONVERSION_ID'});
+        });
+      });
+      
+      // Track pricing views
+      var pricingSection = document.getElementById('precios');
+      if (pricingSection) {
+        var observer = new IntersectionObserver(function(entries) {
+          if (entries[0].isIntersecting) {
+            if (typeof fbq !== 'undefined') fbq('track', 'ViewContent', {content_name: 'Pricing'});
+            observer.disconnect();
+          }
+        }, {threshold: 0.5});
+        observer.observe(pricingSection);
+      }
+    });
+  </script>
+  
+  <noscript>
+    <img height="1" width="1" style="display:none" 
+         src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+  
+</head>
+<body>
+  <DarkModeToggle />
+  <slot />
+  <ExitPopup />
+  <ChatWidget />
+  <LiveChat />
+  <StickyCTA />
+</body>
+</html>

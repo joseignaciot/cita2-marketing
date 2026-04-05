@@ -1,0 +1,139 @@
+---
+// UrgencyBanner - FOMO component for pricing section
+// Creates urgency and scarcity to drive conversions
+
+interface Props {
+  type?: 'limited-spots' | 'discount' | 'deadline' | 'social-proof';
+  message?: string;
+  countdown?: boolean;
+  spotsLeft?: number;
+}
+
+const { 
+  type = 'limited-spots',
+  message,
+  countdown = true,
+  spotsLeft = 23
+} = Astro.props;
+
+// Dynamic messages based on type
+const messages = {
+  'limited-spots': `🔥 Solo ${spotsLeft} plazas disponibles con precio de lanzamiento`,
+  'discount': '⚡ Oferta especial: 2 meses gratis con código CITA2START',
+  'deadline': '⏰ Precio de lanzamiento termina este domingo',
+  'social-proof': '👥 47 personas están viendo esta oferta ahora'
+};
+
+const displayMessage = message || messages[type];
+---
+
+<div class="urgency-banner animate-pulse-soft" data-type={type}>
+  <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full text-sm font-medium shadow-lg">
+    <span class="flex h-2 w-2 relative">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+    </span>
+    {displayMessage}
+  </div>
+  
+  {countdown && type === 'deadline' && (
+    <div class="countdown-timer mt-2 flex items-center justify-center gap-2 text-sm text-gray-600">
+      <span>Termina en:</span>
+      <div class="flex gap-1">
+        <span class="bg-gray-900 text-white px-2 py-1 rounded text-xs font-mono" data-hours>23</span>
+        <span>:</span>
+        <span class="bg-gray-900 text-white px-2 py-1 rounded text-xs font-mono" data-minutes>45</span>
+        <span>:</span>
+        <span class="bg-gray-900 text-white px-2 py-1 rounded text-xs font-mono" data-seconds>12</span>
+      </div>
+    </div>
+  )}
+</div>
+
+<style>
+  .urgency-banner {
+    margin-bottom: 1.5rem;
+  }
+  
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+  }
+  
+  .animate-pulse-soft {
+    animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+</style>
+
+<script>
+  // Countdown timer for deadline type
+  document.addEventListener('DOMContentLoaded', () => {
+    const countdownEl = document.querySelector('.countdown-timer');
+    if (!countdownEl) return;
+    
+    const hoursEl = countdownEl.querySelector('[data-hours]');
+    const minutesEl = countdownEl.querySelector('[data-minutes]');
+    const secondsEl = countdownEl.querySelector('[data-seconds]');
+    
+    if (!hoursEl || !minutesEl || !secondsEl) return;
+    
+    // Set deadline to next Sunday at 23:59
+    const now = new Date();
+    const deadline = new Date(now);
+    deadline.setDate(now.getDate() + (7 - now.getDay()));
+    deadline.setHours(23, 59, 59, 999);
+    
+    function updateCountdown() {
+      const diff = deadline.getTime() - new Date().getTime();
+      
+      if (diff <= 0) {
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        return;
+      }
+      
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      hoursEl.textContent = hours.toString().padStart(2, '0');
+      minutesEl.textContent = minutes.toString().padStart(2, '0');
+      secondsEl.textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  });
+  
+  // Track urgency banner impressions
+  document.addEventListener('DOMContentLoaded', () => {
+    const banners = document.querySelectorAll('.urgency-banner');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const type = entry.target.getAttribute('data-type');
+          
+          // GA4 event
+          if (typeof window !== 'undefined' && (window as any).gtag) {
+            (window as any).gtag('event', 'urgency_banner_viewed', {
+              banner_type: type
+            });
+          }
+          
+          // Meta Pixel event
+          if (typeof window !== 'undefined' && (window as any).fbq) {
+            (window as any).fbq('trackCustom', 'UrgencyBannerViewed', {
+              type: type
+            });
+          }
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    banners.forEach(banner => observer.observe(banner));
+  });
+</script>

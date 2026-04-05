@@ -1,0 +1,220 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = 'Funcionalidades - Cita2 | Todo lo que incluye';
+const pageDescription = 'Descubre todas las funcionalidades de Cita2: reservas online, recordatorios automáticos, CRM, pagos online, WhatsApp Business, estadísticas y mucho más.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Cita2 - Funcionalidades',
+  applicationCategory: 'BusinessApplication',
+  featureList: 'Reservas online, Recordatorios automáticos, CRM, Pagos online, WhatsApp Business, Estadísticas'
+};
+
+const featureCategories = [
+  {
+    title: 'Reservas y Agenda',
+    icon: 'calendar',
+    features: [
+      { name: 'Página de reservas personalizada', desc: 'Tu propia URL con tu logo, colores y servicios. Los clientes reservan 24/7 sin llamar.' },
+      { name: 'Calendario multivista', desc: 'Vista diaria, semanal y mensual. Arrastra y suelta para reorganizar citas.' },
+      { name: 'Múltiples calendarios', desc: 'Gestiona varias sillas, cabinas, profesionales o salas desde un solo panel.' },
+      { name: 'Bloqueos y vacaciones', desc: 'Bloquea días enteros, horas específicas o marca vacaciones fácilmente.' },
+      { name: 'Duraciones personalizables', desc: 'Cada servicio con su duración exacta. El calendario se ajusta automáticamente.' },
+      { name: 'Buffer entre citas', desc: 'Añade tiempo de descanso automático entre servicios.' },
+    ]
+  },
+  {
+    title: 'Clientes y CRM',
+    icon: 'users',
+    features: [
+      { name: 'Ficha de cliente completa', desc: 'Datos de contacto, historial de citas, preferencias, notas y cumpleaños.' },
+      { name: 'Historial de servicios', desc: 'Qué tratamientos ha recibido, cuándo, precios y observaciones.' },
+      { name: 'Etiquetas y segmentación', desc: 'Etiqueta clientes (VIP, nuevo, frecuente) para tratos personalizados.' },
+      { name: 'Importación de clientes', desc: 'Importa tu base de datos actual desde Excel/CSV en segundos.' },
+      { name: 'Exportación de datos', desc: 'Exporta tu base de datos cuando quieras. Tus datos son tuyos.' },
+      { name: 'Búsqueda instantánea', desc: 'Encuentra cualquier cliente en segundos por nombre, teléfono o email.' },
+    ]
+  },
+  {
+    title: 'Comunicaciones Automáticas',
+    icon: 'bell',
+    features: [
+      { name: 'Recordatorios email', desc: 'Emails automáticos 24h antes de la cita. Reducen ausencias un 40%.' },
+      { name: 'Recordatorios SMS', desc: 'SMS de última hora (2h antes) para maximizar asistencia.' },
+      { name: 'WhatsApp Business', desc: 'Confirmaciones y recordatorios por WhatsApp. 90% tasa de apertura.' },
+      { name: 'Confirmaciones automáticas', desc: 'El cliente recibe email/SMS inmediatamente al reservar.' },
+      { name: 'Mensajes personalizables', desc: 'Adapta el tono y contenido de todos los mensajes a tu marca.' },
+      { name: 'Follow-ups post-cita', desc: 'Envía agradecimientos y solicita reseñas automáticamente.' },
+    ]
+  },
+  {
+    title: 'Pagos y Facturación',
+    icon: 'credit',
+    features: [
+      { name: 'Pagos online con Stripe', desc: 'Cobra al reservar con tarjeta. Seguro, rápido y automático.' },
+      { name: 'Depósitos configurables', desc: 'Pide señal para reservas grandes o especiales. Reduce no-shows.' },
+      { name: 'Bonos y paquetes', desc: 'Vende sesiones múltiples. El sistema controla sesiones usadas/pendientes.' },
+      { name: 'Gift cards', desc: 'Vende regalos digitales para tu negocio. Perfecto para Navidad.' },
+      { name: 'Facturación simplificada', desc: 'Genera facturas de tus pagos recibidos automáticamente.' },
+      { name: 'Control de ingresos', desc: 'Dashboard con ingresos diarios, semanales y mensuales.' },
+    ]
+  },
+  {
+    title: 'Análisis y Reportes',
+    icon: 'chart',
+    features: [
+      { name: 'Dashboard de KPIs', desc: 'Citas hoy, ingresos, nuevos clientes, tasa de ocupación.' },
+      { name: 'Informe de ocupación', desc: 'Visualiza tus horas más demandadas y optimiza precios.' },
+      { name: 'Análisis de clientes', desc: 'Clientes nuevos vs recurrentes, tasa de retención.' },
+      { name: 'Tasa de ausencias', desc: 'Mide y reduce las citas perdidas con datos reales.' },
+      { name: 'Ingresos por servicio', desc: 'Sabe qué servicios generan más ingresos.' },
+      { name: 'Exporta reportes', desc: 'Descarga datos en Excel para tu contable.' },
+    ]
+  },
+  {
+    title: 'Integraciones',
+    icon: 'zap',
+    features: [
+      { name: 'Google Calendar', desc: 'Sincronización bidireccional. Tus citas en tu calendario personal.' },
+      { name: 'WhatsApp Business API', desc: 'Conecta tu WhatsApp oficial para mensajes automáticos.' },
+      { name: 'Stripe', desc: 'Procesamiento de pagos seguro y global.' },
+      { name: 'Zapier (próximamente)', desc: 'Conecta con 5,000+ aplicaciones más.' },
+      { name: 'API REST', desc: 'Para desarrolladores: integra Cita2 con tus sistemas.' },
+      { name: 'Widgets embed', desc: 'Inserta tu calendario de reservas en cualquier web.' },
+    ]
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription} schema={schema}>
+  <Header />
+  
+  <main class="pt-24">
+    <!-- Hero -->
+    <section class="py-16 bg-gradient-to-br from-blue-50 to-white">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          Todo lo que incluye Cita2
+        </h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+          Un plan único con todas las funcionalidades. Sin límites, sin sorpresas.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="https://cita2.tecelia.com/register" class="px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            Prueba gratis 14 días →
+          </a>
+          <a href="#funcionalidades" class="px-8 py-4 bg-white text-blue-600 border-2 border-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+            Ver todas las funciones
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="funcionalidades" class="py-16">
+      <div class="container mx-auto px-4 max-w-6xl">
+        {featureCategories.map((category, idx) => (
+          <div class={`mb-16 ${idx !== 0 ? 'border-t pt-16' : ''}`}>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
+              {category.title}
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {category.features.map(feature => (
+                <div class="bg-white p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+                  <h3 class="font-semibold text-gray-900 mb-2">{feature.name}</h3>
+                  <p class="text-sm text-gray-600">{feature.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- What's Included Banner -->
+    <section class="py-16 bg-blue-600 text-white">
+      <div class="container mx-auto px-4 max-w-4xl text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6">
+          Todo esto por 19€/mes
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-sm">
+          <div class="bg-white/10 rounded-lg p-4">
+            <p class="font-bold text-2xl">∞</p>
+            <p>Citas mensuales</p>
+          </div>
+          <div class="bg-white/10 rounded-lg p-4">
+            <p class="font-bold text-2xl">∞</p>
+            <p>Empleados</p>
+          </div>
+          <div class="bg-white/10 rounded-lg p-4">
+            <p class="font-bold text-2xl">∞</p>
+            <p>Clientes</p>
+          </div>
+          <div class="bg-white/10 rounded-lg p-4">
+            <p class="font-bold text-2xl">∞</p>
+            <p>Servicios</p>
+          </div>
+        </div>
+        <p class="text-blue-100">
+          Sin comisiones · Sin límites ocultos · Sin costes extra
+        </p>
+      </div>
+    </section>
+
+    <!-- vs Competition -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <h2 class="text-2xl font-bold text-center mb-8">¿Por qué pagar más por lo mismo (o menos)?</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full bg-white rounded-xl shadow-sm">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="p-4 text-left">Funcionalidad</th>
+                <th class="p-4 text-center w-24">Cita2</th>
+                <th class="p-4 text-center w-24">AgendaPro</th>
+                <th class="p-4 text-center w-24">Reservio</th>
+              </tr>
+            </thead>
+            <tbody class="text-sm">
+              <tr class="border-t"><td class="p-4">Reservas online</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td></tr>
+              <tr class="border-t bg-gray-50"><td class="p-4">Recordatorios email</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td></tr>
+              <tr class="border-t"><td class="p-4">WhatsApp Business</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-red-500">❌</td><td class="p-4 text-center text-red-500">❌</td></tr>
+              <tr class="border-t bg-gray-50"><td class="p-4">Recordatorios SMS</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-yellow-500">💰</td><td class="p-4 text-center text-yellow-500">💰</td></tr>
+              <tr class="border-t"><td class="p-4">Pagos online</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td></tr>
+              <tr class="border-t bg-gray-50"><td class="p-4">Bonos/paquetes</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-red-500">❌</td><td class="p-4 text-center text-yellow-500">⚠️</td></tr>
+              <tr class="border-t"><td class="p-4">Usuarios ilimitados</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-red-500">❌</td><td class="p-4 text-center text-red-500">❌</td></tr>
+              <tr class="border-t bg-gray-50"><td class="p-4">Precio (3 empleados)</td><td class="p-4 text-center font-bold text-green-600">19€</td><td class="p-4 text-center font-bold">147€</td><td class="p-4 text-center font-bold">63€</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-center text-sm text-gray-500 mt-4">
+          ✅ Incluido · 💰 Pago extra · ❌ No disponible · ⚠️ Limitado
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 text-center">
+      <div class="container mx-auto px-4">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Listo para probar todas estas funcionalidades?
+        </h2>
+        <p class="text-gray-600 mb-8 max-w-xl mx-auto">
+          14 días gratis, sin tarjeta. Acceso completo a todas las funciones.
+        </p>
+        <a 
+          href="https://cita2.tecelia.com/register"
+          class="inline-block px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+        >
+          Empezar prueba gratuita →
+        </a>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>

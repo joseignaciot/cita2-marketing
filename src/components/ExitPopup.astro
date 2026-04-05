@@ -1,0 +1,130 @@
+---
+// Exit intent popup - shows when user tries to leave
+---
+
+<div id="exit-popup" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+  <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-lg w-full p-6 md:p-8 transform scale-95 opacity-0 transition-all duration-300" id="exit-popup-content">
+    <button id="close-exit-popup" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    
+    <div class="text-center">
+      <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </div>
+      
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+        ¿Te vas sin probar Cita2?
+      </h3>
+      
+      <p class="text-gray-600 dark:text-gray-300 mb-6">
+        Más de <strong>500 negocios</strong> ya ahorran <strong>1.500€/año</strong> con Cita2. 
+        Prueba gratis 14 días, sin tarjeta.
+      </p>
+      
+      <div class="space-y-3">
+        <a 
+          href="https://cita2.tecelia.com/register"
+          class="btn-primary w-full block text-center"
+        >
+          Empezar prueba gratuita →
+        </a>
+        
+        <button id="exit-popup-no" class="w-full py-3 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 text-sm">
+          Prefiero seguir perdiendo citas
+        </button>
+      </div>
+      
+      <p class="text-xs text-gray-400 mt-4">
+        Setup en 2 minutos · Cancela cuando quieras
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const popup = document.getElementById('exit-popup');
+    const popupContent = document.getElementById('exit-popup-content');
+    const closeBtn = document.getElementById('close-exit-popup');
+    const noBtn = document.getElementById('exit-popup-no');
+    
+    let shown = false;
+    let lastScrollY = 0;
+    
+    // Show popup on exit intent (mouse leaving viewport from top)
+    document.addEventListener('mouseleave', (e) => {
+      if (e.clientY < 0 && !shown && !localStorage.getItem('exit-popup-shown')) {
+        showPopup();
+      }
+    });
+    
+    // Alternative: Show after 30 seconds if scrolled down and trying to leave
+    setTimeout(() => {
+      if (!shown && window.scrollY > 500 && !localStorage.getItem('exit-popup-shown')) {
+        // Will be triggered by scroll direction detection
+      }
+    }, 30000);
+    
+    // Detect scroll up (trying to leave)
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      const scrollDiff = lastScrollY - currentScrollY;
+      
+      // If scrolling up fast after being deep in page
+      if (scrollDiff > 50 && currentScrollY > 1000 && !shown && !localStorage.getItem('exit-popup-shown')) {
+        showPopup();
+      }
+      
+      lastScrollY = currentScrollY;
+    }, { passive: true });
+    
+    function showPopup() {
+      shown = true;
+      localStorage.setItem('exit-popup-shown', 'true');
+      popup.classList.remove('hidden');
+      popup.classList.add('flex');
+      
+      // Animate in
+      setTimeout(() => {
+        popupContent.classList.remove('scale-95', 'opacity-0');
+        popupContent.classList.add('scale-100', 'opacity-100');
+      }, 10);
+    }
+    
+    function hidePopup() {
+      popupContent.classList.remove('scale-100', 'opacity-100');
+      popupContent.classList.add('scale-95', 'opacity-0');
+      
+      setTimeout(() => {
+        popup.classList.add('hidden');
+        popup.classList.remove('flex');
+      }, 300);
+    }
+    
+    closeBtn?.addEventListener('click', hidePopup);
+    noBtn?.addEventListener('click', hidePopup);
+    
+    // Close on backdrop click
+    popup?.addEventListener('click', (e) => {
+      if (e.target === popup) hidePopup();
+    });
+    
+    // Reset after 7 days
+    const lastShown = localStorage.getItem('exit-popup-time');
+    if (lastShown) {
+      const daysSince = (Date.now() - parseInt(lastShown)) / (1000 * 60 * 60 * 24);
+      if (daysSince > 7) {
+        localStorage.removeItem('exit-popup-shown');
+      }
+    }
+    
+    if (!localStorage.getItem('exit-popup-time') && localStorage.getItem('exit-popup-shown')) {
+      localStorage.setItem('exit-popup-time', Date.now().toString());
+    }
+  })();
+</script>

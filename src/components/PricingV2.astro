@@ -1,0 +1,210 @@
+---
+// PricingV2 - Apple-style pricing section
+// Clean, focused, with clear value proposition
+
+const plan = {
+  name: "Profesional",
+  price: "19",
+  period: "mes",
+  annualPrice: "190",
+  annualPeriod: "año",
+  savings: "38",
+  description: "Todo lo que necesitas para gestionar tu negocio sin complicaciones ni límites.",
+  features: [
+    { text: "Reservas online ilimitadas", included: true },
+    { text: "Recordatorios WhatsApp, SMS y email", included: true },
+    { text: "CRM completo de clientes", included: true },
+    { text: "Pagos online con Stripe", included: true },
+    { text: "Calendario multivista", included: true },
+    { text: "Página de reservas personalizada", included: true },
+    { text: "Estadísticas y dashboard", included: true },
+    { text: "Soporte por email y chat", included: true },
+    { text: "Usuarios ilimitados", included: true, highlight: true },
+    { text: "Clientes ilimitados", included: true, highlight: true },
+    { text: "API disponible", included: true },
+    { text: "Exportación de datos", included: true }
+  ],
+  cta: "Empezar prueba gratis",
+  ctaHref: "https://cita2.tecelia.com/register",
+  guarantee: "30 días de garantía. Sin preguntas."
+};
+
+const comparison = [
+  { feature: "Precio mensual", cita2: "19€", agendapro: "147€*", reservio: "63€*", eltenedor: "~500€**" },
+  { feature: "Reservas incluidas", cita2: "Ilimitadas", agendapro: "Ilimitadas", reservio: "Ilimitadas", eltenedor: "Comisión 12-15%" },
+  { feature: "Usuarios", cita2: "Ilimitados", agendapro: "3 empleados", reservio: "5 staff", eltenedor: "N/A" },
+  { feature: "WhatsApp Business", cita2: "✓ Incluido", agendapro: "✗ No", reservio: "✗ No", eltenedor: "✗ No" },
+  { feature: "Setup", cita2: "2 minutos", agendapro: "Días", reservio: "Horas", eltenedor: "Semanas" },
+  { feature: "Soporte español", cita2: "✓ Nativo", agendapro: "✓ Sí", resendio: "△ Limitado", eltenedor: "✓ Sí" }
+];
+
+const notes = "*Precio para 3 empleados. **Estimado para restaurante con 100 reservas/mes y ticket 35€.";
+---
+
+<section class="section-apple bg-gradient-to-b from-white to-gray-50" id="precios">
+  <div class="container-apple">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="feature-bubble mb-4 inline-block">Precio simple</span>
+      <h2 class="text-headline text-gray-900 mb-6">
+        Un plan. Todo incluido.\n<span class="text-gray-400">Sin comisiones ni sorpresas.</span>
+      </h2>
+      <p class="text-body text-lg">
+        Sin límites de citas, empleados o clientes. Todo lo que necesitas por menos de lo que cuesta una cena.
+      </p>
+    </div>
+
+    <!-- Pricing Card - Apple Style -->
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-white rounded-[32px] shadow-xl border border-gray-100 overflow-hidden">
+        <!-- Top section: Price and CTA -->
+        <div class="p-12 lg:p-16 text-center border-b border-gray-100">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-8">
+            <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+            <span class="text-sm font-medium text-blue-700">Plan único, todo incluido</span>
+          </div>
+
+          <h3 class="text-title text-gray-900 mb-2">{plan.name}</h3>
+          <p class="text-gray-500 mb-8">{plan.description}</p>
+
+          <!-- Price Display -->
+          <div class="flex items-baseline justify-center gap-2 mb-4">
+            <span class="text-7xl font-bold text-gray-900 tracking-tight">{plan.price}€</span>
+            <span class="text-xl text-gray-500">/{plan.period}</span>
+          </div>
+
+          <!-- Annual toggle hint -->
+          <p class="text-sm text-gray-500 mb-8">
+            O <span class="font-semibold text-gray-900">{plan.annualPrice}€/{plan.annualPeriod}</span> 
+            (ahorras {plan.savings}€, 2 meses gratis)
+          </p>
+
+          <!-- CTA -->
+          <a href={plan.ctaHref} class="btn-apple-primary text-lg px-12 py-5 inline-flex">
+            {plan.cta}
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+
+          <p class="text-sm text-gray-500 mt-4 flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            {plan.guarantee}
+          </p>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="p-12 lg:p-16">
+          <h4 class="text-lg font-semibold text-gray-900 mb-8 text-center">Todo lo que incluye</h4>
+          
+          <div class="grid md:grid-cols-2 gap-x-12 gap-y-4">
+            {plan.features.map((feature) => (
+              <div class={`flex items-center gap-3 p-3 rounded-xl ${feature.highlight ? 'bg-blue-50/50' : ''}`}>
+                <div class={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
+                  feature.included ? 'bg-green-100' : 'bg-gray-100'
+                }`}>
+                  {feature.included ? (
+                    <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  )}
+                </div>
+                <span class={`${feature.highlight ? 'font-medium text-gray-900' : 'text-gray-700'}`}>
+                  {feature.text}
+                </span>
+                {feature.highlight && (
+                  <span class="ml-auto text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
+                    Ilimitado
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison Table -->
+      <div class="mt-20">
+        <h4 class="text-lg font-semibold text-gray-900 mb-8 text-center">
+          ¿Cuánto ahorras vs la competencia?
+        </h4>
+        
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr class="bg-gray-50 border-b border-gray-100">
+                  <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Característica</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-blue-600 bg-blue-50/50">Cita2</th>
+                  <th class="px-6 py-4 text-center text-sm font-medium text-gray-600">AgendaPro</th>
+                  <th class="px-6 py-4 text-center text-sm font-medium text-gray-600">Reservio</th>
+                  <th class="px-6 py-4 text-center text-sm font-medium text-gray-600">ElTenedor</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparison.map((row, index) => (
+                  <tr class={`border-b border-gray-100 ${index % 2 === 1 ? 'bg-gray-50/30' : ''}`}>
+                    <td class="px-6 py-4 text-sm text-gray-700">{row.feature}</td>
+                    <td class="px-6 py-4 text-center">
+                      <span class="inline-flex items-center gap-1 text-sm font-semibold text-green-700">
+                        {row.cita2.includes('✓') ? (
+                          <>
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            {row.cita2.replace('✓ ', '')}
+                          </>
+                        ) : row.cita2}
+                      </span>
+                    </td>
+                    <td class="px-6 py-4 text-center text-sm text-gray-600">{row.agendapro}</td>
+                    <td class="px-6 py-4 text-center text-sm text-gray-600">{row.reservio}</td>
+                    <td class="px-6 py-4 text-center text-sm text-gray-600">{row.eltenedor}</td>
+                  </tr>
+                ))}
+                <tr class="bg-green-50">
+                  <td class="px-6 py-4 text-sm font-semibold text-gray-900">Ahorro anual</td>
+                  <td class="px-6 py-4 text-center text-sm font-bold text-gray-900">—</td>
+                  <td class="px-6 py-4 text-center text-sm font-bold text-green-700">1.536€</td>
+                  <td class="px-6 py-4 text-center text-sm font-bold text-green-700">528€</td>
+                  <td class="px-6 py-4 text-center text-sm font-bold text-green-700">5.772€</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="px-6 py-4 text-xs text-gray-400 bg-gray-50 border-t border-gray-100">
+            {notes}
+          </p>
+        </div>
+      </div>
+
+      <!-- Trust badges -->
+      <div class="mt-12 flex flex-wrap items-center justify-center gap-8 text-sm text-gray-500">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+          <span>Sin tarjeta para probar</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+          <span>Cancela cuando quieras</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+          <span>Soporte en español</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

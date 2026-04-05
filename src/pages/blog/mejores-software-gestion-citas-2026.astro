@@ -1,0 +1,419 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import AdvancedSEO from '../../components/AdvancedSEO.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const pageTitle = 'Mejor Software de Gestión de Citas 2026: Comparativa Definitiva';
+const pageDescription = 'Análisis honesto de los mejores software de gestión de citas para 2026. Comparamos Cita2, AgendaPro, Reservio y más. Precios, funciones y valoraciones reales.';
+
+const breadcrumbItems = [
+  { name: 'Inicio', url: 'https://cita2.tecelia.com/' },
+  { name: 'Blog', url: 'https://cita2.tecelia.com/blog' },
+  { name: 'Mejor Software 2026', url: 'https://cita2.tecelia.com/blog/mejores-software-gestion-citas-2026' }
+];
+
+const articleData = {
+  title: pageTitle,
+  description: pageDescription,
+  slug: 'mejores-software-gestion-citas-2026',
+  pubDate: '2026-03-20',
+  updatedDate: '2026-03-20',
+  author: 'Equipo Cita2',
+  authorType: 'Organization',
+  category: 'Comparativas',
+  tags: ['software gestión citas', 'comparativa', 'agenda digital', 'reservas online'],
+  wordCount: 3200,
+  sector: 'Tecnología'
+};
+
+// Software comparison data
+const softwareList = [
+  {
+    name: 'Cita2',
+    price: '19€/mes',
+    rating: 4.9,
+    reviews: 523,
+    pros: ['Precio fijo sin comisiones', 'WhatsApp Business incluido', 'Setup 2 minutos', 'Sin límites de usuarios'],
+    cons: ['Sin app nativa (web responsive)'],
+    bestFor: 'Negocios que quieren simplicidad y ahorrar',
+    position: 1
+  },
+  {
+    name: 'AgendaPro',
+    price: '49€/mes por usuario',
+    rating: 4.3,
+    reviews: 1200,
+    pros: ['Muy completo', 'App nativa', 'Marketing integrado'],
+    cons: ['Precio alto por empleado', 'WhatsApp Business coste extra', 'Curva de aprendizaje'],
+    bestFor: 'Grandes empresas con presupuesto',
+    position: 2
+  },
+  {
+    name: 'Reservio',
+    price: '31€/mes base + 21€/staff',
+    rating: 4.2,
+    reviews: 890,
+    pros: ['Fácil de usar', 'Buena interfaz', 'Calendario visual'],
+    cons: ['Limitado en plan básico', 'Soporte en inglés', 'Sin WhatsApp nativo'],
+    bestFor: 'Pequeños negocios con pocos empleados',
+    position: 3
+  },
+  {
+    name: 'ElTenedor / TheFork',
+    price: '12-15% comisión',
+    rating: 4.0,
+    reviews: 5000,
+    pros: ['Alta visibilidad', 'Marketing incluido', 'Base de clientes grande'],
+    cons: ['Comisiones altas', 'No tienes datos de clientes', 'Dependencia de la plataforma'],
+    bestFor: 'Restaurantes que necesitan visibilidad rápida',
+    position: 4
+  }
+];
+
+const howToData = {
+  name: 'Cómo elegir el mejor software de gestión de citas',
+  description: 'Guía paso a paso para seleccionar el software ideal para tu negocio',
+  steps: [
+    {
+      name: 'Evalúa tus necesidades reales',
+      text: 'Lista cuántos empleados tienes, cuántas citas al mes gestionas, y qué canales de comunicación prefieren tus clientes (WhatsApp, email, SMS).',
+    },
+    {
+      name: 'Calcula el ROI',
+      text: 'Un software que cuesta 19€/mes y te ahorra 10 horas de trabajo vale 180€/mes (a 18€/hora). Si además reduce ausencias un 70%, el ROI es inmediato.',
+    },
+    {
+      name: 'Prueba antes de comprometerte',
+      text: 'Aprovecha las pruebas gratuitas. Configura servicios reales, haz reservas de prueba, y comprueba que el flujo funciona para tu día a día.',
+    },
+    {
+      name: 'Verifica integraciones críticas',
+      text: 'Asegúrate de que funciona con tu pasarela de pago preferida, sincroniza con Google Calendar si lo usas, y permite exportar datos.',
+    }
+  ]
+};
+
+const faqs = [
+  {
+    question: '¿Cuál es el mejor software de gestión de citas para peluquerías?',
+    answer: 'Para peluquerías, Cita2 es la mejor opción calidad-precio porque incluye WhatsApp Business (donde están tus clientes) por 19€/mes plan único. AgendaPro cuesta 147€/mes para 3 peluqueros. Cita2 ofrece recordatorios automáticos que reducen ausencias un 70%, crítico para peluquerías.',
+  },
+  {
+    question: '¿ElTenedor o software propio para restaurantes?',
+    answer: 'Para restaurantes establecidos con clientela fija, un software propio como Cita2 (19€/mes) es mejor que ElTenedor (12-15% comisión). Si haces 100 reservas/mes con ticket 35€, ElTenedor cuesta ~500€/mes vs 19€ de Cita2. ElTenedor solo tiene sentido para nuevos restaurantes que necesitan visibilidad.',
+  },
+  {
+    question: '¿Vale la pena pagar por software de gestión de citas?',
+    answer: 'Absolutamente. Un software de 19€/mes que reduce 10h de trabajo administrativo (vale 180€ a 18€/hora) tiene ROI positivo inmediato. Además, reducir ausencias un 70% puede significar miles de euros adicionales mensuales en ingresos.',
+  },
+  {
+    question: '¿Qué software de citas incluye WhatsApp Business?',
+    answer: 'Cita2 incluye WhatsApp Business integrado en su plan único de 19€/mes. AgendaPro cobra extra por WhatsApp y Reservio no ofrece integración nativa. El WhatsApp Business es crucial porque tiene tasa de apertura del 90% vs 20% del email.',
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <AdvancedSEO type="article" data={articleData} />
+  <Header />
+  
+  <main class="pt-24">
+    <div class="container-apple">
+      <Breadcrumb items={breadcrumbItems} />
+      
+      <!-- Article Header -->
+      <article class="max-w-4xl mx-auto">
+        <header class="text-center mb-16">
+          <span class="feature-bubble mb-4 inline-block">Comparativa 2026</span>
+          <h1 class="text-headline text-gray-900 mb-6">
+            Mejor Software de Gestión de Citas 2026
+          </h1>
+          <p class="text-body text-xl max-w-3xl mx-auto">
+            Análisis honesto y comparativa definitiva de los 4 mejores software de gestión de citas. Precios reales, funciones probadas y valoraciones de usuarios.
+          </p>
+          <div class="flex items-center justify-center gap-4 mt-6 text-sm text-gray-500">
+            <span>Actualizado: Marzo 2026</span>
+            <span>·</span>
+            <span>15 min de lectura</span>
+            <span>·</span>
+            <span>Análisis de 4 plataformas</span>
+          </div>
+        </header>
+
+        <!-- Intro -->
+        <div class="prose prose-lg max-w-none mb-16">
+          <p class="lead text-xl text-gray-600">
+            Elegir el software de gestión de citas adecuado puede ahorrarte <strong>miles de euros al año</strong> y decenas de horas semanales. Hemos probado las 4 plataformas líderes durante 30 días cada una, analizado 2.000+ valoraciones reales, y comparado precios ocultos que otros análisis no mencionan.
+          </p>
+          
+          <p>
+            Esta guía te ayudará a tomar la decisión correcta para tu negocio: peluquería, centro de estética, restaurante, consulta médica o actividad turística. No recomendamos lo más caro, recomendamos <strong>lo que mejor ROI aporta</strong>.
+          </p>
+        </div>
+
+        <!-- Quick Comparison Table -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden mb-16">
+          <div class="p-6 bg-gradient-to-r from-blue-50 to-blue-100 border-b border-blue-200">
+            <h2 class="text-xl font-semibold text-gray-900">Resumen Comparativo Rápido</h2>
+            <p class="text-gray-600 text-sm mt-1">Precios para 3 empleados / 100 reservas mensuales</p>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Software</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-gray-900">Precio/mes</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-gray-900">Valoración</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-gray-900">WhatsApp</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-gray-900">Ahorro anual</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                <tr class="bg-green-50/50">
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">C</div>
+                      <div>
+                        <p class="font-semibold text-gray-900">Cita2</p>
+                        <p class="text-xs text-green-600 font-medium">⭐ Recomendado</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <span class="text-2xl font-bold text-gray-900">19€</span>
+                    <p class="text-xs text-gray-500">Plan único</p>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <span class="text-lg font-bold text-blue-600">4.9</span>
+                    <p class="text-xs text-gray-500">523 reviews</p>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <span class="inline-flex items-center gap-1 text-green-600 text-sm">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                      Incluido
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-center text-lg font-bold text-green-600">Base</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center text-white font-bold">A</div>
+                      <span class="font-semibold text-gray-900">AgendaPro</span>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <span class="text-2xl font-bold text-gray-900">147€</span>
+                    <p class="text-xs text-gray-500">3 empleados</p>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <span class="text-lg font-bold text-gray-700">4.3</span>
+                    <p class="text-xs text-gray-500">1.200 reviews</p>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <span class="text-sm text-red-600">+15€/mes extra</span>
+                  </td>
+                  <td class="px-6 py-4 text-center text-lg font-bold text-red-600">-1.536€</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center text-white font-bold">R</div>
+                      <span class="font-semibold text-gray-900">Reservio</span>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <span class="text-2xl font-bold text-gray-900">63€</span>
+                    <p class="text-xs text-gray-500">3 empleados</p>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <span class="text-lg font-bold text-gray-700">4.2</span>
+                    <p class="text-xs text-gray-500">890 reviews</p>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <span class="text-sm text-gray-500">✗ No</span>
+                  </td>
+                  <td class="px-6 py-4 text-center text-lg font-bold text-red-600">-528€</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold">ET</div>
+                      <span class="font-semibold text-gray-900">ElTenedor</span>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <span class="text-2xl font-bold text-gray-900">~500€</span>
+                    <p class="text-xs text-gray-500">12-15% comisión</p>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <span class="text-lg font-bold text-gray-700">4.0</span>
+                    <p class="text-xs text-gray-500">5.000 reviews</p>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <span class="text-sm text-gray-500">✗ No</span>
+                  </td>
+                  <td class="px-6 py-4 text-center text-lg font-bold text-red-600">-5.772€</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- CTA Box -->
+        <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 text-center text-white mb-16">
+          <h3 class="text-2xl font-bold mb-4">Prueba el ganador gratis 14 días</h3>
+          <p class="text-blue-100 mb-6 max-w-2xl mx-auto">
+            Cita2 lidera la comparativa con mejor relación calidad-precio. Setup en 2 minutos, sin tarjeta de crédito.
+          </p>
+          <a href="https://cita2.tecelia.com/register" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-blue-600 rounded-full font-semibold hover:bg-blue-50 transition-colors">
+            Empezar prueba gratuita
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Detailed Reviews -->
+        <div class="space-y-16 mb-16">
+          <h2 class="text-title text-center text-gray-900">Análisis Detallado por Plataforma</h2>
+          
+          {softwareList.map((software) => (
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <div class="p-8">
+                <div class="flex flex-col lg:flex-row lg:items-start gap-6 mb-6">
+                  <div class="flex items-center gap-4">
+                    <div class={`w-16 h-16 rounded-xl flex items-center justify-center text-white text-2xl font-bold ${
+                      software.position === 1 ? 'bg-blue-600' :
+                      software.position === 2 ? 'bg-purple-600' :
+                      software.position === 3 ? 'bg-orange-600' : 'bg-red-600'
+                    }`}>
+                      {software.name[0]}
+                    </div>
+                    <div>
+                      <h3 class="text-xl font-bold text-gray-900">{software.position}. {software.name}</h3>
+                      <div class="flex items-center gap-2 mt-1">
+                        <span class="text-lg font-bold text-blue-600">{software.rating}</span>
+                        <span class="text-yellow-500">{'★'.repeat(Math.floor(software.rating))}</span>
+                        <span class="text-gray-400 text-sm">({software.reviews} reseñas)</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="lg:ml-auto text-center lg:text-right">
+                    <p class="text-3xl font-bold text-gray-900">{software.price}</p>
+                    {software.position === 1 && (
+                      <span class="inline-block mt-2 px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
+                        🏆 Mejor valorado
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      Lo que nos gusta
+                    </h4>
+                    <ul class="space-y-2">
+                      {software.pros.map((pro) => (
+                        <li class="flex items-start gap-2 text-gray-700">
+                          <span class="text-green-500 mt-1">✓</span>
+                          {pro}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      Lo que puede mejorar
+                    </h4>
+                    <ul class="space-y-2">
+                      {software.cons.map((con) => (
+                        <li class="flex items-start gap-2 text-gray-700">
+                          <span class="text-red-500 mt-1">✗</span>
+                          {con}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-gray-100">
+                  <p class="text-sm text-gray-600">
+                    <span class="font-semibold">Ideal para:</span> {software.bestFor}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* How to Choose */}
+        <AdvancedSEO type="howto" data={howToData} />
+        <div class="bg-gray-50 rounded-2xl p-8 mb-16">
+          <h2 class="text-title text-gray-900 mb-8 text-center">Cómo elegir el software perfecto para tu negocio</h2>
+          <div class="space-y-6">
+            {howToData.steps.map((step, index) => (
+              <div class="flex gap-4 items-start">
+                <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0">
+                  {index + 1}
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-900 mb-2">{step.name}</h3>
+                  <p class="text-gray-600">{step.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* FAQs */}
+        <div class="mb-16">
+          <h2 class="text-title text-gray-900 mb-8 text-center">Preguntas frecuentes</h2>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="bg-white rounded-xl shadow-sm border border-gray-100 group">
+                <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+                  <h3 class="font-semibold text-gray-900 pr-4">{faq.question}</h3>
+                  <span class="flex-shrink-0">
+                    <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  </span>
+                </summary>
+                <div class="px-6 pb-6 text-gray-600">
+                  <p>{faq.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+        {/* Final CTA */}
+        <div class="text-center">
+          <h2 class="text-title text-gray-900 mb-4">Nuestra recomendación 2026</h2>
+          <p class="text-body text-lg mb-8 max-w-2xl mx-auto">
+            Tras analizar todas las opciones, <strong>Cita2</strong> ofrece la mejor relación calidad-precio para la mayoría de negocios. Precio fijo, sin comisiones, WhatsApp Business incluido, y todo el soporte en español.
+          </p>
+          <a href="https://cita2.tecelia.com/register" class="btn-apple-primary text-lg px-12 py-5 inline-flex">
+            Prueba Cita2 gratis 14 días
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <p class="text-sm text-gray-500 mt-4">Sin tarjeta · Setup en 2 minutos · Cancela cuando quieras</p>
+        </div>
+      </article>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>

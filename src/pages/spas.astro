@@ -1,0 +1,156 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+
+const pageTitle = 'Software de Gestión para Spas y Balnearios - Cita2';
+const pageDescription = 'Gestión integral para spas, balnearios y centros de bienestar. Circuitos, bonos, gestión de vestuarios y recordatorios. 19€/mes, sin comisiones.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Cita2 - Software para Spas',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '19',
+    priceCurrency: 'EUR',
+    priceValidUntil: '2026-12-31'
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '60'
+  }
+};
+
+const spaFeatures = [
+  {
+    title: 'Circuitos y tratamientos',
+    description: 'Gestiona circuitos termales, masajes, envolturas y tratamientos faciales. Duraciones variables y combinaciones personalizadas.',
+    icon: 'users'
+  },
+  {
+    title: 'Gestión de vestuarios',
+    description: 'Controla la capacidad del spa en tiempo real. Gestiona taquillas y evita saturaciones.',
+    icon: 'chart'
+  },
+  {
+    title: 'Bonos y abonos',
+    description: 'Vende bonos de 5 o 10 entradas, abonos mensuales o pases anuales. Fideliza a tus clientes habituales.',
+    icon: 'credit'
+  },
+  {
+    title: 'Regalos y experiencias',
+    description: 'Vende gift cards digitales para circuitos, tratamientos o días de spa. Perfecto para regalos corporativos.',
+    icon: 'zap'
+  },
+  {
+    title: 'Recordatorios automáticos',
+    description: 'Emails y WhatsApps con instrucciones previas (qué traer, llegar 15min antes) y confirmaciones.',
+    icon: 'bell'
+  },
+  {
+    title: 'Reservas grupales',
+    description: 'Permite reservas para grupos (despedidas, eventos corporativos) con gestión de pagos divididos.',
+    icon: 'users'
+  }
+];
+
+const spaTestimonials = [
+  {
+    quote: 'La gestión de vestuarios nos ha ayudado a controlar la afluencia. Antes teníamos colapsos los fines de semana. Ahora sabemos exactamente cuántos clientes tenemos en cada momento.',
+    author: 'Isabel Moreno',
+    role: 'Directora',
+    company: 'Spa Natural, Toledo',
+    rating: 5
+  },
+  {
+    quote: 'Vendemos un 40% más de bonos desde que usamos Cita2. Los clientes lo ven fácil y nosotros tenemos ingresos anticipados.',
+    author: 'Roberto Castro',
+    role: 'Gerente',
+    company: 'Balneario El Manantial, Burgos',
+    rating: 5
+  }
+];
+
+const spaFAQs = [
+  {
+    question: '¿Puedo gestionar la capacidad del spa?',
+    answer: 'Sí, configuras el aforo máximo y el sistema bloquea automáticamente cuando se alcanza el límite. Evitas saturaciones y garantizas la experiencia de cada cliente.'
+  },
+  {
+    question: '¿Funciona para bonos de varias entradas?',
+    answer: 'Sí, vende bonos de 5 o 10 entradas al circuito, abonos mensuales ilimitados, o pases de tratamientos. El sistema controla automáticamente las entradas consumidas.'
+  },
+  {
+    question: '¿Se pueden hacer reservas grupales?',
+    answer: 'Sí, permite reservar para grupos de hasta 20 personas. Ideal para despedidas de soltera, eventos corporativos o cumpleaños.'
+  },
+  {
+    question: '¿Hay control de taquillas?',
+    answer: 'Sí, el sistema puede asignar taquillas automáticamente o permitir elegir. Sabes siempre qué taquillas están libres u ocupadas.'
+  },
+  {
+    question: '¿Funciona para tratamientos de diferente duración?',
+    answer: 'Sí, configuras cada tratamiento con su duración exacta (masaje 30min, circuito 2h, ritual 3h...) y el calendario se ajusta automáticamente.'
+  },
+  {
+    question: '¿Se pueden vender gift cards?',
+    answer: 'Sí, vende gift cards digitales para cualquier servicio o importe. Perfecto para Navidad, San Valentín o regalos corporativos.'
+  }
+];
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  schema={schema}
+>
+  <Header />
+  
+  <main>
+    <Hero 
+      title="Software de gestión para spas y balnearios"
+      subtitle="Controla aforo, vende bonos y gift cards, gestiona circuitos y tratamientos. La solución completa para centros de bienestar."
+      primaryCta="Prueba gratis 14 días"
+      primaryCtaHref="https://cita2.tecelia.com/register"
+      secondaryCta="Ver funcionalidades"
+      secondaryCtaHref="#producto"
+    />
+
+    <Features 
+      title="¿Qué conseguirás con Cita2?"
+      subtitle="Funcionalidades específicas para spas y balnearios."
+      features={spaFeatures}
+    />
+
+    <Testimonials 
+      title="Lo que dicen los spas"
+      subtitle="Más de 60 spas y balnearios confían en Cita2."
+      testimonials={spaTestimonials}
+    />
+
+    <Pricing />
+
+    <FAQ 
+      title="Preguntas frecuentes para spas"
+      subtitle="Respuestas a las dudas más comunes del sector."
+      faqs={spaFAQs}
+    />
+
+    <CTA 
+      title="Mejora la experiencia en tu spa"
+      subtitle="Únete a 60+ spas que ya gestionan mejor sus reservas con Cita2."
+    />
+  </main>
+  
+  <Footer />
+</Layout>

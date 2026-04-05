@@ -1,0 +1,142 @@
+---
+// Organization schema and floating chat button
+---
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Cita2',
+  url: 'https://cita2.tecelia.com',
+  logo: 'https://cita2.tecelia.com/favicon.svg',
+  description: 'Software de gestión de citas y reservas para negocios de servicios',
+  email: 'hola@cita2.tecelia.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Santiago de Compostela',
+    addressCountry: 'ES'
+  },
+  sameAs: [
+    'https://twitter.com/cita2app',
+    'https://linkedin.com/company/cita2',
+    'https://instagram.com/cita2app'
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    email: 'soporte@cita2.tecelia.com',
+    availableLanguage: ['Spanish']
+  }
+})} />
+
+<!-- Floating chat button -->
+<div id="chat-widget" class="fixed bottom-4 right-4 z-40">
+  <!-- Chat button -->
+  <button 
+    id="chat-toggle"
+    class="w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
+    aria-label="Abrir chat de soporte"
+  >
+    <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+    </svg>
+  </button>
+  
+  <!-- Chat window -->
+  <div id="chat-window" class="hidden absolute bottom-16 right-0 w-80 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <!-- Header -->
+    <div class="bg-blue-600 p-4 text-white">
+      <div class="flex items-center justify-between">
+        <div>
+          <h4 class="font-semibold">¿Necesitas ayuda?</h4>
+          <p class="text-xs text-blue-100">Respondemos en menos de 24h</p>
+        </div>
+        <button id="chat-close" class="text-white/80 hover:text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Messages -->
+    <div class="h-64 p-4 overflow-y-auto bg-gray-50 dark:bg-gray-900">
+      <div class="flex gap-3 mb-4">
+        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+          <span class="text-blue-600 text-sm font-bold">C</span>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[200px]">
+          <p class="text-sm text-gray-700 dark:text-gray-300">¡Hola! ¿En qué puedo ayudarte hoy?</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Input -->
+    <div class="p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+      <form id="chat-form" class="flex gap-2">
+        <input 
+          type="email" 
+          placeholder="Tu email"
+          class="flex-1 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+          required
+        />
+        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium">
+          →
+        </button>
+      </form>
+      <p class="text-xs text-gray-400 mt-2 text-center">
+        O escríbenos a <a href="mailto:soporte@cita2.tecelia.com" class="text-blue-600">soporte@cita2.tecelia.com</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatWindow = document.getElementById('chat-window');
+    const chatClose = document.getElementById('chat-close');
+    const chatForm = document.getElementById('chat-form');
+    
+    let isOpen = false;
+    
+    function toggleChat() {
+      isOpen = !isOpen;
+      if (isOpen) {
+        chatWindow.classList.remove('hidden');
+        chatWindow.classList.add('fade-in');
+      } else {
+        chatWindow.classList.add('hidden');
+        chatWindow.classList.remove('fade-in');
+      }
+    }
+    
+    chatToggle?.addEventListener('click', toggleChat);
+    chatClose?.addEventListener('click', toggleChat);
+    
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      if (isOpen && !chatWindow.contains(e.target) && !chatToggle.contains(e.target)) {
+        toggleChat();
+      }
+    });
+    
+    // Form submission
+    chatForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = chatForm.querySelector('input').value;
+      // Open mailto with pre-filled message
+      window.location.href = `mailto:soporte@cita2.tecelia.com?subject=Consulta desde la web&body=Email: ${encodeURIComponent(email)}%0D%0A%0D%0AMensaje: `;
+    });
+    
+    // Show after 10 seconds
+    setTimeout(() => {
+      if (!localStorage.getItem('chat-seen')) {
+        chatToggle.classList.add('animate-bounce');
+        setTimeout(() => {
+          chatToggle.classList.remove('animate-bounce');
+        }, 2000);
+        localStorage.setItem('chat-seen', 'true');
+      }
+    }, 10000);
+  })();
+</script>

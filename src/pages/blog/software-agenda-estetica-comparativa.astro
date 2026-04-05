@@ -1,0 +1,337 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import AdvancedSEO from '../../components/AdvancedSEO.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const pageTitle = 'Software de Agenda para Estética: Comparativa 2026 + Precios';
+const pageDescription = 'Análisis completo de los mejores software de agenda para centros de estética. Comparamos funciones, precios y valoraciones. Cita2, AgendaPro, Treatwell y más.';
+
+const breadcrumbItems = [
+  { name: 'Inicio', url: 'https://cita2.tecelia.com/' },
+  { name: 'Blog', url: 'https://cita2.tecelia.com/blog' },
+  { name: 'Software Estética', url: 'https://cita2.tecelia.com/blog/software-agenda-estetica-comparativa' }
+];
+
+const articleData = {
+  title: pageTitle,
+  description: pageDescription,
+  slug: 'software-agenda-estetica-comparativa',
+  pubDate: '2026-03-23',
+  updatedDate: '2026-03-23',
+  author: 'Laura Gómez',
+  authorType: 'Person',
+  category: 'Estética',
+  tags: ['software estética', 'agenda digital', 'centro estética', 'comparativa', 'precios'],
+  wordCount: 2900,
+  sector: 'Estética'
+};
+
+const features = [
+  { name: 'Gestión cabinas', cita2: true, agendapro: true, treatwell: true, reservio: true },
+  { name: 'Bonos sesiones', cita2: true, agendapro: true, treatwell: true, reservio: false },
+  { name: 'Ficha cliente completa', cita2: true, agendapro: true, treatwell: true, reservio: true },
+  { name: 'Recordatorios WhatsApp', cita2: true, agendapro: false, treatwell: false, reservio: false },
+  { name: 'Marketing integrado', cita2: true, agendapro: true, treatwell: true, reservio: false },
+  { name: 'App nativa móvil', cita2: false, agendapro: true, treatwell: true, reservio: true },
+  { name: 'Precio fijo', cita2: '19€/mes', agendapro: '49-147€', treatwell: 'Comisión', reservio: '31-84€' }
+];
+
+const pricing = [
+  { esteticistas: 1, cita2: 19, agendapro: 49, treatwell: '20% comisión', reservio: 31 },
+  { esteticistas: 3, cita2: 19, agendapro: 147, treatwell: '20% comisión', reservio: 84 },
+  { esteticistas: 5, cita2: 19, agendapro: 245, treatwell: '20% comisión', reservio: 136 },
+];
+
+const testimonial = {
+  quote: "Teníamos 3 cabinas y era un caos organizar quién usa cada una. Con Cita2 cada esteticista ve su agenda, las cabinas se asignan automáticamente y los conflictos desaparecieron.",
+  author: "Laura Gómez",
+  role: "Directora",
+  center: "Centro de Estética Luna, Valencia",
+  improvement: "0 conflictos cabinas"
+};
+
+const faqs = [
+  {
+    question: '¿Qué software es mejor para centro de estética pequeño?',
+    answer: 'Para centros de estética con 1-3 esteticistas, Cita2 es la mejor opción porque ofrece precio fijo de 19€/mes independientemente del número de empleados, incluye gestión de cabinas, bonos de sesiones y WhatsApp Business integrado. AgendaPro cuesta 49€ por cada esteticista, lo que para 3 empleados son 147€/mes.'
+  },
+  {
+    question: '¿Cómo gestionar cabinas en centro de estética?',
+    answer: 'El software debe permitir asignar cabinas específicas a cada servicio, evitar solapamientos, y mostrar disponibilidad en tiempo real. Cita2 y AgendaPro hacen esto bien. Configura cada cabina con sus equipos específicos (presoterapia, radiofrecuencia, etc.) para evitar que dos clientes necesiten el mismo equipo a la vez.'
+  },
+  {
+    question: '¿Vale la pena Treatwell para estética?',
+    answer: 'Treatwell cobra comisión del 20% por cada reserva, lo que para un tratamiento de 80€ son 16€ de comisión. Si haces 50 tratamientos al mes, pagas 800€ solo en comisiones. Para estética con clientela fija, un software con precio fijo como Cita2 (19€/mes) es mucho más rentable.'
+  },
+  {
+    question: '¿Qué funciones necesita un software de estética?',
+    answer: 'Las imprescindibles son: gestión de cabinas y equipos, ficha de cliente con historial de tratamientos, bonos de sesiones, recordatorios automáticos (para reducir ausencias), control de stock de productos, y estadísticas de ingresos por tratamiento/técnico. Todo esto lo incluye Cita2 en su plan único.'
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <AdvancedSEO type="article" data={articleData} />
+  <Header />
+  
+  <main class="pt-24">
+    <div class="container-apple">
+      <Breadcrumb items={breadcrumbItems} />
+      
+      <article class="max-w-4xl mx-auto">
+        <header class="text-center mb-16">
+          <span class="feature-bubble mb-4 inline-block">Centros de Estética</span>
+          <h1 class="text-headline text-gray-900 mb-6">
+            Software de Agenda para Estética
+          </h1>
+          <p class="text-body text-xl max-w-3xl mx-auto">
+            Comparativa completa 2026 de software de gestión para centros de estética. Analizamos Cita2, AgendaPro, Treatwell y Reservio con precios reales para tu negocio.
+          </p>
+        </header>
+
+        {/* Quick Answer Box */}
+        <div class="bg-blue-50 rounded-2xl p-8 mb-16">
+          <h2 class="text-xl font-bold text-blue-900 mb-4">Respuesta rápida: ¿Cuál elegir?</h2>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <p class="text-blue-800 mb-4">
+                Para la mayoría de centros de estética con 1-5 cabinas, <strong>Cita2</strong> ofrece la mejor relación calidad-precio.
+              </p>
+              <ul class="space-y-2 text-blue-700 text-sm">
+                <li>✓ Precio fijo 19€/mes (no por empleado)</li>
+                <li>✓ Gestión de cabinas incluida</li>
+                <li>✓ WhatsApp Business integrado</li>
+                <li>✓ Bonos de sesiones</li>
+              </ul>
+            </div>
+            <div class="bg-white rounded-xl p-6">
+              <p class="text-sm text-gray-500 mb-2">Ahorro vs AgendaPro (3 esteticistas)</p>
+              <p class="text-4xl font-bold text-green-600">1.536€/año</p>
+              <p class="text-sm text-gray-500">Cita2 19€/mes vs AgendaPro 147€/mes</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Feature Comparison */}
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden mb-16">
+          <div class="p-6 bg-gradient-to-r from-purple-50 to-pink-50 border-b border-purple-200">
+            <h2 class="text-xl font-semibold text-gray-900">Comparativa de funciones por software</h2>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Función</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-blue-600">Cita2</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-purple-600">AgendaPro</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-pink-600">Treatwell</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-orange-600">Reservio</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                {features.map((feature, index) => (
+                  <tr class={index % 2 === 1 ? 'bg-gray-50/50' : ''}>
+                    <td class="px-6 py-4 font-medium text-gray-900">{feature.name}</td>
+                    <td class="px-6 py-4 text-center">
+                      {typeof feature.cita2 === 'boolean' ? (
+                        feature.cita2 ? (
+                          <svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                          </svg>
+                        ) : (
+                          <span class="text-gray-300">—</span>
+                        )
+                      ) : (
+                        <span class="font-semibold text-green-600">{feature.cita2}</span>
+                      )}
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                      {typeof feature.agendapro === 'boolean' ? (
+                        feature.agendapro ? (
+                          <svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                          </svg>
+                        ) : (
+                          <span class="text-gray-300">—</span>
+                        )
+                      ) : (
+                        <span class="text-gray-600">{feature.agendapro}</span>
+                      )}
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                      {typeof feature.treatwell === 'boolean' ? (
+                        feature.treatwell ? (
+                          <svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                          </svg>
+                        ) : (
+                          <span class="text-gray-300">—</span>
+                        )
+                      ) : (
+                        <span class="text-red-600">{feature.treatwell}</span>
+                      )}
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                      {typeof feature.reservio === 'boolean' ? (
+                        feature.reservio ? (
+                          <svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                          </svg>
+                        ) : (
+                          <span class="text-gray-300">—</span>
+                        )
+                      ) : (
+                        <span class="text-gray-600">{feature.reservio}</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Pricing by size */}
+        <div class="mb-16">
+          <h2 class="text-title text-gray-900 mb-8 text-center">Precio según tamaño de tu centro</h2>
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+            <table class="w-full">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Esteticistas</th>
+                  <th class="px-6 py-4 text-center text-sm font-bold text-blue-600">Cita2</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-gray-700">AgendaPro</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-gray-700">Reservio</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-red-600">Ahorro con Cita2</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                {pricing.map((row) => (
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">{row.esteticistas} esteticista{row.esteticistas > 1 ? 's' : ''}</td>
+                    <td class="px-6 py-4 text-center">
+                      <span class="text-xl font-bold text-blue-600">{row.cita2}€</span>
+                      <span class="text-xs text-gray-500">/mes</span>
+                    </td>
+                    <td class="px-6 py-4 text-center text-gray-600">{row.agendapro}€/mes</td>
+                    <td class="px-6 py-4 text-center text-gray-600">{row.reservio}€/mes</td>
+                    <td class="px-6 py-4 text-center">
+                      <span class="text-lg font-bold text-green-600">{row.agendapro - row.cita2 * 12}€/año</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div class="p-4 bg-gray-50 text-xs text-gray-500">
+              * Treatwell no incluido: cobra 20% comisión por cada reserva. Para 50 tratamientos/mes de 80€ = 800€/mes en comisiones.
+            </div>
+          </div>
+        </div>
+
+        {/* Testimonial */}
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-16">
+          <div class="flex items-start gap-4 mb-4">
+            <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white text-xl font-bold">
+              L
+            </div>
+            <div>
+              <p class="font-semibold text-gray-900">{testimonial.author}</p>
+              <p class="text-sm text-gray-500">{testimonial.role}, {testimonial.center}</p>
+            </div>
+            <div class="ml-auto text-right">
+              <span class="inline-block px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
+                {testimonial.improvement}
+              </span>
+            </div>
+          </div>
+          <blockquote class="text-lg text-gray-700 italic">
+            "{testimonial.quote}"
+          </blockquote>
+        </div>
+
+        {/* Must-have features */}
+        <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 mb-16">
+          <h2 class="text-title text-gray-900 mb-8 text-center">5 funciones imprescindibles para estética</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+              <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                <span class="text-purple-600 text-xl">🚪</span>
+              </div>
+              <h3 class="font-semibold text-gray-900 mb-2">Gestión de cabinas</h3>
+              <p class="text-gray-600 text-sm">Asigna cabinas específicas a cada servicio, evita solapamientos y maximiza uso de espacio.</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+              <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                <span class="text-purple-600 text-xl">📋</span>
+              </div>
+              <h3 class="font-semibold text-gray-900 mb-2">Ficha cliente completa</h3>
+              <p class="text-gray-600 text-sm">Historial de tratamientos, alergias, contraindicaciones, fotos antes/después.</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+              <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                <span class="text-purple-600 text-xl">🎟️</span>
+              </div>
+              <h3 class="font-semibold text-gray-900 mb-2">Bonos de sesiones</h3>
+              <p class="text-gray-600 text-sm">Vende bonos de 5 o 10 sesiones con descuento. El sistema controla automáticamente las restantes.</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+              <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                <span class="text-purple-600 text-xl">💬</span>
+              </div>
+              <h3 class="font-semibold text-gray-900 mb-2">Recordatorios WhatsApp</h3>
+              <p class="text-gray-600 text-sm">Reduce ausencias un 70% con recordatorios automáticos por WhatsApp (donde están tus clientes).</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm md:col-span-2">
+              <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                <span class="text-purple-600 text-xl">📊</span>
+              </div>
+              <h3 class="font-semibold text-gray-900 mb-2">Estadísticas por tratamiento</h3>
+              <p class="text-gray-600 text-sm">Saber qué tratamientos son más rentables, qué esteticista genera más ingresos, y cuál es el horario más demandado.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* FAQs */}
+        <div class="mb-16">
+          <h2 class="text-title text-gray-900 mb-8 text-center">Preguntas frecuentes sobre software de estética</h2>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="bg-white rounded-xl shadow-sm border border-gray-100 group">
+                <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+                  <h3 class="font-semibold text-gray-900 pr-4">{faq.question}</h3>
+                  <span class="flex-shrink-0">
+                    <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  </span>
+                </summary>
+                <div class="px-6 pb-6 text-gray-600">
+                  <p>{faq.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+        {/* Final CTA */}
+        <div class="bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl p-12 text-center text-white">
+          <h2 class="text-2xl font-bold mb-4">Prueba el mejor software para estética</h2>
+          <p class="text-purple-100 mb-8 max-w-2xl mx-auto">
+            Gestión de cabinas, bonos de sesiones, WhatsApp Business y todo lo que tu centro necesita. 14 días gratis.
+          </p>
+          <a href="https://cita2.tecelia.com/register" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-purple-600 rounded-full font-semibold hover:bg-purple-50 transition-colors text-lg">
+            Crear cuenta gratuita
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <p class="text-sm text-purple-200 mt-4">Sin tarjeta · Setup en 2 min · Precio fijo 19€/mes</p>
+        </div>
+      </article>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>

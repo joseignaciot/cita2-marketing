@@ -1,0 +1,258 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const pageTitle = 'Cita2 vs AgendaPro: Comparativa Detallada 2025';
+const pageDescription = 'Análisis completo y honesto entre Cita2 y AgendaPro. Precios reales, funcionalidades comparadas, ventajas y desventajas. Elige el mejor software para tu negocio.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Cita2 vs AgendaPro: Comparativa Detallada 2025',
+  description: 'Análisis completo y honesto entre Cita2 y AgendaPro',
+  author: {
+    '@type': 'Organization',
+    name: 'Cita2'
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Cita2',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://cita2.tecelia.com/logo.png'
+    }
+  },
+  datePublished: '2025-03-20',
+  dateModified: '2025-03-20'
+};
+
+const comparisonData = [
+  {
+    category: 'Precios',
+    features: [
+      { name: 'Coste mensual base', cita2: '19€ plan único', agendapro: 'Desde 49€/puesto', winner: 'cita2' },
+      { name: 'Coste 3 empleados', cita2: '19€', agendapro: '147€', winner: 'cita2' },
+      { name: 'Coste 5 empleados', cita2: '19€', agendapro: '245€', winner: 'cita2' },
+      { name: 'Comisiones por reserva', cita2: '0%', agendapro: '0%', winner: 'tie' },
+      { name: 'Setup inicial', cita2: 'Gratis', agendapro: 'Gratis', winner: 'tie' },
+    ]
+  },
+  {
+    category: 'Funcionalidades Core',
+    features: [
+      { name: 'Calendario y agenda', cita2: '✅ Avanzado', agendapro: '✅ Avanzado', winner: 'tie' },
+      { name: 'Reservas online', cita2: '✅ Incluido', agendapro: '✅ Incluido', winner: 'tie' },
+      { name: 'Recordatorios email', cita2: '✅ Incluido', agendapro: '✅ Incluido', winner: 'tie' },
+      { name: 'Recordatorios SMS', cita2: '✅ Incluido', agendapro: '⚠️ Pago aparte', winner: 'cita2' },
+      { name: 'WhatsApp Business', cita2: '✅ Incluido', agendapro: '❌ No', winner: 'cita2' },
+      { name: 'Ficha de clientes', cita2: '✅ Completa', agendapro: '✅ Completa', winner: 'tie' },
+      { name: 'Historial de servicios', cita2: '✅ Detallado', agendapro: '✅ Básico', winner: 'cita2' },
+      { name: 'Estadísticas y KPIs', cita2: '✅ Dashboard', agendapro: '✅ Reportes', winner: 'tie' },
+    ]
+  },
+  {
+    category: 'Pagos y Facturación',
+    features: [
+      { name: 'Pagos online', cita2: '✅ Stripe', agendapro: '✅ Redsys', winner: 'tie' },
+      { name: 'Depósitos/reservas', cita2: '✅ Configurable', agendapro: '⚠️ Limitado', winner: 'cita2' },
+      { name: 'Facturación', cita2: '⚠️ Básica', agendapro: '✅ Avanzada', winner: 'agendapro' },
+      { name: 'TPV integrado', cita2: '❌ No', agendapro: '✅ Sí', winner: 'agendapro' },
+    ]
+  },
+  {
+    category: 'Experiencia de Uso',
+    features: [
+      { name: 'Setup inicial', cita2: '2 minutos (presets)', agendapro: '30-60 minutos', winner: 'cita2' },
+      { name: 'Interfaz', cita2: 'Moderna, simple', agendapro: 'Funcional', winner: 'cita2' },
+      { name: 'App móvil', cita2: 'Web app responsive', agendapro: 'Nativa iOS/Android', winner: 'agendapro' },
+      { name: 'Velocidad', cita2: '⚡ Rápida', agendapro: '⚡ Rápida', winner: 'tie' },
+      { name: 'Soporte español', cita2: '✅ Chat tiempo real', agendapro: '✅ Email/teléfono', winner: 'tie' },
+    ]
+  },
+  {
+    category: 'Sectores Específicos',
+    features: [
+      { name: 'Peluquerías', cita2: '✅ Preset incluido', agendapro: '✅ Configurable', winner: 'tie' },
+      { name: 'Restaurantes', cita2: '✅ Gestión mesas', agendapro: '✅ Gestión mesas', winner: 'tie' },
+      { name: 'Turismo', cita2: '✅ Capacidad, extras', agendapro: '⚠️ Básico', winner: 'cita2' },
+      { name: 'Estética/spa', cita2: '✅ Ficha tratamientos', agendapro: '⚠️ Básica', winner: 'cita2' },
+    ]
+  }
+];
+
+const winnerCount = { cita2: 0, agendapro: 0, tie: 0 };
+comparisonData.forEach(cat => {
+  cat.features.forEach(f => {
+    winnerCount[f.winner]++;
+  });
+});
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  schema={schema}
+>
+  <Header />
+  
+  <main class="pt-24">
+    <!-- Hero -->
+    <section class="py-16 bg-gradient-to-br from-blue-50 to-white">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          Cita2 vs AgendaPro
+        </h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+          Comparativa honesta y detallada. Precios reales, funcionalidades comparadas, pros y contras.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 text-sm">
+          <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full">
+            ✅ {winnerCount.cita2} puntos ganados por Cita2
+          </span>
+          <span class="px-4 py-2 bg-red-100 text-red-700 rounded-full">
+            ✅ {winnerCount.agendapro} puntos ganados por AgendaPro
+          </span>
+          <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full">
+            🤝 {winnerCount.tie} empates
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Verdict -->
+    <section class="py-12 border-b">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+          <h2 class="text-xl font-bold text-yellow-800 mb-4">🎯 Veredicto rápido</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-2">Elige Cita2 si:</h3>
+              <ul class="space-y-1 text-sm text-gray-700">
+                <li>• Quieres ahorrar 1.500€+/año</li>
+                <li>• Valoras WhatsApp Business</li>
+                <li>• Quieres empezar en 2 minutos</li>
+                <li>• Tienes varios empleados</li>
+                <li>• Prefieres interfaz moderna</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-2">Elige AgendaPro si:</h3>
+              <ul class="space-y-1 text-sm text-gray-700">
+                <li>• Necesitas app nativa móvil</li>
+                <li>• Usas TPV físico Redsys</li>
+                <li>• Facturación avanzada necesaria</li>
+                <li>• Prefieres soporte telefónico</li>
+                <li>• Tienes solo 1-2 empleados</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Comparison -->
+    <section class="py-16">
+      <div class="container mx-auto px-4 max-w-5xl">
+        {comparisonData.map((category, idx) => (
+          <div class={`mb-12 ${idx !== 0 ? 'border-t pt-12' : ''}`}>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">{category.category}</h2>
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr class="border-b-2 border-gray-200">
+                    <th class="text-left py-3 px-4 font-semibold">Característica</th>
+                    <th class="text-center py-3 px-4 font-semibold text-blue-600 w-1/3">Cita2</th>
+                    <th class="text-center py-3 px-4 font-semibold text-red-600 w-1/3">AgendaPro</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {category.features.map((feature, fidx) => (
+                    <tr class={`border-b ${fidx % 2 === 0 ? 'bg-gray-50' : ''}`}>
+                      <td class="py-3 px-4 font-medium">{feature.name}</td>
+                      <td class="py-3 px-4 text-center">
+                        <span class={feature.winner === 'cita2' ? 'font-semibold text-green-600' : ''}>
+                          {feature.cita2}
+                        </span>
+                        {feature.winner === 'cita2' && <span class="ml-2">🏆</span>}
+                      </td>
+                      <td class="py-3 px-4 text-center">
+                        <span class={feature.winner === 'agendapro' ? 'font-semibold text-green-600' : ''}>
+                          {feature.agendapro}
+                        </span>
+                        {feature.winner === 'agendapro' && <span class="ml-2">🏆</span>}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Pricing Deep Dive -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <h2 class="text-3xl font-bold text-center mb-12">💰 Análisis de precios: La diferencia real</h2>
+        
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          <div class="bg-white p-6 rounded-xl text-center">
+            <h3 class="font-semibold text-gray-600 mb-2">1 empleado</h3>
+            <div class="space-y-2">
+              <p class="text-sm">Cita2: <span class="font-bold text-blue-600">19€</span></p>
+              <p class="text-sm">AgendaPro: <span class="font-bold">49€</span></p>
+              <p class="text-sm text-green-600">Ahorro: 30€/mes</p>
+            </div>
+          </div>
+          <div class="bg-white p-6 rounded-xl text-center border-2 border-blue-500">
+            <h3 class="font-semibold text-gray-600 mb-2">3 empleados</h3>
+            <div class="space-y-2">
+              <p class="text-sm">Cita2: <span class="font-bold text-blue-600">19€</span></p>
+              <p class="text-sm">AgendaPro: <span class="font-bold">147€</span></p>
+              <p class="text-sm text-green-600 font-semibold">Ahorro: 128€/mes</p>
+            </div>
+          </div>
+          <div class="bg-white p-6 rounded-xl text-center">
+            <h3 class="font-semibold text-gray-600 mb-2">5 empleados</h3>
+            <div class="space-y-2">
+              <p class="text-sm">Cita2: <span class="font-bold text-blue-600">19€</span></p>
+              <p class="text-sm">AgendaPro: <span class="font-bold">245€</span></p>
+              <p class="text-sm text-green-600">Ahorro: 226€/mes</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-600 text-white p-8 rounded-xl text-center">
+          <p class="text-lg mb-2">Ahorro anual con 3 empleados:</p>
+          <p class="text-4xl font-bold">1.536€</p>
+          <p class="text-blue-200 mt-2">Suficiente para unas buenas vacaciones 💙</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Aún indeciso?
+        </h2>
+        <p class="text-gray-600 mb-8 max-w-xl mx-auto">
+          Prueba Cita2 gratis durante 14 días. No requiere tarjeta. Si no te convence, nada pierdes.
+        </p>
+        <a 
+          href="https://cita2.tecelia.com/register"
+          class="inline-block px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+        >
+          Empezar prueba gratuita →
+        </a>
+        <p class="text-sm text-gray-500 mt-4">
+          Setup en 2 minutos · Sin compromiso · Cancela cuando quieras
+        </p>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>

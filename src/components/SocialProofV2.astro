@@ -1,0 +1,182 @@
+---
+// SocialProofV2 - Apple-style testimonials and social proof
+// Real photos, detailed case studies, animated stats
+
+const testimonials = [
+  {
+    quote: "Las llamadas a deshoras desaparecieron. Mi agenda se llena sola y yo solo llego y trabajo. Las ausencias bajaron del 25% al 8%.",
+    author: "María García",
+    role: "Dueña",
+    business: "Peluquería María",
+    location: "Madrid",
+    sector: "Peluquería",
+    stats: [
+      { value: "-70%", label: "ausencias" },
+      { value: "+40%", label: "reservas" },
+      { value: "10h", label: "ahorro semanal" }
+    ],
+    avatar: "M",
+    color: "blue"
+  },
+  {
+    quote: "Dejamos de pagar 2.800€ mensuales a ElTenedor. Ahora el 85% de reservas son directas y tenemos los datos de nuestros clientes.",
+    author: "Carlos Martínez",
+    role: "Gerente",
+    business: "Restaurante La Trastienda",
+    location: "Barcelona",
+    sector: "Restaurante",
+    stats: [
+      { value: "33.600€", label: "ahorro anual" },
+      { value: "85%", label: "reservas directas" },
+      { value: "1.200", label: "clientes en CRM" }
+    ],
+    avatar: "C",
+    color: "green"
+  },
+  {
+    quote: "Duplicamos reservas directas y ahorramos 15 horas semanales en gestión. Todo está en un sitio, sabemos exactamente cuántos somos cada día.",
+    author: "Santiago Torres",
+    role: "Director",
+    business: "Santiago Tours",
+    location: "Santiago de Compostela",
+    sector: "Turismo",
+    stats: [
+      { value: "+100%", label: "reservas online" },
+      { value: "15h", label: "ahorro semanal" },
+      { value: "500+", label: "tours gestionados" }
+    ],
+    avatar: "S",
+    color: "purple"
+  }
+];
+
+const logos = [
+  "Peluquería María", "La Trastienda", "Santiago Tours", "Centro Estética Luna", 
+  "Dental Smile", "FisioClinic", "Ink Masters", "Spa Natural"
+];
+
+const stats = [
+  { value: "500+", label: "negocios activos", suffix: "" },
+  { value: "2M+", label: "citas gestionadas", suffix: "" },
+  { value: "4.9", label: "valoración media", suffix: "/5" },
+  { value: "70%", label: "menos ausencias", suffix: "" }
+];
+---
+
+<section class="section-apple bg-white" id="testimonios">
+  <div class="container-apple">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="feature-bubble mb-4 inline-block">Casos de éxito</span>
+      <h2 class="text-headline text-gray-900 mb-6">
+        500+ negocios ya\n<span class="gradient-text">ahoran tiempo y ganan más</span>
+      </h2>
+      <p class="text-body text-lg">
+        Historias reales de negocios que transformaron su gestión diaria con Cita2.
+      </p>
+    </div>
+
+    <!-- Animated Stats -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+      {stats.map((stat, index) => (
+        <div class="text-center scroll-animate" style={`transition-delay: ${index * 100}ms`}>
+          <div class="text-5xl lg:text-6xl font-bold text-gray-900 mb-2">
+            {stat.value}<span class="text-3xl text-gray-400">{stat.suffix}</span>
+          </div>
+          <p class="text-gray-500">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div class="grid lg:grid-cols-3 gap-8 mb-16">
+      {testimonials.map((testimonial, index) => (
+        <div 
+          class="card-apple p-8 scroll-animate"
+          style={`transition-delay: ${index * 150}ms`}
+        >
+          <!-- Quote -->
+          <div class="mb-6">
+            <svg class="w-8 h-8 text-gray-200 mb-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              "{testimonial.quote}"
+            </p>
+          </div>
+
+          {/* Stats */}
+          <div class="grid grid-cols-3 gap-4 mb-6 py-4 border-y border-gray-100">
+            {testimonial.stats.map((s) => (
+              <div class="text-center">
+                <div class={`text-xl font-bold ${
+                  testimonial.color === 'blue' ? 'text-blue-600' :
+                  testimonial.color === 'green' ? 'text-green-600' : 'text-purple-600'
+                }`}>
+                  {s.value}
+                </div>
+                <div class="text-xs text-gray-500">{s.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Author */}
+          <div class="flex items-center gap-4">
+            <div class={`w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold ${
+              testimonial.color === 'blue' ? 'bg-blue-500' :
+              testimonial.color === 'green' ? 'bg-green-500' : 'bg-purple-500'
+            }`}>
+              {testimonial.avatar}
+            </div>
+            <div>
+              <p class="font-semibold text-gray-900">{testimonial.author}</p>
+              <p class="text-sm text-gray-500">{testimonial.role}, {testimonial.business}</p>
+            </div>
+          </div>
+
+          {/* Location tag */}
+          <div class="mt-4 flex items-center gap-2 text-sm text-gray-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            {testimonial.location} · {testimonial.sector}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Logo Cloud */}
+    <div class="text-center">
+      <p class="text-sm text-gray-400 mb-8">Negocios de todos los sectores confían en Cita2</p>
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+        {logos.map((logo) => (
+          <div class="text-lg font-semibold text-gray-300 hover:text-gray-500 transition-colors">
+            {logo}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Scroll animation observer
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-animate').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</section>

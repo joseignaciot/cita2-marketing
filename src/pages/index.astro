@@ -1,0 +1,302 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HeroV2 from '../components/HeroV2.astro';
+import ProblemSolution from '../components/ProblemSolution.astro';
+import FeatureShowcase from '../components/FeatureShowcase.astro';
+import PricingV2 from '../components/PricingV2.astro';
+import SocialProofV2 from '../components/SocialProofV2.astro';
+import FAQ from '../components/FAQ.astro';
+import AdvancedSEO from '../components/AdvancedSEO.astro';
+
+// Import Apple Design System
+import '../styles/apple-design.css';
+
+// AI-Optimized Title & Meta
+const title = 'Cita2 - Software de Gestión de Citas | Tu Agenda Automatizada';
+const description = 'Deja que tus clientes reserven 24/7 mientras tú descansas. Reduce ausencias un 70% con recordatorios automáticos. Desde 19€/mes. Prueba gratis 14 días.';
+
+const features = [
+  {
+    icon: 'calendar',
+    title: 'Reservas online 24/7',
+    description: 'Sistema de reservas automatizado que permite a los clientes reservar citas en cualquier momento del día sin intervención del negocio. Tus clientes reservan cuando quieren, incluso a las 3 de la mañana. Tú despiertas con la agenda llena.',
+  },
+  {
+    icon: 'bell',
+    title: 'Recordatorios automáticos multicanal',
+    description: 'Envío programado de notificaciones por email, SMS y WhatsApp Business para recordar citas programadas a los clientes. Reduce ausencias hasta un 80% sin que tú hagas nada.',
+  },
+  {
+    icon: 'users',
+    title: 'CRM completo de clientes',
+    description: 'Base de datos centralizada con historial completo de cada cliente: citas, preferencias, cumpleaños y observaciones. Ofrece un trato personalizado que fideliza.',
+  },
+  {
+    icon: 'credit',
+    title: 'Pagos online seguros con Stripe',
+    description: 'Integración con Stripe para procesar pagos, depósitos y bonos directamente desde la plataforma. Reduce no-shows y mejora el flujo de caja.',
+  },
+  {
+    icon: 'message',
+    title: 'WhatsApp Business API integrado',
+    description: 'Conecta tu WhatsApp Business y envía confirmaciones, recordatorios y follow-ups automáticamente. Tasa de apertura del 90%.',
+  },
+  {
+    icon: 'chart',
+    title: 'Dashboard de estadísticas en tiempo real',
+    description: 'Métricas de ocupación, ingresos, clientes nuevos y tasas de ausencia. Toma decisiones de negocio basadas en datos actualizados.',
+  },
+];
+
+const testimonials = [
+  {
+    quote: 'Desde que uso Cita2 he dejado de recibir llamadas a deshoras. Mis clientes reservan online y yo solo tengo que llegar y trabajar.',
+    author: 'María García',
+    role: 'Dueña',
+    company: 'Peluquería María',
+    rating: 5,
+  },
+  {
+    quote: 'Hemos ahorrado 2.800€ al mes en comisiones de ElTenedor. Ahora tenemos relación directa con nuestros clientes.',
+    author: 'Carlos Martínez',
+    role: 'Gerente',
+    company: 'Restaurante La Trastienda',
+    rating: 5,
+  },
+  {
+    quote: 'Hemos duplicado reservas directas y ahorrado 15h semanales. Todo está en un sitio, sabemos exactamente cuántos somos cada día.',
+    author: 'Santiago Torres',
+    role: 'Director',
+    company: 'Santiago Tours',
+    rating: 5,
+  },
+];
+
+const pricingPlans = [
+  {
+    name: 'Profesional',
+    price: '19€',
+    period: '/mes',
+    description: 'Todo lo que necesitas para gestionar tu negocio sin complicaciones.',
+    features: [
+      'Reservas online ilimitadas',
+      'Recordatorios automáticos',
+      'Calendario visual',
+      'CRM clientes completo',
+      'Página de reservas personalizada',
+      'Pagos online con Stripe',
+      'WhatsApp Business integrado',
+      'Soporte por email y chat',
+    ],
+    cta: 'Empezar prueba gratis',
+    ctaHref: 'https://cita2.tecelia.com/register',
+    popular: true,
+  },
+];
+
+const faqItems = [
+  {
+    question: '¿Cuánto tiempo tarda en estar operativo?',
+    answer: 'Menos de 2 minutos. Al registrarte, pre-cargamos servicios según tu sector (peluquería, estética, etc.) para que solo tengas que personalizar precios y duraciones. Tu página de reservas está lista inmediatamente.',
+  },
+  {
+    question: '¿Necesito tarjeta de crédito para la prueba?',
+    answer: 'No. La prueba de 14 días es completamente gratuita y no requiere tarjeta. Solo te pedimos los datos de pago cuando decides quedarte después de la prueba.',
+  },
+  {
+    question: '¿Puedo importar mis clientes actuales?',
+    answer: 'Sí. Puedes importar tu base de clientes desde Excel/CSV. También ofrecemos asistencia gratuita para la migración si tienes muchos datos.',
+  },
+  {
+    question: '¿Qué pasa si supero el límite de citas?',
+    answer: 'No hay límite de citas. Por 19€/mes tienes reservas ilimitadas. No cobramos por comisión ni por volumen.',
+  },
+  {
+    question: '¿Funciona en móvil?',
+    answer: 'Sí. Cita2 es web responsive, se adapta perfectamente a móvil, tablet y desktop. También puedes añadirla a la pantalla de inicio como una app.',
+  },
+  {
+    question: '¿Qué soporte ofrecéis?',
+    answer: 'Soporte por email y chat en español. Tiempo de respuesta < 2 horas en horario laboral. También tenemos guías, videos tutoriales y webinars semanales.',
+  },
+];
+
+// Enhanced Schema for AI SEO - Rich structured data
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      '@id': 'https://cita2.tecelia.com/#software',
+      name: 'Cita2',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      softwareVersion: '2.0',
+      offers: {
+        '@type': 'Offer',
+        price: '19',
+        priceCurrency: 'EUR',
+        priceValidUntil: '2026-12-31',
+        availability: 'https://schema.org/InStock'
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.8',
+        ratingCount: '523',
+        bestRating: '5',
+        worstRating: '1'
+      },
+      review: [
+        {
+          '@type': 'Review',
+          author: { '@type': 'Person', name: 'María García' },
+          reviewBody: 'Desde que uso Cita2 he dejado de recibir llamadas a deshoras. Mis clientes reservan online y yo solo tengo que llegar y trabajar.',
+          reviewRating: { '@type': 'Rating', ratingValue: '5' },
+          datePublished: '2025-02-15'
+        },
+        {
+          '@type': 'Review',
+          author: { '@type': 'Person', name: 'Carlos Martínez' },
+          reviewBody: 'Hemos ahorrado 2.800€ al mes en comisiones de ElTenedor. Ahora tenemos relación directa con nuestros clientes.',
+          reviewRating: { '@type': 'Rating', ratingValue: '5' },
+          datePublished: '2025-01-20'
+        }
+      ],
+      description: description,
+      featureList: 'Reservas online 24/7, Recordatorios automáticos por WhatsApp/Email/SMS, CRM de clientes, Pagos online con Stripe, WhatsApp Business integrado, Estadísticas y dashboard'
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://cita2.tecelia.com/#website',
+      name: 'Cita2',
+      url: 'https://cita2.tecelia.com',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: 'https://cita2.tecelia.com/search?q={search_term_string}',
+        'query-input': 'required name=search_term_string'
+      }
+    },
+    {
+      '@type': 'Organization',
+      '@id': 'https://cita2.tecelia.com/#organization',
+      name: 'Cita2',
+      url: 'https://cita2.tecelia.com',
+      logo: 'https://cita2.tecelia.com/favicon.svg',
+      description: 'Software de gestión de citas y reservas para negocios de servicios',
+      foundingDate: '2023',
+      address: {
+        '@type': 'PostalAddress',
+        addressCountry: 'ES',
+        addressLocality: 'Santiago de Compostela'
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'customer support',
+        email: 'soporte@cita2.tecelia.com',
+        availableLanguage: ['Spanish', 'English']
+      },
+      sameAs: [
+        'https://twitter.com/cita2app',
+        'https://linkedin.com/company/cita2',
+        'https://instagram.com/cita2app'
+      ]
+    }
+  ]
+};
+---
+
+<Layout title={title} description={description} schema={schema}>
+  <AdvancedSEO type="service" data={{
+    name: 'Cita2 - Software de Gestión de Citas',
+    description: description,
+    url: '/',
+    rating: { value: 4.9, count: 523 }
+  }} />
+  
+  <Header />
+  
+  <main>
+    <!-- Hero V2: Apple Style -->
+    <HeroV2 
+      title="Tu agenda,\nautomatizada"
+      subtitle="Deja que tus clientes reserven 24/7 mientras tú descansas. El software que reduce las ausencias un 70%."
+      ctaText="Prueba gratis 14 días"
+      ctaHref="https://cita2.tecelia.com/register"
+      secondaryCta={{ text: "Ver cómo funciona", href: "#soluciones" }}
+    />
+    
+    <!-- Problem/Solution: Before/After -->
+    <ProblemSolution />
+    
+    <!-- Feature Showcase: Storytelling -->
+    <FeatureShowcase />
+    
+    <!-- Social Proof V2: Stats & Testimonials -->
+    <SocialProofV2 />
+    
+    <!-- Pricing V2: Clean & Clear -->
+    <PricingV2 />
+    
+    <!-- FAQ: Optimized for conversion -->
+    <FAQ
+      title="¿Tienes dudas?"
+      subtitle="Todo lo que necesitas saber. Si no encuentras tu respuesta, escríbenos."
+      items={faqItems}
+    />
+    
+    <!-- Final CTA: Apple Style -->
+    <section class="section-apple bg-gradient-to-b from-gray-50 to-white">
+      <div class="container-apple text-center">
+        <h2 class="text-headline text-gray-900 mb-6">
+          ¿Listo para transformar\n<span class="gradient-text">tu gestión diaria?</span>
+        </h2>
+        <p class="text-body text-xl max-w-2xl mx-auto mb-10">
+          Únete a 500+ negocios que ya ahorran tiempo, reducen ausencias y ganan más con Cita2.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <a href="https://cita2.tecelia.com/register" class="btn-apple-primary text-lg px-12 py-5">
+            Empezar prueba gratuita
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a href="/funcionalidades" class="btn-apple-secondary text-lg px-8 py-5">
+            Ver todas las funciones
+          </a>
+        </div>
+        
+        <p class="text-sm text-gray-500">
+          Setup en 2 minutos · Sin tarjeta · Cancela cuando quieras · Soporte en español
+        </p>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<script>
+  // Initialize scroll animations
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-animate').forEach(el => {
+      observer.observe(el);
+    });
+  });
+</script>

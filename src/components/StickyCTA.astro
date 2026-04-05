@@ -1,0 +1,45 @@
+---
+// Sticky CTA que aparece al hacer scroll
+---
+
+<div id="sticky-cta" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg transform translate-y-full transition-transform duration-300 z-40 md:hidden">
+  <div class="container mx-auto px-4 py-3">
+    <div class="flex items-center justify-between gap-4">
+      <div class="flex-1">
+        <p class="text-sm font-semibold text-gray-900">Prueba Cita2 gratis</p>
+        <p class="text-xs text-gray-500">14 días, sin tarjeta</p>
+      </div>
+      <a 
+        href="https://cita2.tecelia.com/register"
+        class="btn-primary text-sm py-2 px-4"
+      >
+        Empezar →
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Mostrar sticky CTA después de scroll
+  const stickyCta = document.getElementById('sticky-cta');
+  let lastScrollY = window.scrollY;
+  let shown = false;
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    
+    // Mostrar después de 500px de scroll
+    if (currentScrollY > 500 && !shown) {
+      stickyCta.classList.remove('translate-y-full');
+      shown = true;
+    }
+    
+    // Ocultar al volver arriba
+    if (currentScrollY < 300 && shown) {
+      stickyCta.classList.add('translate-y-full');
+      shown = false;
+    }
+    
+    lastScrollY = currentScrollY;
+  }, { passive: true });
+</script>

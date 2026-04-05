@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const { 
+  title, 
+  subtitle, 
+  ctaText = 'Empezar prueba gratis',
+  ctaHref = 'https://cita2.tecelia.com/register'
+} = Astro.props;
+---
+
+<section class="section-padding bg-primary-600">
+  <div class="max-w-4xl mx-auto container-padding text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+      {title}
+    </h2>
+    <p class="text-lg md:text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
+      {subtitle}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a 
+        href={ctaHref}
+        class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-white text-primary-600 rounded-lg hover:bg-primary-50 transition-colors shadow-lg"
+      >
+        {ctaText}
+        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+    
+    <p class="mt-6 text-sm text-primary-200">
+      Setup en 2 minutos · Sin tarjeta de crédito · Cancela cuando quieras
+    </p>
+  </div>
+</section>

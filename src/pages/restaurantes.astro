@@ -1,0 +1,230 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+
+const pageTitle = 'Software de Gestión para Restaurantes - Cita2';
+const pageDescription = 'Sistema de reservas para restaurantes. Gestiona mesas, turnos, lista de espera y reservas online sin comisiones. Ahorra 2.800€/año en comisiones de ElTenedor. 19€/mes.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Cita2 - Software para Restaurantes',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '19',
+    priceCurrency: 'EUR',
+    priceValidUntil: '2026-12-31'
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '220'
+  }
+};
+
+const restaurantFeatures = [
+  {
+    title: 'Reservas online sin comisiones',
+    description: 'Tu propia página de reservas con tu marca. Sin pagar el 12-15% de comisión a ElTenedor ni a TheFork.',
+    icon: 'credit'
+  },
+  {
+    title: 'Gestión de mesas y sala',
+    description: 'Mapa de tu sala con capacidad por mesa. Controla turnos de comida y cena. Visualiza ocupación en tiempo real.',
+    icon: 'chart'
+  },
+  {
+    title: 'Lista de espera inteligente',
+    description: 'Cuando estás lleno, los clientes se apuntan a lista de espera. Si hay cancelación, se notifica automáticamente.',
+    icon: 'bell'
+  },
+  {
+    title: 'Depósitos para reservas',
+    description: 'Opcional: pide depósito al reservar. Reduce no-shows al 2% y asegura ingresos. Configurable por tamaño de grupo.',
+    icon: 'credit'
+  },
+  {
+    title: 'Preferencias de clientes',
+    description: 'Ficha de cliente con alergias, preferencias de mesa, ocasiones especiales. Ofrece un servicio personalizado.',
+    icon: 'users'
+  },
+  {
+    title: 'Estadísticas de ocupación',
+    description: 'Análisis de mesas vacías, ticket medio, rotación y días más demandados. Toma decisiones con datos reales.',
+    icon: 'chart'
+  }
+];
+
+const restaurantTestimonials = [
+  {
+    quote: 'Hemos ahorrado 2.800€ al mes en comisiones de ElTenedor. Ahora tenemos relación directa con nuestros clientes y una base de datos de más de 2.000 comensales.',
+    author: 'Carlos Martínez',
+    role: 'Gerente',
+    company: 'Restaurante La Trastienda, Madrid',
+    rating: 5
+  },
+  {
+    quote: 'El mapa de mesas nos permite organizar la sala mucho mejor. Sabemos exactamente qué mesas tenemos libres y el sistema no permite overbooking.',
+    author: 'Laura Pérez',
+    role: 'Directora',
+    company: 'Bistró Central, Barcelona',
+    rating: 5
+  }
+];
+
+const restaurantFAQs = [
+  {
+    question: '¿Realmente ahorro dinero vs ElTenedor?',
+    answer: 'Sí. ElTenedor cobra 12-15% por reserva. Si facturas 10.000€/mes en reservas online, pagas 1.200-1.500€ de comisión. Con Cita2 pagas 19€ fijos. Ahorro mensual: 1.180-1.480€.'
+  },
+  {
+    question: '¿Puedo gestionar turnos de comida y cena?',
+    answer: 'Sí, configuras horarios específicos para cada turno. Puedes definir duración estándar de reserva por turno y número de cubiertos máximo por franja horaria.'
+  },
+  {
+    question: '¿Cómo funciona la lista de espera?',
+    answer: 'Cuando un cliente intenta reservar y estás lleno, puede apuntarse a lista de espera. Si hay una cancelación, el sistema notifica automáticamente por email/WhatsApp al primer cliente de la lista.'
+  },
+  {
+    question: '¿Se pueden pedir depósitos?',
+    answer: 'Sí, es opcional y configurable. Puedes pedir depósito para grupos grandes, fines de semana o días especiales. El pago se procesa mediante Stripe.'
+  },
+  {
+    question: '¿Funciona para restaurantes con terraza?',
+    answer: 'Sí, puedes configurar diferentes zonas (interior, terraza, barra) con capacidad independiente. Los clientes pueden preferir zona al reservar.'
+  },
+  {
+    question: '¿Y si no tengo web propia?',
+    answer: 'Cita2 te genera una página de reservas profesional con tu logo, fotos, menú y horarios. URL: cita2.tecelia.com/book/tu-restaurante. Puedes compartirla en Google Business, Instagram, etc.'
+  }
+];
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  schema={schema}
+>
+  <Header />
+  
+  <main>
+    <Hero 
+      title="Sistema de reservas para restaurantes sin comisiones"
+      subtitle="Deja de regalar el 12-15% a ElTenedor. Tu propia página de reservas con gestión de mesas, turnos y lista de espera. Ahorra 2.800€/año, paga solo 19€/mes."
+      primaryCta="Prueba gratis 14 días"
+      primaryCtaHref="https://cita2.tecelia.com/register"
+      secondaryCta="Ver comparativa con ElTenedor"
+      secondaryCtaHref="#comparativa"
+    />
+
+    <Features 
+      title="¿Qué conseguirás con Cita2?"
+      subtitle="Funcionalidades diseñadas específicamente para restaurantes."
+      features={restaurantFeatures}
+    />
+
+    <section id="comparativa" class="py-16 bg-red-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-4">ElTenedor vs Cita2: La matemática real</h2>
+        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+          Cuánto pagas realmente por gestionar tus reservas online
+        </p>
+        
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <!-- ElTenedor -->
+          <div class="bg-white p-8 rounded-xl shadow-sm border-2 border-red-200">
+            <h3 class="text-xl font-bold text-red-600 mb-4">ElTenedor / TheFork</h3>
+            <div class="space-y-4">
+              <div class="flex justify-between">
+                <span class="text-gray-600">Reservas/mes</span>
+                <span class="font-semibold">100</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Ticket medio</span>
+                <span class="font-semibold">35€</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Comisión/reserva</span>
+                <span class="font-semibold">12-15%</span>
+              </div>
+              <div class="border-t pt-4 flex justify-between text-lg">
+                <span class="font-semibold text-red-600">Coste mensual</span>
+                <span class="font-bold text-red-600">420-525€</span>
+              </div>
+              <div class="border-t pt-4 flex justify-between text-xl">
+                <span class="font-bold text-red-600">Coste anual</span>
+                <span class="font-bold text-red-600 text-2xl">5.040-6.300€</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cita2 -->
+          <div class="bg-white p-8 rounded-xl shadow-sm border-2 border-green-200">
+            <h3 class="text-xl font-bold text-green-600 mb-4">Cita2</h3>
+            <div class="space-y-4">
+              <div class="flex justify-between">
+                <span class="text-gray-600">Reservas/mes</span>
+                <span class="font-semibold">Ilimitadas</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Ticket medio</span>
+                <span class="font-semibold">35€</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Comisión/reserva</span>
+                <span class="font-semibold text-green-600">0%</span>
+              </div>
+              <div class="border-t pt-4 flex justify-between text-lg">
+                <span class="font-semibold text-green-600">Coste mensual</span>
+                <span class="font-bold text-green-600">19€</span>
+              </div>
+              <div class="border-t pt-4 flex justify-between text-xl">
+                <span class="font-bold text-green-600">Coste anual</span>
+                <span class="font-bold text-green-600 text-2xl">228€</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-8">
+          <p class="text-2xl font-bold text-green-600">
+            Ahorro anual: 4.812-6.072€
+          </p>
+          <p class="text-gray-600 mt-2">
+            Con Cita2, el ROI se recupera en la primera semana.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <Testimonials 
+      title="Lo que dicen los restaurantes"
+      subtitle="Más de 200 restaurantes ya gestionan sus reservas con Cita2."
+      testimonials={restaurantTestimonials}
+    />
+
+    <Pricing />
+
+    <FAQ 
+      title="Preguntas frecuentes para restaurantes"
+      subtitle="Respuestas a las dudas más comunes del sector restauración."
+      faqs={restaurantFAQs}
+    />
+
+    <CTA 
+      title="Deja de pagar comisiones, empieza a ganar más"
+      subtitle="Únete a 200+ restaurantes que ya ahorran 2.800€/año con Cita2."
+    />
+  </main>
+  
+  <Footer />
+</Layout>

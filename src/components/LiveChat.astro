@@ -1,0 +1,223 @@
+---
+// LiveChat - Interactive chat widget for customer support
+// Floating chat button with real-time messaging interface
+
+const chatConfig = {
+  welcomeMessage: '¡Hola! 👋 ¿En qué puedo ayudarte sobre Cita2?',
+  placeholder: 'Escribe tu pregunta...',
+  offlineMessage: 'Nuestro equipo te responderá en menos de 2 horas',
+  workHours: 'Lunes a Viernes 9:00 - 18:00',
+};
+---
+
+<div id="livechat-widget" class="fixed bottom-24 right-6 z-50">
+  <!-- Chat Button -->
+  <button 
+    id="chat-toggle"
+    class="w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+    aria-label="Abrir chat de soporte"
+  >
+    <svg id="chat-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+    </svg>
+    <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+    
+    <!-- Notification badge -->
+    <span id="chat-badge" class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white hidden"></span>
+  </button>
+
+  <!-- Chat Window -->
+  <div 
+    id="chat-window" 
+    class="hidden absolute bottom-16 right-0 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"
+  >
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-4 text-white">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+            <span class="text-lg">💬</span>
+          </div>
+          <div>
+            <h3 class="font-semibold">Soporte Cita2</h3>
+            <p class="text-xs text-blue-200">Respondemos en &lt; 2 horas</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+          <span class="text-xs">Online</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Messages Area -->
+    <div id="chat-messages" class="h-80 overflow-y-auto p-4 space-y-4 bg-gray-50">
+      <!-- Welcome Message -->
+      <div class="flex gap-3">
+        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+          <span class="text-sm">🤖</span>
+        </div>
+        <div class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[80%]">
+          <p class="text-sm text-gray-700">{chatConfig.welcomeMessage}</p>
+          <div class="mt-3 space-y-2">
+            <button class="quick-reply w-full text-left px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-700 transition-colors">
+              💰 ¿Cuánto cuesta Cita2?
+            </button>
+            <button class="quick-reply w-full text-left px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-700 transition-colors">
+              🚀 ¿Cómo empiezo la prueba?
+            </button>
+            <button class="quick-reply w-full text-left px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-700 transition-colors">
+              🔄 ¿Puedo migrar desde ElTenedor?
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="p-4 bg-white border-t border-gray-100">
+      <form id="chat-form" class="flex gap-2">
+        <input 
+          type="text" 
+          id="chat-input"
+          class="flex-1 px-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          placeholder={chatConfig.placeholder}
+          autocomplete="off"
+        />
+        <button 
+          type="submit"
+          class="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-colors"
+          aria-label="Enviar mensaje"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+          </svg>
+        </button>
+      </form>
+      <p class="text-xs text-gray-400 text-center mt-2">{chatConfig.offlineMessage}</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const widget = document.getElementById('livechat-widget');
+    const toggle = document.getElementById('chat-toggle');
+    const window_ = document.getElementById('chat-window');
+    const chatIcon = document.getElementById('chat-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('chat-input');
+    const messages = document.getElementById('chat-messages');
+    const quickReplies = document.querySelectorAll('.quick-reply');
+
+    let isOpen = false;
+
+    // Toggle chat window
+    toggle.addEventListener('click', () => {
+      isOpen = !isOpen;
+      
+      if (isOpen) {
+        window_.classList.remove('hidden');
+        chatIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+        
+        // Track chat open
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'chat_opened');
+        }
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+          (window as any).fbq('trackCustom', 'ChatOpened');
+        }
+      } else {
+        window_.classList.add('hidden');
+        chatIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    });
+
+    // Quick replies
+    quickReplies.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const text = btn.textContent?.trim() || '';
+        addMessage(text, 'user');
+        
+        // Simulate bot response
+        setTimeout(() => {
+          let response = '';
+          if (text.includes('cuesta')) {
+            response = 'Cita2 cuesta 19€/mes plan único. Incluye reservas ilimitadas, WhatsApp Business, y todos los features. Sin comisiones ni límites. ¿Te gustaría probarlo gratis 14 días?';
+          } else if (text.includes('empiezo')) {
+            response = 'Es súper fácil: 1) Creas cuenta en 2 minutos, 2) Configuras tus servicios y horarios, 3) Compartes tu enlace de reservas. ¿Quieres que te guíe paso a paso?';
+          } else if (text.includes('ElTenedor')) {
+            response = '¡Claro! Puedes migrar fácilmente. Exportas tus clientes de ElTenedor, los importas a Cita2, y empezas a recibir reservas directas. Ahorrarás miles en comisiones. ¿Te cuento cómo?';
+          }
+          
+          if (response) {
+            addMessage(response, 'bot');
+          }
+        }, 1000);
+      });
+    });
+
+    // Handle form submit
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = input?.value.trim();
+      
+      if (text && input) {
+        addMessage(text, 'user');
+        input.value = '';
+        
+        // Track message sent
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'chat_message_sent');
+        }
+        
+        // Simulate bot typing and response
+        setTimeout(() => {
+          const responses = [
+            '¡Gracias por tu mensaje! Un agente te responderá en menos de 2 horas. Mientras tanto, ¿puedo ayudarte con algo más?',
+            'Entiendo. Déjame conectarte con nuestro equipo de soporte. Te responderán pronto con una solución personalizada.',
+            'Perfecto, he registrado tu consulta. ¿Hay algo más en lo que pueda ayudarte mientras esperas?' 
+          ];
+          const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+          addMessage(randomResponse, 'bot');
+        }, 1500);
+      }
+    });
+
+    function addMessage(text: string, sender: 'user' | 'bot') {
+      const div = document.createElement('div');
+      div.className = 'flex gap-3' + (sender === 'user' ? ' flex-row-reverse' : '');
+      
+      const avatar = sender === 'user' 
+        ? '<div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-sm">👤</span></div>'
+        : '<div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-sm">🤖</span></div>';
+      
+      const bubbleClass = sender === 'user'
+        ? 'bg-blue-600 text-white rounded-2xl rounded-tr-none'
+        : 'bg-white rounded-2xl rounded-tl-none shadow-sm';
+      
+      div.innerHTML = `
+        ${avatar}
+        <div class="${bubbleClass} p-3 max-w-[80%]">
+          <p class="text-sm">${text}</p>
+        </div>
+      `;
+      
+      messages?.appendChild(div);
+      messages?.scrollTo(0, messages.scrollHeight);
+    }
+
+    // Show notification badge after 10 seconds
+    setTimeout(() => {
+      const badge = document.getElementById('chat-badge');
+      if (badge && !isOpen) {
+        badge.classList.remove('hidden');
+      }
+    }, 10000);
+  })();
+</script>

@@ -1,0 +1,112 @@
+---
+const footerLinks = {
+  producto: [
+    { label: 'Funcionalidades', href: '/funcionalidades' },
+    { label: 'Precios', href: '/precios' },
+    { label: 'Comparativas', href: '/vs/agendapro' },
+  ],
+  sectores: [
+    { label: 'Peluquerías', href: '/peluquerias' },
+    { label: 'Estética', href: '/estetica' },
+    { label: 'Dentistas', href: '/dentistas' },
+    { label: 'Fisioterapia', href: '/fisioterapia' },
+    { label: 'Tatuajes', href: '/tatuajes' },
+    { label: 'Spas', href: '/spas' },
+    { label: 'Restaurantes', href: '/restaurantes' },
+    { label: 'Turismo', href: '/turismo' },
+  ],
+  recursos: [
+    { label: 'Blog', href: '/blog' },
+    { label: 'Guías', href: '/blog' },
+    { label: 'Ayuda', href: '/contacto' },
+    { label: 'Contacto', href: '/contacto' },
+  ],
+};
+
+const socialLinks = [
+  { label: 'Twitter', href: 'https://twitter.com/cita2app', icon: 'twitter' },
+  { label: 'Instagram', href: 'https://instagram.com/cita2app', icon: 'instagram' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/company/cita2', icon: 'linkedin' },
+];
+---
+
+<footer class="bg-gray-900 text-gray-300">
+  <div class="max-w-7xl mx-auto container-padding py-16">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+      <!-- Brand -->
+      <div class="col-span-2">
+        <a href="/" class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-lg">C</span>
+          </div>
+          <span class="text-xl font-bold text-white">Cita2</span>
+        </a>
+        <p class="text-gray-400 text-sm mb-6 max-w-xs">
+          Software de gestión de citas y reservas para negocios de servicios. Sin comisiones, setup en 2 minutos.
+        </p>
+        <div class="flex gap-4">
+          {socialLinks.map((social) => (
+            <a 
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors"
+              aria-label={social.label}
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 0" />
+              </svg>
+            </a>
+          ))}
+        </div>
+      </div>
+      
+      <!-- Links -->
+      <div>
+        <h4 class="text-white font-semibold mb-4">Producto</h4>
+        <ul class="space-y-2 text-sm">
+          {footerLinks.producto.map((link) => (
+            <li>
+              <a href={link.href} class="hover:text-white transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="text-white font-semibold mb-4">Sectores</h4>
+        <ul class="space-y-2 text-sm">
+          {footerLinks.sectores.map((link) => (
+            <li>
+              <a href={link.href} class="hover:text-white transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="text-white font-semibold mb-4">Recursos</h4>
+        <ul class="space-y-2 text-sm">
+          {footerLinks.recursos.map((link) => (
+            <li>
+              <a href={link.href} class="hover:text-white transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Bottom -->
+    <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-gray-400">
+        © 2026 Cita2. Todos los derechos reservados.
+      </p>
+    </div>
+  </div>
+</footer>

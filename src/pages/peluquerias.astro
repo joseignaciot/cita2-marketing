@@ -1,0 +1,228 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+
+const title = 'Software de Gestión para Peluquerías - Cita2';
+const description = 'Software diseñado específicamente para peluquerías. Reservas online 24/7, recordatorios automáticos, WhatsApp integrado. Setup en 2 minutos. 19€/mes sin comisiones.';
+const canonicalUrl = 'https://cita2.tecelia.com/peluquerias/';
+
+const heroProps = {
+  title: 'Software de gestión diseñado específicamente para peluquerías',
+  subtitle: 'Olvídate de las llamadas a deshoras y las citas perdidas. Gestiona tu agenda online 24/7 con recordatorios automáticos y una página de reservas profesional que tus clientes adorarán.',
+  ctaText: 'Prueba gratis 14 días',
+  ctaHref: 'https://cita2.tecelia.com/register',
+  secondaryCta: { text: 'Ver funcionalidades', href: '#producto' },
+};
+
+const features = [
+  {
+    icon: 'calendar',
+    title: 'Reservas online 24/7',
+    description: 'Tus clientes reservan cuando quieren, incluso a las 3 de la mañana. Tú despiertas con la agenda llena y organizada.',
+  },
+  {
+    icon: 'bell',
+    title: 'Recordatorios automáticos',
+    description: 'Emails y WhatsApps automáticos que reducen las ausencias hasta un 80%. Sin que tú hagas nada.',
+  },
+  {
+    icon: 'message',
+    title: 'WhatsApp Business integrado',
+    description: 'Conecta tu WhatsApp y envía confirmaciones, recordatorios y follow-ups automáticamente. Tus clientes responden al instante.',
+  },
+  {
+    icon: 'users',
+    title: 'Ficha de clientes completa',
+    description: 'Historial de cortes, coloraciones, preferencias, cumpleaños. Ofrece un trato personalizado que fideliza.',
+  },
+  {
+    icon: 'chart',
+    title: 'Calendario visual intuitivo',
+    description: 'Vista semanal y diaria con código de colores. Gestiona múltiples sillas de un vistazo. Nada se te escapa.',
+  },
+  {
+    icon: 'zap',
+    title: 'Setup en 2 minutos',
+    description: 'Al registrarte, elegimos el preset "Peluquería" y tendrás servicios de ejemplo listos para usar o modificar.',
+  },
+];
+
+const testimonials = [
+  {
+    quote: 'Desde que uso Cita2 he dejado de recibir llamadas a deshoras. Mis clientes reservan online y yo solo tengo que llegar y trabajar. Las ausencias se han reducido un 70%. Es el mejor 19€ que gasto al mes.',
+    author: 'María García',
+    role: 'Dueña',
+    company: 'Peluquería María, Madrid',
+    rating: 5,
+  },
+  {
+    quote: 'Antes tenía una agenda en papel donde no se entendía nada. Ahora tengo todo organizado, los recordatorios funcionan genial y mis clientes adoran poder reservar online.',
+    author: 'Laura Sánchez',
+    role: 'Dueña',
+    company: 'Estilo 7, Barcelona',
+    rating: 5,
+  },
+];
+
+const faqItems = [
+  {
+    question: '¿Mis clientes mayores sabrán usarlo?',
+    answer: 'Sí. La página de reservas es muy intuitiva. Además, puedes seguir atendiendo llamadas y tú introduces las citas manualmente en Cita2. Es complementario, no excluyente.',
+  },
+  {
+    question: '¿Puedo gestionar varias sillas/empleados?',
+    answer: 'Sí. Puedes configurar tantas sillas como tengas en tu peluquería. Cada una con su propia agenda, o todas centralizadas como prefieras.',
+  },
+  {
+    question: '¿Funciona para peluquerías caninas/tatuajes?',
+    answer: 'Absolutamente. Cita2 sirve para cualquier negocio de servicios. Tenemos presets específicos para peluquería canina, tatuajes, fisioterapia y más.',
+  },
+  {
+    question: '¿Puedo bloquear días de vacaciones?',
+    answer: 'Sí. Desde el calendario puedes marcar días cerrados, vacaciones, o incluso bloquear franjas horarias específicas. Tu disponibilidad, tus reglas.',
+  },
+  {
+    question: '¿Qué pasa si un cliente cancela?',
+    answer: 'Recibes notificación inmediata. El hueco queda libre automáticamente para que otro cliente pueda reservarlo. Puedes configurar política de cancelación si quieres.',
+  },
+  {
+    question: '¿Tiene aplicación para móvil?',
+    answer: 'Cita2 es web responsive, funciona perfectamente en móvil. Puedes añadirla a tu pantalla de inicio y funciona como una app. También estamos desarrollando app nativa.',
+  },
+];
+
+// SoftwareApplication Schema para peluquerías
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Cita2 para Peluquerías',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '19',
+    priceCurrency: 'EUR',
+    priceValidUntil: '2026-12-31',
+    description: '19€/mes, todo incluido. Sin comisiones ni límites.',
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.8',
+    ratingCount: '200',
+  },
+  description: description,
+  featureList: [
+    'Reservas online 24/7',
+    'Recordatorios automáticos',
+    'WhatsApp Business integrado',
+    'CRM clientes',
+    'Calendario visual',
+    'Setup en 2 minutos',
+  ],
+};
+---
+
+<Layout title={title} description={description} canonicalUrl={canonicalUrl} schema={schema}>
+  <Header />
+  
+  <main>
+    <Hero {...heroProps} />
+    
+    <Features
+      title="¿Qué conseguirás con Cita2?"
+      subtitle="Funcionalidades diseñadas específicamente para las necesidades de las peluquerías."
+      features={features}
+      columns={3}
+    />
+    
+    <!-- Comparison Section -->
+    <section class="section-padding bg-white">
+      <div class="max-w-5xl mx-auto container-padding">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
+          Comparativa honesta
+        </h2>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="border-b-2 border-gray-200">
+                <th class="py-4 px-4 font-semibold text-gray-900">Característica</th>
+                <th class="py-4 px-4 font-semibold text-primary-600">Cita2</th>
+                <th class="py-4 px-4 font-semibold text-gray-500">AgendaPro</th>
+                <th class="py-4 px-4 font-semibold text-gray-500">Reservio</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              <tr>
+                <td class="py-4 px-4 font-medium">Precio mensual</td>
+                <td class="py-4 px-4 text-primary-600 font-semibold">19€ plan único</td>
+                <td class="py-4 px-4 text-gray-500">Desde 49€</td>
+                <td class="py-4 px-4 text-gray-500">Desde 31€</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-4 font-medium">Comisiones</td>
+                <td class="py-4 px-4"><span class="text-success font-semibold">❌ Ninguna</span></td>
+                <td class="py-4 px-4 text-gray-500">❌ Ninguna</td>
+                <td class="py-4 px-4 text-gray-500">❌ Ninguna</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-4 font-medium">WhatsApp Business</td>
+                <td class="py-4 px-4"><span class="text-success font-semibold">✅ Incluido</span></td>
+                <td class="py-4 px-4 text-gray-500">❌ No</td>
+                <td class="py-4 px-4 text-gray-500">❌ No</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-4 font-medium">Setup tiempo</td>
+                <td class="py-4 px-4 text-primary-600 font-semibold">2 minutos</td>
+                <td class="py-4 px-4 text-gray-500">Varios días</td>
+                <td class="py-4 px-4 text-gray-500">30 minutos</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-4 font-medium">Preset peluquería</td>
+                <td class="py-4 px-4"><span class="text-success font-semibold">✅ Sí</span></td>
+                <td class="py-4 px-4 text-gray-500">✅ Sí</td>
+                <td class="py-4 px-4 text-gray-500">⚠️ Parcial</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-4 font-medium">Soporte español</td>
+                <td class="py-4 px-4"><span class="text-success font-semibold">✅ Sí</span></td>
+                <td class="py-4 px-4 text-gray-500">✅ Sí</td>
+                <td class="py-4 px-4 text-gray-500">⚠️ Limitado</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <p class="mt-4 text-sm text-gray-500 text-center">
+          *Precios actualizados marzo 2026. 
+          <a href="/vs/agendapro" class="text-primary-600 hover:underline">Ver comparativa completa →</a>
+        </p>
+      </div>
+    </section>
+    
+    <Testimonials
+      title="Lo que dicen las peluquerías"
+      subtitle="Más de 200 peluquerías ya gestionan sus citas con Cita2."
+      testimonials={testimonials}
+    />
+    
+    <FAQ
+      title="Preguntas frecuentes"
+      subtitle="Respuestas a las dudas más comunes de las peluquerías."
+      items={faqItems}
+    />
+    
+    <CTA
+      title="Empieza a gestionar tu peluquería como un profesional"
+      subtitle="Únete a 200+ peluquerías que ya ahorran tiempo y ganan más con Cita2."
+    />
+  </main>
+  
+  <Footer />
+</Layout>

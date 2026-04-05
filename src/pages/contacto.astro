@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = 'Contacto - Cita2';
+const pageDescription = 'Contacta con el equipo de Cita2. Soporte técnico, ventas, preguntas generales. Estamos aquí para ayudarte.';
+
+const contactMethods = [
+  {
+    title: 'Soporte técnico',
+    email: 'soporte@cita2.tecelia.com',
+    description: '¿Tienes problemas con tu cuenta? Te ayudamos en menos de 24h.',
+    icon: 'support'
+  },
+  {
+    title: 'Ventas',
+    email: 'hola@cita2.tecelia.com',
+    description: '¿Preguntas antes de suscribirte? Escríbenos, sin compromiso.',
+    icon: 'sales'
+  },
+  {
+    title: 'Partners',
+    email: 'partners@cita2.tecelia.com',
+    description: '¿Quieres ser distribuidor o integrar Cita2? Hablemos.',
+    icon: 'partners'
+  }
+];
+
+const faqs = [
+  {
+    question: '¿Cuánto tarda el soporte en responder?',
+    answer: 'Nuestro tiempo medio de respuesta es de 4 horas en horario laboral (L-V, 9-18h). Máximo 24h.'
+  },
+  {
+    question: '¿Tienen teléfono de soporte?',
+    answer: 'El soporte principal es por email y chat para poder hacer seguimiento documentado de cada consulta. Para empresas con planes Enterprise disponemos de soporte telefónico dedicado.'
+  },
+  {
+    question: '¿Cómo reporto un bug?',
+    answer: 'Escríbenos a soporte@cita2.tecelia.com describiendo el problema. Cuanta más información nos des (capturas de pantalla, pasos para reproducirlo), más rápido lo solucionaremos.'
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Header />
+  
+  <main class="pt-24">
+    <!-- Hero -->
+    <section class="py-16 bg-gradient-to-br from-blue-50 to-white">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          Contacta con nosotros
+        </h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Estamos aquí para ayudarte. Elige el canal que prefieras.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Methods -->
+    <section class="py-16">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="grid md:grid-cols-3 gap-8">
+          {contactMethods.map(method => (
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center">
+              <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <h2 class="text-xl font-semibold text-gray-900 mb-2">{method.title}</h2>
+              <p class="text-gray-600 text-sm mb-4">{method.description}</p>
+              <a 
+                href={`mailto:${method.email}`}
+                class="text-blue-600 font-medium hover:underline"
+              >
+                {method.email}
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Help -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-3xl">
+        <h2 class="text-2xl font-bold text-center mb-8">Respuestas rápidas</h2>
+        <div class="space-y-4">
+          {faqs.map(faq => (
+            <details class="bg-white rounded-lg shadow-sm">
+              <summary class="p-4 font-medium cursor-pointer hover:bg-gray-50 rounded-lg">
+                {faq.question}
+              </summary>
+              <p class="p-4 pt-0 text-gray-600">
+                {faq.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+        <div class="text-center mt-8">
+          <p class="text-gray-600 mb-4">¿Necesitas ayuda inmediata?</p>
+          <a 
+            href="https://cita2.tecelia.com/login"
+            class="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+          >
+            Acceder a soporte en tu cuenta →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Office Info -->
+    <section class="py-16">
+      <div class="container mx-auto px-4 max-w-3xl text-center">
+        <h2 class="text-2xl font-bold mb-4">Oficinas</h2>
+        <p class="text-gray-600">
+          Tecelia Solutions S.L.<br />
+          Santiago de Compostela, España<br />
+          Horario: Lunes a Viernes, 9:00 - 18:00 (CET)
+        </p>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>

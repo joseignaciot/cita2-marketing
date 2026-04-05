@@ -1,0 +1,241 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+
+const pageTitle = 'Software de Gestión para Actividades Turísticas - Cita2';
+const pageDescription = 'Plataforma de reservas para tours, excursiones y actividades turísticas. Gestión de capacidad, precios por persona, extras y disponibilidad en tiempo real. 19€/mes.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Cita2 - Software para Turismo',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '19',
+    priceCurrency: 'EUR',
+    priceValidUntil: '2026-12-31'
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '85'
+  }
+};
+
+const tourismFeatures = [
+  {
+    title: 'Precios por persona o grupo',
+    description: 'Configura tarifas por adulto, niño, senior o precios fijos por grupo. El sistema calcula automáticamente según el número de reservas.',
+    icon: 'credit'
+  },
+  {
+    title: 'Gestión de capacidad',
+    description: 'Controla plazas disponibles en tiempo real. Overbooking controlado, lista de espera y gestión de grupos grandes.',
+    icon: 'users'
+  },
+  {
+    title: 'Extras y suplementos',
+    description: 'Vende extras como recogida en hotel, comida, equipo de snorkel... Aumenta el ticket medio de cada reserva.',
+    icon: 'zap'
+  },
+  {
+    title: 'Calendario de disponibilidad',
+    description: 'Define qué días hay salidas, a qué horas, cuántas plazas. El cliente ve solo opciones disponibles en tiempo real.',
+    icon: 'calendar'
+  },
+  {
+    title: 'Pagos online seguros',
+    description: 'Stripe integrado para cobrar al reservar. Depósitos o pago completo. Reduce no-shows y asegura ingresos.',
+    icon: 'credit'
+  },
+  {
+    title: 'Panel de control operativo',
+    description: 'Lista de pasajeros por actividad, check-in digital, exportación a Excel. Todo lo que necesitas para el día de la excursión.',
+    icon: 'smartphone'
+  }
+];
+
+const tourismTestimonials = [
+  {
+    quote: 'Hemos duplicado reservas directas y ahorrado 15h semanales. Todo está en un sitio, sabemos exactamente cuántos somos cada día y quién ha pagado qué.',
+    author: 'Santiago Torres',
+    role: 'Director',
+    company: 'Santiago Tours, Santiago de Compostela',
+    rating: 5
+  },
+  {
+    quote: 'La gestión de extras es genial. Vendemos un 30% más de recogidas en hotel y almuerzos gracias a que se ofrecen durante la reserva online.',
+    author: 'Elena Vázquez',
+    role: 'Propietaria',
+    company: 'Aventuras Norte, Lugo',
+    rating: 5
+  }
+];
+
+const tourismFAQs = [
+  {
+    question: '¿Funciona para tours de un día y multi-día?',
+    answer: 'Sí, puedes configurar actividades de cualquier duración. Para tours multi-día, gestionamos cada día como slot independiente o como bloque completo según prefieras.'
+  },
+  {
+    question: '¿Puedo limitar plazas por actividad?',
+    answer: 'Sí, defines capacidad máxima por actividad y slot horario. El sistema bloquea automáticamente cuando se alcanza el límite y puede mostrar "solo X plazas disponibles" para crear urgencia.'
+  },
+  {
+    question: '¿Cómo funcionan los precios por categorías?',
+    answer: 'Configuras precios base (adulto, niño, senior...) y el cliente selecciona cuántos de cada categoría. El sistema calcula el total automáticamente. También puedes poner precios por grupo (hasta 4 personas: 100€).'
+  },
+  {
+    question: '¿Se pueden añadir extras después de reservar?',
+    answer: 'Sí, los clientes pueden modificar su reserva para añadir extras hasta 24h antes (configurable). También tú puedes añadir extras manualmente desde el panel.'
+  },
+  {
+    question: '¿Tengo lista de pasajeros para el día de la actividad?',
+    answer: 'Sí, tienes una vista operativa con todos los pasajeros, sus datos de contacto, extras contratados y estado de pago. Exportable a PDF/Excel y accesible desde móvil.'
+  },
+  {
+    question: '¿Funciona para actividades con salidas múltiples al día?',
+    answer: 'Sí, configuras tantos horarios como necesites (10:00, 14:00, 18:00...) con capacidad independiente para cada slot. El cliente elige horario al reservar.'
+  }
+];
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  schema={schema}
+>
+  <Header />
+  
+  <main>
+    <Hero 
+      title="Software de reservas para tours y actividades turísticas"
+      subtitle="Gestiona excursiones, tours gastronómicos, actividades outdoor y experiencias turísticas. Precios por persona, extras, disponibilidad en tiempo real. Sin comisiones."
+      primaryCta="Prueba gratis 14 días"
+      primaryCtaHref="https://cita2.tecelia.com/register"
+      secondaryCta="Ver funcionalidades"
+      secondaryCtaHref="#producto"
+    />
+
+    <Features 
+      title="¿Qué conseguirás con Cita2?"
+      subtitle="Funcionalidades diseñadas específicamente para empresas de turismo activo y experiencias."
+      features={tourismFeatures}
+    />
+
+    <section class="py-16 bg-blue-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-4">¿Por qué las agencias de turismo eligen Cita2?</h2>
+        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+          Comparativa con soluciones genéricas del mercado
+        </p>
+        
+        <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+            <h3 class="font-bold text-lg mb-2">Genéricas (Calendly, etc.)</h3>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-red-500">❌</span>
+                <span>Sin gestión de capacidad</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-500">❌</span>
+                <span>Sin precios por persona</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-500">❌</span>
+                <span>Sin extras ni suplementos</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-500">❌</span>
+                <span>Sin lista de pasajeros</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl shadow-sm border-2 border-blue-500">
+            <h3 class="font-bold text-lg mb-2 text-blue-600">Cita2 Turismo</h3>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-green-500">✅</span>
+                <span>Capacidad por actividad y slot</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500">✅</span>
+                <span>Precios por categoría (adulto/niño)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500">✅</span>
+                <span>Extras configurables</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500">✅</span>
+                <span>Panel operativo con lista de pasajeros</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500">✅</span>
+                <span>Pagos online integrados</span>
+              </li>
+            </ul>
+            <div class="mt-4 pt-4 border-t">
+              <p class="text-2xl font-bold text-blue-600">19€/mes</p>
+              <p class="text-sm text-gray-500">Sin comisiones por reserva</p>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+            <h3 class="font-bold text-lg mb-2">Software turismo legacy</h3>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-yellow-500">⚠️</span>
+                <span>Precios desde 99€/mes</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-yellow-500">⚠️</span>
+                <span>Setup complejo (días/semanas)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-yellow-500">⚠️</span>
+                <span>Interfaz anticuada</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-yellow-500">⚠️</span>
+                <span>Soporte solo en horario laboral</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Testimonials 
+      title="Lo que dicen las empresas de turismo"
+      subtitle="Más de 80 agencias de viajes y empresas de turismo activo ya usan Cita2."
+      testimonials={tourismTestimonials}
+    />
+
+    <Pricing />
+
+    <FAQ 
+      title="Preguntas frecuentes para turismo"
+      subtitle="Respuestas a las dudas más comunes del sector turístico."
+      faqs={tourismFAQs}
+    />
+
+    <CTA 
+      title="Empieza a gestionar tus actividades turísticas profesionalmente"
+      subtitle="Únete a 80+ empresas de turismo que ya ahorran tiempo y ganan más con Cita2."
+    />
+  </main>
+  
+  <Footer />
+</Layout>

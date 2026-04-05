@@ -1,0 +1,289 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import AdvancedSEO from '../../components/AdvancedSEO.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const pageTitle = 'Alternativa a ElTenedor Sin Comisiones: Ahorra 6.000€/año';
+const pageDescription = 'Descubre por qué los restaurantes están abandonando ElTenedor y TheFork. Cómo pasar del 15% de comisión a 19€/mes fijos y recuperar la relación directa con tus clientes.';
+
+const breadcrumbItems = [
+  { name: 'Inicio', url: 'https://cita2.tecelia.com/' },
+  { name: 'Blog', url: 'https://cita2.tecelia.com/blog' },
+  { name: 'Alternativa ElTenedor', url: 'https://cita2.tecelia.com/blog/alternativa-eltenedor-sin-comisiones' }
+];
+
+const articleData = {
+  title: pageTitle,
+  description: pageDescription,
+  slug: 'alternativa-eltenedor-sin-comisiones',
+  pubDate: '2026-03-22',
+  updatedDate: '2026-03-22',
+  author: 'Carlos Martínez',
+  authorType: 'Person',
+  category: 'Restaurantes',
+  tags: ['ElTenedor', 'TheFork', 'comisiones', 'alternativa', 'restaurantes'],
+  wordCount: 2800,
+  sector: 'Restauración'
+};
+
+const comparisonTable = [
+  { metric: 'Coste mensual (100 reservas)', eltenedor: '~500€ (comisión 15%)', cita2: '19€ (plan único)' },
+  { metric: 'Propiedad de datos clientes', eltenedor: '❌ No son tuyos', cita2: '✅ Tuyos 100%' },
+  { metric: 'Reservas directas', eltenedor: 'Depedencia total', cita2: 'Independencia completa' },
+  { metric: 'Marketing', eltenedor: 'Ellos deciden', cita2: 'Tú controlas todo' },
+  { metric: 'Soporte', eltenedor: 'Genérico', cita2: 'Especializado restaurantes' }
+];
+
+const testimonials = [
+  {
+    quote: "Dejamos de pagar 2.800€ mensuales a ElTenedor. Con Cita2 pagamos 19€ y ahora el 85% de nuestras reservas son directas. Recuperamos la relación con nuestros clientes.",
+    author: "Carlos Martínez",
+    role: "Gerente",
+    restaurant: "Restaurante La Trastienda, Barcelona",
+    savings: "33.600€/año"
+  }
+];
+
+const faqs = [
+  {
+    question: '¿Es legal dejar ElTenedor y usar mi propio sistema?',
+    answer: 'Absolutamente. Es tu negocio y decides cómo gestionarlo. Miles de restaurantes están haciendo esta transición para reducir dependencia y costes. El contrato con ElTenedor suele tener cláusulas de permanencia, pero una vez finalizado puedes operar 100% independiente.'
+  },
+  {
+    question: '¿Cómo migrar mis reservas de ElTenedor a Cita2?',
+    answer: 'El proceso es sencillo: exportas tu base de clientes de ElTenedor (tienes derecho a tus datos), la importas a Cita2, y configuras tu nuevo sistema de reservas. Ofrecemos asistencia gratuita para la migración. En 48 horas estás operativo.'
+  },
+  {
+    question: '¿Perderé visibilidad si dejo ElTenedor?',
+    answer: 'A corto plazo puede haber una pequeña reducción, pero a medio plazo ganas mucho más. Con Cita2 optimizas tu Google Business, mejoras tu web, y tus clientes te encuentran directamente. Además, ElTenedor a menudo "intercepta" búsquedas de tu propio nombre.'
+  },
+  {
+    question: '¿Cuánto tiempo tarda en recuperar la inversión?',
+    answer: 'Inmediatamente. Si pagas 500€/mes a ElTenedor y pasas a 19€ con Cita2, ahorras 481€ el primer mes. El ROI es instantáneo. En un año son 5.772€ de ahorro directo.'
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <AdvancedSEO type="article" data={articleData} />
+  <Header />
+  
+  <main class="pt-24">
+    <div class="container-apple">
+      <Breadcrumb items={breadcrumbItems} />
+      
+      <article class="max-w-4xl mx-auto">
+        <header class="text-center mb-16">
+          <span class="feature-bubble mb-4 inline-block">Restaurantes</span>
+          <h1 class="text-headline text-gray-900 mb-6">
+            Alternativa a ElTenedor Sin Comisiones
+          </h1>
+          <p class="text-body text-xl max-w-3xl mx-auto">
+            Cómo pasar de pagar el <strong>15% de comisión</strong> (6.000€/año) a <strong>19€/mes fijos</strong>. La transición que miles de restaurantes están haciendo para recuperar sus clientes y sus márgenes.
+          </p>
+          <div class="mt-8 p-6 bg-green-50 rounded-2xl inline-block">
+            <p class="text-4xl font-bold text-green-700">Ahorra 6.000€/año</p>
+            <p class="text-green-600">Cambiando de ElTenedor a Cita2</p>
+          </div>
+        </header>
+
+        <!-- The Problem -->
+        <div class="bg-red-50 rounded-2xl p-8 mb-16">
+          <h2 class="text-2xl font-bold text-red-900 mb-4">El problema real de ElTenedor y TheFork</h2>
+          <div class="prose prose-lg text-red-800">
+            <p>
+              Cuando aceptas que ElTenedor gestione tus reservas, estás firmando un cheque en blanco mensual. No es solo el 12-15% de comisión por reserva. Es mucho más grave:
+            </p>
+            <ul>
+              <li><strong>No tienes los datos de tus clientes</strong> - ElTenedor se queda con los emails y teléfonos</li>
+              <li><strong>Dependencia total</strong> - Si cierran o suben comisiones, tu negocio está en riesgo</li>
+              <li><strong>Compites con restaurantes cercanos</strong> en su propia app</li>
+              <li><strong>Reservas falsas y no-shows</strong> que cuestan tiempo y dinero</li>
+            </ul>
+          </div>
+          
+          <div class="mt-6 p-4 bg-white rounded-xl">
+            <p class="font-semibold text-gray-900">Ejemplo real:</p>
+            <p class="text-gray-600">
+              Restaurante con 100 reservas/mes, ticket medio 35€, paga a ElTenedor: <span class="text-red-600 font-bold">~500€/mes (6.000€/año)</span>. 
+              Con Cita2 paga: <span class="text-green-600 font-bold">19€/mes (228€/año)</span>. 
+              <span class="text-green-700 font-bold">Ahorro: 5.772€/año</span>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden mb-16">
+          <div class="p-6 bg-gradient-to-r from-blue-50 to-blue-100 border-b border-blue-200">
+            <h2 class="text-xl font-semibold text-gray-900">ElTenedor vs Cita2: Comparativa real</h2>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Aspecto</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-red-600">ElTenedor / TheFork</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-green-600">Cita2</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                {comparisonTable.map((row, index) => (
+                  <tr class={index % 2 === 1 ? 'bg-gray-50/50' : ''}>
+                    <td class="px-6 py-4 font-medium text-gray-900">{row.metric}</td>
+                    <td class="px-6 py-4 text-center text-gray-600">{row.eltenedor}</td>
+                    <td class="px-6 py-4 text-center text-green-700 font-medium">{row.cita2}</td>
+                  </tr>
+                ))}
+                <tr class="bg-green-50">
+                  <td class="px-6 py-4 font-bold text-gray-900">Ahorro anual</td>
+                  <td class="px-6 py-4 text-center text-gray-500">—</td>
+                  <td class="px-6 py-4 text-center text-2xl font-bold text-green-700">5.772€</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Testimonial */}
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-16">
+          <div class="flex items-start gap-4 mb-4">
+            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold">
+              C
+            </div>
+            <div>
+              <p class="font-semibold text-gray-900">{testimonials[0].author}</p>
+              <p class="text-sm text-gray-500">{testimonials[0].role}, {testimonials[0].restaurant}</p>
+            </div>
+            <div class="ml-auto text-right">
+              <p class="text-2xl font-bold text-green-600">{testimonials[0].savings}</p>
+              <p class="text-xs text-gray-500">de ahorro</p>
+            </div>
+          </div>
+          <blockquote class="text-lg text-gray-700 italic border-l-4 border-blue-200 pl-4">
+            "{testimonials[0].quote}"
+          </blockquote>
+        </div>
+
+        {/* How to Migrate */}
+        <div class="mb-16">
+          <h2 class="text-title text-gray-900 mb-8 text-center">Cómo hacer la transición en 3 pasos</h2>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+              <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                <span class="text-xl font-bold text-blue-600">1</span>
+              </div>
+              <h3 class="font-semibold text-gray-900 mb-2">Configura Cita2</h3>
+              <p class="text-gray-600 text-sm">Regístrate en 2 minutos, configura tu carta, horarios y mesas. Personaliza tu página de reservas con tu marca.</p>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+              <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                <span class="text-xl font-bold text-blue-600">2</span>
+              </div>
+              <h3 class="font-semibold text-gray-900 mb-2">Exporta tus clientes</h3>
+              <p class="text-gray-600 text-sm">Solicita a ElTenedor tus datos (tienes derecho). Importa tu base de clientes a Cita2. Te ayudamos gratis.</p>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+              <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                <span class="text-xl font-bold text-blue-600">3</span>
+              </div>
+              <h3 class="font-semibold text-gray-900 mb-2">Comunica el cambio</h3>
+              <p class="text-gray-600 text-sm">Avisa a tus clientes habituales. Pon el enlace de reservas en Google Business, redes sociales y web. Ofrece incentivo por reserva directa.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Advantages */}
+        <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 mb-16">
+          <h2 class="text-title text-gray-900 mb-8 text-center">Ventajas de tener tu propio sistema</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-900">Datos 100% tuyos</h3>
+                <p class="text-gray-600 text-sm">Emails, teléfonos, historial de pedidos. Puedes hacer marketing directo sin depender de intermediarios.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-900">Sin competencia en tu página</h3>
+                <p class="text-gray-600 text-sm">En ElTenedor, tras reservar en tu restaurante, sugieren "también te puede gustar" con la competencia.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-900">Recordatorios WhatsApp</h3>
+                <p class="text-gray-600 text-sm">Reduce no-shows un 70% con recordatorios automáticos por WhatsApp (90% tasa de apertura).</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-900">Independencia total</h3>
+                <p class="text-gray-600 text-sm">Si ElTenedor sube comisiones o cambia políticas, tu negocio no se ve afectado.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* FAQs */}
+        <div class="mb-16">
+          <h2 class="text-title text-gray-900 mb-8 text-center">Preguntas sobre la transición</h2>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="bg-white rounded-xl shadow-sm border border-gray-100 group">
+                <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+                  <h3 class="font-semibold text-gray-900 pr-4">{faq.question}</h3>
+                  <span class="flex-shrink-0">
+                    <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  </span>
+                </summary>
+                <div class="px-6 pb-6 text-gray-600">
+                  <p>{faq.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+        {/* Final CTA */}
+        <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-12 text-center text-white">
+          <h2 class="text-2xl font-bold mb-4">Empieza a ahorrar 6.000€/año</h2>
+          <p class="text-blue-100 mb-8 max-w-2xl mx-auto">
+            Únete a los restaurantes que ya recuperaron sus clientes y sus márgenes. Prueba gratuita 14 días, sin compromiso.
+          </p>
+          <a href="https://cita2.tecelia.com/register" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-blue-600 rounded-full font-semibold hover:bg-blue-50 transition-colors text-lg">
+            Crear cuenta gratuita
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <p class="text-sm text-blue-200 mt-4">Migración asistida · Soporte en español · Setup en 2 minutos</p>
+        </div>
+      </article>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>

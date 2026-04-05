@@ -1,0 +1,215 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+
+const pageTitle = 'Software de Gestión para Centros de Estética - Cita2';
+const pageDescription = 'Gestión integral para centros de estética, spas y bienestar. Reservas online, recordatorios, ficha de clientes con historial de tratamientos. 19€/mes, sin comisiones.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Cita2 - Software para Centros de Estética',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '19',
+    priceCurrency: 'EUR',
+    priceValidUntil: '2026-12-31'
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.8',
+    reviewCount: '180'
+  }
+};
+
+const beautyFeatures = [
+  {
+    title: 'Ficha de tratamientos',
+    description: 'Historial completo de cada cliente: tratamientos realizados, productos usados, contraindicaciones, preferencias.',
+    icon: 'users'
+  },
+  {
+    title: 'Reservas online 24/7',
+    description: 'Tus clientes reservan faciales, masajes o depilaciones cuando quieran. Tú descansas con la agenda llena.',
+    icon: 'calendar'
+  },
+  {
+    title: 'Recordatorios automáticos',
+    description: 'Emails y WhatsApps que reducen las ausencias hasta un 80%. Sin que tú hagas nada.',
+    icon: 'bell'
+  },
+  {
+    title: 'Gestión de cabinas',
+    description: 'Controla la ocupación de cada cabina y profesional. Evita solapamientos y maximiza tu capacidad.',
+    icon: 'chart'
+  },
+  {
+    title: 'Paquetes y bonos',
+    description: 'Vende sesiones múltiples, bonos de tratamientos y gift cards. Fideliza y aumenta el ticket medio.',
+    icon: 'credit'
+  },
+  {
+    title: 'WhatsApp Business',
+    description: 'Envía confirmaciones, recordatorios y post-tratamiento automáticamente. Tus clientes responden al instante.',
+    icon: 'message'
+  }
+];
+
+const beautyTestimonials = [
+  {
+    quote: 'Antes tenía un caos de agendas en papel. Ahora todo está digitalizado, sé exactamente qué tratamiento hizo cada cliente y cuándo le toca su siguiente sesión.',
+    author: 'Ana Rodríguez',
+    role: 'Directora',
+    company: 'Spa Relax, Valencia',
+    rating: 5
+  },
+  {
+    quote: 'Los recordatorios automáticos han reducido nuestras ausencias un 75%. Además, vendemos muchos más bonos de 5 sesiones gracias al sistema de paquetes.',
+    author: 'Carmen López',
+    role: 'Propietaria',
+    company: 'Centro de Estética Belleza',
+    rating: 5
+  }
+];
+
+const beautyFAQs = [
+  {
+    question: '¿Puedo gestionar varias cabinas y profesionales?',
+    answer: 'Sí, puedes configurar todas las cabinas y profesionales que tengas. El calendario te muestra la ocupación de cada uno en tiempo real, evitando solapamientos y maximizando tu capacidad.'
+  },
+  {
+    question: '¿Se pueden vender bonos o paquetes de sesiones?',
+    answer: 'Absolutamente. Puedes crear bonos de 5 o 10 sesiones, pases de tratamientos o gift cards. El sistema controla automáticamente las sesiones consumidas y las pendientes.'
+  },
+  {
+    question: '¿Funciona para tratamientos que requieren varias citas?',
+    answer: 'Sí, puedes configurar tratamientos con múltiples sesiones y el sistema te avisará cuándo toca la siguiente cita de cada cliente, con su historial de tratamientos previos.'
+  },
+  {
+    question: '¿Puedo registrar contraindicaciones y alergias?',
+    answer: 'Sí, la ficha de cliente incluye campos para alergias, contraindicaciones, medicación y observaciones importantes. Siempre visibles antes de cada tratamiento.'
+  },
+  {
+    question: '¿Hay control de stock de productos?',
+    answer: 'Sí, puedes llevar el inventario de productos, registrar consumo por tratamiento y recibir alertas cuando haya que reponer stock.'
+  },
+  {
+    question: '¿Funciona para centros con spa, masajes y estética?',
+    answer: 'Sí, Cita2 está diseñado para centros integrales. Puedes configurar diferentes tipos de servicios con distintas duraciones, precios y requerimientos de cabina.'
+  }
+];
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  schema={schema}
+>
+  <Header />
+  
+  <main>
+    <Hero 
+      title="Software de gestión diseñado para centros de estética y spas"
+      subtitle="Gestiona reservas, tratamientos, cabinas y clientes desde una sola plataforma. Recordatorios automáticos, bonos de sesiones y ficha completa de cada cliente."
+      primaryCta="Prueba gratis 14 días"
+      primaryCtaHref="https://cita2.tecelia.com/register"
+      secondaryCta="Ver funcionalidades"
+      secondaryCtaHref="#producto"
+    />
+
+    <Features 
+      title="¿Qué conseguirás con Cita2?"
+      subtitle="Funcionalidades diseñadas específicamente para centros de estética, spas y bienestar."
+      features={beautyFeatures}
+    />
+
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Comparativa honesta</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full max-w-4xl mx-auto bg-white rounded-xl shadow-sm">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="p-4 text-left font-semibold">Característica</th>
+                <th class="p-4 text-center font-semibold text-blue-600">Cita2</th>
+                <th class="p-4 text-center font-semibold">AgendaPro</th>
+                <th class="p-4 text-center font-semibold">Reservio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t">
+                <td class="p-4">Precio mensual</td>
+                <td class="p-4 text-center font-medium text-blue-600">19€ plan único</td>
+                <td class="p-4 text-center">Desde 49€</td>
+                <td class="p-4 text-center">Desde 31€</td>
+              </tr>
+              <tr class="border-t bg-gray-50">
+                <td class="p-4">Comisiones</td>
+                <td class="p-4 text-center text-green-600">✅ Ninguna</td>
+                <td class="p-4 text-center text-green-600">✅ Ninguna</td>
+                <td class="p-4 text-center text-green-600">✅ Ninguna</td>
+              </tr>
+              <tr class="border-t">
+                <td class="p-4">Bonos y paquetes</td>
+                <td class="p-4 text-center text-green-600">✅ Incluido</td>
+                <td class="p-4 text-center text-red-500">❌ No</td>
+                <td class="p-4 text-center text-yellow-500">⚠️ Básico</td>
+              </tr>
+              <tr class="border-t bg-gray-50">
+                <td class="p-4">Ficha de tratamientos</td>
+                <td class="p-4 text-center text-green-600">✅ Completa</td>
+                <td class="p-4 text-center text-yellow-500">⚠️ Básica</td>
+                <td class="p-4 text-center text-red-500">❌ No</td>
+              </tr>
+              <tr class="border-t">
+                <td class="p-4">WhatsApp Business</td>
+                <td class="p-4 text-center text-green-600">✅ Incluido</td>
+                <td class="p-4 text-center text-red-500">❌ No</td>
+                <td class="p-4 text-center text-red-500">❌ No</td>
+              </tr>
+              <tr class="border-t bg-gray-50">
+                <td class="p-4">Setup tiempo</td>
+                <td class="p-4 text-center text-blue-600">2 minutos</td>
+                <td class="p-4 text-center">Varios días</td>
+                <td class="p-4 text-center">30 minutos</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-center text-sm text-gray-500 mt-4">
+          *Precios actualizados marzo 2026.
+        </p>
+      </div>
+    </section>
+
+    <Testimonials 
+      title="Lo que dicen los centros de estética"
+      subtitle="Más de 150 centros de estética y spas ya gestionan sus citas con Cita2."
+      testimonials={beautyTestimonials}
+    />
+
+    <Pricing />
+
+    <FAQ 
+      title="Preguntas frecuentes para centros de estética"
+      subtitle="Respuestas a las dudas más comunes de spas y centros de bienestar."
+      faqs={beautyFAQs}
+    />
+
+    <CTA 
+      title="Empieza a gestionar tu centro de estética como un profesional"
+      subtitle="Únete a 150+ centros de estética que ya ahorran tiempo y ganan más con Cita2."
+    />
+  </main>
+  
+  <Footer />
+</Layout>

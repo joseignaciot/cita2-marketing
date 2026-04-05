@@ -1,0 +1,122 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+site_url: https://cita2.tecelia.com
+logo_url: https://cita2.tecelia.com/favicon.svg
+
+locale: 'es'
+
+collections:
+  - name: landings
+    label: Landing Pages
+    label_singular: Landing Page
+    folder: src/content/landings
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    fields:
+      - { label: "Título SEO", name: "title", widget: "string", required: true }
+      - { label: "Descripción SEO", name: "description", widget: "text", required: true }
+      - { label: "Sector", name: "sector", widget: "select", options: ["peluquerias", "estetica", "restaurantes", "turismo", "spas", "dentistas", "fisioterapia", "general"], required: true }
+      - { label: "Keywords", name: "keywords", widget: "list", required: false }
+      - { label: "Imagen OG", name: "ogImage", widget: "image", required: false }
+      - { label: "No index", name: "noindex", widget: "boolean", default: false, required: false }
+      
+      - { label: "Título Hero", name: "heroTitle", widget: "string", required: true }
+      - { label: "Subtítulo Hero", name: "heroSubtitle", widget: "text", required: true }
+      - { label: "Texto CTA Principal", name: "heroCta", widget: "string", default: "Prueba gratis 14 días", required: true }
+      - { label: "URL CTA", name: "heroCtaHref", widget: "string", default: "https://cita2.tecelia.com/register", required: true }
+      - { label: "Texto CTA Secundario", name: "heroSecondaryCtaText", widget: "string", required: false }
+      - { label: "URL CTA Secundario", name: "heroSecondaryCtaHref", widget: "string", required: false }
+      
+      - { label: "Título Features", name: "featuresTitle", widget: "string", default: "¿Qué conseguirás con Cita2?", required: true }
+      - { label: "Subtítulo Features", name: "featuresSubtitle", widget: "text", default: "Funcionalidades diseñadas específicamente para tu sector.", required: true }
+      
+      - { label: "Título Testimonios", name: "testimonialsTitle", widget: "string", default: "Lo que dicen nuestros clientes", required: true }
+      - { label: "Subtítulo Testimonios", name: "testimonialsSubtitle", widget: "text", required: false }
+      
+      - { label: "Mostrar Precios", name: "showPricing", widget: "boolean", default: true, required: true }
+      
+      - { label: "Título FAQ", name: "faqTitle", widget: "string", default: "Preguntas frecuentes", required: true }
+      - { label: "Subtítulo FAQ", name: "faqSubtitle", widget: "text", default: "Respuestas a las dudas más comunes.", required: true }
+      
+      - { label: "Título CTA Final", name: "ctaTitle", widget: "string", default: "¿Listo para simplificar tu gestión de citas?", required: true }
+      - { label: "Subtítulo CTA Final", name: "ctaSubtitle", widget: "text", default: "Únete a 500+ negocios que ya ahorran tiempo con Cita2.", required: true }
+      
+      - { label: "Tipo Schema.org", name: "schemaType", widget: "select", options: ["SoftwareApplication", "Service", "Product"], default: "SoftwareApplication", required: true }
+      
+      - { label: "Borrador", name: "draft", widget: "boolean", default: false, required: false }
+      
+      - { label: "Contenido (opcional)", name: "body", widget: "markdown", required: false }
+
+  - name: faqs
+    label: FAQs
+    label_singular: FAQ
+    folder: src/content/faqs
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    fields:
+      - { label: "Pregunta", name: "question", widget: "string", required: true }
+      - { label: "Respuesta", name: "answer", widget: "text", required: true }
+      - { label: "Sector", name: "sector", widget: "select", options: ["peluquerias", "estetica", "restaurantes", "turismo", "spas", "dentistas", "fisioterapia", "general"], required: true }
+      - { label: "Orden", name: "order", widget: "number", value_type: "int", default: 0, required: false }
+      - { label: "Contenido", name: "body", widget: "markdown", required: false }
+
+  - name: testimonials
+    label: Testimonios
+    label_singular: Testimonio
+    folder: src/content/testimonials
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    fields:
+      - { label: "Cita", name: "quote", widget: "text", required: true }
+      - { label: "Autor", name: "author", widget: "string", required: true }
+      - { label: "Rol", name: "role", widget: "string", required: true }
+      - { label: "Empresa", name: "company", widget: "string", required: true }
+      - { label: "Valoración", name: "rating", widget: "select", options: [1, 2, 3, 4, 5], default: 5, required: true }
+      - { label: "Sector", name: "sector", widget: "select", options: ["peluquerias", "estetica", "restaurantes", "turismo", "spas", "dentistas", "fisioterapia", "general"], required: false }
+      - { label: "Orden", name: "order", widget: "number", value_type: "int", default: 0, required: false }
+      - { label: "Destacado", name: "featured", widget: "boolean", default: false, required: false }
+      - { label: "Contenido", name: "body", widget: "markdown", required: false }
+
+  - name: features
+    label: Funcionalidades
+    label_singular: Funcionalidad
+    folder: src/content/features
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    fields:
+      - { label: "Título", name: "title", widget: "string", required: true }
+      - { label: "Descripción", name: "description", widget: "text", required: true }
+      - { label: "Icono", name: "icon", widget: "select", options: ["calendar", "bell", "users", "credit", "message", "chart", "smartphone", "zap"], default: "calendar", required: true }
+      - { label: "Orden", name: "order", widget: "number", value_type: "int", default: 0, required: false }
+      - { label: "Sectores (vacío = todos)", name: "sectors", widget: "select", options: ["peluquerias", "estetica", "restaurantes", "turismo", "spas", "dentistas", "fisioterapia"], multiple: true, required: false }
+      - { label: "Contenido", name: "body", widget: "markdown", required: false }
+
+  - name: posts
+    label: Artículos Blog
+    label_singular: Artículo
+    folder: src/content/posts
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    fields:
+      - { label: "Título", name: "title", widget: "string", required: true }
+      - { label: "Descripción", name: "description", widget: "text", required: true }
+      - { label: "Fecha publicación", name: "pubDate", widget: "datetime", required: true }
+      - { label: "Fecha actualización", name: "updatedDate", widget: "datetime", required: false }
+      - { label: "Autor", name: "author", widget: "string", default: "Cita2 Team", required: true }
+      - { label: "Categoría", name: "category", widget: "select", options: ["productividad", "marketing", "tecnologia", "sectores", "tutoriales", "noticias"], required: true }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Imagen destacada", name: "image", widget: "image", required: false }
+      - { label: "Artículo destacado", name: "featured", widget: "boolean", default: false, required: false }
+      - { label: "Borrador", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Tiempo lectura (min)", name: "readingTime", widget: "number", value_type: "int", required: false }
+      - { label: "Contenido", name: "body", widget: "markdown", required: true }

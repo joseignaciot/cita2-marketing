@@ -1,0 +1,156 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+
+const pageTitle = 'Software de Gestión para Clínicas Dentales - Cita2';
+const pageDescription = 'Gestión integral para clínicas dentales. Historial clínico, recordatorios automáticos, gestión de tratamientos y seguimiento de pacientes. 19€/mes, sin comisiones.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Cita2 - Software para Dentistas',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '19',
+    priceCurrency: 'EUR',
+    priceValidUntil: '2026-12-31'
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.8',
+    reviewCount: '120'
+  }
+};
+
+const dentalFeatures = [
+  {
+    title: 'Historial clínico digital',
+    description: 'Ficha completa del paciente con tratamientos realizados, radiografías, alergias y contraindicaciones. Acceso instantáneo.',
+    icon: 'users'
+  },
+  {
+    title: 'Planificación de tratamientos',
+    description: 'Organiza tratamientos multisesión con seguimiento de fases. El sistema avisa qué toca en cada cita.',
+    icon: 'calendar'
+  },
+  {
+    title: 'Recordatorios automáticos',
+    description: 'Emails y WhatsApps que reducen las ausencias hasta un 70%. Confirmaciones automáticas 24h antes.',
+    icon: 'bell'
+  },
+  {
+    title: 'Gestión de gabinetes',
+    description: 'Controla la ocupación de cada gabinete y dentista. Evita solapamientos y maximiza tu capacidad.',
+    icon: 'chart'
+  },
+  {
+    title: 'Recetas y presupuestos',
+    description: 'Genera presupuestos detallados y recetas digitales. Envío automático por email al paciente.',
+    icon: 'credit'
+  },
+  {
+    title: 'Recordatorios de revisiones',
+    description: 'El sistema avisa automáticamente cuando un paciente debe volver para revisión o limpieza.',
+    icon: 'message'
+  }
+];
+
+const dentalTestimonials = [
+  {
+    quote: 'Antes tenía papeles por todos lados. Ahora tengo todo digitalizado, sé exactamente qué tratamiento estaba haciendo cada paciente y las revisiones se programan solas.',
+    author: 'Dr. Javier Martínez',
+    role: 'Director',
+    company: 'Clínica Dental Martínez, Barcelona',
+    rating: 5
+  },
+  {
+    quote: 'Los recordatorios automáticos han reducido nuestras ausencias un 60%. Además, la gestión de presupuestos nos ha ayudado a aumentar la tasa de aceptación de tratamientos.',
+    author: 'Dra. Ana López',
+    role: 'Odontóloga',
+    company: 'Dental Smiles, Madrid',
+    rating: 5
+  }
+];
+
+const dentalFAQs = [
+  {
+    question: '¿Puedo guardar radiografías y documentos del paciente?',
+    answer: 'Sí, cada ficha de paciente permite adjuntar radiografías, fotos intraorales, presupuestos firmados y cualquier documento relevante. Almacenamiento seguro y ilimitado incluido.'
+  },
+  {
+    question: '¿Funciona para tratamientos que requieren varias citas?',
+    answer: 'Absolutamente. Puedes planificar tratamientos en fases (endodoncia en 3 sesiones, implantes con tiempos de espera, etc.) y el sistema te avisa en cada cita qué procedimiento corresponde.'
+  },
+  {
+    question: '¿Puedo gestionar varios dentistas y gabinetes?',
+    answer: 'Sí, puedes configurar todos los dentistas de tu clínica y asignarles gabinetes específicos. El calendario muestra la disponibilidad de cada uno en tiempo real.'
+  },
+  {
+    question: '¿Se pueden enviar presupuestos por email?',
+    answer: 'Sí, generas el presupuesto en el sistema y se envía automáticamente al paciente por email. El paciente puede confirmar y queda registrado en su historial.'
+  },
+  {
+    question: '¿Hay recordatorios para revisiones periódicas?',
+    answer: 'Sí, configuras el intervalo de revisiones (ej: cada 6 meses para limpieza) y el sistema envía automáticamente un recordatorio al paciente cuando toca su visita.'
+  },
+  {
+    question: '¿Es compatible con facturación médica?',
+    answer: 'Sí, el sistema permite generar facturas con los datos fiscales necesarios para clínicas dentales, incluyendo número de colegiado y otros requisitos específicos.'
+  }
+];
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  schema={schema}
+>
+  <Header />
+  
+  <main>
+    <Hero 
+      title="Software de gestión diseñado para clínicas dentales"
+      subtitle="Digitaliza tu clínica dental. Historial clínico completo, planificación de tratamientos multisesión, recordatorios automáticos y gestión de gabinetes. Todo en una plataforma."
+      primaryCta="Prueba gratis 14 días"
+      primaryCtaHref="https://cita2.tecelia.com/register"
+      secondaryCta="Ver funcionalidades"
+      secondaryCtaHref="#producto"
+    />
+
+    <Features 
+      title="¿Qué conseguirás con Cita2?"
+      subtitle="Funcionalidades específicas para clínicas dentales."
+      features={dentalFeatures}
+    />
+
+    <Testimonials 
+      title="Lo que dicen los dentistas"
+      subtitle="Más de 120 clínicas dentales ya usan Cita2."
+      testimonials={dentalTestimonials}
+    />
+
+    <Pricing />
+
+    <FAQ 
+      title="Preguntas frecuentes para dentistas"
+      subtitle="Respuestas a las dudas más comunes del sector dental."
+      faqs={dentalFAQs}
+    />
+
+    <CTA 
+      title="Digitaliza tu clínica dental hoy"
+      subtitle="Únete a 120+ clínicas que ya ahorran tiempo y ofrecen mejor servicio con Cita2."
+    />
+  </main>
+  
+  <Footer />
+</Layout>

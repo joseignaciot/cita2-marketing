@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "ogImage": {
+      "type": "string"
+    },
+    "noindex": {
+      "default": false,
+      "type": "boolean"
+    },
+    "heroTitle": {
+      "type": "string"
+    },
+    "heroSubtitle": {
+      "type": "string"
+    },
+    "heroCta": {
+      "default": "Prueba gratis 14 días",
+      "type": "string"
+    },
+    "heroCtaHref": {
+      "default": "https://cita2.tecelia.com/register",
+      "type": "string"
+    },
+    "heroSecondaryCta": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "href": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "href"
+      ]
+    },
+    "featuresTitle": {
+      "default": "¿Qué conseguirás con Cita2?",
+      "type": "string"
+    },
+    "featuresSubtitle": {
+      "default": "Funcionalidades diseñadas específicamente para tu sector.",
+      "type": "string"
+    },
+    "testimonialsTitle": {
+      "default": "Lo que dicen nuestros clientes",
+      "type": "string"
+    },
+    "testimonialsSubtitle": {
+      "type": "string"
+    },
+    "showPricing": {
+      "default": true,
+      "type": "boolean"
+    },
+    "faqTitle": {
+      "default": "Preguntas frecuentes",
+      "type": "string"
+    },
+    "faqSubtitle": {
+      "default": "Respuestas a las dudas más comunes.",
+      "type": "string"
+    },
+    "ctaTitle": {
+      "default": "¿Listo para simplificar tu gestión de citas?",
+      "type": "string"
+    },
+    "ctaSubtitle": {
+      "default": "Únete a 500+ negocios que ya ahorran tiempo con Cita2.",
+      "type": "string"
+    },
+    "showComparison": {
+      "default": true,
+      "type": "boolean"
+    },
+    "schemaType": {
+      "default": "SoftwareApplication",
+      "type": "string",
+      "enum": [
+        "SoftwareApplication",
+        "Service",
+        "Product"
+      ]
+    },
+    "sector": {
+      "type": "string"
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "draft": {
+      "default": false,
+      "type": "boolean"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "heroTitle",
+    "heroSubtitle",
+    "sector"
+  ]
+}

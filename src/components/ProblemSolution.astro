@@ -1,0 +1,205 @@
+---
+// ProblemSolution - Before/After comparison section
+// Shows problems that Cita2 solves with visual clarity
+
+const problems = [
+  {
+    icon: "📱",
+    title: "Interrupciones constantes",
+    description: "Llamadas y mensajes a cualquier hora para reservar, cambiar o cancelar citas.",
+    stat: "15+ llamadas/día",
+    pain: "Te roban tiempo y concentración"
+  },
+  {
+    icon: "❌",
+    title: "Ausencias que cuestan dinero",
+    description: "El 25% de las citas se pierden por olvidos, dejando huecos imprevistos en tu agenda.",
+    stat: "25% de ausencias",
+    pain: "Pérdida de ingresos directa"
+  },
+  {
+    icon: "📝",
+    title: "Gestión manual caótica",
+    description: "Agendas en papel, WhatsApp dispersos, y recordatorios en cabeza. Caos organizativo.",
+    stat: "2+ horas/día",
+    pain: "Tiempo en tareas administrativas"
+  },
+  {
+    icon: "💸",
+    title: "Comisiones de plataformas",
+    description: "ElTenedor y similares se llevan el 12-15% de cada reserva, mes tras mes.",
+    stat: "~500€/mes",
+    pain: "En comisiones para un restaurante medio"
+  }
+];
+
+const solutions = [
+  {
+    icon: "✨",
+    title: "Reservas automáticas 24/7",
+    description: "Los clientes reservan online cuando quieran. Tú recibes la confirmación sin interrumpir tu día.",
+    benefit: "0 llamadas de reservas",
+    highlight: "Tu agenda se llena sola"
+  },
+  {
+    icon: "🤖",
+    title: "Recordatorios inteligentes",
+    description: "Emails, SMS y WhatsApps automáticos que confirman, recuerdan y reducen ausencias drásticamente.",
+    benefit: "-70% de ausencias",
+    highlight: "Los clientes llegan puntuales"
+  },
+  {
+    icon: "📊",
+    title: "Todo centralizado y digital",
+    description: "Una plataforma con tu agenda, clientes, historial y estadísticas. Accesible desde cualquier dispositivo.",
+    benefit: "Ahorra 10h semanales",
+    highlight: "Gestión sin papeles ni caos"
+  },
+  {
+    icon: "💰",
+    title: "Sin comisiones, tu dinero es tuyo",
+    description: "Pago único de 19€/mes. Sin porcentajes sobre tus reservas. Relación directa con clientes.",
+    benefit: "Ahorra 6.000€/año",
+    highlight: "vs comisiones de ElTenedor"
+  }
+];
+---
+
+<section class="section-apple bg-white" id="soluciones">
+  <div class="container-apple">
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <span class="feature-bubble mb-4 inline-block">El problema que resolvemos</span>
+      <h2 class="text-headline text-gray-900 mb-6">
+        El caos de gestionar citas\n<span class="text-gray-400">vs</span> la tranquilidad automatizada
+      </h2>
+      <p class="text-body text-lg">
+        Miles de negocios pierden tiempo, dinero y paciencia cada día. \nAsí es como Cita2 lo transforma:
+      </p>
+    </div>
+
+    <!-- Before/After Grid -->
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+      <!-- BEFORE: Problems -->
+      <div class="space-y-6">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+            <span class="text-2xl">😫</span>
+          </div>
+          <div>
+            <h3 class="text-title text-gray-900">Antes: El caos diario</h3>
+            <p class="text-caption text-gray-500">Sin Cita2</p>
+          </div>
+        </div>
+
+        {problems.map((problem, index) => (
+          <div 
+            class="problem-card hover-lift scroll-animate"
+            style={`transition-delay: ${index * 100}ms`}
+          >
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center flex-shrink-0 text-2xl">
+                {problem.icon}
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="font-semibold text-gray-900">{problem.title}</h4>
+                  <span class="text-sm font-medium text-red-600 bg-red-50 px-3 py-1 rounded-full">
+                    {problem.stat}
+                  </span>
+                </div>
+                <p class="text-gray-600 text-sm mb-2">{problem.description}</p>
+                <p class="text-red-600 text-sm font-medium">→ {problem.pain}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- AFTER: Solutions -->
+      <div class="space-y-6">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+            <span class="text-2xl">😌</span>
+          </div>
+          <div>
+            <h3 class="text-title text-gray-900">Después: Todo fluye</h3>
+            <p class="text-caption text-gray-500">Con Cita2</p>
+          </div>
+        </div>
+
+        {solutions.map((solution, index) => (
+          <div 
+            class="solution-card hover-lift scroll-animate"
+            style={`transition-delay: ${index * 100 + 200}ms`}
+          >
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center flex-shrink-0 text-2xl">
+                {solution.icon}
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="font-semibold text-gray-900">{solution.title}</h4>
+                  <span class="text-sm font-medium text-green-700 bg-green-50 px-3 py-1 rounded-full">
+                    {solution.benefit}
+                  </span>
+                </div>
+                <p class="text-gray-600 text-sm mb-2">{solution.description}</p>
+                <p class="text-green-700 text-sm font-medium">✓ {solution.highlight}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="text-center scroll-animate delay-100">
+        <p class="stat-number mb-2">500+</p>
+        <p class="text-gray-600">negocios usando Cita2</p>
+      </div>
+      <div class="text-center scroll-animate delay-200">
+        <p class="stat-number mb-2">70%</p>
+        <p class="text-gray-600">menos ausencias</p>
+      </div>
+      <div class="text-center scroll-animate delay-300">
+        <p class="stat-number mb-2">10h</p>
+        <p class="text-gray-600">ahorro semanal</p>
+      </div>
+      <div class="text-center scroll-animate delay-400">
+        <p class="stat-number mb-2">6.000€</p>
+        <p class="text-gray-600">ahorro anual medio</p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-16">
+      <a href="https://cita2.tecelia.com/register" class="btn-apple-primary text-lg px-10 py-5">
+        Empieza tu transformación →
+      </a>
+      <p class="text-caption mt-4">Prueba gratuita 14 días · Sin tarjeta · Setup en 2 minutos</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Scroll animation observer
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.scroll-animate').forEach(el => {
+    observer.observe(el);
+  });
+</script>

@@ -1,0 +1,136 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const pageTitle = 'Cita2 vs Reservio: Comparativa Detallada 2025';
+const pageDescription = 'Análisis completo entre Cita2 y Reservio. Precios, funcionalidades, soporte en español y más. Descubre cuál es mejor para tu negocio.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Cita2 vs Reservio: Comparativa Detallada 2025',
+  description: 'Análisis completo entre Cita2 y Reservio',
+  author: { '@type': 'Organization', name: 'Cita2' },
+  publisher: { '@type': 'Organization', name: 'Cita2' },
+  datePublished: '2025-03-20'
+};
+
+const comparisonRows = [
+  { feature: 'Precio plan básico', cita2: '19€/mes (todo incluido)', reservio: '0€ (limitado) / 31€ (pro)', winner: 'cita2' },
+  { feature: 'Precio plan premium', cita2: '19€ (único plan)', reservio: '63€/mes (max 5 staff)', winner: 'cita2' },
+  { feature: 'Usuarios/staff', cita2: 'Ilimitados', reservio: 'Limitado por plan', winner: 'cita2' },
+  { feature: 'Reservas mensuales', cita2: 'Ilimitadas', reservio: 'Limitadas en plan gratis', winner: 'cita2' },
+  { feature: 'Soporte en español', cita2: '✅ Nativo (chat/email)', reservio: '⚠️ Inglés/Alemán principal', winner: 'cita2' },
+  { feature: 'WhatsApp Business', cita2: '✅ Incluido nativo', reservio: '❌ No disponible', winner: 'cita2' },
+  { feature: 'Recordatorios SMS', cita2: '✅ Incluido', reservio: '⚠️ Pago aparte', winner: 'cita2' },
+  { feature: 'Presets por sector', cita2: '✅ Peluquería, estética, turismo', reservio: '⚠️ Genérico', winner: 'cita2' },
+  { feature: 'Pagos online', cita2: '✅ Stripe integrado', reservio: '✅ Stripe/PayPal', winner: 'tie' },
+  { feature: 'Calendario Google', cita2: '✅ Sync bidireccional', reservio: '✅ Sync bidireccional', winner: 'tie' },
+  { feature: 'Interfaz en español', cita2: '✅ 100% traducida', reservio: '⚠️ Algunas partes en inglés', winner: 'cita2' },
+  { feature: 'App móvil nativa', cita2: '❌ Web app responsive', reservio: '✅ App nativa', winner: 'reservio' },
+  { feature: 'Integraciones', cita2: '⚠️ Básicas (Zapier)', reservio: '✅ Muchas integraciones', winner: 'reservio' },
+  { feature: 'Personalización marca', cita2: '✅ Completa', reservio: '✅ Completa', winner: 'tie' },
+];
+---
+
+<Layout title={pageTitle} description={pageDescription} schema={schema}>
+  <Header />
+  
+  <main class="pt-24">
+    <section class="py-16 bg-gradient-to-br from-blue-50 to-white">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Cita2 vs Reservio</h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Comparativa detallada entre el software español y el alemán. Soporte, precios y funcionalidades.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-12">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="overflow-x-auto">
+          <table class="w-full bg-white rounded-xl shadow-sm">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="p-4 text-left">Característica</th>
+                <th class="p-4 text-center text-blue-600 w-1/3">Cita2</th>
+                <th class="p-4 text-center text-purple-600 w-1/3">Reservio</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonRows.map((row, i) => (
+                <tr class={`border-t ${i % 2 === 1 ? 'bg-gray-50' : ''}`}>
+                  <td class="p-4 font-medium">{row.feature}</td>
+                  <td class={`p-4 text-center ${row.winner === 'cita2' ? 'font-semibold text-green-600' : ''}`}>
+                    {row.cita2} {row.winner === 'cita2' && '🏆'}
+                  </td>
+                  <td class={`p-4 text-center ${row.winner === 'reservio' ? 'font-semibold text-green-600' : ''}`}>
+                    {row.reservio} {row.winner === 'reservio' && '🏆'}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <h2 class="text-2xl font-bold text-center mb-8">La diferencia principal: Soporte local</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white p-6 rounded-xl">
+            <h3 class="font-bold text-lg mb-4 text-blue-600">🇪🇸 Cita2</h3>
+            <ul class="space-y-2 text-sm">
+              <li>✅ Equipo en España</li>
+              <li>✅ Soporte en español nativo</li>
+              <li>✅ Horario español (9-18h)</li>
+              <li>✅ Entiende tu negocio local</li>
+              <li>✅ Presets para sectores españoles</li>
+            </ul>
+          </div>
+          <div class="bg-white p-6 rounded-xl">
+            <h3 class="font-bold text-lg mb-4 text-purple-600">🇩🇪 Reservio</h3>
+            <ul class="space-y-2 text-sm">
+              <li>⚠️ Empresa alemana</li>
+              <li>⚠️ Soporte principal en inglés/alemán</li>
+              <li>⚠️ Horario europeo central</li>
+              <li>⚠️ Mercado enfocado en Europa Central</li>
+              <li>⚠️ Menos adaptado a España</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-2xl font-bold mb-4">Precios comparados (3 empleados)</h2>
+        <div class="flex justify-center gap-8 mb-8">
+          <div class="text-center">
+            <p class="text-sm text-gray-600">Cita2</p>
+            <p class="text-3xl font-bold text-blue-600">19€/mes</p>
+          </div>
+          <div class="text-center">
+            <p class="text-sm text-gray-600">Reservio Pro</p>
+            <p class="text-3xl font-bold text-purple-600">63€/mes</p>
+          </div>
+        </div>
+        <p class="text-green-600 font-semibold text-xl">Ahorro anual con Cita2: 528€</p>
+      </div>
+    </section>
+
+    <section class="py-16 bg-blue-600 text-white text-center">
+      <div class="container mx-auto px-4">
+        <h2 class="text-2xl font-bold mb-4">¿Prefieres soporte local?</h2>
+        <p class="mb-6">Prueba Cita2 gratis 14 días. Sin tarjeta.</p>
+        <a href="https://cita2.tecelia.com/register" class="inline-block px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100">
+          Empezar prueba gratuita →
+        </a>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>

@@ -1,0 +1,102 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  items?: FAQItem[];
+}
+
+const defaultFAQs: FAQItem[] = [
+  {
+    question: '¿Cuánto tiempo tarda en estar operativo?',
+    answer: 'Menos de 2 minutos. Al registrarte, eliges tu tipo de negocio y pre-cargamos servicios de ejemplo que puedes usar o modificar. Puedes empezar a recibir reservas inmediatamente.'
+  },
+  {
+    question: '¿Necesito tarjeta de crédito para la prueba?',
+    answer: 'No. La prueba de 14 días es completamente gratuita y no requiere tarjeta de crédito. Solo te pediremos datos de pago si decides continuar tras la prueba.'
+  },
+  {
+    question: '¿Puedo importar mis clientes actuales?',
+    answer: 'Sí, puedes importar tu base de datos de clientes desde Excel o CSV. Solo necesitas nombre, email y teléfono.'
+  },
+  {
+    question: '¿Qué pasa si supero el límite de citas?',
+    answer: 'No hay límite de citas. Todas las reservas que quieras están incluidas en los 19€/mes. Sin sorpresas.'
+  },
+  {
+    question: '¿Funciona en móvil?',
+    answer: 'Sí, Cita2 es una web app responsive que funciona perfectamente en cualquier dispositivo: ordenador, tablet o móvil.'
+  },
+  {
+    question: '¿Qué soporte ofrecéis?',
+    answer: 'Soporte por email y chat en horario laboral (L-V, 9-18h). Tiempo medio de respuesta: 4 horas.'
+  }
+];
+
+const { 
+  title = 'Preguntas frecuentes', 
+  subtitle = 'Todo lo que necesitas saber antes de empezar.',
+  items = defaultFAQs 
+} = Astro.props;
+
+// FAQPage Schema
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<section class="section-padding bg-gray-50">
+  <div class="max-w-3xl mx-auto container-padding">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+        {title}
+      </h2>
+      {subtitle && (
+        <p class="mt-4 text-lg text-gray-600">
+          {subtitle}
+        </p>
+      )}
+    </div>
+    
+    <div class="space-y-4">
+      {items.map((item, index) => (
+        <details class="group bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+            <h3 class="font-semibold text-gray-900 pr-4">
+              {item.question}
+            </h3>
+            <span class="flex-shrink-0 ml-4">
+              <svg 
+                class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600">
+            <p set:html={item.answer} />
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+  
+  <!-- FAQ Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</section>

@@ -1,0 +1,145 @@
+---
+interface PricingPlan {
+  name: string;
+  price: string;
+  period: string;
+  description: string;
+  features: string[];
+  cta: string;
+  ctaHref: string;
+  popular?: boolean;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  plans?: PricingPlan[];
+}
+
+const defaultPlans: PricingPlan[] = [
+  {
+    name: 'Profesional',
+    price: '19€',
+    period: '/mes',
+    description: 'Todo lo que necesitas para gestionar tu negocio sin complicaciones.',
+    features: [
+      'Reservas online ilimitadas',
+      'Recordatorios automáticos',
+      'Calendario visual',
+      'CRM clientes completo',
+      'Página de reservas personalizada',
+      'Pagos online con Stripe',
+      'WhatsApp Business integrado',
+      'Soporte por email y chat'
+    ],
+    cta: 'Empezar prueba gratis',
+    ctaHref: 'https://cita2.tecelia.com/register',
+    popular: true
+  }
+];
+
+const { 
+  title = 'Precio simple, sin sorpresas', 
+  subtitle = 'Un plan, todo incluido. Sin comisiones por reserva ni límites ocultos.',
+  plans = defaultPlans 
+} = Astro.props;
+---
+
+<section class="section-padding bg-white" id="precios">
+  <div class="max-w-7xl mx-auto container-padding">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+        {title}
+      </h2>
+      {subtitle && (
+        <p class="mt-4 text-lg text-gray-600">
+          {subtitle}
+        </p>
+      )}
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      {plans.map((plan) => (
+        <div class={`relative rounded-2xl p-8 ${
+          plan.popular 
+            ? 'bg-primary-600 text-white shadow-xl scale-105' 
+            : 'bg-white border border-gray-200 text-gray-900'
+        }`}>
+          {plan.popular && (
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+              <span class="bg-warning text-white text-sm font-semibold px-4 py-1 rounded-full">
+                Más popular
+              </span>
+            </div>
+          )}
+          
+          <div class="mb-6">
+            <h3 class={`text-xl font-bold ${plan.popular ? 'text-white' : 'text-gray-900'}`}>
+              {plan.name}
+            </h3>
+            <p class={`mt-2 text-sm ${plan.popular ? 'text-primary-100' : 'text-gray-500'}`}>
+              {plan.description}
+            </p>
+          </div>
+          
+          <div class="mb-6">
+            <span class={`text-4xl font-bold ${plan.popular ? 'text-white' : 'text-gray-900'}`}>
+              {plan.price}
+            </span>
+            <span class={`text-sm ${plan.popular ? 'text-primary-100' : 'text-gray-500'}`}>
+              {plan.period}
+            </span>
+          </div>
+          
+          <ul class="space-y-3 mb-8">
+            {plan.features.map((feature) => (
+              <li class="flex items-start gap-3">
+                <svg class={`w-5 h-5 mt-0.5 ${plan.popular ? 'text-primary-200' : 'text-success'}`} fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span class={plan.popular ? 'text-primary-50' : 'text-gray-600'}>
+                  {feature}
+                </span>
+              </li>
+            ))}
+          </ul>
+          
+          <a 
+            href={plan.ctaHref}
+            class={`w-full text-center py-3 px-6 rounded-lg font-semibold transition-colors ${
+              plan.popular 
+                ? 'bg-white text-primary-600 hover:bg-primary-50' 
+                : 'bg-primary-600 text-white hover:bg-primary-700'
+            }`}
+          >
+            {plan.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Trust badges -->
+    <div class="mt-12 text-center">
+      <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+          <span>30 días garantía</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+          <span>Sin tarjeta para empezar</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+          <span>Cancela cuando quieras</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
