@@ -172,7 +172,7 @@ comparisonData.forEach(cat => {
                       <td class="py-3 px-4 font-medium">{feature.name}</td>
                       <td class="py-3 px-4 text-center">
                         <span class={feature.winner === 'cita2' ? 'font-semibold text-green-600' : ''}>
-                          {feature.agendadereservas}
+                          {feature.cita2}
                         </span>
                         {feature.winner === 'cita2' && <span class="ml-2">🏆</span>}
                       </td>
@@ -242,12 +242,12 @@ comparisonData.forEach(cat => {
           Prueba Agenda de Reservas gratis durante 14 días. No requiere tarjeta. Si no te convence, nada pierdes.
         </p>
         <a 
-          href="https://agendadereservas.com/register"
+          href="https://app.agendadereservas.com"
           class="inline-block px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
         >
           Empezar prueba gratuita →
         </a>
-        <p class="text-sm text-gray-500 mt-4">
+        <p class="text-sm text-gray-700 mt-4">
           Setup en 2 minutos · Sin compromiso · Cancela cuando quieras
         </p>
       </div>

@@ -14,7 +14,7 @@ const landings = defineCollection({
     heroTitle: z.string(),
     heroSubtitle: z.string(),
     heroCta: z.string().default('Prueba gratis 14 días'),
-    heroCtaHref: z.string().default('https://agendadereservas.com/register'),
+    heroCtaHref: z.string().default('https://app.agendadereservas.com'),
     heroSecondaryCta: z.object({
       text: z.string(),
       href: z.string(),
