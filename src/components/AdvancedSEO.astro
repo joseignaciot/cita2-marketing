@@ -13,12 +13,12 @@ const { type, data } = Astro.props;
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  '@id': 'https://cita2.tecelia.com/#organization',
+  '@id': 'https://agendadereservas.com/#organization',
   name: 'Cita2',
-  url: 'https://cita2.tecelia.com',
+  url: 'https://agendadereservas.com',
   logo: {
     '@type': 'ImageObject',
-    url: 'https://cita2.tecelia.com/favicon.svg',
+    url: 'https://agendadereservas.com/favicon.svg',
     width: 512,
     height: 512
   },
@@ -32,9 +32,9 @@ const organizationSchema = {
   },
   contactPoint: {
     '@type': 'ContactPoint',
-    '@id': 'https://cita2.tecelia.com/#contact',
+    '@id': 'https://agendadereservas.com/#contact',
     contactType: 'customer support',
-    email: 'soporte@cita2.tecelia.com',
+    email: 'soporte@agendadereservas.com',
     availableLanguage: ['Spanish', 'English'],
     areaServed: 'ES',
     hoursAvailable: {
@@ -59,10 +59,10 @@ function generateServiceSchema(serviceData: any) {
       organizationSchema,
       {
         '@type': 'Service',
-        '@id': `https://cita2.tecelia.com${serviceData.url}/#service`,
+        '@id': `https://agendadereservas.com${serviceData.url}/#service`,
         name: serviceData.name,
         description: serviceData.description,
-        provider: { '@id': 'https://cita2.tecelia.com/#organization' },
+        provider: { '@id': 'https://agendadereservas.com/#organization' },
         areaServed: {
           '@type': 'Country',
           name: 'España'
@@ -81,7 +81,7 @@ function generateServiceSchema(serviceData: any) {
             priceCurrency: 'EUR',
             priceValidUntil: '2026-12-31',
             availability: 'https://schema.org/InStock',
-            url: 'https://cita2.tecelia.com/precios'
+            url: 'https://agendadereservas.com/precios'
           }
         },
         aggregateRating: serviceData.rating ? {
@@ -109,10 +109,10 @@ function generateServiceSchema(serviceData: any) {
       // LocalBusiness for each sector
       serviceData.sector ? {
         '@type': 'LocalBusiness',
-        '@id': `https://cita2.tecelia.com${serviceData.url}/#localbusiness`,
+        '@id': `https://agendadereservas.com${serviceData.url}/#localbusiness`,
         name: `${serviceData.sector.name} - Cita2`,
         description: `Software de gestión para ${serviceData.sector.name.toLowerCase()}`,
-        url: `https://cita2.tecelia.com${serviceData.url}`,
+        url: `https://agendadereservas.com${serviceData.url}`,
         image: serviceData.sector.image,
         priceRange: '€',
         paymentAccepted: ['Credit Card', 'Bank Transfer'],
@@ -123,7 +123,7 @@ function generateServiceSchema(serviceData: any) {
           opens: '00:00',
           closes: '23:59'
         },
-        isRelatedTo: { '@id': `https://cita2.tecelia.com${serviceData.url}/#service` }
+        isRelatedTo: { '@id': `https://agendadereservas.com${serviceData.url}/#service` }
       } : null
     ].filter(Boolean)
   };
@@ -164,7 +164,7 @@ function generateArticleSchema(articleData: any) {
       organizationSchema,
       {
         '@type': 'Article',
-        '@id': `https://cita2.tecelia.com/blog/${articleData.slug}/#article`,
+        '@id': `https://agendadereservas.com/blog/${articleData.slug}/#article`,
         headline: articleData.title,
         description: articleData.description,
         image: articleData.image,
@@ -173,12 +173,12 @@ function generateArticleSchema(articleData: any) {
         author: {
           '@type': articleData.authorType || 'Organization',
           name: articleData.author,
-          url: articleData.authorUrl || 'https://cita2.tecelia.com'
+          url: articleData.authorUrl || 'https://agendadereservas.com'
         },
-        publisher: { '@id': 'https://cita2.tecelia.com/#organization' },
+        publisher: { '@id': 'https://agendadereservas.com/#organization' },
         mainEntityOfPage: {
           '@type': 'WebPage',
-          '@id': `https://cita2.tecelia.com/blog/${articleData.slug}/`
+          '@id': `https://agendadereservas.com/blog/${articleData.slug}/`
         },
         wordCount: articleData.wordCount,
         articleSection: articleData.category,
@@ -206,7 +206,7 @@ function generateFAQSchema(faqs: any[]) {
         author: {
           '@type': 'Organization',
           name: 'Cita2',
-          '@id': 'https://cita2.tecelia.com/#organization'
+          '@id': 'https://agendadereservas.com/#organization'
         },
         datePublished: faq.date || new Date().toISOString(),
         upvoteCount: faq.upvotes || 0

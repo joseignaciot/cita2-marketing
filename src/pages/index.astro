@@ -14,7 +14,7 @@ import AdvancedSEO from '../components/AdvancedSEO.astro';
 import '../styles/apple-design.css';
 
 // AI-Optimized Title & Meta
-const title = 'Cita2 - Software de Gestión de Citas | Tu Agenda Automatizada';
+const title = 'Agenda de Reservas - Software de Gestión de Citas | Tu Agenda Automatizada';
 const description = 'Deja que tus clientes reserven 24/7 mientras tú descansas. Reduce ausencias un 70% con recordatorios automáticos. Desde 19€/mes. Prueba gratis 14 días.';
 
 const features = [
@@ -91,7 +91,7 @@ const pricingPlans = [
       'Soporte por email y chat',
     ],
     cta: 'Empezar prueba gratis',
-    ctaHref: 'https://cita2.tecelia.com/register',
+    ctaHref: 'https://agendadereservas.com/register',
     popular: true,
   },
 ];
@@ -129,7 +129,7 @@ const schema = {
   '@graph': [
     {
       '@type': 'SoftwareApplication',
-      '@id': 'https://cita2.tecelia.com/#software',
+      '@id': 'https://agendadereservas.com/#software',
       name: 'Cita2',
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web',
@@ -169,21 +169,21 @@ const schema = {
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://cita2.tecelia.com/#website',
+      '@id': 'https://agendadereservas.com/#website',
       name: 'Cita2',
-      url: 'https://cita2.tecelia.com',
+      url: 'https://agendadereservas.com',
       potentialAction: {
         '@type': 'SearchAction',
-        target: 'https://cita2.tecelia.com/search?q={search_term_string}',
+        target: 'https://agendadereservas.com/search?q={search_term_string}',
         'query-input': 'required name=search_term_string'
       }
     },
     {
       '@type': 'Organization',
-      '@id': 'https://cita2.tecelia.com/#organization',
+      '@id': 'https://agendadereservas.com/#organization',
       name: 'Cita2',
-      url: 'https://cita2.tecelia.com',
-      logo: 'https://cita2.tecelia.com/favicon.svg',
+      url: 'https://agendadereservas.com',
+      logo: 'https://agendadereservas.com/favicon.svg',
       description: 'Software de gestión de citas y reservas para negocios de servicios',
       foundingDate: '2023',
       address: {
@@ -194,7 +194,7 @@ const schema = {
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'customer support',
-        email: 'soporte@cita2.tecelia.com',
+        email: 'soporte@agendadereservas.com',
         availableLanguage: ['Spanish', 'English']
       },
       sameAs: [
@@ -209,7 +209,7 @@ const schema = {
 
 <Layout title={title} description={description} schema={schema}>
   <AdvancedSEO type="service" data={{
-    name: 'Cita2 - Software de Gestión de Citas',
+    name: 'Agenda de Reservas - Software de Gestión de Citas',
     description: description,
     url: '/',
     rating: { value: 4.9, count: 523 }
@@ -223,7 +223,7 @@ const schema = {
       title="Tu agenda,\nautomatizada"
       subtitle="Deja que tus clientes reserven 24/7 mientras tú descansas. El software que reduce las ausencias un 70%."
       ctaText="Prueba gratis 14 días"
-      ctaHref="https://cita2.tecelia.com/register"
+      ctaHref="https://agendadereservas.com/register"
       secondaryCta={{ text: "Ver cómo funciona", href: "#soluciones" }}
     />
     
@@ -253,11 +253,11 @@ const schema = {
           ¿Listo para transformar\n<span class="gradient-text">tu gestión diaria?</span>
         </h2>
         <p class="text-body text-xl max-w-2xl mx-auto mb-10">
-          Únete a 500+ negocios que ya ahorran tiempo, reducen ausencias y ganan más con Cita2.
+          Únete a 500+ negocios que ya ahorran tiempo, reducen ausencias y ganan más con Agenda de Reservas.
         </p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-          <a href="https://cita2.tecelia.com/register" class="btn-apple-primary text-lg px-12 py-5">
+          <a href="https://agendadereservas.com/register" class="btn-apple-primary text-lg px-12 py-5">
             Empezar prueba gratuita
             <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />

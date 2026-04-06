@@ -14,14 +14,14 @@ const landings = defineCollection({
     heroTitle: z.string(),
     heroSubtitle: z.string(),
     heroCta: z.string().default('Prueba gratis 14 días'),
-    heroCtaHref: z.string().default('https://cita2.tecelia.com/register'),
+    heroCtaHref: z.string().default('https://agendadereservas.com/register'),
     heroSecondaryCta: z.object({
       text: z.string(),
       href: z.string(),
     }).optional(),
     
     // Features Section
-    featuresTitle: z.string().default('¿Qué conseguirás con Cita2?'),
+    featuresTitle: z.string().default('¿Qué conseguirás con Agenda de Reservas?'),
     featuresSubtitle: z.string().default('Funcionalidades diseñadas específicamente para tu sector.'),
     
     // Testimonials
@@ -37,7 +37,7 @@ const landings = defineCollection({
     
     // CTA Final
     ctaTitle: z.string().default('¿Listo para simplificar tu gestión de citas?'),
-    ctaSubtitle: z.string().default('Únete a 500+ negocios que ya ahorran tiempo con Cita2.'),
+    ctaSubtitle: z.string().default('Únete a 500+ negocios que ya ahorran tiempo con Agenda de Reservas.'),
     
     // Comparison table
     showComparison: z.boolean().default(true),

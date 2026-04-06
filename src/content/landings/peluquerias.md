@@ -11,11 +11,11 @@ heroSecondaryCta:
   text: "Ver funcionalidades"
   href: "#producto"
 
-featuresTitle: "¿Qué conseguirás con Cita2?"
+featuresTitle: "¿Qué conseguirás con Agenda de Reservas?"
 featuresSubtitle: "Funcionalidades diseñadas específicamente para las necesidades de las peluquerías."
 
 testimonialsTitle: "Lo que dicen las peluquerías"
-testimonialsSubtitle: "Más de 200 peluquerías ya gestionan sus citas con Cita2."
+testimonialsSubtitle: "Más de 200 peluquerías ya gestionan sus citas con Agenda de Reservas."
 
 showPricing: true
 
@@ -23,7 +23,7 @@ faqTitle: "Preguntas frecuentes"
 faaSubtitle: "Respuestas a las dudas más comunes de las peluquerías."
 
 ctaTitle: "Empieza a gestionar tu peluquería como un profesional"
-ctaSubtitle: "Únete a 200+ peluquerías que ya ahorran tiempo y ganan más con Cita2."
+ctaSubtitle: "Únete a 200+ peluquerías que ya ahorran tiempo y ganan más con Agenda de Reservas."
 
 schemaType: "SoftwareApplication"
 ---

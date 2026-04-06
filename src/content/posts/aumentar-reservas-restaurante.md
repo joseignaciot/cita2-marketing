@@ -68,7 +68,7 @@ Hemos diseñado Cita2 específicamente para restaurantes con:
 ## Implementación paso a paso
 
 ### Semana 1: Setup
-1. Regístrate en Cita2
+1. Regístrate en Agenda de Reservas
 2. Configura tu sala (mesas, capacidad)
 3. Define horarios (turno comida/cena)
 4. Personaliza tu página de reservas
@@ -98,7 +98,7 @@ Hemos diseñado Cita2 específicamente para restaurantes con:
 
 No necesitas web completa. Cita2 te da una **página de reservas profesional** con tu logo, fotos, menú, horarios... Funciona como landing page perfecta.
 
-URL: `cita2.tecelia.com/book/tu-restaurante`
+URL: `agendadereservas.com/book/tu-restaurante`
 
 Puedes compartirla en:
 - Instagram Bio
@@ -110,10 +110,10 @@ Puedes compartirla en:
 
 Cada reserva que haces por ElTenedor es dinero que regalas. Con las herramientas adecuadas, puedes recuperar ese control y esos ingresos.
 
-**19€/mes de Cita2 vs 2.000€/mes de comisiones.** La matemática es simple.
+**19€/mes de Agenda de Reservas vs 2.000€/mes de comisiones.** La matemática es simple.
 
 ---
 
-[Prueba Cita2 gratis 14 días →](https://cita2.tecelia.com/register)
+[Prueba Agenda de Reservas gratis 14 días →](https://agendadereservas.com/register)
 
 *Setup en 5 minutos. Sin tarjeta. Sin compromiso.*

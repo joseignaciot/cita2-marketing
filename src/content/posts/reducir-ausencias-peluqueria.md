@@ -50,4 +50,4 @@ Con Cita2 puedes configurar todos estos recordatorios en menos de 5 minutos:
 
 ---
 
-¿Te gustaría ver cómo quedarían los recordatorios para tu negocio? [Prueba Cita2 gratis](https://cita2.tecelia.com/register) y configúralos en tiempo real.
+¿Te gustaría ver cómo quedarían los recordatorios para tu negocio? [Prueba Agenda de Reservas gratis](https://agendadereservas.com/register) y configúralos en tiempo real.

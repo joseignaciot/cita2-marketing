@@ -50,7 +50,7 @@ Puedes empezar a recibir reservas en **2 minutos**.
 
 ### WhatsApp Business: El diferenciador
 
-Esta es la mayor ventaja de Cita2. La integración con WhatsApp Business permite:
+Esta es la mayor ventaja de Agenda de Reservas. La integración con WhatsApp Business permite:
 - Confirmaciones automáticas
 - Recordatorios con 90% de tasa de apertura
 - Respuestas rápidas de clientes
@@ -81,6 +81,6 @@ AgendaPro es más maduro en ciertos aspectos (app nativa), pero pagas 3x más po
 
 ---
 
-**¿Aún indeciso?** Prueba Cita2 gratis 14 días. No requiere tarjeta. Si no te convence, nada pierdes.
+**¿Aún indeciso?** Prueba Agenda de Reservas gratis 14 días. No requiere tarjeta. Si no te convence, nada pierdes.
 
-[Empezar prueba gratuita →](https://cita2.tecelia.com/register)
+[Empezar prueba gratuita →](https://agendadereservas.com/register)
