@@ -3,21 +3,21 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
-const pageTitle = 'Cita2 vs AgendaPro: Comparativa Detallada 2025';
-const pageDescription = 'Análisis completo y honesto entre Cita2 y AgendaPro. Precios reales, funcionalidades comparadas, ventajas y desventajas. Elige el mejor software para tu negocio.';
+const pageTitle = 'Agenda de Reservas vs AgendaPro: Comparativa Detallada 2025';
+const pageDescription = 'Análisis completo y honesto entre Agenda de Reservas y AgendaPro. Precios reales, funcionalidades comparadas, ventajas y desventajas. Elige el mejor software para tu negocio.';
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
-  headline: 'Cita2 vs AgendaPro: Comparativa Detallada 2025',
-  description: 'Análisis completo y honesto entre Cita2 y AgendaPro',
+  headline: 'Agenda de Reservas vs AgendaPro: Comparativa Detallada 2025',
+  description: 'Análisis completo y honesto entre Agenda de Reservas y AgendaPro',
   author: {
     '@type': 'Organization',
-    name: 'Cita2'
+    name: 'Agenda de Reservas'
   },
   publisher: {
     '@type': 'Organization',
-    name: 'Cita2',
+    name: 'Agenda de Reservas',
     logo: {
       '@type': 'ImageObject',
       url: 'https://agendadereservas.com/logo.png'
@@ -101,14 +101,14 @@ comparisonData.forEach(cat => {
     <section class="py-16 bg-gradient-to-br from-blue-50 to-white">
       <div class="container mx-auto px-4 text-center">
         <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-          Cita2 vs AgendaPro
+          Agenda de Reservas vs AgendaPro
         </h1>
         <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
           Comparativa honesta y detallada. Precios reales, funcionalidades comparadas, pros y contras.
         </p>
         <div class="flex flex-wrap justify-center gap-4 text-sm">
           <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full">
-            ✅ {winnerCount.cita2} puntos ganados por Cita2
+            ✅ {winnerCount.cita2} puntos ganados por Agenda de Reservas
           </span>
           <span class="px-4 py-2 bg-red-100 text-red-700 rounded-full">
             ✅ {winnerCount.agendapro} puntos ganados por AgendaPro
@@ -127,7 +127,7 @@ comparisonData.forEach(cat => {
           <h2 class="text-xl font-bold text-yellow-800 mb-4">🎯 Veredicto rápido</h2>
           <div class="grid md:grid-cols-2 gap-6">
             <div>
-              <h3 class="font-semibold text-gray-900 mb-2">Elige Cita2 si:</h3>
+              <h3 class="font-semibold text-gray-900 mb-2">Elige Agenda de Reservas si:</h3>
               <ul class="space-y-1 text-sm text-gray-700">
                 <li>• Quieres ahorrar 1.500€+/año</li>
                 <li>• Valoras WhatsApp Business</li>
@@ -162,7 +162,7 @@ comparisonData.forEach(cat => {
                 <thead>
                   <tr class="border-b-2 border-gray-200">
                     <th class="text-left py-3 px-4 font-semibold">Característica</th>
-                    <th class="text-center py-3 px-4 font-semibold text-blue-600 w-1/3">Cita2</th>
+                    <th class="text-center py-3 px-4 font-semibold text-blue-600 w-1/3">Agenda de Reservas</th>
                     <th class="text-center py-3 px-4 font-semibold text-red-600 w-1/3">AgendaPro</th>
                   </tr>
                 </thead>
@@ -172,7 +172,7 @@ comparisonData.forEach(cat => {
                       <td class="py-3 px-4 font-medium">{feature.name}</td>
                       <td class="py-3 px-4 text-center">
                         <span class={feature.winner === 'cita2' ? 'font-semibold text-green-600' : ''}>
-                          {feature.cita2}
+                          {feature.agendadereservas}
                         </span>
                         {feature.winner === 'cita2' && <span class="ml-2">🏆</span>}
                       </td>
@@ -201,7 +201,7 @@ comparisonData.forEach(cat => {
           <div class="bg-white p-6 rounded-xl text-center">
             <h3 class="font-semibold text-gray-600 mb-2">1 empleado</h3>
             <div class="space-y-2">
-              <p class="text-sm">Cita2: <span class="font-bold text-blue-600">19€</span></p>
+              <p class="text-sm">Agenda de Reservas: <span class="font-bold text-blue-600">19€</span></p>
               <p class="text-sm">AgendaPro: <span class="font-bold">49€</span></p>
               <p class="text-sm text-green-600">Ahorro: 30€/mes</p>
             </div>
@@ -209,7 +209,7 @@ comparisonData.forEach(cat => {
           <div class="bg-white p-6 rounded-xl text-center border-2 border-blue-500">
             <h3 class="font-semibold text-gray-600 mb-2">3 empleados</h3>
             <div class="space-y-2">
-              <p class="text-sm">Cita2: <span class="font-bold text-blue-600">19€</span></p>
+              <p class="text-sm">Agenda de Reservas: <span class="font-bold text-blue-600">19€</span></p>
               <p class="text-sm">AgendaPro: <span class="font-bold">147€</span></p>
               <p class="text-sm text-green-600 font-semibold">Ahorro: 128€/mes</p>
             </div>
@@ -217,7 +217,7 @@ comparisonData.forEach(cat => {
           <div class="bg-white p-6 rounded-xl text-center">
             <h3 class="font-semibold text-gray-600 mb-2">5 empleados</h3>
             <div class="space-y-2">
-              <p class="text-sm">Cita2: <span class="font-bold text-blue-600">19€</span></p>
+              <p class="text-sm">Agenda de Reservas: <span class="font-bold text-blue-600">19€</span></p>
               <p class="text-sm">AgendaPro: <span class="font-bold">245€</span></p>
               <p class="text-sm text-green-600">Ahorro: 226€/mes</p>
             </div>

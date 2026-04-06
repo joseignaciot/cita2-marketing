@@ -141,7 +141,7 @@ const notes = "*Precio para 3 empleados. **Estimado para restaurante con 100 res
               <thead>
                 <tr class="bg-gray-50 border-b border-gray-100">
                   <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Característica</th>
-                  <th class="px-6 py-4 text-center text-sm font-semibold text-blue-600 bg-blue-50/50">Cita2</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-blue-600 bg-blue-50/50">Agenda de Reservas</th>
                   <th class="px-6 py-4 text-center text-sm font-medium text-gray-600">AgendaPro</th>
                   <th class="px-6 py-4 text-center text-sm font-medium text-gray-600">Reservio</th>
                   <th class="px-6 py-4 text-center text-sm font-medium text-gray-600">ElTenedor</th>
@@ -153,14 +153,14 @@ const notes = "*Precio para 3 empleados. **Estimado para restaurante con 100 res
                     <td class="px-6 py-4 text-sm text-gray-700">{row.feature}</td>
                     <td class="px-6 py-4 text-center">
                       <span class="inline-flex items-center gap-1 text-sm font-semibold text-green-700">
-                        {row.cita2.includes('✓') ? (
+                        {row.agendadereservas.includes('✓') ? (
                           <>
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                             </svg>
-                            {row.cita2.replace('✓ ', '')}
+                            {row.agendadereservas.replace('✓ ', '')}
                           </>
-                        ) : row.cita2}
+                        ) : row.agendadereservas}
                       </span>
                     </td>
                     <td class="px-6 py-4 text-center text-sm text-gray-600">{row.agendapro}</td>

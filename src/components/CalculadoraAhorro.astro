@@ -107,7 +107,7 @@
     const ticketMedio = 35; // € promedio
 
     let costeActual = 0;
-    const costeCita2 = 19;
+    const costeAgenda de Reservas = 19;
 
     if (software === 'eltenedor') {
       costeActual = reservas * ticketMedio * precios.eltenedor.comision;
@@ -119,7 +119,7 @@
       costeActual = precios[software].base + (precios[software].porEmpleado * (empleados - 1));
     }
 
-    const ahorro = costeActual - costeCita2;
+    const ahorro = costeActual - costeAgenda de Reservas;
     const ahorroAnualValor = ahorro * 12;
 
     ahorroAnual.textContent = formatMoney(ahorroAnualValor);

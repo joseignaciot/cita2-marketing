@@ -42,9 +42,9 @@ Cuando alguien busca "restaurante italiano en [tu zona]", quieres que te encuent
 
 Coste para ti: 2-3€. Comisión que evitas: 6-10€. **ROI positivo inmediato.**
 
-## Cómo Cita2 ayuda a restaurantes
+## Cómo Agenda de Reservas ayuda a restaurantes
 
-Hemos diseñado Cita2 específicamente para restaurantes con:
+Hemos diseñado Agenda de Reservas específicamente para restaurantes con:
 
 - **Gestión de mesas**: Visualiza tu sala, capacidad por mesa
 - **Turnos**: Comida y cena con horarios específicos
@@ -59,7 +59,7 @@ Hemos diseñado Cita2 específicamente para restaurantes con:
 - 2.800€/mes en comisiones
 - No tenía datos de clientes
 
-**Con Cita2 (6 meses después):**
+**Con Agenda de Reservas (6 meses después):**
 - 85% reservas directas
 - 0€ en comisiones
 - Base de datos de 1.200 clientes para campañas
@@ -96,7 +96,7 @@ Hemos diseñado Cita2 específicamente para restaurantes con:
 
 ## ¿Y si no tengo web?
 
-No necesitas web completa. Cita2 te da una **página de reservas profesional** con tu logo, fotos, menú, horarios... Funciona como landing page perfecta.
+No necesitas web completa. Agenda de Reservas te da una **página de reservas profesional** con tu logo, fotos, menú, horarios... Funciona como landing page perfecta.
 
 URL: `agendadereservas.com/book/tu-restaurante`
 

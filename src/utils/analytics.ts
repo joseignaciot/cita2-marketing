@@ -153,7 +153,7 @@ export function trackArticleView(articleSlug: string, articleTitle: string, read
     article_slug: articleSlug,
     article_title: articleTitle,
     estimated_read_time: readTime,
-    author: 'Cita2 Team'
+    author: 'Agenda de Reservas Team'
   });
 }
 

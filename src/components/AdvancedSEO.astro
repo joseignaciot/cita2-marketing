@@ -14,7 +14,7 @@ const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': 'https://agendadereservas.com/#organization',
-  name: 'Cita2',
+  name: 'Agenda de Reservas',
   url: 'https://agendadereservas.com',
   logo: {
     '@type': 'ImageObject',
@@ -45,9 +45,9 @@ const organizationSchema = {
     }
   },
   sameAs: [
-    'https://twitter.com/cita2app',
-    'https://linkedin.com/company/cita2',
-    'https://instagram.com/cita2app'
+    'https://twitter.com/agendadereservas',
+    'https://linkedin.com/company/agendadereservas',
+    'https://instagram.com/agendadereservas'
   ]
 };
 
@@ -69,12 +69,12 @@ function generateServiceSchema(serviceData: any) {
         },
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
-          name: 'Planes Cita2',
+          name: 'Planes Agenda de Reservas',
           itemListElement: {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'Plan Profesional Cita2',
+              name: 'Plan Profesional Agenda de Reservas',
               description: 'Software de gestión de citas completo'
             },
             price: '19',
@@ -110,7 +110,7 @@ function generateServiceSchema(serviceData: any) {
       serviceData.sector ? {
         '@type': 'LocalBusiness',
         '@id': `https://agendadereservas.com${serviceData.url}/#localbusiness`,
-        name: `${serviceData.sector.name} - Cita2`,
+        name: `${serviceData.sector.name} - Agenda de Reservas`,
         description: `Software de gestión para ${serviceData.sector.name.toLowerCase()}`,
         url: `https://agendadereservas.com${serviceData.url}`,
         image: serviceData.sector.image,
@@ -205,7 +205,7 @@ function generateFAQSchema(faqs: any[]) {
         text: faq.answer,
         author: {
           '@type': 'Organization',
-          name: 'Cita2',
+          name: 'Agenda de Reservas',
           '@id': 'https://agendadereservas.com/#organization'
         },
         datePublished: faq.date || new Date().toISOString(),

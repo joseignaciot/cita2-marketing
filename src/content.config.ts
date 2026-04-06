@@ -93,7 +93,7 @@ const posts = defineCollection({
     description: z.string(),
     pubDate: z.date(),
     updatedDate: z.date().optional(),
-    author: z.string().default('Cita2 Team'),
+    author: z.string().default('Agenda de Reservas Team'),
     category: z.enum(['productividad', 'marketing', 'tecnologia', 'sectores', 'tutoriales', 'noticias']),
     tags: z.array(z.string()).default([]),
     image: z.string().optional(),

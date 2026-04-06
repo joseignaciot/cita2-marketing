@@ -3,7 +3,7 @@
 // Floating chat button with real-time messaging interface
 
 const chatConfig = {
-  welcomeMessage: '¡Hola! 👋 ¿En qué puedo ayudarte sobre Cita2?',
+  welcomeMessage: '¡Hola! 👋 ¿En qué puedo ayudarte sobre Agenda de Reservas?',
   placeholder: 'Escribe tu pregunta...',
   offlineMessage: 'Nuestro equipo te responderá en menos de 2 horas',
   workHours: 'Lunes a Viernes 9:00 - 18:00',
@@ -41,7 +41,7 @@ const chatConfig = {
             <span class="text-lg">💬</span>
           </div>
           <div>
-            <h3 class="font-semibold">Soporte Cita2</h3>
+            <h3 class="font-semibold">Soporte Agenda de Reservas</h3>
             <p class="text-xs text-blue-200">Respondemos en &lt; 2 horas</p>
           </div>
         </div>
@@ -148,7 +148,7 @@ const chatConfig = {
         setTimeout(() => {
           let response = '';
           if (text.includes('cuesta')) {
-            response = 'Cita2 cuesta 19€/mes plan único. Incluye reservas ilimitadas, WhatsApp Business, y todos los features. Sin comisiones ni límites. ¿Te gustaría probarlo gratis 14 días?';
+            response = 'Agenda de Reservas cuesta 19€/mes plan único. Incluye reservas ilimitadas, WhatsApp Business, y todos los features. Sin comisiones ni límites. ¿Te gustaría probarlo gratis 14 días?';
           } else if (text.includes('empiezo')) {
             response = 'Es súper fácil: 1) Creas cuenta en 2 minutos, 2) Configuras tus servicios y horarios, 3) Compartes tu enlace de reservas. ¿Quieres que te guíe paso a paso?';
           } else if (text.includes('ElTenedor')) {

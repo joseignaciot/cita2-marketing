@@ -39,7 +39,7 @@ Cuando el cliente reserva online, envía inmediatamente la confirmación con tod
 
 ## Cómo implementarlo hoy
 
-Con Cita2 puedes configurar todos estos recordatorios en menos de 5 minutos:
+Con Agenda de Reservas puedes configurar todos estos recordatorios en menos de 5 minutos:
 
 1. Ve a Configuración > Notificaciones
 2. Activa "Recordatorio automático 24h"

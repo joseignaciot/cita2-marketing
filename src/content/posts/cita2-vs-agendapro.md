@@ -1,19 +1,19 @@
 ---
-title: 'Cita2 vs AgendaPro: Comparativa honesta para peluquerías 2025'
-description: 'Análisis detallado y comparativa real entre Cita2 y AgendaPro. Precios, funcionalidades, ventajas y desventajas para elegir el mejor software para tu peluquería.'
+title: 'Agenda de Reservas vs AgendaPro: Comparativa honesta para peluquerías 2025'
+description: 'Análisis detallado y comparativa real entre Agenda de Reservas y AgendaPro. Precios, funcionalidades, ventajas y desventajas para elegir el mejor software para tu peluquería.'
 pubDate: 2025-03-20
-author: 'Cita2 Team'
+author: 'Agenda de Reservas Team'
 category: 'sectores'
 tags: ['comparativa', 'agendapro', 'peluquería', 'software gestión']
 featured: true
 readingTime: 8
 ---
 
-Elegir software de gestión para tu peluquería es una decisión importante. Vamos a comparar Cita2 y AgendaPro sin marketing fluff, solo datos reales.
+Elegir software de gestión para tu peluquería es una decisión importante. Vamos a comparar Agenda de Reservas y AgendaPro sin marketing fluff, solo datos reales.
 
 ## Tabla comparativa rápida
 
-| Característica | Cita2 | AgendaPro |
+| Característica | Agenda de Reservas | AgendaPro |
 |---|---|---|
 | **Precio mensual** | 19€ plan único | Desde 49€ |
 | **Setup** | 2 minutos, preset peluquería | Varios días, configuración manual |
@@ -29,18 +29,18 @@ Elegir software de gestión para tu peluquería es una decisión importante. Vam
 
 **AgendaPro** cobra por "puesto de trabajo". Si tienes 3 empleados, pagas 3 licencias. Con precios desde 49€/mes por puesto, una peluquería con 3 sillas paga **147€/mes**.
 
-**Cita2** tiene un plan único de **19€/mes**, sin importar cuántos empleados tengas. Incluso con 10 empleados, sigues pagando 19€.
+**Agenda de Reservas** tiene un plan único de **19€/mes**, sin importar cuántos empleados tengas. Incluso con 10 empleados, sigues pagando 19€.
 
 **Ahorro anual:**
 - AgendaPro (3 empleados): 1.764€
-- Cita2 (ilimitado): 228€
+- Agenda de Reservas (ilimitado): 228€
 - **Ahorro: 1.536€/año**
 
 ### Setup: Tiempo es dinero
 
 Con AgendaPro necesitas una sesión de onboarding (generalmente 30-60 min) para configurar servicios, horarios, empleados...
 
-Con Cita2, al registrarte eliges "Peluquería" y cargamos automáticamente:
+Con Agenda de Reservas, al registrarte eliges "Peluquería" y cargamos automáticamente:
 - Servicios típicos (corte, tinte, mechas, peinado...)
 - Duraciones estándar
 - Precios de referencia
@@ -65,9 +65,9 @@ Te recomiendo AgendaPro si:
 - Prefieres soporte telefónico tradicional
 - Ya tienes TPV físico Redsys integrado
 
-## Cuándo elegir Cita2
+## Cuándo elegir Agenda de Reservas
 
-Te recomiendo Cita2 si:
+Te recomiendo Agenda de Reservas si:
 - Quieres ahorrar 1.500€+ al año
 - Valoras la comunicación por WhatsApp
 - Quieres empezar ya, sin esperar a nadie
@@ -75,7 +75,7 @@ Te recomiendo Cita2 si:
 
 ## Veredicto
 
-Para una peluquería estándar (1-5 empleados), **Cita2 ofrece mejor relación calidad-precio** y funcionalidades más alineadas con cómo se comunican los clientes hoy (WhatsApp).
+Para una peluquería estándar (1-5 empleados), **Agenda de Reservas ofrece mejor relación calidad-precio** y funcionalidades más alineadas con cómo se comunican los clientes hoy (WhatsApp).
 
 AgendaPro es más maduro en ciertos aspectos (app nativa), pero pagas 3x más por funcionalidades que muchas peluquerías no necesitan.
 

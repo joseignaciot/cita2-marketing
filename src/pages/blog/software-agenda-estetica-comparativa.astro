@@ -6,7 +6,7 @@ import AdvancedSEO from '../../components/AdvancedSEO.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 
 const pageTitle = 'Software de Agenda para Estética: Comparativa 2026 + Precios';
-const pageDescription = 'Análisis completo de los mejores software de agenda para centros de estética. Comparamos funciones, precios y valoraciones. Cita2, AgendaPro, Treatwell y más.';
+const pageDescription = 'Análisis completo de los mejores software de agenda para centros de estética. Comparamos funciones, precios y valoraciones. Agenda de Reservas, AgendaPro, Treatwell y más.';
 
 const breadcrumbItems = [
   { name: 'Inicio', url: 'https://agendadereservas.com/' },
@@ -29,23 +29,23 @@ const articleData = {
 };
 
 const features = [
-  { name: 'Gestión cabinas', cita2: true, agendapro: true, treatwell: true, reservio: true },
-  { name: 'Bonos sesiones', cita2: true, agendapro: true, treatwell: true, reservio: false },
-  { name: 'Ficha cliente completa', cita2: true, agendapro: true, treatwell: true, reservio: true },
-  { name: 'Recordatorios WhatsApp', cita2: true, agendapro: false, treatwell: false, reservio: false },
-  { name: 'Marketing integrado', cita2: true, agendapro: true, treatwell: true, reservio: false },
-  { name: 'App nativa móvil', cita2: false, agendapro: true, treatwell: true, reservio: true },
-  { name: 'Precio fijo', cita2: '19€/mes', agendapro: '49-147€', treatwell: 'Comisión', reservio: '31-84€' }
+  { name: 'Gestión cabinas', agendadereservas: true, agendapro: true, treatwell: true, reservio: true },
+  { name: 'Bonos sesiones', agendadereservas: true, agendapro: true, treatwell: true, reservio: false },
+  { name: 'Ficha cliente completa', agendadereservas: true, agendapro: true, treatwell: true, reservio: true },
+  { name: 'Recordatorios WhatsApp', agendadereservas: true, agendapro: false, treatwell: false, reservio: false },
+  { name: 'Marketing integrado', agendadereservas: true, agendapro: true, treatwell: true, reservio: false },
+  { name: 'App nativa móvil', agendadereservas: false, agendapro: true, treatwell: true, reservio: true },
+  { name: 'Precio fijo', agendadereservas: '19€/mes', agendapro: '49-147€', treatwell: 'Comisión', reservio: '31-84€' }
 ];
 
 const pricing = [
-  { esteticistas: 1, cita2: 19, agendapro: 49, treatwell: '20% comisión', reservio: 31 },
-  { esteticistas: 3, cita2: 19, agendapro: 147, treatwell: '20% comisión', reservio: 84 },
-  { esteticistas: 5, cita2: 19, agendapro: 245, treatwell: '20% comisión', reservio: 136 },
+  { esteticistas: 1, agendadereservas: 19, agendapro: 49, treatwell: '20% comisión', reservio: 31 },
+  { esteticistas: 3, agendadereservas: 19, agendapro: 147, treatwell: '20% comisión', reservio: 84 },
+  { esteticistas: 5, agendadereservas: 19, agendapro: 245, treatwell: '20% comisión', reservio: 136 },
 ];
 
 const testimonial = {
-  quote: "Teníamos 3 cabinas y era un caos organizar quién usa cada una. Con Cita2 cada esteticista ve su agenda, las cabinas se asignan automáticamente y los conflictos desaparecieron.",
+  quote: "Teníamos 3 cabinas y era un caos organizar quién usa cada una. Con Agenda de Reservas cada esteticista ve su agenda, las cabinas se asignan automáticamente y los conflictos desaparecieron.",
   author: "Laura Gómez",
   role: "Directora",
   center: "Centro de Estética Luna, Valencia",
@@ -55,19 +55,19 @@ const testimonial = {
 const faqs = [
   {
     question: '¿Qué software es mejor para centro de estética pequeño?',
-    answer: 'Para centros de estética con 1-3 esteticistas, Cita2 es la mejor opción porque ofrece precio fijo de 19€/mes independientemente del número de empleados, incluye gestión de cabinas, bonos de sesiones y WhatsApp Business integrado. AgendaPro cuesta 49€ por cada esteticista, lo que para 3 empleados son 147€/mes.'
+    answer: 'Para centros de estética con 1-3 esteticistas, Agenda de Reservas es la mejor opción porque ofrece precio fijo de 19€/mes independientemente del número de empleados, incluye gestión de cabinas, bonos de sesiones y WhatsApp Business integrado. AgendaPro cuesta 49€ por cada esteticista, lo que para 3 empleados son 147€/mes.'
   },
   {
     question: '¿Cómo gestionar cabinas en centro de estética?',
-    answer: 'El software debe permitir asignar cabinas específicas a cada servicio, evitar solapamientos, y mostrar disponibilidad en tiempo real. Cita2 y AgendaPro hacen esto bien. Configura cada cabina con sus equipos específicos (presoterapia, radiofrecuencia, etc.) para evitar que dos clientes necesiten el mismo equipo a la vez.'
+    answer: 'El software debe permitir asignar cabinas específicas a cada servicio, evitar solapamientos, y mostrar disponibilidad en tiempo real. Agenda de Reservas y AgendaPro hacen esto bien. Configura cada cabina con sus equipos específicos (presoterapia, radiofrecuencia, etc.) para evitar que dos clientes necesiten el mismo equipo a la vez.'
   },
   {
     question: '¿Vale la pena Treatwell para estética?',
-    answer: 'Treatwell cobra comisión del 20% por cada reserva, lo que para un tratamiento de 80€ son 16€ de comisión. Si haces 50 tratamientos al mes, pagas 800€ solo en comisiones. Para estética con clientela fija, un software con precio fijo como Cita2 (19€/mes) es mucho más rentable.'
+    answer: 'Treatwell cobra comisión del 20% por cada reserva, lo que para un tratamiento de 80€ son 16€ de comisión. Si haces 50 tratamientos al mes, pagas 800€ solo en comisiones. Para estética con clientela fija, un software con precio fijo como Agenda de Reservas (19€/mes) es mucho más rentable.'
   },
   {
     question: '¿Qué funciones necesita un software de estética?',
-    answer: 'Las imprescindibles son: gestión de cabinas y equipos, ficha de cliente con historial de tratamientos, bonos de sesiones, recordatorios automáticos (para reducir ausencias), control de stock de productos, y estadísticas de ingresos por tratamiento/técnico. Todo esto lo incluye Cita2 en su plan único.'
+    answer: 'Las imprescindibles son: gestión de cabinas y equipos, ficha de cliente con historial de tratamientos, bonos de sesiones, recordatorios automáticos (para reducir ausencias), control de stock de productos, y estadísticas de ingresos por tratamiento/técnico. Todo esto lo incluye Agenda de Reservas en su plan único.'
   }
 ];
 ---
@@ -87,7 +87,7 @@ const faqs = [
             Software de Agenda para Estética
           </h1>
           <p class="text-body text-xl max-w-3xl mx-auto">
-            Comparativa completa 2026 de software de gestión para centros de estética. Analizamos Cita2, AgendaPro, Treatwell y Reservio con precios reales para tu negocio.
+            Comparativa completa 2026 de software de gestión para centros de estética. Analizamos Agenda de Reservas, AgendaPro, Treatwell y Reservio con precios reales para tu negocio.
           </p>
         </header>
 
@@ -97,7 +97,7 @@ const faqs = [
           <div class="grid md:grid-cols-2 gap-8">
             <div>
               <p class="text-blue-800 mb-4">
-                Para la mayoría de centros de estética con 1-5 cabinas, <strong>Cita2</strong> ofrece la mejor relación calidad-precio.
+                Para la mayoría de centros de estética con 1-5 cabinas, <strong>Agenda de Reservas</strong> ofrece la mejor relación calidad-precio.
               </p>
               <ul class="space-y-2 text-blue-700 text-sm">
                 <li>✓ Precio fijo 19€/mes (no por empleado)</li>
@@ -109,7 +109,7 @@ const faqs = [
             <div class="bg-white rounded-xl p-6">
               <p class="text-sm text-gray-500 mb-2">Ahorro vs AgendaPro (3 esteticistas)</p>
               <p class="text-4xl font-bold text-green-600">1.536€/año</p>
-              <p class="text-sm text-gray-500">Cita2 19€/mes vs AgendaPro 147€/mes</p>
+              <p class="text-sm text-gray-500">Agenda de Reservas 19€/mes vs AgendaPro 147€/mes</p>
             </div>
           </div>
         </div>
@@ -124,7 +124,7 @@ const faqs = [
               <thead class="bg-gray-50">
                 <tr>
                   <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Función</th>
-                  <th class="px-6 py-4 text-center text-sm font-semibold text-blue-600">Cita2</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-blue-600">Agenda de Reservas</th>
                   <th class="px-6 py-4 text-center text-sm font-semibold text-purple-600">AgendaPro</th>
                   <th class="px-6 py-4 text-center text-sm font-semibold text-pink-600">Treatwell</th>
                   <th class="px-6 py-4 text-center text-sm font-semibold text-orange-600">Reservio</th>
@@ -135,8 +135,8 @@ const faqs = [
                   <tr class={index % 2 === 1 ? 'bg-gray-50/50' : ''}>
                     <td class="px-6 py-4 font-medium text-gray-900">{feature.name}</td>
                     <td class="px-6 py-4 text-center">
-                      {typeof feature.cita2 === 'boolean' ? (
-                        feature.cita2 ? (
+                      {typeof feature.agendadereservas === 'boolean' ? (
+                        feature.agendadereservas ? (
                           <svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                           </svg>
@@ -144,7 +144,7 @@ const faqs = [
                           <span class="text-gray-300">—</span>
                         )
                       ) : (
-                        <span class="font-semibold text-green-600">{feature.cita2}</span>
+                        <span class="font-semibold text-green-600">{feature.agendadereservas}</span>
                       )}
                     </td>
                     <td class="px-6 py-4 text-center">
@@ -201,7 +201,7 @@ const faqs = [
               <thead class="bg-gray-50">
                 <tr>
                   <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Esteticistas</th>
-                  <th class="px-6 py-4 text-center text-sm font-bold text-blue-600">Cita2</th>
+                  <th class="px-6 py-4 text-center text-sm font-bold text-blue-600">Agenda de Reservas</th>
                   <th class="px-6 py-4 text-center text-sm font-semibold text-gray-700">AgendaPro</th>
                   <th class="px-6 py-4 text-center text-sm font-semibold text-gray-700">Reservio</th>
                   <th class="px-6 py-4 text-center text-sm font-semibold text-red-600">Ahorro con Agenda de Reservas</th>
@@ -212,13 +212,13 @@ const faqs = [
                   <tr>
                     <td class="px-6 py-4 font-medium text-gray-900">{row.esteticistas} esteticista{row.esteticistas > 1 ? 's' : ''}</td>
                     <td class="px-6 py-4 text-center">
-                      <span class="text-xl font-bold text-blue-600">{row.cita2}€</span>
+                      <span class="text-xl font-bold text-blue-600">{row.agendadereservas}€</span>
                       <span class="text-xs text-gray-500">/mes</span>
                     </td>
                     <td class="px-6 py-4 text-center text-gray-600">{row.agendapro}€/mes</td>
                     <td class="px-6 py-4 text-center text-gray-600">{row.reservio}€/mes</td>
                     <td class="px-6 py-4 text-center">
-                      <span class="text-lg font-bold text-green-600">{row.agendapro - row.cita2 * 12}€/año</span>
+                      <span class="text-lg font-bold text-green-600">{row.agendapro - row.agendadereservas * 12}€/año</span>
                     </td>
                   </tr>
                 ))}

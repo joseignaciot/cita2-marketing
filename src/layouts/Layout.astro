@@ -35,7 +35,7 @@ const PLAUSIBLE_DOMAIN = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN || '';
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Cita2',
+  name: 'Agenda de Reservas',
   url: siteUrl,
   description: 'Software de gestión de citas y reservas para peluquerías, estética, restaurantes y turismo. Sin comisiones, setup en 2 minutos.',
   potentialAction: {
@@ -67,7 +67,7 @@ const finalSchema = schema ? [websiteSchema, schema] : websiteSchema;
   
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Cita2" />
+  <meta property="og:site_name" content="Agenda de Reservas" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={fullCanonical} />

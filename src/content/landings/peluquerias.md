@@ -1,5 +1,5 @@
 ---
-title: "Software de Gestión para Peluquerías - Cita2"
+title: "Software de Gestión para Peluquerías - Agenda de Reservas"
 description: "Software diseñado específicamente para peluquerías. Reservas online 24/7, recordatorios automáticos, WhatsApp integrado. Setup en 2 minutos. 19€/mes sin comisiones."
 sector: "peluquerias"
 keywords: ["software peluquería", "agenda peluquería", "reservas peluquería", "app peluquería"]

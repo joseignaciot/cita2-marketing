@@ -29,16 +29,16 @@ const articleData = {
 };
 
 const comparisonTable = [
-  { metric: 'Coste mensual (100 reservas)', eltenedor: '~500€ (comisión 15%)', cita2: '19€ (plan único)' },
-  { metric: 'Propiedad de datos clientes', eltenedor: '❌ No son tuyos', cita2: '✅ Tuyos 100%' },
-  { metric: 'Reservas directas', eltenedor: 'Depedencia total', cita2: 'Independencia completa' },
-  { metric: 'Marketing', eltenedor: 'Ellos deciden', cita2: 'Tú controlas todo' },
-  { metric: 'Soporte', eltenedor: 'Genérico', cita2: 'Especializado restaurantes' }
+  { metric: 'Coste mensual (100 reservas)', eltenedor: '~500€ (comisión 15%)', agendadereservas: '19€ (plan único)' },
+  { metric: 'Propiedad de datos clientes', eltenedor: '❌ No son tuyos', agendadereservas: '✅ Tuyos 100%' },
+  { metric: 'Reservas directas', eltenedor: 'Depedencia total', agendadereservas: 'Independencia completa' },
+  { metric: 'Marketing', eltenedor: 'Ellos deciden', agendadereservas: 'Tú controlas todo' },
+  { metric: 'Soporte', eltenedor: 'Genérico', agendadereservas: 'Especializado restaurantes' }
 ];
 
 const testimonials = [
   {
-    quote: "Dejamos de pagar 2.800€ mensuales a ElTenedor. Con Cita2 pagamos 19€ y ahora el 85% de nuestras reservas son directas. Recuperamos la relación con nuestros clientes.",
+    quote: "Dejamos de pagar 2.800€ mensuales a ElTenedor. Con Agenda de Reservas pagamos 19€ y ahora el 85% de nuestras reservas son directas. Recuperamos la relación con nuestros clientes.",
     author: "Carlos Martínez",
     role: "Gerente",
     restaurant: "Restaurante La Trastienda, Barcelona",
@@ -57,7 +57,7 @@ const faqs = [
   },
   {
     question: '¿Perderé visibilidad si dejo ElTenedor?',
-    answer: 'A corto plazo puede haber una pequeña reducción, pero a medio plazo ganas mucho más. Con Cita2 optimizas tu Google Business, mejoras tu web, y tus clientes te encuentran directamente. Además, ElTenedor a menudo "intercepta" búsquedas de tu propio nombre.'
+    answer: 'A corto plazo puede haber una pequeña reducción, pero a medio plazo ganas mucho más. Con Agenda de Reservas optimizas tu Google Business, mejoras tu web, y tus clientes te encuentran directamente. Además, ElTenedor a menudo "intercepta" búsquedas de tu propio nombre.'
   },
   {
     question: '¿Cuánto tiempo tarda en recuperar la inversión?',
@@ -108,7 +108,7 @@ const faqs = [
             <p class="font-semibold text-gray-900">Ejemplo real:</p>
             <p class="text-gray-600">
               Restaurante con 100 reservas/mes, ticket medio 35€, paga a ElTenedor: <span class="text-red-600 font-bold">~500€/mes (6.000€/año)</span>. 
-              Con Cita2 paga: <span class="text-green-600 font-bold">19€/mes (228€/año)</span>. 
+              Con Agenda de Reservas paga: <span class="text-green-600 font-bold">19€/mes (228€/año)</span>. 
               <span class="text-green-700 font-bold">Ahorro: 5.772€/año</span>.
             </p>
           </div>
@@ -117,7 +117,7 @@ const faqs = [
         <!-- Comparison Table -->
         <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden mb-16">
           <div class="p-6 bg-gradient-to-r from-blue-50 to-blue-100 border-b border-blue-200">
-            <h2 class="text-xl font-semibold text-gray-900">ElTenedor vs Cita2: Comparativa real</h2>
+            <h2 class="text-xl font-semibold text-gray-900">ElTenedor vs Agenda de Reservas: Comparativa real</h2>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full">
@@ -125,7 +125,7 @@ const faqs = [
                 <tr>
                   <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Aspecto</th>
                   <th class="px-6 py-4 text-center text-sm font-semibold text-red-600">ElTenedor / TheFork</th>
-                  <th class="px-6 py-4 text-center text-sm font-semibold text-green-600">Cita2</th>
+                  <th class="px-6 py-4 text-center text-sm font-semibold text-green-600">Agenda de Reservas</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-100">
@@ -133,7 +133,7 @@ const faqs = [
                   <tr class={index % 2 === 1 ? 'bg-gray-50/50' : ''}>
                     <td class="px-6 py-4 font-medium text-gray-900">{row.metric}</td>
                     <td class="px-6 py-4 text-center text-gray-600">{row.eltenedor}</td>
-                    <td class="px-6 py-4 text-center text-green-700 font-medium">{row.cita2}</td>
+                    <td class="px-6 py-4 text-center text-green-700 font-medium">{row.agendadereservas}</td>
                   </tr>
                 ))}
                 <tr class="bg-green-50">
