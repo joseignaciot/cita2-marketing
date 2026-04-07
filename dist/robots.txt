@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://cita2.tecelia.com/sitemap-index.xml

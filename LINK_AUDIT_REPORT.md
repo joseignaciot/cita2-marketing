@@ -9,17 +9,17 @@
 
 ## ✅ ENLACES QUE FUNCIONAN CORRECTAMENTE
 
-### Enlaces externos (cita2.tecelia.com)
+### Enlaces externos (app.agendadereservas.com)
 | Botón/Enlace | Ubicación | URL | Estado |
 |--------------|-----------|-----|--------|
-| **Prueba gratis** (CTA principal) | HeroV2 | `https://cita2.tecelia.com/register` | ✅ Funciona |
-| **Prueba gratis** | StickyCTA | `https://cita2.tecelia.com/register` | ✅ Funciona |
-| **Empezar prueba** | ProblemSolution | `https://cita2.tecelia.com/register` | ✅ Funciona |
-| **Empezar prueba gratis** | PricingV2 | `https://cita2.tecelia.com/register` | ✅ Funciona |
-| **Prueba gratis 14 días** | funcionalidades.astro | `https://cita2.tecelia.com/register` | ✅ Funciona |
-| **Empezar prueba gratuita** | precios.astro | `https://cita2.tecelia.com/register` | ✅ Funciona |
-| **Iniciar sesión** | Header | `https://cita2.tecelia.com/login` | ✅ Funciona |
-| **Crear cuenta gratuita** | 5 artículos de blog | `https://cita2.tecelia.com/register` | ✅ Funciona |
+| **Prueba gratis** (CTA principal) | HeroV2 | `https://app.agendadereservas.com/register` | ✅ Funciona |
+| **Prueba gratis** | StickyCTA | `https://app.agendadereservas.com/register` | ✅ Funciona |
+| **Empezar prueba** | ProblemSolution | `https://app.agendadereservas.com/register` | ✅ Funciona |
+| **Empezar prueba gratis** | PricingV2 | `https://app.agendadereservas.com/register` | ✅ Funciona |
+| **Prueba gratis 14 días** | funcionalidades.astro | `https://app.agendadereservas.com/register` | ✅ Funciona |
+| **Empezar prueba gratuita** | precios.astro | `https://app.agendadereservas.com/register` | ✅ Funciona |
+| **Iniciar sesión** | Header | `https://app.agendadereservas.com/login` | ✅ Funciona |
+| **Crear cuenta gratuita** | 5 artículos de blog | `https://app.agendadereservas.com/register` | ✅ Funciona |
 
 ### Enlaces internos (navegación)
 | Enlace | Ubicación | URL | Estado |
@@ -128,7 +128,7 @@ Eliminar o crear página `/integraciones` con lista de integraciones disponibles
 ## ✅ VERIFICACIÓN POST-DEPLOY
 
 Para confirmar que todo funciona:
-1. Clickar todos los CTAs principales → deben ir a `cita2.tecelia.com/register`
+1. Clickar todos los CTAs principales → deben ir a `app.agendadereservas.com/register`
 2. Probar dropdown de Sectores en móvil y desktop
 3. Verificar navegación entre páginas de sectores
 4. Comprobar que el login lleva al dashboard correcto

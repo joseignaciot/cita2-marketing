@@ -50,7 +50,7 @@ PUBLIC_GA_ID=G-XXXXXXXXXX
 
 ```bash
 # Añadir dominio
-PUBLIC_PLAUSIBLE_DOMAIN=cita2.tecelia.com
+PUBLIC_PLAUSIBLE_DOMAIN=app.agendadereservas.com
 ```
 
 Características:
@@ -190,12 +190,12 @@ npm run build
 # Subir carpeta 'dist/'
 ```
 
-### Subdominio de cita2.tecelia.com
+### Subdominio de app.agendadereservas.com
 
 ```bash
 # Build con ruta base
 npm run build
-# Copiar 'dist/' a servidor cita2.tecelia.com/lp/ o similar
+# Copiar 'dist/' a servidor app.agendadereservas.com/lp/ o similar
 ```
 
 ## 🎨 Branding
@@ -214,4 +214,4 @@ npm run build
 
 ---
 
-**URL:** https://cita2.tecelia.com
+**URL:** https://app.agendadereservas.com

@@ -4,7 +4,7 @@ Este archivo configura Decap CMS para gestión de contenido visual.
 
 ## URL del Admin
 
-https://cita2.tecelia.com/admin/
+https://app.agendadereservas.com/admin/
 
 ## Autenticación
 
@@ -49,7 +49,7 @@ app.listen(3000);
 
 ## Flujo de Trabajo
 
-1. Ir a https://cita2.tecelia.com/admin/
+1. Ir a https://app.agendadereservas.com/admin/
 2. Hacer login con credenciales
 3. Seleccionar colección (ej: Landing Pages)
 4. Crear/Editar contenido
