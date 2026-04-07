@@ -32,72 +32,121 @@ const navItems = [
         </div>
         <span class="text-xl font-bold text-gray-900">Agenda de Reservas</span>
       </a>
-      
+
       <!-- Desktop Nav -->
       <div class="hidden md:flex items-center gap-8">
         {navItems.map((item) => (
-          <a 
-            href={item.href}
-            class={`text-sm font-medium transition-colors ${
-              activeNav === item.href 
-                ? 'text-primary-600' 
-                : 'text-gray-600 hover:text-gray-900'
-            }`}
-          >
-            {item.label}
-          </a>
+          item.hasDropdown ? (
+            <div class="relative group">
+              <button
+                type="button"
+                class="flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                aria-haspopup="true"
+              >
+                {item.label}
+                <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 min-w-[210px]">
+                  {item.dropdownItems?.map((sub) => (
+                    <a
+                      href={sub.href}
+                      class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:text-primary-600 hover:bg-blue-50 rounded-xl transition-colors"
+                    >
+                      {sub.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class={`text-sm font-medium transition-colors ${
+                activeNav === item.href
+                  ? 'text-primary-600'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              {item.label}
+            </a>
+          )
         ))}
       </div>
-      
+
       <!-- CTA Buttons -->
       <div class="hidden md:flex items-center gap-4">
-        <a 
-          href="https://app.agendadereservas.com" 
+        <a
+          href="https://app.agendadereservas.com"
           class="text-sm font-medium text-gray-600 hover:text-gray-900"
         >
           Iniciar sesión
         </a>
-        <a 
-          href="https://app.agendadereservas.com" 
+        <a
+          href="https://app.agendadereservas.com"
           class="btn-primary text-sm"
         >
           Prueba gratis
         </a>
       </div>
-      
+
       <!-- Mobile Menu Button -->
-      <button 
+      <button
         type="button"
+        id="mobile-menu-btn"
         class="md:hidden p-2 text-gray-600 hover:text-gray-900"
-        aria-label="Menu"
-        onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+        aria-label="Abrir menú"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
-    
+
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden pb-4">
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-1">
         {navItems.map((item) => (
-          <a 
-            href={item.href}
-            class="py-2 text-sm font-medium text-gray-600 hover:text-gray-900"
-          >
-            {item.label}
-          </a>
+          item.hasDropdown ? (
+            <div>
+              <button
+                type="button"
+                class="mobile-dropdown-btn w-full flex items-center justify-between py-2 text-sm font-medium text-gray-600 hover:text-gray-900"
+                aria-expanded="false"
+              >
+                {item.label}
+                <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="mobile-dropdown-panel hidden pl-4 flex-col gap-1 pb-2">
+                {item.dropdownItems?.map((sub) => (
+                  <a href={sub.href} class="py-2 text-sm text-gray-600 hover:text-primary-600 transition-colors block">
+                    {sub.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class="py-2 text-sm font-medium text-gray-600 hover:text-gray-900"
+            >
+              {item.label}
+            </a>
+          )
         ))}
         <div class="flex flex-col gap-2 pt-4 border-t border-gray-100">
-          <a 
-            href="https://app.agendadereservas.com" 
+          <a
+            href="https://app.agendadereservas.com"
             class="py-2 text-sm font-medium text-gray-600 hover:text-gray-900"
           >
             Iniciar sesión
           </a>
-          <a 
-            href="https://app.agendadereservas.com" 
+          <a
+            href="https://app.agendadereservas.com"
             class="btn-primary text-center text-sm"
           >
             Prueba gratis 14 días
@@ -110,3 +159,30 @@ const navItems = [
 
 <!-- Spacer for fixed header -->
 <div class="h-16 md:h-20"></div>
+
+<script>
+  // Mobile main menu
+  document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+    document.getElementById('mobile-menu')?.classList.toggle('hidden');
+  });
+
+  // Mobile Sectores dropdown
+  document.querySelectorAll('.mobile-dropdown-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const panel = btn.nextElementSibling as HTMLElement;
+      const icon = btn.querySelector('svg') as SVGElement;
+      const isOpen = !panel.classList.contains('hidden');
+      if (isOpen) {
+        panel.classList.add('hidden');
+        panel.classList.remove('flex');
+        icon.classList.remove('rotate-180');
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        panel.classList.remove('hidden');
+        panel.classList.add('flex');
+        icon.classList.add('rotate-180');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
