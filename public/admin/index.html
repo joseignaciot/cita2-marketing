@@ -1,34 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex" />
-  <title>Cita2 - Admin de Contenido</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Agenda de Reservas | Editor de Contenidos</title>
+  <!-- Netlify Identity widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- Include the script that builds the page and powers Decap CMS -->
+  <!-- Decap CMS (formerly Netlify CMS) -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <script>
-    // Configuración personalizada de Decap CMS
-    CMS.registerPreviewStyle("https://cdn.jsdelivr.net/npm/tailwindcss@3.4.0/dist/tailwind.min.css");
-    
-    // Preview personalizado para landings
-    CMS.registerPreviewTemplate('landings', createClass({
-      render: function() {
-        const entry = this.props.entry;
-        const title = entry.getIn(['data', 'heroTitle']);
-        const subtitle = entry.getIn(['data', 'heroSubtitle']);
-        
-        return h('div', {className: 'p-8 max-w-4xl mx-auto'},
-          h('div', {className: 'text-center mb-12'},
-            h('h1', {className: 'text-4xl font-bold text-gray-900 mb-4'}, title),
-            h('p', {className: 'text-xl text-gray-600'}, subtitle)
-          )
-        );
-      }
-    }));
-  </script>
 </body>
 </html>
