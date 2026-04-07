@@ -50,4 +50,4 @@ Con Agenda de Reservas puedes configurar todos estos recordatorios en menos de 5
 
 ---
 
-¿Te gustaría ver cómo quedarían los recordatorios para tu negocio? [Prueba Agenda de Reservas gratis](https://agendadereservas.com/register) y configúralos en tiempo real.
+¿Te gustaría ver cómo quedarían los recordatorios para tu negocio? [Prueba Agenda de Reservas gratis](https://app.agendadereservas.com) y configúralos en tiempo real.

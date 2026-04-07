@@ -114,6 +114,6 @@ Cada reserva que haces por ElTenedor es dinero que regalas. Con las herramientas
 
 ---
 
-[Prueba Agenda de Reservas gratis 14 días →](https://agendadereservas.com/register)
+[Prueba Agenda de Reservas gratis 14 días →](https://app.agendadereservas.com)
 
 *Setup en 5 minutos. Sin tarjeta. Sin compromiso.*

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cita2.tecelia.com/sitemap-index.xml
+Sitemap: https://agendadereservas.com/sitemap-index.xml

@@ -83,4 +83,4 @@ AgendaPro es más maduro en ciertos aspectos (app nativa), pero pagas 3x más po
 
 **¿Aún indeciso?** Prueba Agenda de Reservas gratis 14 días. No requiere tarjeta. Si no te convence, nada pierdes.
 
-[Empezar prueba gratuita →](https://agendadereservas.com/register)
+[Empezar prueba gratuita →](https://app.agendadereservas.com)
