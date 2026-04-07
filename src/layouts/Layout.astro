@@ -2,7 +2,6 @@
 import '../styles/global.css';
 import DarkModeToggle from '../components/DarkModeToggle.astro';
 import ExitPopup from '../components/ExitPopup.astro';
-import ChatWidget from '../components/ChatWidget.astro';
 import LiveChat from '../components/LiveChat.astro';
 import StickyCTA from '../components/StickyCTA.astro';
 
@@ -177,7 +176,6 @@ const finalSchema = schema ? [websiteSchema, schema] : websiteSchema;
   <DarkModeToggle />
   <slot />
   <ExitPopup />
-  <ChatWidget />
   <LiveChat />
   <StickyCTA />
 </body>
