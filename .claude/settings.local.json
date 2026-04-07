@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dig agendadereservas.com A +short)",
+      "Bash(dig www.agendadereservas.com CNAME +short)",
+      "Bash(dig www.agendadereservas.com A +short)",
+      "Bash(dig agendadereservas.com NS +short)",
+      "Bash(curl -sI https://agendadereservas.com)",
+      "Bash(curl -sI https://www.agendadereservas.com)"
+    ]
+  }
+}
