@@ -269,6 +269,154 @@ const tourismFAQs = [
       testimonials={tourismTestimonials}
     />
 
+    <!-- IA Chat Widget: diferenciador exclusivo -->
+    <section class="section-apple bg-white" id="chat-ia">
+      <div class="container-apple">
+
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="feature-bubble mb-4 inline-block">Exclusivo · Ningún competidor lo tiene</span>
+          <h2 class="text-headline text-gray-900 mb-4">
+            Reservas por IA en tu web.<br/>
+            <span class="text-blue-600">Tus clientes preguntan. El sistema reserva.</span>
+          </h2>
+          <p class="text-body text-lg">
+            Un asistente inteligente que conoce tus actividades, precios y disponibilidad. 
+            Tu cliente escribe "quiero una ruta en kayak para 4 personas el sábado" — y queda reservado.
+          </p>
+        </div>
+
+        <!-- Antes/Después del chat -->
+        <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto mb-20">
+
+          <!-- SIN chat IA -->
+          <div class="bg-red-50 rounded-3xl p-8 border-2 border-red-100">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">😩</div>
+              <div>
+                <h3 class="font-bold text-gray-900">Sin asistente IA</h3>
+                <p class="text-sm text-red-600">Cómo reservan los turistas hoy</p>
+              </div>
+            </div>
+            <div class="space-y-4">
+              {[
+                { icon: "📞", text: "Buscan tu teléfono → Llaman → Nadie responde" },
+                { icon: "📧", text: "Envían un email → Esperan 24-48h tu respuesta" },
+                { icon: "🌐", text: "Intentan el formulario → Demasiados campos → Abandonan" },
+                { icon: "💬", text: "Preguntan por WhatsApp → Tú lo ves cuando puedes" },
+                { icon: "😞", text: "Se van a reservar con la competencia" },
+              ].map(item => (
+                <div class="flex items-start gap-3">
+                  <span class="text-xl flex-shrink-0">{item.icon}</span>
+                  <p class="text-sm text-red-800">{item.text}</p>
+                </div>
+              ))}
+            </div>
+            <div class="mt-6 pt-4 border-t border-red-200">
+              <p class="text-sm font-bold text-red-700">Resultado: pierdes el 60% de las consultas fuera de horario</p>
+            </div>
+          </div>
+
+          <!-- CON chat IA -->
+          <div class="bg-blue-50 rounded-3xl p-8 border-2 border-blue-200 relative">
+            <div class="absolute -top-3 right-6 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+              Disponible en tu web en 5 min
+            </div>
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">🤖</div>
+              <div>
+                <h3 class="font-bold text-gray-900">Con Asistente IA Cita2</h3>
+                <p class="text-sm text-blue-600">Cómo reservan tus turistas desde mañana</p>
+              </div>
+            </div>
+
+            <!-- Conversación demo -->
+            <div class="space-y-3 mb-6">
+              <div class="flex justify-end">
+                <div class="bg-white rounded-2xl rounded-tr-none px-4 py-2.5 text-sm text-gray-800 shadow-sm max-w-xs">
+                  Hola, ¿tenéis kayak para 4 personas el próximo sábado?
+                </div>
+              </div>
+              <div class="flex justify-start">
+                <div class="bg-blue-600 rounded-2xl rounded-tl-none px-4 py-2.5 text-sm text-white shadow-sm max-w-xs">
+                  ¡Hola! Sí tenemos disponibilidad el sábado. Tengo salidas a las 10:00 y 16:00. Para 4 personas son 120€. ¿Cuál horario prefieres?
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <div class="bg-white rounded-2xl rounded-tr-none px-4 py-2.5 text-sm text-gray-800 shadow-sm max-w-xs">
+                  Las 10:00 perfecto. ¿Cómo pago?
+                </div>
+              </div>
+              <div class="flex justify-start">
+                <div class="bg-blue-600 rounded-2xl rounded-tl-none px-4 py-2.5 text-sm text-white shadow-sm max-w-xs">
+                  Perfecto ✅ Te reservo las 10:00 del sábado. Necesito tu nombre y teléfono para confirmar.
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-4 border border-blue-100">
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-green-600 font-bold">✅ Reserva confirmada</span>
+                <span class="text-gray-400">·</span>
+                <span class="text-gray-500">en tu agenda automáticamente</span>
+              </div>
+              <p class="text-xs text-gray-400 mt-1">3:47 am · El cliente reservó mientras dormías</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 beneficios clave en grid -->
+        <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
+          {[
+            {
+              icon: "🌙",
+              title: "Reservas mientras duermes",
+              stat: "60% de reservas fuera de horario",
+              desc: "El 60% de las búsquedas de actividades turísticas son fuera del horario de oficina. Tu IA atiende 24/7."
+            },
+            {
+              icon: "🧠",
+              title: "Conoce tu negocio",
+              stat: "Respuestas en <3 segundos",
+              desc: "Precios, disponibilidad, qué incluye, requisitos de edad... Todo respondido al instante con tus datos reales."
+            },
+            {
+              icon: "💶",
+              title: "Sin comisiones por reserva",
+              stat: "0€ por reserva completada",
+              desc: "Bókun y FareHarbor cobran 1,5-6% por reserva. Nuestro chat IA está incluido en tu plan mensual."
+            }
+          ].map(b => (
+            <div class="bg-gray-50 rounded-2xl p-6 text-center hover-lift">
+              <div class="text-4xl mb-4">{b.icon}</div>
+              <div class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full inline-block mb-3">{b.stat}</div>
+              <h3 class="font-bold text-gray-900 mb-2">{b.title}</h3>
+              <p class="text-sm text-gray-500">{b.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Compatibilidad -->
+        <div class="bg-gray-900 rounded-3xl p-8 max-w-3xl mx-auto text-center">
+          <p class="text-gray-400 text-sm mb-3">Funciona en cualquier web — sin programación</p>
+          <div class="flex flex-wrap justify-center gap-4 mb-6">
+            {["WordPress", "Wix", "Squarespace", "HTML", "Elementor", "Divi"].map(p => (
+              <span class="bg-gray-800 text-gray-200 px-4 py-1.5 rounded-full text-sm">{p}</span>
+            ))}
+          </div>
+          <p class="text-white font-semibold text-lg mb-2">2 líneas de código. Listo.</p>
+          <p class="text-gray-400 text-sm mb-6">Pegas el snippet en el footer de tu web y en 5 minutos tus clientes pueden reservar por chat.</p>
+          <a
+            href="https://app.agendadereservas.com"
+            class="inline-block bg-blue-600 text-white font-bold px-8 py-3.5 rounded-2xl hover:bg-blue-700 transition-colors"
+          >
+            Activar asistente IA gratis →
+          </a>
+          <p class="text-gray-500 text-xs mt-3">Incluido en todos los planes · Sin coste adicional</p>
+        </div>
+
+      </div>
+    </section>
+
     <PricingV2 />
 
     <FAQ 
