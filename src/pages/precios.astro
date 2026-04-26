@@ -2,67 +2,134 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Pricing from '../components/Pricing.astro';
 import FAQ from '../components/FAQ.astro';
 
 const pageTitle = 'Precios - Agenda de Reservas | Software de Gestión de Citas';
-const pageDescription = 'Un plan, todo incluido. 19€/mes, sin comisiones por reserva ni límites ocultos. Prueba gratis 14 días, sin tarjeta de crédito.';
+const pageDescription = 'Precio adaptado a tu tipo de negocio: servicios desde 19€/mes, restaurantes desde 24€/mes, turismo desde 29€/mes. Módulos opcionales de comunicaciones y cobro online. Sin comisiones ni sorpresas.';
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
-  name: 'Agenda de Reservas - Plan Profesional',
-  description: 'Software de gestión de citas todo incluido',
-  offers: {
-    '@type': 'Offer',
-    price: '19',
-    priceCurrency: 'EUR',
-    priceValidUntil: '2026-12-31',
-    availability: 'https://schema.org/InStock'
-  }
+  name: 'Agenda de Reservas',
+  description: 'Software de gestión de citas y reservas por tipo de negocio',
+  offers: [
+    { '@type': 'Offer', name: 'Servicios', price: '19', priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
+    { '@type': 'Offer', name: 'Restaurantes', price: '24', priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
+    { '@type': 'Offer', name: 'Turismo y Actividades', price: '29', priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
+  ]
 };
+
+const businessTypes = [
+  {
+    id: "servicios",
+    icon: "✂️",
+    label: "Servicios",
+    examples: "Peluquerías, Estética, Fisioterapia, Dentistas…",
+    monthly: 19,
+    yearly: 190,
+    saving: 38,
+    colorCls: "blue",
+    features: [
+      "Reservas online ilimitadas",
+      "Calendario multivista",
+      "CRM de clientes completo",
+      "Página de reservas personalizada",
+      "Gestión de servicios y precios",
+      "Dashboard y estadísticas",
+      "Usuarios ilimitados",
+      "Soporte en español",
+    ],
+  },
+  {
+    id: "restaurantes",
+    icon: "🍽️",
+    label: "Restaurantes",
+    examples: "Restaurantes, Cafeterías, Bares, Bodegas…",
+    monthly: 24,
+    yearly: 240,
+    saving: 48,
+    colorCls: "amber",
+    features: [
+      "Reservas online ilimitadas",
+      "Gestión de mesas y planos",
+      "Gestión de turnos y shifts",
+      "CRM de clientes",
+      "Página de reservas personalizada",
+      "Dashboard y estadísticas",
+      "Usuarios ilimitados",
+      "Soporte en español",
+    ],
+  },
+  {
+    id: "turismo",
+    icon: "🧭",
+    label: "Turismo & Actividades",
+    examples: "Tours, Kayak, Senderismo, Escape rooms…",
+    monthly: 29,
+    yearly: 290,
+    saving: 58,
+    colorCls: "emerald",
+    badge: "Nuevo",
+    features: [
+      "Reservas por actividad e idioma",
+      "Precios por composición (adultos/niños)",
+      "Manifest de participantes",
+      "Guías y recursos gestionables",
+      "Página de reservas multidioma",
+      "Dashboard y estadísticas",
+      "Usuarios ilimitados",
+      "Soporte en español",
+    ],
+  },
+];
+
+const addons = [
+  {
+    id: "comunicaciones",
+    icon: "💬",
+    name: "Comunicaciones Avanzadas",
+    price: 8,
+    description: "WhatsApp Business API, SMS, hub de mensajes, recordatorios automáticos, encuestas post-cita e informes diarios.",
+    highlights: ["WhatsApp Business API", "SMS con Twilio", "Hub de mensajes centralizado", "Recordatorios automáticos", "Encuestas de satisfacción", "Informes diarios por email"],
+  },
+  {
+    id: "pagos",
+    icon: "💳",
+    name: "Cobro Online",
+    price: 8,
+    description: "Stripe integrado, depósitos y cobros parciales, enlace de pago, historial de transacciones y gestión de métodos de pago.",
+    highlights: ["Pagos con Stripe", "Depósitos y cobros parciales", "Enlace de pago para clientes", "Historial de transacciones", "Reembolsos desde el panel"],
+  },
+];
 
 const pricingFAQs = [
   {
+    question: '¿Por qué el precio varía según el tipo de negocio?',
+    answer: 'Cada sector tiene funcionalidades y complejidad diferente. Servicios (19€) accede a gestión básica de citas. Restaurantes (24€) incluye planos de sala y turnos. Turismo (29€) tiene reservas multidioma, composición de grupos y manifest de actividades. Pagas solo por lo que usas.'
+  },
+  {
+    question: '¿Los módulos add-on son obligatorios?',
+    answer: 'No. Los módulos de Comunicaciones Avanzadas (+8€) y Cobro Online (+8€) son completamente opcionales. Puedes empezar con el plan base y añadirlos cuando los necesites, sin cambiar de plan.'
+  },
+  {
     question: '¿Hay algún coste oculto?',
-    answer: 'No. 19€/mes es todo lo que pagas. Sin comisiones por reserva, sin límites de citas, sin cargos extra por usuarios o funcionalidades. Lo que ves es lo que pagas.'
+    answer: 'No. El precio que ves es lo que pagas. Sin comisiones por reserva, sin límites de citas, sin cargos extra por usuarios.'
   },
   {
     question: '¿Puedo cancelar cuando quiera?',
-    answer: 'Sí, sin compromiso de permanencia. Cancelas cuando quieras desde tu panel, sin llamar a nadie ni justificar nada. Tu suscripción se detiene al final del período pagado.'
+    answer: 'Sí, sin compromiso de permanencia. Cancelas desde tu panel y tu suscripción se detiene al final del período pagado.'
   },
   {
     question: '¿Hay descuento por pago anual?',
-    answer: 'Sí, al pagar anualmente te regalamos 2 meses. Pagas 190€/año en lugar de 228€ (ahorro de 38€).'
+    answer: 'Sí. Al pagar anualmente obtienes el equivalente a 2 meses gratis. Servicios: 190€/año (19€/mes), Restaurantes: 240€/año (20€/mes), Turismo: 290€/año (24€/mes).'
   },
   {
     question: '¿Necesito tarjeta para la prueba?',
-    answer: 'No. Los 14 días de prueba son completamente gratis, sin requerir tarjeta de crédito. Solo te pedimos datos de pago si decides continuar tras la prueba.'
+    answer: 'No. Los 14 días de prueba son completamente gratis, sin tarjeta de crédito. Solo pedimos datos de pago si decides continuar.'
   },
-  {
-    question: '¿Hay planes para franquicias o múltiples locales?',
-    answer: 'Sí, ofrecemos planes especiales para cadenas y franquicias. Contacta con nosotros para un presupuesto personalizado con descuentos por volumen.'
-  }
 ];
 
-const includedFeatures = [
-  'Reservas online ilimitadas',
-  'Recordatorios automáticos (email + SMS)',
-  'WhatsApp Business integrado',
-  'Calendario visual multivista',
-  'CRM de clientes completo',
-  'Página de reservas personalizada',
-  'Pagos online con Stripe',
-  'Gestión de servicios y precios',
-  'Estadísticas y dashboard',
-  'Soporte por email y chat',
-  'Usuarios ilimitados',
-  'Clientes ilimitados',
-  'Exportación de datos',
-  'Integración Google Calendar',
-  'API disponible',
-  'SSL y seguridad incluida'
-];
+const appUrl = "https://app.agendadereservas.com";
 ---
 
 <Layout title={pageTitle} description={pageDescription} schema={schema}>
@@ -70,154 +137,331 @@ const includedFeatures = [
   
   <main class="pt-24">
     <!-- Hero -->
-    <section class="py-16 bg-gradient-to-br from-blue-50 to-white">
+    <section class="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
       <div class="container mx-auto px-4 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-          Precio simple, sin sorpresas
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-white/80 text-sm font-medium mb-6">
+          <span class="w-1.5 h-1.5 bg-blue-400 rounded-full"></span>
+          Precio por tipo de negocio
+        </span>
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          El precio justo<br>
+          <span class="text-blue-300">para tu sector</span>
         </h1>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-          Un plan, todo incluido. Sin comisiones por reserva ni límites ocultos.
+        <p class="text-xl text-blue-100 max-w-2xl mx-auto mb-10">
+          Base adaptada a tu negocio + módulos opcionales solo si los necesitas. 
+          Sin comisiones ni costes ocultos.
         </p>
-        <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-blue-200">
           <span class="flex items-center gap-2">
-            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
             Sin tarjeta para probar
           </span>
           <span class="flex items-center gap-2">
-            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
             Cancela cuando quieras
           </span>
           <span class="flex items-center gap-2">
-            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
             30 días garantía
           </span>
         </div>
       </div>
     </section>
 
-    <!-- Pricing Card -->
-    <section class="py-12">
-      <div class="container mx-auto px-4 max-w-4xl">
-        <div class="bg-white rounded-2xl shadow-xl border-2 border-blue-500 overflow-hidden">
-          <div class="bg-blue-500 text-white text-center py-2 text-sm font-medium">
-            🌟 Más popular
-          </div>
-          <div class="p-8 md:p-12">
-            <div class="text-center mb-8">
-              <h2 class="text-2xl font-bold text-gray-900 mb-2">Plan Profesional</h2>
-              <p class="text-gray-600 mb-6">Todo lo que necesitas para gestionar tu negocio</p>
-              <div class="flex items-baseline justify-center gap-2">
-                <span class="text-5xl font-bold text-gray-900">19€</span>
-                <span class="text-gray-600">/mes</span>
-              </div>
-              <p class="text-sm text-gray-700 mt-2">o 190€/año (ahorra 38€)</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-4 mb-8">
-              {includedFeatures.map(feature => (
-                <div class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                  </svg>
-                  <span class="text-gray-700 text-sm">{feature}</span>
-                </div>
-              ))}
-            </div>
-
-            <div class="text-center">
-              <a 
-                href="https://app.agendadereservas.com"
-                class="inline-block w-full md:w-auto px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors"
-              >
-                Empezar prueba gratis 14 días
-              </a>
-              <p class="text-sm text-gray-700 mt-4">
-                No requiere tarjeta de crédito · Setup en 2 minutos
-              </p>
-            </div>
-          </div>
+    <!-- Billing Toggle -->
+    <section class="py-10 bg-gray-50 border-b border-gray-200">
+      <div class="flex justify-center">
+        <div class="inline-flex items-center gap-3 bg-white border border-gray-200 rounded-full p-1 shadow-sm">
+          <button
+            id="toggle-monthly-p"
+            class="px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-gray-900 text-white shadow"
+            onclick="switchBillingP('monthly')"
+          >
+            Mensual
+          </button>
+          <button
+            id="toggle-yearly-p"
+            class="px-6 py-2.5 rounded-full text-sm font-medium transition-all text-gray-500"
+            onclick="switchBillingP('yearly')"
+          >
+            Anual
+            <span class="ml-1.5 bg-green-100 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full">2 meses gratis</span>
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- Comparison -->
+    <!-- Plan cards -->
     <section class="py-16 bg-gray-50">
-      <div class="container mx-auto px-4 max-w-4xl">
-        <h2 class="text-2xl font-bold text-center mb-8">¿Cuánto ahorras vs la competencia?</h2>
-        <div class="overflow-x-auto">
-          <table class="w-full bg-white rounded-xl shadow-sm">
-            <thead>
-              <tr class="bg-gray-100">
-                <th class="p-4 text-left">Software</th>
-                <th class="p-4 text-center">Coste/mes (3 empleados)</th>
-                <th class="p-4 text-center">Ahorro anual con Agenda de Reservas</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="border-t bg-blue-50">
-                <td class="p-4 font-bold text-blue-600">Agenda de Reservas</td>
-                <td class="p-4 text-center font-bold">19€</td>
-                <td class="p-4 text-center">—</td>
-              </tr>
-              <tr class="border-t">
-                <td class="p-4">AgendaPro</td>
-                <td class="p-4 text-center">147€</td>
-                <td class="p-4 text-center text-green-600 font-semibold">1.536€</td>
-              </tr>
-              <tr class="border-t">
-                <td class="p-4">Reservio Pro</td>
-                <td class="p-4 text-center">63€</td>
-                <td class="p-4 text-center text-green-600 font-semibold">528€</td>
-              </tr>
-              <tr class="border-t">
-                <td class="p-4">ElTenedor (comisiones)</td>
-                <td class="p-4 text-center">~500€*</td>
-                <td class="p-4 text-center text-green-600 font-semibold">~5.772€</td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="grid md:grid-cols-3 gap-8">
+          {businessTypes.map((bt) => (
+            <div class={`bg-white rounded-3xl border-2 transition-all hover:shadow-xl hover:-translate-y-1 overflow-hidden ${
+              bt.id === 'servicios' ? 'border-blue-200 hover:border-blue-400' :
+              bt.id === 'restaurantes' ? 'border-amber-200 hover:border-amber-400' :
+              'border-emerald-200 hover:border-emerald-400'
+            }`}>
+              {/* Header strip */}
+              <div class={`h-2 ${
+                bt.id === 'servicios' ? 'bg-blue-500' :
+                bt.id === 'restaurantes' ? 'bg-amber-500' : 'bg-emerald-500'
+              }`}></div>
+
+              <div class="p-8">
+                <div class="flex items-start justify-between mb-4">
+                  <div>
+                    <div class="text-3xl mb-2">{bt.icon}</div>
+                    <h2 class="text-xl font-bold text-gray-900">{bt.label}</h2>
+                    <p class="text-sm text-gray-500 mt-0.5">{bt.examples}</p>
+                  </div>
+                  {bt.badge && (
+                    <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700">
+                      {bt.badge}
+                    </span>
+                  )}
+                </div>
+
+                <div class="mb-6">
+                  <div class="flex items-baseline gap-1">
+                    <span class="text-5xl font-extrabold text-gray-900 price-monthly-p">{bt.monthly}€</span>
+                    <span class="text-5xl font-extrabold text-gray-900 price-yearly-p hidden">{Math.floor(bt.yearly / 12)}€</span>
+                    <span class="text-gray-500 text-sm">/mes</span>
+                  </div>
+                  <p class="text-sm text-gray-400 mt-1 price-label-monthly-p">Facturado mensualmente</p>
+                  <p class="text-sm text-green-600 mt-1 price-label-yearly-p hidden font-medium">{bt.yearly}€/año · ahorras {bt.saving}€</p>
+                </div>
+
+                <ul class="space-y-2.5 mb-8">
+                  {bt.features.map((f) => (
+                    <li class="flex items-start gap-2.5 text-sm text-gray-700">
+                      <svg class={`w-4 h-4 mt-0.5 flex-shrink-0 ${
+                        bt.id === 'servicios' ? 'text-blue-500' :
+                        bt.id === 'restaurantes' ? 'text-amber-500' : 'text-emerald-500'
+                      }`} fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                      </svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href={appUrl}
+                  class={`block w-full text-center py-3.5 px-6 rounded-2xl font-semibold text-sm transition-all ${
+                    bt.id === 'servicios'
+                      ? 'bg-blue-600 text-white hover:bg-blue-700'
+                      : bt.id === 'restaurantes'
+                      ? 'bg-amber-500 text-white hover:bg-amber-600'
+                      : 'bg-emerald-600 text-white hover:bg-emerald-700'
+                  }`}
+                >
+                  Empezar prueba gratis →
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
-        <p class="text-sm text-gray-700 mt-4 text-center">
-          *Estimado para restaurante con 100 reservas/mes y ticket medio 35€ (comisión 12-15%)
-        </p>
+      </div>
+    </section>
+
+    <!-- Add-ons -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3">Módulos opcionales</h2>
+          <p class="text-lg text-gray-600">Añade solo lo que necesitas, cuando lo necesites. Compatible con todos los planes base.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+          {addons.map((addon) => (
+            <div class="bg-gradient-to-br from-purple-50 to-white border border-purple-100 rounded-3xl p-8 hover:shadow-lg transition-all">
+              <div class="flex items-start justify-between mb-5">
+                <div>
+                  <span class="text-3xl">{addon.icon}</span>
+                  <h3 class="text-xl font-bold text-gray-900 mt-2">{addon.name}</h3>
+                </div>
+                <div class="text-right">
+                  <span class="text-3xl font-extrabold text-purple-600">+{addon.price}€</span>
+                  <p class="text-xs text-gray-400">/mes</p>
+                </div>
+              </div>
+              <p class="text-gray-600 text-sm mb-5">{addon.description}</p>
+              <ul class="space-y-2">
+                {addon.highlights.map((h) => (
+                  <li class="flex items-center gap-2.5 text-sm text-gray-700">
+                    <span class="w-1.5 h-1.5 bg-purple-400 rounded-full flex-shrink-0"></span>
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <!-- Price builder example -->
+        <div class="bg-gray-900 rounded-3xl p-8 md:p-10 text-white">
+          <h3 class="text-base font-semibold text-gray-400 mb-6 uppercase tracking-wide">Ejemplo de precio total</h3>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white/5 rounded-2xl p-5">
+              <p class="text-sm text-gray-400 mb-1">Solo base</p>
+              <p class="text-3xl font-extrabold">19€<span class="text-base font-normal text-gray-400">/mes</span></p>
+              <p class="text-sm text-gray-500 mt-1">✂️ Peluquería o servicio</p>
+            </div>
+            <div class="bg-white/5 rounded-2xl p-5">
+              <p class="text-sm text-gray-400 mb-1">Base + comunicaciones</p>
+              <p class="text-3xl font-extrabold">27€<span class="text-base font-normal text-gray-400">/mes</span></p>
+              <p class="text-sm text-gray-500 mt-1">🍽️ Restaurante + WhatsApp</p>
+            </div>
+            <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+              <p class="text-sm text-gray-400 mb-1">Todo incluido</p>
+              <p class="text-3xl font-extrabold text-purple-300">45€<span class="text-base font-normal text-gray-400">/mes</span></p>
+              <p class="text-sm text-gray-500 mt-1">🧭 Turismo + comms + cobro</p>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500 mt-6 text-center">
+            vs. 500€+/mes en comisiones de plataformas de turismo o ElTenedor.
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- Guarantee -->
-    <section class="py-16">
+    <section class="py-16 bg-gray-50">
       <div class="container mx-auto px-4 max-w-3xl text-center">
-        <div class="bg-green-50 border border-green-200 rounded-xl p-8">
-          <h2 class="text-2xl font-bold text-green-800 mb-4">🛡️ Garantía de satisfacción</h2>
+        <div class="bg-green-50 border border-green-200 rounded-3xl p-10">
+          <div class="text-5xl mb-4">🛡️</div>
+          <h2 class="text-2xl font-bold text-green-800 mb-4">Garantía de satisfacción 30 días</h2>
           <p class="text-green-700 mb-4">
-            Si en los primeros 30 días decides que Agenda de Reservas no es para ti, te devolvemos el 100% de tu dinero. Sin preguntas, sin complicaciones.
+            Si en los primeros 30 días decides que Agenda de Reservas no es para ti, te devolvemos el 100% del dinero. Sin preguntas.
           </p>
           <p class="text-sm text-green-600">
-            También puedes probar 14 días gratis sin tarjeta antes de pagar nada.
+            Además puedes probar 14 días gratis sin tarjeta antes de pagar nada.
           </p>
         </div>
+      </div>
+    </section>
+
+    <!-- Comparison table -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <h2 class="text-2xl font-bold text-center text-gray-900 mb-10">¿Cuánto ahorras vs la competencia?</h2>
+        <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+          <table class="w-full bg-white">
+            <thead>
+              <tr class="bg-gray-50 border-b border-gray-200">
+                <th class="p-5 text-left text-sm font-semibold text-gray-700">Software</th>
+                <th class="p-5 text-center text-sm font-semibold text-blue-700 bg-blue-50/60">Agenda de Reservas</th>
+                <th class="p-5 text-center text-sm font-medium text-gray-600">AgendaPro</th>
+                <th class="p-5 text-center text-sm font-medium text-gray-600">Reservio</th>
+                <th class="p-5 text-center text-sm font-medium text-gray-600">ElTenedor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-100">
+                <td class="p-5 text-sm text-gray-700">Precio mensual</td>
+                <td class="p-5 text-center text-sm font-bold text-green-700 bg-blue-50/30">desde 19€</td>
+                <td class="p-5 text-center text-sm text-gray-600">147€*</td>
+                <td class="p-5 text-center text-sm text-gray-600">63€*</td>
+                <td class="p-5 text-center text-sm text-gray-600">~500€**</td>
+              </tr>
+              <tr class="border-b border-gray-100 bg-gray-50/30">
+                <td class="p-5 text-sm text-gray-700">Reservas incluidas</td>
+                <td class="p-5 text-center text-sm font-semibold text-green-700 bg-blue-50/30">Ilimitadas</td>
+                <td class="p-5 text-center text-sm text-gray-600">Ilimitadas</td>
+                <td class="p-5 text-center text-sm text-gray-600">Ilimitadas</td>
+                <td class="p-5 text-center text-sm text-gray-600">Comisión 12–15%</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="p-5 text-sm text-gray-700">WhatsApp Business</td>
+                <td class="p-5 text-center text-sm font-semibold text-green-700 bg-blue-50/30">✓ Add-on 8€</td>
+                <td class="p-5 text-center text-sm text-gray-600">✗ No</td>
+                <td class="p-5 text-center text-sm text-gray-600">✗ No</td>
+                <td class="p-5 text-center text-sm text-gray-600">✗ No</td>
+              </tr>
+              <tr class="border-b border-gray-100 bg-gray-50/30">
+                <td class="p-5 text-sm text-gray-700">Turismo / Actividades</td>
+                <td class="p-5 text-center text-sm font-semibold text-green-700 bg-blue-50/30">✓ 29€/mes</td>
+                <td class="p-5 text-center text-sm text-gray-600">△ Básico</td>
+                <td class="p-5 text-center text-sm text-gray-600">△ Básico</td>
+                <td class="p-5 text-center text-sm text-gray-600">Solo restaurantes</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="p-5 text-sm text-gray-700">Usuarios incluidos</td>
+                <td class="p-5 text-center text-sm font-semibold text-green-700 bg-blue-50/30">Ilimitados</td>
+                <td class="p-5 text-center text-sm text-gray-600">3 empleados</td>
+                <td class="p-5 text-center text-sm text-gray-600">5 staff</td>
+                <td class="p-5 text-center text-sm text-gray-600">N/A</td>
+              </tr>
+              <tr class="bg-green-50">
+                <td class="p-5 text-sm font-bold text-gray-900">Ahorro anual</td>
+                <td class="p-5 text-center text-sm font-bold text-gray-400 bg-blue-50/30">—</td>
+                <td class="p-5 text-center text-sm font-bold text-green-700">hasta 1.536€</td>
+                <td class="p-5 text-center text-sm font-bold text-green-700">hasta 528€</td>
+                <td class="p-5 text-center text-sm font-bold text-green-700">hasta 5.772€</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3 text-center">
+          *Para 3 empleados. **Estimado para restaurante con 100 reservas/mes y ticket 35€.
+        </p>
       </div>
     </section>
 
     <FAQ title="Preguntas sobre precios" subtitle="Todo lo que necesitas saber antes de suscribirte." faqs={pricingFAQs} />
 
     <!-- Final CTA -->
-    <section class="py-16 bg-blue-600 text-white text-center">
+    <section class="py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white text-center">
       <div class="container mx-auto px-4">
-        <h2 class="text-2xl md:text-3xl font-bold mb-4">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
           ¿Listo para empezar?
         </h2>
-        <p class="text-blue-100 mb-8 max-w-xl mx-auto">
-          Prueba Agenda de Reservas gratis 14 días. Sin tarjeta, sin compromiso.
+        <p class="text-blue-100 mb-10 max-w-xl mx-auto text-lg">
+          Elige tu plan base, añade los módulos que necesitas y empieza a gestionar mejor tu negocio hoy.
         </p>
         <a 
-          href="https://app.agendadereservas.com"
-          class="inline-block px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+          href={appUrl}
+          class="inline-block px-10 py-4 bg-white text-blue-700 rounded-2xl font-bold text-lg hover:bg-gray-50 transition-colors shadow-lg"
         >
-          Empezar prueba gratuita →
+          Empezar prueba gratuita 14 días →
         </a>
+        <p class="text-blue-200 text-sm mt-4">Sin tarjeta · Setup en 2 minutos · Cancela cuando quieras</p>
       </div>
     </section>
   </main>
   
   <Footer />
 </Layout>
+
+<script>
+  function switchBillingP(mode: string) {
+    const monthly = document.querySelectorAll('.price-monthly-p');
+    const yearly = document.querySelectorAll('.price-yearly-p');
+    const monthlyLabel = document.querySelectorAll('.price-label-monthly-p');
+    const yearlyLabel = document.querySelectorAll('.price-label-yearly-p');
+    const btnM = document.getElementById('toggle-monthly-p');
+    const btnY = document.getElementById('toggle-yearly-p');
+
+    if (mode === 'yearly') {
+      monthly.forEach(el => el.classList.add('hidden'));
+      yearly.forEach(el => el.classList.remove('hidden'));
+      monthlyLabel.forEach(el => el.classList.add('hidden'));
+      yearlyLabel.forEach(el => el.classList.remove('hidden'));
+      btnY?.classList.add('bg-gray-900', 'text-white', 'shadow');
+      btnY?.classList.remove('text-gray-500');
+      btnM?.classList.remove('bg-gray-900', 'text-white', 'shadow');
+      btnM?.classList.add('text-gray-500');
+    } else {
+      monthly.forEach(el => el.classList.remove('hidden'));
+      yearly.forEach(el => el.classList.add('hidden'));
+      monthlyLabel.forEach(el => el.classList.remove('hidden'));
+      yearlyLabel.forEach(el => el.classList.add('hidden'));
+      btnM?.classList.add('bg-gray-900', 'text-white', 'shadow');
+      btnM?.classList.remove('text-gray-500');
+      btnY?.classList.remove('bg-gray-900', 'text-white', 'shadow');
+      btnY?.classList.add('text-gray-500');
+    }
+  }
+
+  (window as any).switchBillingP = switchBillingP;
+</script>

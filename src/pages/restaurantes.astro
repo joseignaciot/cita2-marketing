@@ -2,15 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Hero from '../components/Hero.astro';
+import HeroV2 from '../components/HeroV2.astro';
 import Features from '../components/Features.astro';
 import Testimonials from '../components/Testimonials.astro';
-import Pricing from '../components/Pricing.astro';
+import PricingV2 from '../components/PricingV2.astro';
 import FAQ from '../components/FAQ.astro';
-import CTA from '../components/CTA.astro';
+import '../styles/apple-design.css';
 
-const pageTitle = 'Software de Gestión para Restaurantes - Agenda de Reservas';
-const pageDescription = 'Sistema de reservas para restaurantes. Gestiona mesas, turnos, lista de espera y reservas online sin comisiones. Ahorra 2.800€/año en comisiones de ElTenedor. 19€/mes.';
+const pageTitle = 'Software de Reservas para Restaurantes sin Comisiones - Agenda de Reservas';
+const pageDescription = 'Sistema de reservas para restaurantes. Gestiona mesas, turnos y lista de espera sin comisiones por comensal. Solo 24€/mes vs 300-500€/mes en TheFork. Prueba gratis 14 días.';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -20,7 +20,7 @@ const schema = {
   operatingSystem: 'Web',
   offers: {
     '@type': 'Offer',
-    price: '19',
+    price: '24',
     priceCurrency: 'EUR',
     priceValidUntil: '2026-12-31'
   },
@@ -117,13 +117,12 @@ const restaurantFAQs = [
   <Header />
   
   <main>
-    <Hero 
-      title="Sistema de reservas para restaurantes sin comisiones"
-      subtitle="Deja de regalar el 12-15% a ElTenedor. Tu propia página de reservas con gestión de mesas, turnos y lista de espera. Ahorra 2.800€/año, paga solo 19€/mes."
-      primaryCta="Prueba gratis 14 días"
-      primaryCtaHref="https://app.agendadereservas.com"
-      secondaryCta="Ver comparativa con ElTenedor"
-      secondaryCtaHref="#comparativa"
+    <HeroV2
+      title="Reservas para restaurantes. Sin comisiones."
+      subtitle="TheFork cobra 150-200€/mes en cuota más 1,5-2€ por cada comensal. Nosotros: 24€/mes fijo. Sin sorpresas. Con WhatsApp incluido."
+      ctaText="Prueba gratis 14 días"
+      ctaHref="https://app.agendadereservas.com"
+      secondaryCta={{ text: 'Ver comparativa real', href: '#comparativa' }}
     />
 
     <Features 
@@ -132,76 +131,128 @@ const restaurantFAQs = [
       features={restaurantFeatures}
     />
 
-    <section id="comparativa" class="py-16 bg-red-50">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-4">ElTenedor vs Agenda de Reservas: La matemática real</h2>
-        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-          Cuánto pagas realmente por gestionar tus reservas online
-        </p>
-        
-        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <!-- ElTenedor -->
-          <div class="bg-white p-8 rounded-xl shadow-sm border-2 border-red-200">
-            <h3 class="text-xl font-bold text-red-600 mb-4">ElTenedor / TheFork</h3>
-            <div class="space-y-4">
-              <div class="flex justify-between">
-                <span class="text-gray-600">Reservas/mes</span>
-                <span class="font-semibold">100</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Ticket medio</span>
-                <span class="font-semibold">35€</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Comisión/reserva</span>
-                <span class="font-semibold">12-15%</span>
-              </div>
-              <div class="border-t pt-4 flex justify-between text-lg">
-                <span class="font-semibold text-red-600">Coste mensual</span>
-                <span class="font-bold text-red-600">420-525€</span>
-              </div>
-              <div class="border-t pt-4 flex justify-between text-xl">
-                <span class="font-bold text-red-600">Coste anual</span>
-                <span class="font-bold text-red-600 text-2xl">5.040-6.300€</span>
+    <!-- Comparativa real verificada -->
+    <section id="comparativa" class="section-apple bg-gray-50">
+      <div class="container-apple">
+        <div class="text-center mb-12">
+          <span class="feature-bubble mb-4 inline-block">Comparativa verificada</span>
+          <h2 class="text-headline text-gray-900 mb-4">El coste real de gestionar reservas en tu restaurante</h2>
+          <p class="text-body">Datos contrastados en webs oficiales. Actualizado abril 2026.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+
+          <!-- TheFork -->
+          <div class="bg-white rounded-2xl border-2 border-red-200 p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-2xl">🍴</span>
+              <div>
+                <h3 class="font-bold text-red-600">TheFork Manager</h3>
+                <p class="text-xs text-gray-400">ElTenedor en España</p>
               </div>
             </div>
+            <div class="space-y-3 text-sm mb-4">
+              <div class="flex justify-between">
+                <span class="text-gray-500">Cuota mensual</span>
+                <span class="font-semibold text-red-600">~175€/mes</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-500">Comisión por comensal</span>
+                <span class="font-semibold text-red-600">1,5-2€/persona</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-500">100 reservas (media 2p)</span>
+                <span class="font-semibold text-red-600">+300€ extra</span>
+              </div>
+              <div class="border-t pt-3 flex justify-between">
+                <span class="font-bold">Total estimado/mes</span>
+                <span class="font-extrabold text-red-600 text-lg">~475€</span>
+              </div>
+            </div>
+            <ul class="text-xs text-gray-400 space-y-1">
+              <li>❌ Sin WhatsApp</li>
+              <li>❌ Datos de clientes son de TheFork</li>
+              <li>❌ Cuota crece con éxito del negocio</li>
+            </ul>
+          </div>
+
+          <!-- Restoo -->
+          <div class="bg-white rounded-2xl border-2 border-orange-200 p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-2xl">📋</span>
+              <div>
+                <h3 class="font-bold text-orange-600">Restoo</h3>
+                <p class="text-xs text-gray-400">Competidor español directo</p>
+              </div>
+            </div>
+            <div class="space-y-3 text-sm mb-4">
+              <div class="flex justify-between">
+                <span class="text-gray-500">Plan Mini</span>
+                <span class="font-semibold">39€/mes</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-500">Plan Pro</span>
+                <span class="font-semibold">79€/mes</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-500">Comisión por reserva</span>
+                <span class="font-semibold text-green-600">0%</span>
+              </div>
+              <div class="border-t pt-3 flex justify-between">
+                <span class="font-bold">Desde</span>
+                <span class="font-extrabold text-orange-600 text-lg">39€/mes</span>
+              </div>
+            </div>
+            <ul class="text-xs text-gray-400 space-y-1">
+              <li>❌ Sin WhatsApp</li>
+              <li>❌ Sin turismo ni servicios</li>
+              <li>✓ Empresa española</li>
+            </ul>
           </div>
 
           <!-- Agenda de Reservas -->
-          <div class="bg-white p-8 rounded-xl shadow-sm border-2 border-green-200">
-            <h3 class="text-xl font-bold text-green-600 mb-4">Agenda de Reservas</h3>
-            <div class="space-y-4">
-              <div class="flex justify-between">
-                <span class="text-gray-600">Reservas/mes</span>
-                <span class="font-semibold">Ilimitadas</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Ticket medio</span>
-                <span class="font-semibold">35€</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Comisión/reserva</span>
-                <span class="font-semibold text-green-600">0%</span>
-              </div>
-              <div class="border-t pt-4 flex justify-between text-lg">
-                <span class="font-semibold text-green-600">Coste mensual</span>
-                <span class="font-bold text-green-600">19€</span>
-              </div>
-              <div class="border-t pt-4 flex justify-between text-xl">
-                <span class="font-bold text-green-600">Coste anual</span>
-                <span class="font-bold text-green-600 text-2xl">228€</span>
+          <div class="bg-white rounded-2xl border-2 border-green-400 p-6 shadow-lg relative">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+              Mejor precio ✓
+            </div>
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-2xl">🗓️</span>
+              <div>
+                <h3 class="font-bold text-green-600">Agenda de Reservas</h3>
+                <p class="text-xs text-gray-400">Plan Restaurante</p>
               </div>
             </div>
+            <div class="space-y-3 text-sm mb-4">
+              <div class="flex justify-between">
+                <span class="text-gray-500">Cuota mensual</span>
+                <span class="font-semibold text-green-600">24€/mes</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-500">Comisión por comensal</span>
+                <span class="font-semibold text-green-600">0€ — nunca</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-500">WhatsApp Business</span>
+                <span class="font-semibold">+8€/mes</span>
+              </div>
+              <div class="border-t pt-3 flex justify-between">
+                <span class="font-bold">Total completo</span>
+                <span class="font-extrabold text-green-600 text-lg">32€/mes</span>
+              </div>
+            </div>
+            <ul class="text-xs text-gray-600 space-y-1">
+              <li>✅ WhatsApp Business API nativo</li>
+              <li>✅ CRM — tus datos, siempre</li>
+              <li>✅ Turismo y servicios en un plan</li>
+            </ul>
           </div>
         </div>
 
-        <div class="text-center mt-8">
-          <p class="text-2xl font-bold text-green-600">
-            Ahorro anual: 4.812-6.072€
+        <div class="text-center mt-10">
+          <p class="text-xl font-bold text-gray-900">
+            Ahorro vs TheFork: <span class="text-green-600">hasta 5.316€/año</span>
           </p>
-          <p class="text-gray-600 mt-2">
-            Con Agenda de Reservas, el ROI se recupera en la primera semana.
-          </p>
+          <p class="text-sm text-gray-500 mt-1">(475€ - 32€) × 12 meses</p>
         </div>
       </div>
     </section>
@@ -212,7 +263,7 @@ const restaurantFAQs = [
       testimonials={restaurantTestimonials}
     />
 
-    <Pricing />
+    <PricingV2 />
 
     <FAQ 
       title="Preguntas frecuentes para restaurantes"
@@ -220,10 +271,15 @@ const restaurantFAQs = [
       faqs={restaurantFAQs}
     />
 
-    <CTA 
-      title="Deja de pagar comisiones, empieza a ganar más"
-      subtitle="Únete a 200+ restaurantes que ya ahorran 2.800€/año con Agenda de Reservas."
-    />
+    <section class="section-apple bg-gray-900">
+      <div class="container-apple text-center">
+        <h2 class="text-headline text-white mb-4">Deja de pagar comisiones.<br/><span class="text-green-400">Empieza hoy por 24€/mes.</span></h2>
+        <p class="text-gray-400 mb-8">Únete a 200+ restaurantes que ya gestionan sus reservas sin TheFork.</p>
+        <a href="https://app.agendadereservas.com" class="inline-block bg-white text-gray-900 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors">
+          Prueba gratis 14 días — sin tarjeta
+        </a>
+      </div>
+    </section>
   </main>
   
   <Footer />
