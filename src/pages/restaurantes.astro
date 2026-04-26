@@ -155,19 +155,19 @@ const restaurantFAQs = [
             <div class="space-y-3 text-sm mb-4">
               <div class="flex justify-between">
                 <span class="text-gray-500">Cuota mensual</span>
-                <span class="font-semibold text-red-600">~175€/mes</span>
+                <span class="font-semibold text-red-600">~<span data-competitor-key="thefork.monthly_fee">175</span>€/mes</span>
               </div>
               <div class="flex justify-between">
                 <span class="text-gray-500">Comisión por comensal</span>
-                <span class="font-semibold text-red-600">1,5-2€/persona</span>
+                <span class="font-semibold text-red-600"><span data-competitor-key="thefork.commission_value">1,75</span>€/persona</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-gray-500">100 reservas (media 2p)</span>
-                <span class="font-semibold text-red-600">+300€ extra</span>
+                <span class="text-gray-500"><span data-competitor-key="thefork.example_covers">200</span> comensales captados</span>
+                <span class="font-semibold text-red-600">+<span data-competitor-total="thefork">350</span>€ extra (estimado)</span>
               </div>
               <div class="border-t pt-3 flex justify-between">
                 <span class="font-bold">Total estimado/mes</span>
-                <span class="font-extrabold text-red-600 text-lg">~475€</span>
+                <span class="font-extrabold text-red-600 text-lg">~<span data-competitor-total="thefork">475</span>€</span>
               </div>
             </div>
             <ul class="text-xs text-gray-400 space-y-1">
@@ -175,6 +175,10 @@ const restaurantFAQs = [
               <li>❌ Datos de clientes son de TheFork</li>
               <li>❌ Cuota crece con éxito del negocio</li>
             </ul>
+            <p class="text-xs text-gray-300 mt-3">
+              Fuente: <a data-competitor-source-url="thefork" href="https://www.thefork.es" target="_blank" class="underline hover:text-white"><span data-competitor-source="thefork">thefork.es · verificado</span></a>
+              · <span data-competitor-date="thefork">2026-04</span>
+            </p>
           </div>
 
           <!-- Restoo -->
@@ -189,11 +193,7 @@ const restaurantFAQs = [
             <div class="space-y-3 text-sm mb-4">
               <div class="flex justify-between">
                 <span class="text-gray-500">Plan Mini</span>
-                <span class="font-semibold">39€/mes</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-500">Plan Pro</span>
-                <span class="font-semibold">79€/mes</span>
+                <span class="font-semibold"><span data-competitor-key="restoo.monthly_fee">39</span>€/mes</span>
               </div>
               <div class="flex justify-between">
                 <span class="text-gray-500">Comisión por reserva</span>
@@ -201,7 +201,7 @@ const restaurantFAQs = [
               </div>
               <div class="border-t pt-3 flex justify-between">
                 <span class="font-bold">Desde</span>
-                <span class="font-extrabold text-orange-600 text-lg">39€/mes</span>
+                <span class="font-extrabold text-orange-600 text-lg"><span data-competitor-key="restoo.monthly_fee">39</span>€/mes</span>
               </div>
             </div>
             <ul class="text-xs text-gray-400 space-y-1">
@@ -209,6 +209,10 @@ const restaurantFAQs = [
               <li>❌ Sin turismo ni servicios</li>
               <li>✓ Empresa española</li>
             </ul>
+            <p class="text-xs text-gray-300 mt-3">
+              Fuente: <a data-competitor-source-url="restoo" href="https://www.restoo.es/precios" target="_blank" class="underline hover:text-white"><span data-competitor-source="restoo">restoo.es · verificado</span></a>
+              · <span data-competitor-date="restoo">2026-04</span>
+            </p>
           </div>
 
           <!-- Agenda de Reservas -->

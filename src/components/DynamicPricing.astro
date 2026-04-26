@@ -1,26 +1,31 @@
 ---
 // DynamicPricing.astro
-// Script de hidratación cliente-side para precios dinámicos.
-// Añade este componente en cualquier página que muestre precios.
-// Cualquier cambio en el Admin Dashboard actualiza los precios sin rebuild.
+// Hidratación cliente-side: lee /pricing y actualiza TODOS los precios en la página.
+// Funciona sin rebuild — los cambios en el Admin son inmediatos.
 //
-// Uso en HTML:
-//   <span data-price-key="restaurant.monthly">24</span>€/mes
-//   <span data-price-key="tourism_activities.monthly">29</span>€/mes
-//   <span data-price-key="addon_communications.monthly">8</span>€/mes
-//   <span data-price-calc="restaurant.monthly+addon_communications.monthly">32</span>€/mes
-//   <span data-price-saving="restaurant.monthly">475</span>€  ← calcula ahorro vs competidor
+// ── Atributos disponibles ──────────────────────────────────────────────────
+// Precios propios:
+//   data-price-key="restaurant.monthly"           → 24
+//   data-price-calc="restaurant.monthly+addon_communications.monthly" → 32
+//   data-price-saving-annual="restaurant.monthly+addon_communications.monthly:475" → 5316
+//   data-price-vs="restaurant.monthly:475"        → 451  (diferencia mensual)
 //
-// data-price-saving="plan.field:competitorMonthly"  → competitorMonthly - precio = ahorro/mes
-// data-price-saving-annual="plan.field:475"         → (475 - precio) * 12 = ahorro/año
+// Competidores:
+//   data-competitor-key="thefork.monthly_fee"     → 175
+//   data-competitor-key="bokun.monthly_usd"       → 49
+//   data-competitor-key="booksy.commission_value" → 20
+//   data-competitor-source="thefork"              → "thefork.es · verificado"
+//   data-competitor-source-url="thefork"          → "https://..."
+//   data-competitor-date="thefork"                → "2026-04"
+//   data-competitor-total="thefork"               → coste total calculado (175 + comisiones)
 ---
 
 <script>
 (async () => {
   const API = 'https://api.agendadereservas.com/pricing';
 
-  // Valores fallback (se usan si la API falla o tarda)
-  const FALLBACK = {
+  // ── Fallbacks (idénticos al DEFAULT en server.js) ─────────────────────────
+  const FALLBACK_PRICING: Record<string, Record<string, number>> = {
     service_business:     { monthly: 19, yearly: 190 },
     restaurant:           { monthly: 24, yearly: 240 },
     tourism_activities:   { monthly: 29, yearly: 290 },
@@ -29,83 +34,148 @@
     addon_sms:            { monthly: 5,  yearly: 50  },
   };
 
-  // Resuelve "restaurant.monthly" → valor numérico del objeto pricing
-  function resolve(key: string, pricing: typeof FALLBACK): number | null {
-    const [plan, field] = key.split('.');
-    const p = pricing[plan as keyof typeof FALLBACK];
-    if (!p) return null;
-    return p[field as keyof typeof p] ?? null;
+  interface Competitor {
+    name: string;
+    vertical: string;
+    monthly_fee?: number;
+    monthly_usd?: number;
+    commission_type: string;
+    commission_value: number;
+    example_covers?: number;
+    example_employees?: number;
+    example_bookings?: number;
+    example_booking_value?: number;
+    currency: string;
+    source_url: string;
+    source_label: string;
+    verified_date: string;
+    notes: string;
   }
 
-  // Evalúa expresiones como "restaurant.monthly+addon_communications.monthly"
-  function evalCalc(expr: string, pricing: typeof FALLBACK): number | null {
-    const parts = expr.split('+').map(s => s.trim());
+  const FALLBACK_COMPETITORS: Record<string, Competitor> = {
+    thefork:    { name: 'TheFork Manager', vertical: 'restaurant', monthly_fee: 175, commission_type: 'per_cover', commission_value: 1.75, example_covers: 200, currency: 'EUR', source_url: 'https://www.thefork.es/restaurantes-de-thefork', source_label: 'thefork.es · verificado', verified_date: '2026-04', notes: '' },
+    restoo:     { name: 'Restoo', vertical: 'restaurant', monthly_fee: 39, commission_type: 'none', commission_value: 0, currency: 'EUR', source_url: 'https://www.restoo.es/precios', source_label: 'restoo.es · verificado', verified_date: '2026-04', notes: '' },
+    booksy:     { name: 'Booksy', vertical: 'services', monthly_fee: 35, commission_type: 'per_employee', commission_value: 20, example_employees: 3, currency: 'EUR', source_url: 'https://booksy.com/es-es/precios', source_label: 'booksy.com · verificado', verified_date: '2026-04', notes: '' },
+    bokun:      { name: 'Bókun', vertical: 'tourism', monthly_usd: 49, commission_type: 'per_booking_pct', commission_value: 1.5, example_bookings: 100, example_booking_value: 50, currency: 'USD', source_url: 'https://www.bokun.io/pricing', source_label: 'bokun.io · verificado', verified_date: '2026-04', notes: '' },
+    fareharbor: { name: 'FareHarbor', vertical: 'tourism', monthly_fee: 0, commission_type: 'per_booking_pct', commission_value: 6, example_bookings: 100, example_booking_value: 50, currency: 'USD', source_url: 'https://fareharbor.com/pricing/', source_label: 'fareharbor.com · verificado', verified_date: '2026-04', notes: '' },
+  };
+
+  // ── Helpers ───────────────────────────────────────────────────────────────
+
+  function resolvePricing(key: string, pricing: typeof FALLBACK_PRICING): number | null {
+    const [plan, field] = key.split('.');
+    return pricing[plan]?.[field] ?? null;
+  }
+
+  function evalCalc(expr: string, pricing: typeof FALLBACK_PRICING): number | null {
     let total = 0;
-    for (const part of parts) {
-      const v = resolve(part, pricing);
+    for (const part of expr.split('+').map(s => s.trim())) {
+      const v = resolvePricing(part, pricing);
       if (v === null) return null;
       total += v;
     }
     return total;
   }
 
-  // Actualiza el DOM con los precios obtenidos
-  function hydrate(pricing: typeof FALLBACK) {
-    // 1. data-price-key="plan.field"  → muestra el valor
+  function calcCompetitorTotal(c: Competitor): number {
+    const fee = c.monthly_fee ?? c.monthly_usd ?? 0;
+    let extra = 0;
+    if (c.commission_type === 'per_cover' && c.example_covers)
+      extra = c.commission_value * c.example_covers;
+    else if (c.commission_type === 'per_employee' && c.example_employees)
+      extra = c.commission_value * ((c.example_employees ?? 1) - 1);
+    else if (c.commission_type === 'per_booking_pct' && c.example_bookings && c.example_booking_value)
+      extra = (c.commission_value / 100) * c.example_bookings * c.example_booking_value;
+    return Math.round(fee + extra);
+  }
+
+  // ── Hidratación DOM ───────────────────────────────────────────────────────
+
+  function hydrate(
+    pricing: typeof FALLBACK_PRICING,
+    competitors: typeof FALLBACK_COMPETITORS
+  ) {
+    // 1. data-price-key="plan.field"
     document.querySelectorAll<HTMLElement>('[data-price-key]').forEach(el => {
-      const key = el.dataset.priceKey!;
-      const val = resolve(key, pricing);
-      if (val !== null) el.textContent = String(val);
+      const v = resolvePricing(el.dataset.priceKey!, pricing);
+      if (v !== null) el.textContent = String(v);
     });
 
-    // 2. data-price-calc="a+b+c"  → suma y muestra el total
+    // 2. data-price-calc="a+b"
     document.querySelectorAll<HTMLElement>('[data-price-calc]').forEach(el => {
-      const expr = el.dataset.priceCalc!;
-      const val = evalCalc(expr, pricing);
-      if (val !== null) el.textContent = String(val);
+      const v = evalCalc(el.dataset.priceCalc!, pricing);
+      if (v !== null) el.textContent = String(v);
     });
 
-    // 3. data-price-saving-annual="plan.field:competitorMonthly"
-    //    → (competitorMonthly - precio) × 12
+    // 3. data-price-saving-annual="calc:competitorMonthly"
     document.querySelectorAll<HTMLElement>('[data-price-saving-annual]').forEach(el => {
-      const raw = el.dataset.priceSavingAnnual!;
-      const [keyExpr, competitorStr] = raw.split(':');
-      const ours   = evalCalc(keyExpr, pricing);
+      const [keyExpr, competitorStr] = el.dataset.priceSavingAnnual!.split(':');
+      const ours = evalCalc(keyExpr, pricing);
       const theirs = parseFloat(competitorStr);
       if (ours !== null && !isNaN(theirs)) {
-        const annual = Math.round((theirs - ours) * 12);
-        el.textContent = annual.toLocaleString('es-ES');
+        el.textContent = Math.round((theirs - ours) * 12).toLocaleString('es-ES');
       }
     });
 
-    // 4. data-price-vs="plan.field:competitorMonthly"
-    //    → muestra "Ahorras X€/mes"
+    // 4. data-price-vs="calc:competitorMonthly"
     document.querySelectorAll<HTMLElement>('[data-price-vs]').forEach(el => {
-      const raw = el.dataset.priceVs!;
-      const [keyExpr, competitorStr] = raw.split(':');
-      const ours   = evalCalc(keyExpr, pricing);
+      const [keyExpr, competitorStr] = el.dataset.priceVs!.split(':');
+      const ours = evalCalc(keyExpr, pricing);
       const theirs = parseFloat(competitorStr);
       if (ours !== null && !isNaN(theirs)) {
-        const saving = Math.round(theirs - ours);
-        el.textContent = String(saving);
+        el.textContent = String(Math.round(theirs - ours));
       }
+    });
+
+    // 5. data-competitor-key="thefork.monthly_fee"
+    document.querySelectorAll<HTMLElement>('[data-competitor-key]').forEach(el => {
+      const [cKey, field] = el.dataset.competitorKey!.split('.');
+      const c = competitors[cKey];
+      if (c) {
+        const v = (c as unknown as Record<string, unknown>)[field];
+        if (v !== undefined) el.textContent = String(v);
+      }
+    });
+
+    // 6. data-competitor-source="thefork" → etiqueta fuente
+    document.querySelectorAll<HTMLElement>('[data-competitor-source]').forEach(el => {
+      const c = competitors[el.dataset.competitorSource!];
+      if (c) el.textContent = c.source_label;
+    });
+
+    // 7. data-competitor-source-url="thefork" → actualiza href del <a>
+    document.querySelectorAll<HTMLAnchorElement>('[data-competitor-source-url]').forEach(el => {
+      const c = competitors[el.dataset.competitorSourceUrl!];
+      if (c) el.href = c.source_url;
+    });
+
+    // 8. data-competitor-date="thefork" → fecha de verificación
+    document.querySelectorAll<HTMLElement>('[data-competitor-date]').forEach(el => {
+      const c = competitors[el.dataset.competitorDate!];
+      if (c) el.textContent = c.verified_date;
+    });
+
+    // 9. data-competitor-total="thefork" → coste total calculado
+    document.querySelectorAll<HTMLElement>('[data-competitor-total]').forEach(el => {
+      const c = competitors[el.dataset.competitorTotal!];
+      if (c) el.textContent = String(calcCompetitorTotal(c));
     });
   }
 
-  // Intenta obtener precios del API, usa fallback si falla
+  // ── Fetch con fallback ────────────────────────────────────────────────────
   try {
     const res = await fetch(API, { signal: AbortSignal.timeout(4000) });
     if (res.ok) {
       const data = await res.json();
       if (data?.pricing) {
-        hydrate(data.pricing);
+        hydrate(data.pricing, data.competitors || FALLBACK_COMPETITORS);
         return;
       }
     }
   } catch {
-    // Silencioso — usamos fallback
+    // API no disponible — usando fallback
   }
 
-  hydrate(FALLBACK);
+  hydrate(FALLBACK_PRICING, FALLBACK_COMPETITORS);
 })();
 </script>
