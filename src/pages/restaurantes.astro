@@ -15,22 +15,64 @@ const pageDescription = 'Sistema de reservas para restaurantes. Gestiona mesas, 
 
 const schema = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'Agenda de Reservas - Software para Restaurantes',
-  applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web',
-  offers: {
-    '@type': 'Offer',
-    price: '24',
-    priceCurrency: 'EUR',
-    priceValidUntil: '2026-12-31'
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '220'
-  }
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Agenda de Reservas - Software para Restaurantes',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      offers: {
+        '@type': 'Offer',
+        price: '24',
+        priceCurrency: 'EUR',
+        priceValidUntil: '2026-12-31'
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '220'
+      }
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Realmente ahorro dinero vs ElTenedor?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. ElTenedor cobra 12-15% por reserva. Si facturas 10.000€/mes en reservas online, pagas 1.200-1.500€ de comisión. Con Agenda de Reservas pagas 24€ fijos. Ahorro mensual: hasta 1.476€.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Puedo gestionar turnos de comida y cena?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí, configuras horarios específicos para cada turno con duración y cubiertos máximos independientes.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cómo funciona la lista de espera?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Cuando estás lleno, el cliente se apunta a lista de espera. Si hay cancelación, el sistema notifica automáticamente por email/WhatsApp al primero de la lista.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Se pueden pedir depósitos al reservar?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí, es opcional y configurable por tamaño de grupo o día de la semana. El pago se procesa mediante Stripe de forma segura.'
+          }
+        }
+      ]
+    }
+  ]
 };
+
 
 const restaurantFeatures = [
   {

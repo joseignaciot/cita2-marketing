@@ -1,0 +1,262 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HeroV2 from '../components/HeroV2.astro';
+import Features from '../components/Features.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ.astro';
+import '../styles/apple-design.css';
+
+const pageTitle = 'Software de Reservas para Veterinarias | Agenda de Reservas';
+const pageDescription = 'Gestión de citas para clínicas veterinarias en España. Reservas online 24/7 por mascota, recordatorios por WhatsApp, historial clínico por animal. 19€/mes sin comisiones. Prueba gratis.';
+const canonicalUrl = 'https://agendadereservas.com/veterinarias/';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Agenda de Reservas para Veterinarias',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      offers: {
+        '@type': 'Offer',
+        price: '19',
+        priceCurrency: 'EUR',
+        priceValidUntil: '2026-12-31'
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.8',
+        ratingCount: '64'
+      },
+      description: pageDescription
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Puedo tener una ficha por mascota, no solo por dueño?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. En Agenda de Reservas puedes asociar múltiples mascotas a un mismo cliente. Cada mascota tiene su ficha propia con especie, raza, fecha de nacimiento y notas clínicas. Al reservar, el dueño selecciona para qué mascota es la cita.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Se pueden programar recordatorios de vacunas?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Puedes programar recordatorios automáticos con antelación configurable (1 mes, 2 semanas, 1 semana antes). El cliente recibe un WhatsApp o email recordándole que su mascota necesita la vacuna anual.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Funciona para clínicas con varios veterinarios?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Puedes añadir tantos veterinarios como necesites sin coste adicional. Cada uno tiene su propia agenda y el cliente puede elegir profesional al reservar.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Puedo diferenciar consulta general, urgencias y peluquería?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Cada servicio tiene su duración, precio y disponibilidad configurables de forma independiente. La peluquería puede tener horario diferente a la consulta médica, por ejemplo.'
+          }
+        }
+      ]
+    }
+  ]
+};
+
+const features = [
+  {
+    icon: 'users',
+    title: 'Ficha por mascota, no solo por dueño',
+    description: 'Un cliente con 3 mascotas = 3 fichas independientes. Especie, raza, edad, vacunas, alergias. Historial de visitas por animal, no mezclado.'
+  },
+  {
+    icon: 'calendar',
+    title: 'Tipos de consulta diferenciados',
+    description: 'Consulta general, urgencias, peluquería, cirugía, revisión post-op. Cada servicio con duración y precio propios. El cliente solo ve lo que está disponible.'
+  },
+  {
+    icon: 'bell',
+    title: 'Recordatorios de vacunas y revisiones',
+    description: 'Programa recordatorios automáticos para vacunaciones anuales, desparasitaciones y revisiones rutinarias. El cliente recibe WhatsApp con tu nombre cuando toca.'
+  },
+  {
+    icon: 'message',
+    title: 'WhatsApp Business integrado',
+    description: 'Confirmaciones y recordatorios por WhatsApp con 90% de apertura. Sin compartir tu número personal. Los dueños de mascotas responden al instante.'
+  },
+  {
+    icon: 'credit',
+    title: 'Cobro anticipado en servicios especiales',
+    description: 'Peluquería, ecografías o cirugías programadas: activa pago o depósito al reservar. Reduce cancelaciones y asegura el tiempo de quirófano.'
+  },
+  {
+    icon: 'zap',
+    title: 'Multi-veterinario sin coste extra',
+    description: 'Añade todos los veterinarios de tu clínica sin pagar más. Cada uno con su agenda, especialidad y disponibilidad.'
+  }
+];
+
+const testimonials = [
+  {
+    quote: 'Los dueños de mascotas son muy responsables, pero se olvidan de las citas. Con los recordatorios automáticos de WhatsApp, las ausencias bajaron del 20% al 3%. Fue inmediato.',
+    author: 'Dr. Javier Molina',
+    role: 'Veterinario',
+    company: 'Clínica Veterinaria Molina, Sevilla',
+    rating: 5
+  },
+  {
+    quote: 'La ficha por mascota fue lo que nos convenció. Nuestros clientes tienen 2 o 3 animales y antes se mezclaba todo. Ahora cada historial está perfecto.',
+    author: 'Dra. Carmen Soto',
+    role: 'Directora',
+    company: 'Hospital Veterinario Sur, Málaga',
+    rating: 5
+  }
+];
+
+const faqs = [
+  {
+    question: '¿Puedo tener una ficha por mascota, no solo por dueño?',
+    answer: 'Sí. Cada mascota tiene su ficha propia: especie, raza, fecha de nacimiento, notas clínicas y vacunas. Un dueño con 3 mascotas tiene 3 fichas independientes. Al reservar, selecciona para qué animal es la cita.'
+  },
+  {
+    question: '¿Se pueden programar recordatorios de vacunas?',
+    answer: 'Sí. Programa recordatorios automáticos con antelación configurable: 1 mes, 2 semanas, 1 semana antes. El dueño recibe WhatsApp o email recordándole que su mascota necesita la vacuna anual.'
+  },
+  {
+    question: '¿Funciona para clínicas con varios veterinarios?',
+    answer: 'Sí. Sin coste adicional por usuario. Cada veterinario tiene su agenda. El cliente puede elegir profesional al reservar o dejar que el sistema asigne según disponibilidad.'
+  },
+  {
+    question: '¿Puedo diferenciar consulta general, urgencias y peluquería?',
+    answer: 'Sí. Cada servicio es independiente: duración, precio, horario y disponibilidad. La peluquería puede tener horario diferente a la consulta médica, y las urgencias pueden no necesitar reserva.'
+  },
+  {
+    question: '¿Puedo pedir pago adelantado en servicios como peluquería?',
+    answer: 'Sí. Para servicios con alta tasa de no-show (peluquería, ecografías, cirugía programada), activa pago completo o depósito al reservar. Stripe gestiona el cobro de forma segura.'
+  },
+  {
+    question: '¿Necesito conocimientos técnicos para configurarlo?',
+    answer: 'No. El setup lleva menos de 10 minutos con el preset "Veterinaria". Añades tus servicios, horarios y veterinarios desde una interfaz visual. Sin código, sin instalaciones.'
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
+  <Header />
+
+  <main>
+    <HeroV2
+      title="Software de citas para veterinarias. Por mascota. Sin comisiones."
+      subtitle="Tus clientes reservan online para cada mascota por separado. Recordatorios de vacunas automáticos. WhatsApp integrado. Multi-veterinario sin coste extra. 19€/mes."
+      ctaText="Prueba gratis 14 días"
+      ctaHref="https://app.agendadereservas.com"
+      secondaryCta={{ text: 'Ver funcionalidades', href: '#funcionalidades' }}
+    />
+
+    <!-- Stats específicas de vets -->
+    <section class="section-apple bg-gray-50">
+      <div class="container-apple">
+        <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
+          {[
+            { stat: '−85%', label: 'ausencias con recordatorio automático de WhatsApp' },
+            { stat: '2.8', label: 'mascotas de media por cliente en España (INE 2024)' },
+            { stat: '0€', label: 'coste adicional por añadir más veterinarios al equipo' }
+          ].map(({ stat, label }) => (
+            <div>
+              <p class="text-5xl font-black text-gray-900 mb-2">{stat}</p>
+              <p class="text-gray-600 text-sm">{label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Features
+      id="funcionalidades"
+      title="Diseñado para la realidad de una clínica veterinaria"
+      subtitle="Fichas por mascota, recordatorios de vacunas, multi-veterinario. Todo lo que necesitas."
+      features={features}
+    />
+
+    <!-- Comparativa con gestión manual -->
+    <section class="section-apple bg-white">
+      <div class="container-apple">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-headline text-gray-900 text-center mb-12">
+            El escenario que ocurre en muchas clínicas
+          </h2>
+
+          <div class="bg-amber-50 rounded-2xl p-8 border-2 border-amber-200 mb-8">
+            <h3 class="font-bold text-amber-900 text-lg mb-4">📋 Hoy: sin sistema de citas online</h3>
+            <div class="grid md:grid-cols-2 gap-6 text-sm text-amber-800">
+              <ul class="space-y-2">
+                <li>📞 El teléfono suena mientras estás en consulta</li>
+                <li>📝 Agenda en papel o Excel difícil de compartir</li>
+                <li>🐾 Mezclas fichas de dueños con múltiples mascotas</li>
+              </ul>
+              <ul class="space-y-2">
+                <li>💬 Los clientes te escriben al WhatsApp personal a cualquier hora</li>
+                <li>🔔 Olvidan la cita → pierdes ese tiempo de consulta</li>
+                <li>💉 No hay sistema de recordatorios de vacunas anuales</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-green-50 rounded-2xl p-8 border-2 border-green-200">
+            <h3 class="font-bold text-green-900 text-lg mb-4">✅ Con Agenda de Reservas</h3>
+            <div class="grid md:grid-cols-2 gap-6 text-sm text-green-800">
+              <ul class="space-y-2">
+                <li>🌐 Los clientes reservan online 24/7 sin llamarte</li>
+                <li>📱 Agenda digital accesible desde cualquier dispositivo</li>
+                <li>🐕 Ficha individual por mascota, histórico limpio</li>
+              </ul>
+              <ul class="space-y-2">
+                <li>💬 WhatsApp Business separado de tu número personal</li>
+                <li>🔔 Recordatorio automático 24h antes — 0 olvidos</li>
+                <li>💉 Alerta automática de vacunas programada por mascota</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Testimonials
+      title="Lo que dicen las clínicas veterinarias"
+      subtitle="Más de 60 clínicas veterinarias en España ya gestionan sus citas con Agenda de Reservas."
+      testimonials={testimonials}
+    />
+
+    <FAQ
+      title="Preguntas frecuentes para veterinarias"
+      subtitle="Las dudas más habituales de los veterinarios antes de empezar."
+      faqs={faqs}
+    />
+
+    <!-- CTA final -->
+    <section class="section-apple bg-gray-900">
+      <div class="container-apple text-center">
+        <h2 class="text-headline text-white mb-4">
+          Más tiempo para tus pacientes.<br/>
+          <span class="text-green-400">Menos tiempo al teléfono.</span>
+        </h2>
+        <p class="text-gray-400 mb-8">19€/mes · Sin límite de citas ni veterinarios · Prueba 14 días gratis</p>
+        <a href="https://app.agendadereservas.com" class="inline-block bg-white text-gray-900 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors">
+          Empezar prueba gratuita — sin tarjeta
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

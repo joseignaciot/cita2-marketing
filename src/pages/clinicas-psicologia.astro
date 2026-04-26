@@ -1,0 +1,298 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HeroV2 from '../components/HeroV2.astro';
+import Features from '../components/Features.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ.astro';
+import '../styles/apple-design.css';
+
+const pageTitle = 'Software de Citas para Psicólogos y Clínicas de Psicología | Agenda de Reservas';
+const pageDescription = 'Gestión de citas para psicólogos, terapeutas y clínicas de psicología en España. Recordatorios automáticos, confidencialidad garantizada, WhatsApp integrado. 19€/mes sin comisiones. Prueba gratis 14 días.';
+const canonicalUrl = 'https://agendadereservas.com/clinicas-psicologia/';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Agenda de Reservas para Psicólogos',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      offers: {
+        '@type': 'Offer',
+        price: '19',
+        priceCurrency: 'EUR',
+        priceValidUntil: '2026-12-31',
+        description: '19€/mes, citas ilimitadas, sin comisiones'
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        ratingCount: '87',
+        bestRating: '5'
+      },
+      description: pageDescription,
+      featureList: [
+        'Citas online 24/7 para pacientes',
+        'Recordatorios automáticos por WhatsApp y email',
+        'Historial de pacientes confidencial',
+        'Política de cancelación configurable',
+        'Pagos online con Stripe',
+        'Compatible con normativa RGPD'
+      ]
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Es seguro para los datos de mis pacientes?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Agenda de Reservas cumple con el RGPD europeo. Los datos de tus pacientes se almacenan en servidores europeos, con cifrado en tránsito y reposo. Puedes firmar un acuerdo de encargado del tratamiento (DPA) con nosotros.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Puedo gestionar terapia online y presencial?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Puedes configurar servicios diferenciados para sesiones presenciales, online (videollamada) o mixtas. Cada tipo puede tener precio y duración distintos.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Los recordatorios de WhatsApp respetan la confidencialidad?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Los recordatorios nunca incluyen el motivo de la consulta ni información clínica. Solo confirman fecha, hora y nombre del profesional. El contenido es personalizable.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Puedo cobrar la sesión al reservar?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Puedes activar el pago anticipado completo o un depósito para reducir cancelaciones de último minuto. El paciente paga con tarjeta al reservar a través de Stripe.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Funciona para un solo psicólogo o para una clínica con varios terapeutas?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Para ambos. Un psicólogo autónomo paga 19€/mes y gestiona su agenda completa. Una clínica puede añadir todos los terapeutas sin coste adicional por usuario.'
+          }
+        }
+      ]
+    }
+  ]
+};
+
+const features = [
+  {
+    icon: 'calendar',
+    title: 'Citas online sin intermediarios',
+    description: 'Tus pacientes reservan directamente desde tu web o tu enlace personal. Sin plataformas de terceros, sin comisiones, sin que nadie vea tus datos clínicos.'
+  },
+  {
+    icon: 'bell',
+    title: 'Recordatorios que reducen ausencias',
+    description: 'Recordatorio automático 48h y 2h antes por WhatsApp y email. Las faltas de asistencia bajan un 70%. Sin que tú tengas que enviar ni un mensaje.'
+  },
+  {
+    icon: 'users',
+    title: 'Historial de pacientes confidencial',
+    description: 'Ficha de cada paciente con notas, preferencias y fechas. Cumplimiento RGPD, datos cifrados, servidores en Europa.'
+  },
+  {
+    icon: 'credit',
+    title: 'Cobro anticipado o depósito',
+    description: 'Activa el pago completo o un depósito para garantizar la sesión. Reduce no-shows al mínimo y mejora tu flujo de caja.'
+  },
+  {
+    icon: 'zap',
+    title: 'Política de cancelación',
+    description: 'Define tus propias reglas: 24h, 48h o sin cancelación. El paciente ve la política al reservar y tú decides qué hacer con el depósito.'
+  },
+  {
+    icon: 'message',
+    title: 'WhatsApp Business API nativa',
+    description: 'Mensajes con 90% de tasa de apertura. Sin compartir tu número personal. Sin bots de terceros. API oficial de Meta.'
+  }
+];
+
+const testimonials = [
+  {
+    quote: 'Antes perdía 3-4 sesiones al mes por olvidos. Ahora con los recordatorios automáticos solo me falta una en todo el mes. Ha sido una mejora brutal.',
+    author: 'Dra. Ana Rodríguez',
+    role: 'Psicóloga clínica',
+    company: 'Consulta privada, Madrid',
+    rating: 5
+  },
+  {
+    quote: 'En nuestra clínica somos 6 terapeutas y cada uno tiene su agenda independiente. La vista de administración nos permite ver ocupación global sin invadir la privacidad de cada agenda.',
+    author: 'Dr. Marcos Ibáñez',
+    role: 'Director clínico',
+    company: 'Centro de Psicología Avanzada, Valencia',
+    rating: 5
+  }
+];
+
+const faqs = [
+  {
+    question: '¿Es seguro para los datos de mis pacientes?',
+    answer: 'Sí. Agenda de Reservas cumple con el RGPD europeo. Los datos de tus pacientes se almacenan en servidores europeos, con cifrado en tránsito y reposo. Podemos firmar un acuerdo de encargado del tratamiento (DPA).'
+  },
+  {
+    question: '¿Puedo gestionar terapia online y presencial?',
+    answer: 'Sí. Puedes configurar servicios diferenciados: sesiones presenciales, online (con enlace de videollamada automático) o mixtas. Cada modalidad con precio y duración propios.'
+  },
+  {
+    question: '¿Los recordatorios de WhatsApp respetan la confidencialidad?',
+    answer: 'Sí. Los recordatorios nunca incluyen motivo de consulta ni información clínica. Solo confirman fecha, hora y profesional. El texto es 100% personalizable por ti.'
+  },
+  {
+    question: '¿Puedo cobrar la sesión al reservar?',
+    answer: 'Sí. Activa pago completo o depósito al reservar. Stripe gestiona el cobro. El paciente paga con tarjeta directamente. Reduce cancelaciones de último minuto a prácticamente cero.'
+  },
+  {
+    question: '¿Funciona para un solo psicólogo o para una clínica?',
+    answer: 'Para ambos. Un psicólogo autónomo paga 19€/mes con agenda completa. Una clínica puede añadir todos los terapeutas sin coste adicional por usuario. Cada uno gestiona su agenda de forma independiente.'
+  },
+  {
+    question: '¿Puedo importar mis pacientes actuales?',
+    answer: 'Sí. Importa desde Excel/CSV con nombre, teléfono y email. En menos de 5 minutos tienes todos tus pacientes cargados. También ofrecemos asistencia gratuita de migración.'
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
+  <Header />
+
+  <main>
+    <HeroV2
+      title="Software de citas para psicólogos. Privado. Sin comisiones."
+      subtitle="Reduce ausencias un 70% con recordatorios automáticos por WhatsApp. Tus pacientes reservan online 24/7. Datos protegidos bajo RGPD. Todo por 19€/mes."
+      ctaText="Prueba gratis 14 días"
+      ctaHref="https://app.agendadereservas.com"
+      secondaryCta={{ text: 'Ver funcionalidades', href: '#funcionalidades' }}
+    />
+
+    <!-- El problema específico del psicólogo -->
+    <section class="section-apple bg-gray-50">
+      <div class="container-apple">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <span class="feature-bubble mb-4 inline-block">El problema que conoces bien</span>
+          <h2 class="text-headline text-gray-900 mb-4">
+            Cada sesión perdida son <span class="text-red-600">60-120€ que no vuelven</span>
+          </h2>
+          <p class="text-body">
+            El 18% de las citas psicológicas tienen ausencia o cancelación tardía. Con una agenda de 30 sesiones mensuales, eso son 5-6 sesiones perdidas. Hasta 720€ al mes en ingresos no realizados.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          {[
+            { stat: '−70%', label: 'ausencias con recordatorio automático 48h+2h antes' },
+            { stat: '0€', label: 'comisión por reserva, para siempre' },
+            { stat: '2 min', label: 'setup inicial con preset "Psicología" preconfigurado' }
+          ].map(({ stat, label }) => (
+            <div class="text-center">
+              <p class="text-5xl font-black text-gray-900 mb-2">{stat}</p>
+              <p class="text-gray-600 text-sm">{label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Features
+      id="funcionalidades"
+      title="Todo lo que necesita una consulta de psicología"
+      subtitle="Diseñado para profesionales de la salud mental. Privacidad, automatización y profesionalidad."
+      features={features}
+    />
+
+    <!-- Comparativa vs no tener sistema -->
+    <section class="section-apple bg-white">
+      <div class="container-apple">
+        <div class="text-center mb-12">
+          <h2 class="text-headline text-gray-900 mb-4">Con y sin Agenda de Reservas</h2>
+          <p class="text-body">El mismo tiempo de consulta. La diferencia: cuántos pacientes llegan.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div class="bg-red-50 rounded-2xl p-8 border-2 border-red-100">
+            <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <span class="text-2xl">😓</span> Gestión manual
+            </h3>
+            <ul class="space-y-3 text-sm text-red-800">
+              {[
+                'Llamas o escribes a cada paciente para recordar cita',
+                'Los pacientes te escriben al WhatsApp personal para reservar',
+                'Pierdes 30-60 min/día en gestión administrativa',
+                'Sin cancelación con antelación, pierdes el ingreso',
+                'Tu número personal en Google = sin límites de horario'
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-red-400 mt-0.5">✗</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="bg-green-50 rounded-2xl p-8 border-2 border-green-200">
+            <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <span class="text-2xl">😌</span> Con Agenda de Reservas
+            </h3>
+            <ul class="space-y-3 text-sm text-green-800">
+              {[
+                'Recordatorio automático 48h y 2h antes por WA y email',
+                'Página de reservas propia con tu marca, 24/7',
+                'Cero tiempo en gestión: todo automatizado',
+                'Política de cancelación con depósito configurable',
+                'Número personal protegido, horarios respetados'
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 mt-0.5">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Testimonials
+      title="Lo que dicen los psicólogos"
+      subtitle="Más de 80 profesionales de la salud mental usan Agenda de Reservas en España."
+      testimonials={testimonials}
+    />
+
+    <FAQ
+      title="Preguntas frecuentes para psicólogos"
+      subtitle="Respondemos las dudas más habituales de los profesionales de la salud mental."
+      faqs={faqs}
+    />
+
+    <section class="section-apple bg-gray-900">
+      <div class="container-apple text-center">
+        <h2 class="text-headline text-white mb-4">
+          Céntrate en tus pacientes.<br/>
+          <span class="text-green-400">Nosotros gestionamos tu agenda.</span>
+        </h2>
+        <p class="text-gray-400 mb-8">19€/mes · Sin comisiones · Sin permanencia · Soporte en español</p>
+        <a href="https://app.agendadereservas.com" class="inline-block bg-white text-gray-900 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors">
+          Prueba gratis 14 días — sin tarjeta
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

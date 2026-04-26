@@ -1,0 +1,389 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import '../../styles/apple-design.css';
+
+const pageTitle = 'Booksy vs Agenda de Reservas (2026) — Comparativa Honesta con Precios Reales';
+const pageDescription = 'Comparativa honesta Booksy vs Agenda de Reservas. Precios reales, ventajas y desventajas de cada uno. Booksy cobra 20-35€ por empleado/mes. Agenda de Reservas: precio fijo para todo tu equipo + WhatsApp integrado.';
+const canonicalUrl = 'https://agendadereservas.com/vs/booksy/';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Booksy cobra por empleado?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Booksy cobra entre 20€ y 35€ por empleado al mes. Una peluquería con 3 empleados paga entre 60€ y 105€/mes. Agenda de Reservas cobra un precio fijo único sin límite de empleados.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Booksy tiene WhatsApp Business integrado?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'No. Booksy no integra WhatsApp Business API. Solo envía recordatorios por email y notificaciones push de su app. Agenda de Reservas integra WhatsApp Business API oficial con mensajes que llegan con un 90% de tasa de apertura.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cuánto ahorra una peluquería con 3 empleados al cambiar de Booksy a Agenda de Reservas?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Entre 492€ y 1.032€ al año. Booksy: 60-105€/mes × 12 = 720-1.260€/año. Agenda de Reservas: 19€/mes × 12 = 228€/año.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Qué ventajas tiene Booksy sobre Agenda de Reservas?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Booksy tiene un marketplace propio con millones de usuarios donde clientes nuevos pueden descubrirte. También tiene una app nativa para consumidores muy extendida. Agenda de Reservas no tiene marketplace, está pensada para gestionar tu propia base de clientes sin intermediarios.'
+          }
+        }
+      ]
+    },
+    {
+      '@type': 'Article',
+      headline: pageTitle,
+      description: pageDescription,
+      datePublished: '2026-04-01',
+      dateModified: '2026-04-27',
+      author: { '@type': 'Organization', name: 'Agenda de Reservas' }
+    }
+  ]
+};
+
+const tablaComparativa = [
+  { feature: 'Precio base',              booksy: '20-35€/empleado/mes',  agenda: '19€/mes total equipo',       winner: 'agenda' },
+  { feature: '1 empleado',               booksy: '20-35€/mes',            agenda: '19€/mes',                    winner: 'empate' },
+  { feature: '2 empleados',              booksy: '40-70€/mes',            agenda: '19€/mes',                    winner: 'agenda' },
+  { feature: '3 empleados',              booksy: '60-105€/mes',           agenda: '19€/mes',                    winner: 'agenda' },
+  { feature: '5 empleados',              booksy: '100-175€/mes',          agenda: '19€/mes',                    winner: 'agenda' },
+  { feature: 'WhatsApp Business API',    booksy: '❌ No',                  agenda: '✅ Sí (+8€/mes)',             winner: 'agenda' },
+  { feature: 'Marketplace de clientes',  booksy: '✅ App Booksy (28M us.)', agenda: '❌ No tiene',               winner: 'booksy' },
+  { feature: 'App nativa para clientes', booksy: '✅ App iOS/Android',     agenda: '⚡ Web PWA (sin instalar)', winner: 'booksy' },
+  { feature: 'Reseñas públicas en plat.', booksy: '✅ Sí (visibles en app)', agenda: '⚠️ Via Google Business',  winner: 'booksy' },
+  { feature: 'Soporte en español',       booksy: '⚠️ Limitado',           agenda: '✅ Humano <2h',              winner: 'agenda' },
+  { feature: 'Datos en Europa (RGPD)',   booksy: '⚠️ EE.UU. (Booksy Inc.)', agenda: '✅ Servidores EU',         winner: 'agenda' },
+  { feature: 'Multi-sector',             booksy: '⚠️ Solo belleza/salud',  agenda: '✅ Servicios, restaurantes, turismo', winner: 'agenda' },
+  { feature: 'Pagos online',             booksy: '✅ Sí',                  agenda: '✅ Sí (+8€)',                winner: 'empate' },
+  { feature: 'IA de reservas en tu web', booksy: '❌ No',                  agenda: '✅ Chat IA 24/7',            winner: 'agenda' },
+  { feature: 'Precio en euros fijos',    booksy: '⚠️ Variable',           agenda: '✅ Euros, sin sorpresas',    winner: 'agenda' },
+];
+
+// Donde gana Booksy (honesto)
+const booksyWins = [
+  {
+    icon: '🌍',
+    title: 'Marketplace con 28 millones de usuarios',
+    desc: 'Booksy tiene una app de consumo descargada por millones. Un cliente que nunca ha oído hablar de ti puede encontrarte ahí y reservar. Es captación pasiva de clientes nuevos.',
+    howWeOvercome: 'Integramos con Google Business Profile para que te encuentren en Google Maps y búsquedas. Más del 80% de las búsquedas locales pasan por Google, no por apps de terceros. Además, nuestro Chat IA en tu web convierte visitas en reservas 24/7.'
+  },
+  {
+    icon: '📱',
+    title: 'App nativa para consumidores',
+    desc: 'La app de Booksy tiene miles de reseñas en App Store y Play Store. Para algunos clientes, tener una app instalada aumenta la fidelización.',
+    howWeOvercome: 'Nuestra página de reservas es PWA (Progressive Web App): el cliente la añade a su pantalla de inicio y funciona exactamente como una app, sin necesidad de ir a la App Store. Mismo resultado, menos fricción.'
+  },
+  {
+    icon: '⭐',
+    title: 'Sistema de reseñas públicas integrado',
+    desc: 'Los clientes pueden dejar reseñas directamente en Booksy, visibles para otros usuarios que buscan servicios. Genera prueba social dentro de la plataforma.',
+    howWeOvercome: 'Enviamos automáticamente un WhatsApp post-cita pidiendo reseña en Google. Las reseñas de Google son más valiosas para el SEO local y tienen más alcance que las de Booksy. Puedes acumular más reseñas en menos tiempo.'
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
+  <Header />
+
+  <main>
+
+    <!-- Hero -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple">
+        <div class="text-center max-w-3xl mx-auto">
+          <span class="feature-bubble mb-4 inline-block">Comparativa verificada · Abril 2026 · Honesta</span>
+          <h1 class="text-headline text-gray-900 mb-6">
+            Booksy vs Agenda de Reservas:<br/>
+            <span class="text-blue-600">Con precios reales y sin esconder nada</span>
+          </h1>
+          <p class="text-body text-lg mb-3">
+            Hemos analizado las dos herramientas a fondo. Esta comparativa muestra dónde gana cada una — <strong>incluyendo lo que Booksy hace mejor que nosotros.</strong>
+          </p>
+          <p class="text-sm text-gray-500 mb-8">
+            Porque creemos que la honestidad ayuda más que el marketing.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://app.agendadereservas.com" class="btn-apple-primary px-8 py-4">
+              Probar Agenda de Reservas gratis →
+            </a>
+            <a href="#comparativa" class="btn-apple-secondary px-8 py-4">
+              Ver comparativa completa ↓
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Veredicto rápido -->
+    <section class="section-apple bg-gray-50">
+      <div class="container-apple">
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
+
+          <!-- Dónde ganamos nosotros -->
+          <div class="bg-white rounded-2xl p-7 border-2 border-blue-200 shadow-sm">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-lg">🎯</div>
+              <div>
+                <h2 class="font-bold text-gray-900">Donde gana Agenda de Reservas</h2>
+                <p class="text-xs text-blue-600">Para la mayoría de negocios</p>
+              </div>
+            </div>
+            <ul class="space-y-3">
+              {[
+                { punto: 'Precio fijo', detalle: '19€/mes para todo tu equipo vs 20-35€ por empleado en Booksy' },
+                { punto: 'WhatsApp Business API', detalle: 'Recordatorios que llegan. Booksy solo usa email y push' },
+                { punto: 'Multi-sector', detalle: 'Restaurantes y turismo incluidos. Booksy solo hace belleza' },
+                { punto: 'Chat IA en tu web', detalle: 'Tu cliente reserva hablando con una IA. Booksy no lo tiene' },
+                { punto: 'Datos en Europa', detalle: 'RGPD real. Booksy Inc. es empresa de EE.UU.' },
+                { punto: 'Soporte en español', detalle: 'Respuesta humana en <2h. En Booksy el soporte es limitado' },
+              ].map(({ punto, detalle }) => (
+                <li class="flex items-start gap-2.5">
+                  <span class="text-green-500 font-bold mt-0.5 flex-shrink-0">✓</span>
+                  <div>
+                    <span class="text-sm font-semibold text-gray-800">{punto}: </span>
+                    <span class="text-sm text-gray-600">{detalle}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Dónde gana Booksy (honesto) -->
+          <div class="bg-white rounded-2xl p-7 border-2 border-orange-200 shadow-sm">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-lg">⚡</div>
+              <div>
+                <h2 class="font-bold text-gray-900">Donde gana Booksy</h2>
+                <p class="text-xs text-orange-600">Siendo honestos</p>
+              </div>
+            </div>
+            <ul class="space-y-3">
+              {[
+                { punto: 'Marketplace', detalle: 'App de Booksy con 28M de usuarios que buscan negocios de belleza' },
+                { punto: 'App nativa', detalle: 'App iOS/Android para consumidores muy conocida en España' },
+                { punto: 'Reseñas en plataforma', detalle: 'Sistema de reseñas público dentro de la app de Booksy' },
+                { punto: 'Marca reconocida', detalle: '500.000+ negocios en el mundo le dan reconocimiento' },
+              ].map(({ punto, detalle }) => (
+                <li class="flex items-start gap-2.5">
+                  <span class="text-orange-400 font-bold mt-0.5 flex-shrink-0">→</span>
+                  <div>
+                    <span class="text-sm font-semibold text-gray-800">{punto}: </span>
+                    <span class="text-sm text-gray-600">{detalle}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <p class="text-xs text-gray-400 mt-5 italic">
+              Si tu principal objetivo es conseguir clientes nuevos desde cero y no tienes base propia, Booksy puede ser complementario. Pero como software de gestión, sale mucho más caro.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Coste real por tamaño de equipo -->
+    <section class="section-apple bg-white">
+      <div class="container-apple">
+        <div class="text-center mb-12">
+          <h2 class="text-headline text-gray-900 mb-4">El número que más importa: ¿cuánto pagas realmente?</h2>
+          <p class="text-body">Booksy cobra por empleado. Cuanto más crece tu equipo, más se dispara el precio.</p>
+        </div>
+        <div class="grid md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          {[
+            { size: '1 empleado',  booksy: '20-35€/mes',   agenda: '19€/mes',  ahorro: 'Parecido', color: 'gray' },
+            { size: '2 empleados', booksy: '40-70€/mes',   agenda: '19€/mes',  ahorro: 'Ahorras hasta 51€/mes', color: 'blue' },
+            { size: '3 empleados', booksy: '60-105€/mes',  agenda: '19€/mes',  ahorro: 'Ahorras hasta 86€/mes', color: 'blue' },
+            { size: '5 empleados', booksy: '100-175€/mes', agenda: '19€/mes',  ahorro: 'Ahorras hasta 156€/mes', color: 'green' },
+          ].map(({ size, booksy, agenda, ahorro, color }) => (
+            <div class="bg-white rounded-2xl p-5 border border-gray-200 text-center shadow-sm">
+              <p class="font-bold text-gray-900 mb-4">{size}</p>
+              <div class="mb-2">
+                <p class="text-xs text-gray-400 mb-0.5">Booksy</p>
+                <p class="text-red-600 font-bold text-sm">{booksy}</p>
+              </div>
+              <div class="mb-3">
+                <p class="text-xs text-gray-400 mb-0.5">Agenda de Reservas</p>
+                <p class="text-green-600 font-bold">{agenda}</p>
+              </div>
+              <span class={`text-xs px-2 py-1 rounded-full font-semibold ${color === 'green' ? 'bg-green-100 text-green-800' : color === 'blue' ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-600'}`}>
+                {ahorro}
+              </span>
+            </div>
+          ))}
+        </div>
+        <p class="text-center text-xs text-gray-400 mt-5">Precios Booksy verificados en booksy.com/es-es — abril 2026</p>
+      </div>
+    </section>
+
+    <!-- Tabla completa -->
+    <section id="comparativa" class="section-apple bg-gray-50">
+      <div class="container-apple">
+        <h2 class="text-headline text-gray-900 text-center mb-12">Comparativa feature a feature</h2>
+        <div class="max-w-4xl mx-auto overflow-x-auto">
+          <table class="w-full text-sm bg-white rounded-2xl overflow-hidden shadow-sm">
+            <thead>
+              <tr class="border-b-2 border-gray-100">
+                <th class="text-left py-4 px-5 text-gray-600 font-semibold bg-gray-50">Característica</th>
+                <th class="text-center py-4 px-5 text-gray-600 font-semibold bg-gray-50">Booksy</th>
+                <th class="text-center py-4 px-5 text-blue-700 font-semibold bg-blue-50">Agenda de Reservas</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tablaComparativa.map(({ feature, booksy, agenda, winner }) => (
+                <tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                  <td class="py-3 px-5 font-medium text-gray-800">{feature}</td>
+                  <td class={`py-3 px-5 text-center text-sm ${winner === 'booksy' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-red-500' : 'text-gray-600'}`}>
+                    {booksy}
+                  </td>
+                  <td class={`py-3 px-5 text-center text-sm bg-blue-50/40 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'booksy' ? 'text-red-400' : 'text-gray-600'}`}>
+                    {agenda}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Donde gana Booksy + Cómo lo superamos -->
+    <section class="section-apple bg-white">
+      <div class="container-apple">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <h2 class="text-headline text-gray-900 mb-4">
+            Las 3 ventajas reales de Booksy<br/>
+            <span class="text-gray-500">y cómo las estamos superando</span>
+          </h2>
+          <p class="text-body">Ser honestos sobre lo que Booksy hace bien nos permite trabajar en superarlo. Aquí está nuestro planteamiento real.</p>
+        </div>
+
+        <div class="space-y-6 max-w-4xl mx-auto">
+          {booksyWins.map(({ icon, title, desc, howWeOvercome }) => (
+            <div class="grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
+              <!-- Lo que Booksy hace bien -->
+              <div class="bg-orange-50 p-7 border-r border-orange-100">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-2xl">{icon}</span>
+                  <div>
+                    <span class="text-xs font-bold text-orange-600 uppercase tracking-wide">Booksy gana aquí</span>
+                    <h3 class="font-bold text-gray-900">{title}</h3>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700 leading-relaxed">{desc}</p>
+              </div>
+              <!-- Cómo lo superamos -->
+              <div class="bg-blue-50 p-7">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="text-xs font-bold text-blue-600 uppercase tracking-wide">Nuestra respuesta</span>
+                </div>
+                <p class="text-sm text-gray-700 leading-relaxed">{howWeOvercome}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Veredicto final -->
+        <div class="max-w-4xl mx-auto mt-12 bg-gray-900 rounded-2xl p-8">
+          <h3 class="text-white font-bold text-xl mb-4">El veredicto honesto</h3>
+          <div class="grid md:grid-cols-2 gap-6 text-sm">
+            <div>
+              <p class="text-green-400 font-semibold mb-2">Elige Agenda de Reservas si...</p>
+              <ul class="text-gray-300 space-y-1.5">
+                {[
+                  'Tienes 2 o más empleados en el equipo',
+                  'Quieres WhatsApp Business integrado de verdad',
+                  'También gestionas restaurante o turismo',
+                  'Tus datos en Europa es importante (RGPD)',
+                  'Quieres precio predecible sin sorpresas',
+                  'Buscas asistente IA de reservas para tu web',
+                ].map(i => <li class="flex items-start gap-2"><span class="text-green-400 flex-shrink-0">✓</span>{i}</li>)}
+              </ul>
+            </div>
+            <div>
+              <p class="text-orange-400 font-semibold mb-2">Booksy puede ser mejor si...</p>
+              <ul class="text-gray-300 space-y-1.5">
+                {[
+                  'Trabajas solo y el precio por usuario no te afecta',
+                  'Tu objetivo principal es que clientes nuevos te descubran',
+                  'La mayoría de tus clientes ya usan la app de Booksy',
+                  'No necesitas WhatsApp ni gestión multi-sector',
+                ].map(i => <li class="flex items-start gap-2"><span class="text-orange-400 flex-shrink-0">→</span>{i}</li>)}
+              </ul>
+            </div>
+          </div>
+          <p class="text-gray-400 text-xs mt-6 italic">
+            Nota: Ambas herramientas pueden usarse a la vez. Booksy para captar clientes nuevos desde su marketplace, Agenda de Reservas para gestionar tu base de clientes establecida sin pagar por cada empleado.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-apple bg-gray-50">
+      <div class="container-apple max-w-3xl mx-auto">
+        <h2 class="text-headline text-gray-900 text-center mb-10">Preguntas frecuentes</h2>
+        <div class="space-y-3">
+          {[
+            { q: '¿Booksy cobra por empleado?', a: 'Sí. Booksy cobra entre 20€ y 35€ por empleado al mes. Una peluquería con 3 empleados paga entre 60€ y 105€/mes. Agenda de Reservas cobra 19€/mes para todo tu equipo sin importar cuántos sois.' },
+            { q: '¿Booksy tiene WhatsApp Business integrado?', a: 'No. Booksy solo envía notificaciones push de su app y emails. Agenda de Reservas tiene WhatsApp Business API oficial (+8€/mes) con 90% de tasa de apertura de mensajes.' },
+            { q: '¿Puedo usar Booksy y Agenda de Reservas a la vez?', a: 'Técnicamente sí. Algunas peluquerías usan Booksy para que clientes nuevos las descubran en el marketplace, y Agenda de Reservas para gestionar su base de clientes habitual sin pagar por cada empleado. La coexistencia es posible aunque complica la gestión.' },
+            { q: '¿Puedo migrar de Booksy a Agenda de Reservas sin perder mis clientes?', a: 'Sí. Exporta tu lista de clientes desde Booksy en CSV e impórtala en Agenda de Reservas. También te ayudamos con la migración de forma gratuita. El proceso lleva menos de 1 hora.' },
+            { q: '¿La app de Booksy es mejor que la página de reservas de Agenda de Reservas?', a: 'Depende del uso. La app de Booksy es mejor para descubrimiento (marketp place). Para clientes que ya te conocen, nuestra página PWA es igual de rápida y no requiere descarga. Para WhatsApp, somos claramente mejores.' },
+          ].map(({ q, a }) => (
+            <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+              <details class="group">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-medium text-gray-900 hover:bg-gray-50 transition-colors">
+                  {q}
+                  <span class="text-gray-400 ml-4 flex-shrink-0 group-open:rotate-180 transition-transform duration-200">▾</span>
+                </summary>
+                <div class="px-6 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-50">{a}</div>
+              </details>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-apple bg-gray-900">
+      <div class="container-apple text-center">
+        <h2 class="text-headline text-white mb-4">
+          ¿Pagas demasiado por empleado en Booksy?<br/>
+          <span class="text-blue-400">19€/mes fijo para todo tu equipo.</span>
+        </h2>
+        <p class="text-gray-400 mb-2">WhatsApp integrado · Chat IA · Soporte humano en español · Sin permanencia</p>
+        <p class="text-gray-500 text-sm mb-8">Migración gratuita desde Booksy · Setup en 10 minutos</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="https://app.agendadereservas.com" class="inline-block bg-white text-gray-900 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors">
+            Prueba gratis 14 días — sin tarjeta
+          </a>
+          <a href="/peluquerias" class="inline-block border-2 border-gray-600 text-gray-300 font-semibold px-8 py-4 rounded-2xl hover:border-gray-400 transition-colors">
+            Ver funcionalidades para peluquerías →
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
