@@ -6,6 +6,7 @@ import HeroV2 from '../components/HeroV2.astro';
 import Features from '../components/Features.astro';
 import Testimonials from '../components/Testimonials.astro';
 import PricingV2 from '../components/PricingV2.astro';
+import DynamicPricing from '../components/DynamicPricing.astro';
 import FAQ from '../components/FAQ.astro';
 import '../styles/apple-design.css';
 
@@ -225,7 +226,7 @@ const restaurantFAQs = [
             <div class="space-y-3 text-sm mb-4">
               <div class="flex justify-between">
                 <span class="text-gray-500">Cuota mensual</span>
-                <span class="font-semibold text-green-600">24€/mes</span>
+                <span class="font-semibold text-green-600"><span data-price-key="restaurant.monthly">24</span>€/mes</span>
               </div>
               <div class="flex justify-between">
                 <span class="text-gray-500">Comisión por comensal</span>
@@ -233,11 +234,11 @@ const restaurantFAQs = [
               </div>
               <div class="flex justify-between">
                 <span class="text-gray-500">WhatsApp Business</span>
-                <span class="font-semibold">+8€/mes</span>
+                <span class="font-semibold">+<span data-price-key="addon_communications.monthly">8</span>€/mes</span>
               </div>
               <div class="border-t pt-3 flex justify-between">
                 <span class="font-bold">Total completo</span>
-                <span class="font-extrabold text-green-600 text-lg">32€/mes</span>
+                <span class="font-extrabold text-green-600 text-lg"><span data-price-calc="restaurant.monthly+addon_communications.monthly">32</span>€/mes</span>
               </div>
             </div>
             <ul class="text-xs text-gray-600 space-y-1">
@@ -250,9 +251,9 @@ const restaurantFAQs = [
 
         <div class="text-center mt-10">
           <p class="text-xl font-bold text-gray-900">
-            Ahorro vs TheFork: <span class="text-green-600">hasta 5.316€/año</span>
+            Ahorro vs TheFork: <span class="text-green-600">hasta <span data-price-saving-annual="restaurant.monthly+addon_communications.monthly:475">5.316</span>€/año</span>
           </p>
-          <p class="text-sm text-gray-500 mt-1">(475€ - 32€) × 12 meses</p>
+          <p class="text-sm text-gray-500 mt-1">(475€ TheFork - <span data-price-calc="restaurant.monthly+addon_communications.monthly">32</span>€) × 12 meses</p>
         </div>
       </div>
     </section>
@@ -273,7 +274,7 @@ const restaurantFAQs = [
 
     <section class="section-apple bg-gray-900">
       <div class="container-apple text-center">
-        <h2 class="text-headline text-white mb-4">Deja de pagar comisiones.<br/><span class="text-green-400">Empieza hoy por 24€/mes.</span></h2>
+        <h2 class="text-headline text-white mb-4">Deja de pagar comisiones.<br/><span class="text-green-400">Empieza hoy por <span data-price-key="restaurant.monthly">24</span>€/mes.</span></h2>
         <p class="text-gray-400 mb-8">Únete a 200+ restaurantes que ya gestionan sus reservas sin TheFork.</p>
         <a href="https://app.agendadereservas.com" class="inline-block bg-white text-gray-900 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors">
           Prueba gratis 14 días — sin tarjeta
@@ -283,4 +284,6 @@ const restaurantFAQs = [
   </main>
   
   <Footer />
+  <DynamicPricing />
 </Layout>
+

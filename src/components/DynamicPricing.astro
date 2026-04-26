@@ -1,0 +1,111 @@
+---
+// DynamicPricing.astro
+// Script de hidratación cliente-side para precios dinámicos.
+// Añade este componente en cualquier página que muestre precios.
+// Cualquier cambio en el Admin Dashboard actualiza los precios sin rebuild.
+//
+// Uso en HTML:
+//   <span data-price-key="restaurant.monthly">24</span>€/mes
+//   <span data-price-key="tourism_activities.monthly">29</span>€/mes
+//   <span data-price-key="addon_communications.monthly">8</span>€/mes
+//   <span data-price-calc="restaurant.monthly+addon_communications.monthly">32</span>€/mes
+//   <span data-price-saving="restaurant.monthly">475</span>€  ← calcula ahorro vs competidor
+//
+// data-price-saving="plan.field:competitorMonthly"  → competitorMonthly - precio = ahorro/mes
+// data-price-saving-annual="plan.field:475"         → (475 - precio) * 12 = ahorro/año
+---
+
+<script>
+(async () => {
+  const API = 'https://api.agendadereservas.com/pricing';
+
+  // Valores fallback (se usan si la API falla o tarda)
+  const FALLBACK = {
+    service_business:     { monthly: 19, yearly: 190 },
+    restaurant:           { monthly: 24, yearly: 240 },
+    tourism_activities:   { monthly: 29, yearly: 290 },
+    addon_communications: { monthly: 8,  yearly: 80  },
+    addon_payments:       { monthly: 8,  yearly: 80  },
+    addon_sms:            { monthly: 5,  yearly: 50  },
+  };
+
+  // Resuelve "restaurant.monthly" → valor numérico del objeto pricing
+  function resolve(key: string, pricing: typeof FALLBACK): number | null {
+    const [plan, field] = key.split('.');
+    const p = pricing[plan as keyof typeof FALLBACK];
+    if (!p) return null;
+    return p[field as keyof typeof p] ?? null;
+  }
+
+  // Evalúa expresiones como "restaurant.monthly+addon_communications.monthly"
+  function evalCalc(expr: string, pricing: typeof FALLBACK): number | null {
+    const parts = expr.split('+').map(s => s.trim());
+    let total = 0;
+    for (const part of parts) {
+      const v = resolve(part, pricing);
+      if (v === null) return null;
+      total += v;
+    }
+    return total;
+  }
+
+  // Actualiza el DOM con los precios obtenidos
+  function hydrate(pricing: typeof FALLBACK) {
+    // 1. data-price-key="plan.field"  → muestra el valor
+    document.querySelectorAll<HTMLElement>('[data-price-key]').forEach(el => {
+      const key = el.dataset.priceKey!;
+      const val = resolve(key, pricing);
+      if (val !== null) el.textContent = String(val);
+    });
+
+    // 2. data-price-calc="a+b+c"  → suma y muestra el total
+    document.querySelectorAll<HTMLElement>('[data-price-calc]').forEach(el => {
+      const expr = el.dataset.priceCalc!;
+      const val = evalCalc(expr, pricing);
+      if (val !== null) el.textContent = String(val);
+    });
+
+    // 3. data-price-saving-annual="plan.field:competitorMonthly"
+    //    → (competitorMonthly - precio) × 12
+    document.querySelectorAll<HTMLElement>('[data-price-saving-annual]').forEach(el => {
+      const raw = el.dataset.priceSavingAnnual!;
+      const [keyExpr, competitorStr] = raw.split(':');
+      const ours   = evalCalc(keyExpr, pricing);
+      const theirs = parseFloat(competitorStr);
+      if (ours !== null && !isNaN(theirs)) {
+        const annual = Math.round((theirs - ours) * 12);
+        el.textContent = annual.toLocaleString('es-ES');
+      }
+    });
+
+    // 4. data-price-vs="plan.field:competitorMonthly"
+    //    → muestra "Ahorras X€/mes"
+    document.querySelectorAll<HTMLElement>('[data-price-vs]').forEach(el => {
+      const raw = el.dataset.priceVs!;
+      const [keyExpr, competitorStr] = raw.split(':');
+      const ours   = evalCalc(keyExpr, pricing);
+      const theirs = parseFloat(competitorStr);
+      if (ours !== null && !isNaN(theirs)) {
+        const saving = Math.round(theirs - ours);
+        el.textContent = String(saving);
+      }
+    });
+  }
+
+  // Intenta obtener precios del API, usa fallback si falla
+  try {
+    const res = await fetch(API, { signal: AbortSignal.timeout(4000) });
+    if (res.ok) {
+      const data = await res.json();
+      if (data?.pricing) {
+        hydrate(data.pricing);
+        return;
+      }
+    }
+  } catch {
+    // Silencioso — usamos fallback
+  }
+
+  hydrate(FALLBACK);
+})();
+</script>
