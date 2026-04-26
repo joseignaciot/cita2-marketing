@@ -1,0 +1,364 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import DynamicPricing from '../../components/DynamicPricing.astro';
+
+const pageTitle = 'Agenda de Reservas vs TheFork Manager 2026 — Comparativa real';
+const pageDescription = 'Comparativa honesta TheFork Manager vs Agenda de Reservas para restaurantes. Cuota real, comisiones por comensal, funcionalidades y ahorro anual calculado.';
+
+const features = [
+  {
+    category: 'Modelo de precios',
+    rows: [
+      { name: 'Precio base mensual',            ours: '24€/mes fijo',               theirs: '~175€/mes',              winner: 'ours' },
+      { name: 'Comisión por comensal',           ours: '0€ — nunca',                 theirs: '1,5–2€ por persona',     winner: 'ours' },
+      { name: 'Coste real (100 res. × 2p)',      ours: '24€',                        theirs: '~475€',                  winner: 'ours' },
+      { name: 'Moneda y estabilidad',            ours: '€ fijo',                     theirs: '€ variable por comisión',winner: 'ours' },
+      { name: 'Transparencia de precio',         ours: 'Total conocido de antemano',  theirs: 'Sube con tu éxito',      winner: 'ours' },
+    ]
+  },
+  {
+    category: 'Reservas y gestión de mesas',
+    rows: [
+      { name: 'Motor de reservas online',        ours: '✅ Propio, sin marca ajena',  theirs: '✅ Plataforma TheFork',  winner: 'tie'  },
+      { name: 'Gestión de turnos/franjas',        ours: '✅ Configurable',             theirs: '✅ Avanzado',            winner: 'tie'  },
+      { name: 'Lista de espera',                 ours: '✅ Incluida',                 theirs: '✅ Incluida',            winner: 'tie'  },
+      { name: 'Plano de sala/mesas',             ours: '✅ Incluido',                 theirs: '✅ Avanzado',            winner: 'tie'  },
+      { name: 'Capacidad por zona',              ours: '✅ Configurable',             theirs: '✅ Configurable',        winner: 'tie'  },
+      { name: 'Reservas manuales (teléfono)',    ours: '✅ Con notas internas',       theirs: '✅ Incluidas',           winner: 'tie'  },
+    ]
+  },
+  {
+    category: 'Comunicación con clientes',
+    rows: [
+      { name: 'Confirmación automática email',   ours: '✅ Personalizable',           theirs: '✅ Estándar',            winner: 'tie'  },
+      { name: 'Recordatorio automático',         ours: '✅ Email + WhatsApp',         theirs: '⚠️ Solo email',         winner: 'ours' },
+      { name: 'WhatsApp Business API',           ours: '✅ Nativo (+8€/mes)',         theirs: '❌ No disponible',       winner: 'ours' },
+      { name: 'SMS recordatorio',                ours: '✅ Disponible',               theirs: '❌ No',                  winner: 'ours' },
+      { name: 'Mensajes post-visita',            ours: '✅ Automatizados',            theirs: '⚠️ Limitado',           winner: 'ours' },
+      { name: 'Encuesta de satisfacción',        ours: '✅ Configurable',             theirs: '✅ Plataforma propia',   winner: 'tie'  },
+    ]
+  },
+  {
+    category: 'CRM y datos de clientes',
+    rows: [
+      { name: 'Propiedad de los datos',          ours: '✅ Tuyos al 100%',           theirs: '❌ De TheFork',         winner: 'ours' },
+      { name: 'Historial de visitas',            ours: '✅ Completo',                 theirs: '⚠️ Solo vía plataforma',winner: 'ours' },
+      { name: 'Notas internas por cliente',      ours: '✅ Ilimitadas',               theirs: '⚠️ Básico',             winner: 'ours' },
+      { name: 'Segmentación / filtros',          ours: '✅ Por etiquetas y visitas',  theirs: '⚠️ Limitado',           winner: 'ours' },
+      { name: 'Exportar base de clientes',       ours: '✅ CSV / Excel',              theirs: '❌ No permitido',        winner: 'ours' },
+      { name: 'Marketing directo a clientes',    ours: '✅ Email + WhatsApp',         theirs: '❌ Solo vía TheFork',   winner: 'ours' },
+    ]
+  },
+  {
+    category: 'Reseñas y visibilidad',
+    rows: [
+      { name: 'Reseñas en plataforma',           ours: '—',                          theirs: '✅ TheFork Reviews',     winner: 'theirs'},
+      { name: 'Visibilidad en buscador TheFork', ours: '—',                          theirs: '✅ 4M+ usuarios/mes',    winner: 'theirs'},
+      { name: 'Descuentos para captar clientes', ours: '—',                          theirs: '⚠️ Pierdes margen',     winner: 'tie'  },
+      { name: 'Google Business integrado',       ours: '✅ Reserva desde Google',    theirs: '✅ Integrado',           winner: 'tie'  },
+      { name: 'Widget en tu web propia',         ours: '✅ Sin comisión',             theirs: '⚠️ Comisión igual',     winner: 'ours' },
+    ]
+  },
+  {
+    category: 'Pagos y facturación',
+    rows: [
+      { name: 'Pago online al reservar',         ours: '✅ Stripe / Redsys',         theirs: '✅ Disponible',          winner: 'tie'  },
+      { name: 'Cobro de depósito',               ours: '✅ Configurable',             theirs: '✅ Disponible',          winner: 'tie'  },
+      { name: 'Comisión plataforma por pago',    ours: '0%',                         theirs: '0%',                    winner: 'tie'  },
+      { name: 'Facturación automática',          ours: '⚠️ Básica',                  theirs: '⚠️ No especializada',   winner: 'tie'  },
+    ]
+  },
+  {
+    category: 'Turismo y servicios (más allá del restaurante)',
+    rows: [
+      { name: 'Tours y actividades',             ours: '✅ Plan Turismo',             theirs: '❌ Solo restaurantes',  winner: 'ours' },
+      { name: 'Citas de servicios (peluquería…)',ours: '✅ Plan Servicios',           theirs: '❌ No',                 winner: 'ours' },
+      { name: 'Gestión multivertical',           ours: '✅ Un solo panel',            theirs: '❌ Solo restauración',  winner: 'ours' },
+    ]
+  },
+  {
+    category: 'Soporte y usabilidad',
+    rows: [
+      { name: 'Idioma de la plataforma',         ours: '✅ Español nativo',           theirs: '✅ Español',            winner: 'tie'  },
+      { name: 'Setup inicial',                   ours: '2 minutos',                  theirs: '1–2 días con equipo',   winner: 'ours' },
+      { name: 'Soporte técnico',                 ours: '✅ Chat + email',             theirs: '✅ Teléfono + email',   winner: 'tie'  },
+      { name: 'Contrato de permanencia',         ours: 'Mensual, cancela cuando quieras', theirs: '⚠️ Contrato anual', winner: 'ours' },
+    ]
+  },
+];
+
+const wins = { ours: 0, theirs: 0, tie: 0 };
+features.forEach(cat => cat.rows.forEach(r => wins[r.winner as keyof typeof wins]++));
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Header />
+
+  <main class="pt-24 bg-white">
+
+    <!-- Hero -->
+    <section class="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+      <div class="max-w-5xl mx-auto px-6 text-center">
+        <span class="inline-block px-4 py-1.5 bg-red-500/20 text-red-300 text-sm font-semibold rounded-full mb-6 border border-red-500/30">
+          Comparativa verificada · Abril 2026
+        </span>
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+          TheFork Manager<br/>
+          <span class="text-gray-400">vs</span><br/>
+          <span class="text-green-400">Agenda de Reservas</span>
+        </h1>
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+          Análisis profundo y honesto. Lo que TheFork te ofrece, lo que te cobra y lo que <strong class="text-white">no te dice en la portada</strong>.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 text-sm mb-12">
+          <span class="px-4 py-2 bg-green-500/20 border border-green-500/30 text-green-300 rounded-full">
+            🏆 {wins.ours} ventajas Agenda de Reservas
+          </span>
+          <span class="px-4 py-2 bg-red-500/20 border border-red-500/30 text-red-300 rounded-full">
+            ✅ {wins.theirs} ventajas TheFork
+          </span>
+          <span class="px-4 py-2 bg-gray-500/20 border border-gray-500/30 text-gray-400 rounded-full">
+            🤝 {wins.tie} empates
+          </span>
+        </div>
+
+        <!-- Precio rápido -->
+        <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          <div class="bg-red-900/30 border border-red-500/30 rounded-2xl p-6">
+            <p class="text-red-300 text-xs font-semibold uppercase mb-2">TheFork Manager</p>
+            <p class="text-4xl font-black text-red-400">~475€<span class="text-lg font-normal text-red-300">/mes</span></p>
+            <p class="text-xs text-red-400 mt-1">175€ cuota + comisiones × reservas</p>
+          </div>
+          <div class="bg-green-900/30 border border-green-500/30 rounded-2xl p-6">
+            <p class="text-green-300 text-xs font-semibold uppercase mb-2">Agenda de Reservas</p>
+            <p class="text-4xl font-black text-green-400">
+              <span data-price-key="restaurant.monthly">24</span>€<span class="text-lg font-normal text-green-300">/mes</span>
+            </p>
+            <p class="text-xs text-green-400 mt-1">Sin comisiones por reserva. Nunca.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calculadora de ahorro -->
+    <section class="py-16 bg-green-50 border-b border-green-100">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-3">¿Cuánto pierdes con TheFork cada mes?</h2>
+        <p class="text-gray-500 mb-10">Ajusta los datos de tu restaurante y calcula el coste real comparado.</p>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+          <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <label class="space-y-2 text-left">
+              <span class="text-sm font-semibold text-gray-600">Reservas al mes</span>
+              <input id="calc-bookings" type="range" min="20" max="500" value="100" step="10"
+                class="w-full accent-red-500" />
+              <p class="text-center text-xl font-bold text-gray-900"><span id="calc-bookings-val">100</span></p>
+            </label>
+            <label class="space-y-2 text-left">
+              <span class="text-sm font-semibold text-gray-600">Comensales por reserva (media)</span>
+              <input id="calc-covers" type="range" min="1" max="6" value="2" step="1"
+                class="w-full accent-red-500" />
+              <p class="text-center text-xl font-bold text-gray-900"><span id="calc-covers-val">2</span></p>
+            </label>
+            <label class="space-y-2 text-left">
+              <span class="text-sm font-semibold text-gray-600">Comisión TheFork (€/comensal)</span>
+              <input id="calc-commission" type="range" min="1" max="2.5" value="1.75" step="0.25"
+                class="w-full accent-red-500" />
+              <p class="text-center text-xl font-bold text-gray-900"><span id="calc-commission-val">1.75</span>€</p>
+            </label>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6 text-center">
+            <div class="bg-red-50 rounded-xl p-5">
+              <p class="text-xs font-semibold text-red-500 uppercase mb-1">TheFork total/mes</p>
+              <p class="text-3xl font-black text-red-600" id="calc-thefork-total">0€</p>
+              <p class="text-xs text-red-400 mt-1">cuota + comisiones</p>
+            </div>
+            <div class="bg-green-50 rounded-xl p-5">
+              <p class="text-xs font-semibold text-green-600 uppercase mb-1">Agenda de Reservas</p>
+              <p class="text-3xl font-black text-green-600">
+                <span data-price-key="restaurant.monthly">24</span>€
+              </p>
+              <p class="text-xs text-green-500 mt-1">precio fijo, siempre</p>
+            </div>
+            <div class="bg-gray-900 rounded-xl p-5">
+              <p class="text-xs font-semibold text-gray-300 uppercase mb-1">Ahorras al año</p>
+              <p class="text-3xl font-black text-white" id="calc-saving-annual">0€</p>
+              <p class="text-xs text-gray-400 mt-1">con nuestra app</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabla comparativa detallada -->
+    <section class="py-20">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Comparativa funcional completa</h2>
+          <p class="text-gray-500">Cada fila revisada manualmente. Sin inventar ventajas.</p>
+        </div>
+
+        {features.map((cat, i) => (
+          <div class={`mb-12 ${i > 0 ? 'pt-12 border-t border-gray-100' : ''}`}>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span class="w-1.5 h-6 bg-green-500 rounded-full inline-block"></span>
+              {cat.category}
+            </h3>
+            <div class="overflow-x-auto rounded-xl border border-gray-200">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-gray-50 border-b border-gray-200">
+                    <th class="text-left py-3 px-4 font-semibold text-gray-600 w-1/3">Característica</th>
+                    <th class="text-center py-3 px-4 font-semibold text-green-700 w-1/3">Agenda de Reservas</th>
+                    <th class="text-center py-3 px-4 font-semibold text-red-600 w-1/3">TheFork Manager</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cat.rows.map((row, ri) => (
+                    <tr class={`border-b border-gray-100 ${ri % 2 === 0 ? '' : 'bg-gray-50/50'}`}>
+                      <td class="py-3 px-4 font-medium text-gray-700">{row.name}</td>
+                      <td class={`py-3 px-4 text-center ${row.winner === 'ours' ? 'text-green-700 font-semibold bg-green-50' : 'text-gray-600'}`}>
+                        {row.ours}
+                        {row.winner === 'ours' && <span class="ml-1.5">🏆</span>}
+                      </td>
+                      <td class={`py-3 px-4 text-center ${row.winner === 'theirs' ? 'text-green-700 font-semibold bg-green-50' : 'text-gray-600'}`}>
+                        {row.theirs}
+                        {row.winner === 'theirs' && <span class="ml-1.5">🏆</span>}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- El modelo de negocio de TheFork explicado -->
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4 text-center">Lo que TheFork no te dice en la portada</h2>
+        <p class="text-gray-500 text-center mb-12 max-w-2xl mx-auto">TheFork es una plataforma de captación de clientes, no solo un software de gestión. Eso tiene implicaciones importantes.</p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-2xl p-6 border border-red-100">
+            <h3 class="font-bold text-red-600 mb-3 flex items-center gap-2">⚠️ Cuanto más llenas el restaurante, más pagas</h3>
+            <p class="text-gray-600 text-sm">La comisión por comensal (1,5–2€) se multiplica por cada persona que viene a través de TheFork. Con 300 comensales al mes, pagas ~525€ extra solo en comisiones, además de la cuota.</p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 border border-red-100">
+            <h3 class="font-bold text-red-600 mb-3 flex items-center gap-2">⚠️ Los clientes son de TheFork, no tuyos</h3>
+            <p class="text-gray-600 text-sm">Los comensales que reservan por TheFork tienen su perfil en la plataforma, no en tu CRM. Si cancelas TheFork, no puedes contactarlos. No son "tus clientes" legalmente según su política.</p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 border border-red-100">
+            <h3 class="font-bold text-red-600 mb-3 flex items-center gap-2">⚠️ Contrato anual con penalizaciones</h3>
+            <p class="text-gray-600 text-sm">TheFork Manager suele requerir contrato anual. Cancelar antes conlleva penalizaciones. Agenda de Reservas es mensual: si no funciona, te vas sin coste en 30 días.</p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 border border-red-100">
+            <h3 class="font-bold text-red-600 mb-3 flex items-center gap-2">⚠️ Sin WhatsApp ni comunicación directa</h3>
+            <p class="text-gray-600 text-sm">TheFork no ofrece integración con WhatsApp Business. Todos sus recordatorios son email genérico con su marca. El 90% de tasa de apertura de WhatsApp vs el 20% de email es una ventaja competitiva real.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cuándo sí tiene sentido TheFork -->
+    <section class="py-20 border-t">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">¿Cuándo SÍ tiene sentido TheFork?</h2>
+        <p class="text-gray-500 text-center mb-10 max-w-xl mx-auto">Somos honestos. TheFork tiene ventajas reales en algunos casos.</p>
+        <div class="bg-blue-50 border border-blue-200 rounded-2xl p-8">
+          <ul class="space-y-4 text-sm text-gray-700">
+            <li class="flex items-start gap-3"><span class="text-blue-500 font-bold mt-0.5">→</span><span><strong>Restaurante nuevo sin reputación online.</strong> TheFork te expone a 4M+ usuarios/mes en España. Si necesitas captar clientes desde cero, la inversión puede compensar.</span></li>
+            <li class="flex items-start gap-3"><span class="text-blue-500 font-bold mt-0.5">→</span><span><strong>Ciudad con alta competencia y búsqueda activa.</strong> En Madrid, Barcelona o Sevilla centro, muchos comensales buscan directamente en TheFork.</span></li>
+            <li class="flex items-start gap-3"><span class="text-blue-500 font-bold mt-0.5">→</span><span><strong>Sin base de datos de clientes propia.</strong> Si empiezas de cero, TheFork puede ayudarte a construirla (aunque los datos te quedan limitados).</span></li>
+          </ul>
+          <div class="mt-6 pt-6 border-t border-blue-200">
+            <p class="text-sm text-blue-800 font-medium">Conclusión: TheFork como canal de captación complementario tiene sentido. Como <strong>único software de gestión de tu restaurante</strong>, el coste es difícilmente justificable frente a alternativas como Agenda de Reservas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Veredicto final -->
+    <section class="py-20 bg-gray-900 text-white">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Veredicto final</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          <div class="bg-green-900/30 border border-green-500/30 rounded-2xl p-8">
+            <h3 class="font-bold text-green-400 mb-4 text-lg">Elige Agenda de Reservas si...</h3>
+            <ul class="space-y-3 text-sm text-gray-300">
+              <li>✅ Quieres controlar tus datos y tus clientes</li>
+              <li>✅ Buscas precio fijo sin sorpresas</li>
+              <li>✅ Valoras WhatsApp Business para recordatorios</li>
+              <li>✅ Gestionas también turismo o servicios</li>
+              <li>✅ Quieres cancelar en cualquier momento</li>
+              <li>✅ Tu restaurante ya tiene clientela fija</li>
+            </ul>
+          </div>
+          <div class="bg-gray-800 border border-gray-700 rounded-2xl p-8">
+            <h3 class="font-bold text-gray-300 mb-4 text-lg">Considera TheFork si...</h3>
+            <ul class="space-y-3 text-sm text-gray-400">
+              <li>→ Abres un restaurante sin reputación online</li>
+              <li>→ Estás en zona turística de alta afluencia</li>
+              <li>→ Necesitas exposición en su buscador</li>
+              <li>→ Puedes asumir 300-500€/mes en coste variable</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <p class="text-xl text-gray-300 mb-6">
+            Ahorro medio vs TheFork: <span class="text-green-400 font-bold text-3xl"> <span data-price-saving-annual="restaurant.monthly:475">5.316</span>€/año</span>
+          </p>
+          <a href="https://app.agendadereservas.com"
+            class="inline-block px-10 py-5 bg-green-500 hover:bg-green-400 text-white font-bold text-lg rounded-2xl transition-colors">
+            Prueba gratis 14 días — sin tarjeta →
+          </a>
+          <p class="text-gray-500 text-sm mt-4">Setup en 2 minutos · Sin contrato · Cancela cuando quieras</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <DynamicPricing />
+</Layout>
+
+<script>
+  // Calculadora interactiva de ahorro vs TheFork
+  const bookingsInput = document.getElementById('calc-bookings') as HTMLInputElement;
+  const coversInput = document.getElementById('calc-covers') as HTMLInputElement;
+  const commInput = document.getElementById('calc-commission') as HTMLInputElement;
+  const bookingsVal = document.getElementById('calc-bookings-val')!;
+  const coversVal = document.getElementById('calc-covers-val')!;
+  const commVal = document.getElementById('calc-commission-val')!;
+  const theforkTotal = document.getElementById('calc-thefork-total')!;
+  const savingAnnual = document.getElementById('calc-saving-annual')!;
+
+  const THEFORK_BASE = 175;
+  const OUR_PRICE = 24; // fallback; DynamicPricing lo actualizará si cambia
+
+  function recalc() {
+    const bookings = parseInt(bookingsInput.value);
+    const covers = parseInt(coversInput.value);
+    const commission = parseFloat(commInput.value);
+    bookingsVal.textContent = String(bookings);
+    coversVal.textContent = String(covers);
+    commVal.textContent = commission.toFixed(2);
+    const tfTotal = THEFORK_BASE + bookings * covers * commission;
+    const saving = (tfTotal - OUR_PRICE) * 12;
+    theforkTotal.textContent = Math.round(tfTotal).toLocaleString('es-ES') + '€';
+    savingAnnual.textContent = Math.round(saving).toLocaleString('es-ES') + '€';
+  }
+
+  bookingsInput.addEventListener('input', recalc);
+  coversInput.addEventListener('input', recalc);
+  commInput.addEventListener('input', recalc);
+  recalc();
+</script>
