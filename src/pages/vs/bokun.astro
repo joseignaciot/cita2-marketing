@@ -1,0 +1,166 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import DynamicPricing from '../../components/DynamicPricing.astro';
+
+const pageTitle = 'Agenda de Reservas vs Bókun 2026 — Comparativa real para empresas de turismo en España';
+const pageDescription = 'Comparativa Bókun vs Agenda de Reservas para tours y actividades turísticas. Bókun cobra 49 USD/mes + 1,5% por reserva. Nosotros: 29€ fijo, sin comisiones. Soporte en español.';
+
+const features = [
+  { category: 'Precios', rows: [
+    { name: 'Precio base mensual',          ours: '29€/mes fijo',               theirs: '49 USD/mes (~46€)',     winner: 'ours'   },
+    { name: 'Comisión por reserva online',  ours: '0%',                         theirs: '1,5% por reserva',     winner: 'ours'   },
+    { name: 'Coste real (100 res × 50€)',   ours: '29€',                        theirs: '~121 USD',             winner: 'ours'   },
+    { name: 'Moneda',                       ours: '€ — sin fluctuación',        theirs: 'USD — riesgo cambio',  winner: 'ours'   },
+    { name: 'Contrato',                     ours: 'Mensual, cancela libre',      theirs: 'Anual recomendado',    winner: 'ours'   },
+  ]},
+  { category: 'Gestión de actividades', rows: [
+    { name: 'Actividades por persona',      ours: '✅ Adulto/niño/senior',       theirs: '✅ Avanzado',           winner: 'tie'    },
+    { name: 'Capacidad por slot',           ours: '✅ Por actividad y hora',     theirs: '✅ Completo',           winner: 'tie'    },
+    { name: 'Extras y suplementos',         ours: '✅ Configurable',             theirs: '✅ Avanzado',           winner: 'tie'    },
+    { name: 'Salidas multi-horario',        ours: '✅ Por día',                  theirs: '✅ Por día/hora',       winner: 'tie'    },
+    { name: 'Manifest de pasajeros',        ours: '✅ Exportable',               theirs: '✅ Completo',           winner: 'tie'    },
+    { name: 'Precios por grupo',            ours: '✅ Precio fijo grupal',       theirs: '✅ Avanzado',           winner: 'tie'    },
+  ]},
+  { category: 'Distribución y canal', rows: [
+    { name: 'Widget en tu web',             ours: '✅ Sin comisión',             theirs: '✅ + 1,5% comisión',   winner: 'ours'   },
+    { name: 'Viator / GetYourGuide',        ours: '❌ No integrado',            theirs: '✅ Channel manager',    winner: 'theirs' },
+    { name: 'API para agencias',            ours: '❌ No',                      theirs: '✅ API pública',        winner: 'theirs' },
+    { name: 'Google Things to Do',          ours: '⚠️ Vía widget',             theirs: '✅ Integración directa',winner: 'theirs' },
+    { name: 'Pago al reservar (Stripe)',    ours: '✅ Incluido',                 theirs: '✅ Incluido',           winner: 'tie'    },
+  ]},
+  { category: 'Comunicación con clientes', rows: [
+    { name: 'Email de confirmación',        ours: '✅ Personalizable',           theirs: '✅ Estándar',           winner: 'tie'    },
+    { name: 'WhatsApp recordatorio',        ours: '✅ Nativo (+8€/mes)',         theirs: '❌ No',                 winner: 'ours'   },
+    { name: 'Soporte en español',           ours: '✅ Chat + email',             theirs: '⚠️ Inglés principalmente', winner: 'ours'},
+    { name: 'Base de conocimiento ES',      ours: '✅ Español',                  theirs: '⚠️ Solo inglés',       winner: 'ours'   },
+  ]},
+  { category: 'Multivertical', rows: [
+    { name: 'Turismo / actividades',        ours: '✅ Plan Turismo',             theirs: '✅ Core',               winner: 'tie'    },
+    { name: 'Restaurantes',                 ours: '✅ Plan Restaurante',         theirs: '❌ No',                 winner: 'ours'   },
+    { name: 'Peluquerías / servicios',      ours: '✅ Plan Servicios',           theirs: '❌ No',                 winner: 'ours'   },
+    { name: 'Un solo panel para todo',      ours: '✅ Multivertical',            theirs: '❌ Solo turismo',       winner: 'ours'   },
+  ]},
+];
+
+const wins = { ours: 0, theirs: 0, tie: 0 };
+features.forEach(c => c.rows.forEach(r => wins[r.winner as keyof typeof wins]++));
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Header />
+  <main class="pt-24 bg-white">
+
+    <section class="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+      <div class="max-w-5xl mx-auto px-6 text-center">
+        <span class="inline-block px-4 py-1.5 bg-blue-500/20 text-blue-300 text-sm font-semibold rounded-full mb-6 border border-blue-500/30">
+          Comparativa verificada · Abril 2026
+        </span>
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+          Bókun<br/><span class="text-gray-400">vs</span><br/>
+          <span class="text-green-400">Agenda de Reservas</span>
+        </h1>
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+          ¿Por qué pagar en dólares y asumir comisiones cuando puedes tener todo en <strong class="text-white">29€ fijos al mes</strong>?
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+          <span class="px-4 py-2 bg-green-500/20 border border-green-500/30 text-green-300 rounded-full text-sm">🏆 {wins.ours} ventajas Agenda</span>
+          <span class="px-4 py-2 bg-blue-500/20 border border-blue-500/30 text-blue-300 rounded-full text-sm">✅ {wins.theirs} ventajas Bókun</span>
+          <span class="px-4 py-2 bg-gray-500/20 border border-gray-500/30 text-gray-400 rounded-full text-sm">🤝 {wins.tie} empates</span>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          <div class="bg-blue-900/30 border border-blue-500/30 rounded-2xl p-6">
+            <p class="text-blue-300 text-xs font-semibold uppercase mb-2">Bókun real/mes</p>
+            <p class="text-4xl font-black text-blue-400">~121 USD</p>
+            <p class="text-xs text-blue-400 mt-1">49 USD + 1,5% × 100 res. × 50€</p>
+          </div>
+          <div class="bg-green-900/30 border border-green-500/30 rounded-2xl p-6">
+            <p class="text-green-300 text-xs font-semibold uppercase mb-2">Agenda de Reservas</p>
+            <p class="text-4xl font-black text-green-400"><span data-price-key="tourism_activities.monthly">29</span>€</p>
+            <p class="text-xs text-green-400 mt-1">Precio fijo. Sin comisiones. En euros.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-4">Comparativa completa</h2>
+        <p class="text-gray-500 text-center mb-12">Para empresas de turismo activo en España.</p>
+        {features.map((cat, i) => (
+          <div class={`mb-12 ${i > 0 ? 'pt-12 border-t border-gray-100' : ''}`}>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span class="w-1.5 h-6 bg-green-500 rounded-full inline-block"></span>{cat.category}
+            </h3>
+            <div class="overflow-x-auto rounded-xl border border-gray-200">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-gray-50 border-b border-gray-200">
+                    <th class="text-left py-3 px-4 font-semibold text-gray-600 w-1/3">Característica</th>
+                    <th class="text-center py-3 px-4 font-semibold text-green-700 w-1/3">Agenda de Reservas</th>
+                    <th class="text-center py-3 px-4 font-semibold text-blue-700 w-1/3">Bókun</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cat.rows.map((row, ri) => (
+                    <tr class={`border-b border-gray-100 ${ri % 2 === 0 ? '' : 'bg-gray-50/50'}`}>
+                      <td class="py-3 px-4 font-medium text-gray-700">{row.name}</td>
+                      <td class={`py-3 px-4 text-center ${row.winner === 'ours' ? 'text-green-700 font-semibold bg-green-50' : 'text-gray-600'}`}>
+                        {row.ours}{row.winner === 'ours' && <span class="ml-1">🏆</span>}
+                      </td>
+                      <td class={`py-3 px-4 text-center ${row.winner === 'theirs' ? 'text-green-700 font-semibold bg-green-50' : 'text-gray-600'}`}>
+                        {row.theirs}{row.winner === 'theirs' && <span class="ml-1">🏆</span>}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-2xl font-bold text-center mb-8">Dónde Bókun nos gana (y por qué aun así elegimos Agenda)</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-2xl p-6 border border-blue-100">
+            <h3 class="font-bold text-blue-700 mb-3">✅ Bókun: Channel manager con Viator/GYG</h3>
+            <p class="text-gray-600 text-sm">Si dependes de Viator o GetYourGuide para el 60%+ de tus reservas, Bókun centraliza esa distribución. Es su punto fuerte real.</p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 border border-blue-100">
+            <h3 class="font-bold text-blue-700 mb-3">✅ Bókun: API pública para agencias</h3>
+            <p class="text-gray-600 text-sm">Si trabajas con agencias de viaje que necesitan integración técnica, Bókun tiene una API madura. Agenda de Reservas está orientado a venta directa.</p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 border border-green-100">
+            <h3 class="font-bold text-green-700 mb-3">🏆 Nosotros: precio fijo en euros</h3>
+            <p class="text-gray-600 text-sm">Bókun cobra en USD con fluctuación de cambio. Nosotros: 29€ fijos. Con tipo de cambio EUR/USD actual, la diferencia mensual real puede ser importante.</p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 border border-green-100">
+            <h3 class="font-bold text-green-700 mb-3">🏆 Nosotros: WhatsApp + español nativo</h3>
+            <p class="text-gray-600 text-sm">Bókun no tiene WhatsApp Business. El 85% de los clientes de turismo en España prefieren comunicarse por WhatsApp. Nosotros lo integramos nativamente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-gray-900 text-white">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-4">Ahorro anual vs Bókun</h2>
+        <p class="text-4xl font-black text-green-400 mb-2">
+          ~<span data-price-saving-annual="tourism_activities.monthly:121">1.104</span>€/año
+        </p>
+        <p class="text-gray-400 mb-10">Con 100 reservas mensuales de 50€ de media</p>
+        <a href="https://app.agendadereservas.com"
+          class="inline-block px-10 py-5 bg-green-500 hover:bg-green-400 text-white font-bold text-lg rounded-2xl transition-colors">
+          Prueba gratis 14 días →
+        </a>
+        <p class="text-gray-500 text-sm mt-4">Setup 2 min · Sin contrato · En euros · Soporte en español</p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <DynamicPricing />
+</Layout>
