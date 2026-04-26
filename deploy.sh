@@ -1,61 +1,81 @@
 #!/bin/bash
 # deploy.sh — Marketing Site Deploy
-# Builds Astro static site and syncs to production server
-# Usage: ./deploy.sh
+# Sube el dist/ ya construido al servidor de producción
+# Uso: ./deploy.sh
+# Requiere: dist/ generado con npm run build
 
 set -e
 
-# ── Config ─────────────────────────────────────────────────────────────────
-# Reutiliza la misma clave SSH y servidor que cita2
-SSH_KEY="${HOME}/.ssh/id_rsa"
-SSH_USER="joseignacio"
-SSH_HOST="agendadereservas.com"
-REMOTE_DIR="/var/www/agendadereservas"   # Ajusta si es diferente
-LOCAL_DIST="./dist"
-
-# ── Colores ────────────────────────────────────────────────────────────────
 GREEN='\033[0;32m'; YELLOW='\033[1;33m'; RED='\033[0;31m'; NC='\033[0m'
 
 echo -e "${YELLOW}========================================"
-echo "   Deploy Marketing Site"
+echo "   Deploy Marketing Site → Producción"
 echo -e "========================================${NC}"
 
-# ── 1. Build ───────────────────────────────────────────────────────────────
-echo ""
-echo "[1/3] Construyendo sitio estático..."
-ASTRO_TELEMETRY_DISABLED=1 npm run build
-echo -e "${GREEN}✓ Build completado${NC}"
+# ── Busca automáticamente la clave SSH y el directorio remoto ──────────────
+SSH_HOST="agendadereservas.com"
+SSH_USER="joseignacio"
+LOCAL_DIST="./dist"
 
-# ── 2. SSH check ───────────────────────────────────────────────────────────
-echo ""
-echo "[2/3] Verificando conexión SSH..."
-if ssh -o ConnectTimeout=5 -i "$SSH_KEY" "${SSH_USER}@${SSH_HOST}" "echo ok" &>/dev/null; then
-  echo -e "${GREEN}✓ SSH OK${NC}"
-else
-  echo -e "${RED}✗ No se pudo conectar al servidor. Verifica SSH_HOST y SSH_KEY en deploy.sh${NC}"
+# Detecta clave SSH (misma que usa deploy-quick.sh de cita2)
+SSH_KEY=""
+for KEY in "$HOME/.ssh/id_rsa" "$HOME/.ssh/id_ed25519" "$HOME/.ssh/agendadereservas"; do
+  if [ -f "$KEY" ]; then SSH_KEY="$KEY"; break; fi
+done
+
+if [ -z "$SSH_KEY" ]; then
+  echo -e "${RED}✗ No se encontró clave SSH en ~/.ssh/${NC}"
   exit 1
 fi
 
-# ── 3. Sync ────────────────────────────────────────────────────────────────
+# Verifica que dist/ existe y tiene contenido
+if [ ! -f "${LOCAL_DIST}/index.html" ]; then
+  echo -e "${YELLOW}dist/ no existe o está vacío. Construyendo...${NC}"
+  ASTRO_TELEMETRY_DISABLED=1 npm run build
+fi
+
 echo ""
-echo "[3/3] Sincronizando dist/ → ${SSH_HOST}:${REMOTE_DIR}..."
+echo "[1/3] Conectando al servidor..."
+if ! ssh -o ConnectTimeout=8 -i "$SSH_KEY" "${SSH_USER}@${SSH_HOST}" "echo ok" &>/dev/null; then
+  echo -e "${RED}✗ No se pudo conectar. Comprueba la clave SSH y el servidor.${NC}"
+  exit 1
+fi
+echo -e "${GREEN}✓ SSH OK${NC}"
+
+# Descubre el directorio raíz del marketing site en el servidor
+echo ""
+echo "[2/3] Localizando directorio en el servidor..."
+REMOTE_DIR=$(ssh -i "$SSH_KEY" "${SSH_USER}@${SSH_HOST}" "
+  # Busca en nginx dónde está mapeado agendadereservas.com
+  ROOT=\$(grep -r 'root\|alias' /etc/nginx/sites-enabled/ 2>/dev/null | grep -v '#' | grep -v 'app\.' | awk '{print \$2}' | tr -d ';' | head -1)
+  if [ -n \"\$ROOT\" ]; then echo \"\$ROOT\"; exit 0; fi
+  # Fallback: busca el index.html del marketing
+  find /var/www /srv /home -name 'index.html' -not -path '*/node_modules/*' 2>/dev/null | head -1 | xargs dirname
+")
+
+if [ -z "$REMOTE_DIR" ]; then
+  REMOTE_DIR="/var/www/agendadereservas"
+  echo -e "${YELLOW}⚠ No detectado automáticamente. Usando: ${REMOTE_DIR}${NC}"
+else
+  echo -e "${GREEN}✓ Directorio: ${REMOTE_DIR}${NC}"
+fi
+
+# Sube el dist/
+echo ""
+echo "[3/3] Subiendo dist/ → ${SSH_HOST}:${REMOTE_DIR}..."
 rsync -avz --delete \
+  --exclude='.DS_Store' \
   -e "ssh -i ${SSH_KEY}" \
   "${LOCAL_DIST}/" \
   "${SSH_USER}@${SSH_HOST}:${REMOTE_DIR}/"
 
-echo -e "${GREEN}✓ Sincronización completada${NC}"
+echo -e "${GREEN}✓ Subida completada${NC}"
 
 echo ""
 echo -e "${GREEN}========================================"
 echo "   ✅ Deploy completado!"
 echo -e "========================================${NC}"
 echo ""
-echo -e "🌐 Web: ${YELLOW}https://agendadereservas.com${NC}"
-echo ""
-echo "Páginas actualizadas:"
-echo "  /                → Homepage con tabs por vertical"
-echo "  /restaurantes    → Comparativa TheFork vs Restoo vs Agenda (24€)"
-echo "  /turismo         → Comparativa Bókun vs FareHarbor vs Agenda (29€)"
-echo "  /precios         → Precios modulares"
-echo ""
+echo -e "🌐 ${YELLOW}https://agendadereservas.com${NC}"
+echo -e "🍽️  ${YELLOW}https://agendadereservas.com/restaurantes${NC}"
+echo -e "🏔️  ${YELLOW}https://agendadereservas.com/turismo${NC}"

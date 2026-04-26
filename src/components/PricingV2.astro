@@ -34,6 +34,12 @@ try {
   // Build-time fetch failed — use fallback values
 }
 
+const colorMap: Record<string, { border: string; badge: string; price: string; btn: string }> = {
+  blue:   { border: 'border-blue-200',   badge: 'bg-blue-100 text-blue-700',   price: 'text-blue-700',   btn: 'bg-blue-600 hover:bg-blue-700' },
+  orange: { border: 'border-orange-200', badge: 'bg-orange-100 text-orange-700', price: 'text-orange-700', btn: 'bg-orange-500 hover:bg-orange-600' },
+  purple: { border: 'border-purple-200', badge: 'bg-purple-100 text-purple-700', price: 'text-purple-700', btn: 'bg-purple-600 hover:bg-purple-700' },
+};
+
 const plans = [
   {
     key: 'service_business' as const,
@@ -59,7 +65,16 @@ const plans = [
     color: 'purple',
     popular: false,
   },
-];
+].map(plan => ({
+  ...plan,
+  c: colorMap[plan.color],
+  monthly: pricing[plan.key].monthly,
+  yearly: pricing[plan.key].yearly,
+  saving: pricing[plan.key].monthly * 12 - pricing[plan.key].yearly,
+  cardClass: 'relative bg-white rounded-2xl border-2 ' + colorMap[plan.color].border + ' p-8 shadow-sm flex flex-col',
+  priceClass: 'text-4xl font-bold ' + colorMap[plan.color].price,
+  btnClass: 'block text-center text-white text-sm font-semibold py-3 rounded-xl transition-colors ' + colorMap[plan.color].btn,
+}));
 
 const addons = [
   {
@@ -105,65 +120,55 @@ const baseFeatures = [
         <span class="text-gray-400">Añade solo lo que necesitas.</span>
       </h2>
       <p class="text-body text-lg">
-        Sin comisiones por reserva, sin límites de clientes ni usuarios. 
+        Sin comisiones por reserva, sin límites de clientes ni usuarios.
         Paga solo por los módulos que usas.
       </p>
     </div>
 
     <!-- Base plans grid -->
     <div class="grid md:grid-cols-3 gap-6 mb-16 max-w-5xl mx-auto">
-      {plans.map((plan) => {
-        const monthly = pricing[plan.key].monthly;
-        const yearly  = pricing[plan.key].yearly;
-        const saving  = monthly * 12 - yearly;
-        const colorMap: Record<string, { border: string; badge: string; price: string; btn: string }> = {
-          blue:   { border: 'border-blue-200',   badge: 'bg-blue-100 text-blue-700',   price: 'text-blue-700',   btn: 'bg-blue-600 hover:bg-blue-700' },
-          orange: { border: 'border-orange-200', badge: 'bg-orange-100 text-orange-700', price: 'text-orange-700', btn: 'bg-orange-500 hover:bg-orange-600' },
-          purple: { border: 'border-purple-200', badge: 'bg-purple-100 text-purple-700', price: 'text-purple-700', btn: 'bg-purple-600 hover:bg-purple-700' },
-        };
-        const c = colorMap[plan.color];
-        return (
-          <div class={`relative bg-white rounded-2xl border-2 ${c.border} p-8 shadow-sm flex flex-col`}>
-            {plan.popular && (
-              <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-gray-900 text-white text-xs font-bold rounded-full whitespace-nowrap">
-                Más popular
-              </div>
-            )}
-            <div class="mb-6">
-              <span class="text-3xl mb-2 block">{plan.emoji}</span>
-              <h3 class="text-xl font-bold text-gray-900">{plan.name}</h3>
-              <p class="text-sm text-gray-500 mt-1">{plan.description}</p>
+      {plans.map((plan) => (
+        <div class={plan.cardClass}>
+          {plan.popular && (
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-gray-900 text-white text-xs font-bold rounded-full whitespace-nowrap">
+              Más popular
             </div>
-            <div class="mb-6">
-              <div class="flex items-baseline gap-1">
-                <span class={`text-4xl font-bold ${c.price}`}>{monthly}€</span>
-                <span class="text-gray-400">/mes</span>
-              </div>
-              <p class="text-sm text-gray-500 mt-1">
-                O <strong class="text-gray-700">{yearly}€/año</strong> 
-                <span class="text-green-600 ml-1">(ahorras {saving}€)</span>
-              </p>
-            </div>
-            <ul class="space-y-2 mb-8 flex-1">
-              {baseFeatures.map(f => (
-                <li class="flex items-start gap-2 text-sm text-gray-600">
-                  <svg class="w-4 h-4 text-green-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <a
-              href="https://app.agendadereservas.com"
-              class={`block text-center text-white text-sm font-semibold py-3 rounded-xl transition-colors ${c.btn}`}
-            >
-              Empezar gratis 14 días
-            </a>
+          )}
+          <div class="mb-6">
+            <span class="text-3xl mb-2 block">{plan.emoji}</span>
+            <h3 class="text-xl font-bold text-gray-900">{plan.name}</h3>
+            <p class="text-sm text-gray-500 mt-1">{plan.description}</p>
           </div>
-        );
-      })}
+          <div class="mb-6">
+            <div class="flex items-baseline gap-1">
+              <span class={plan.priceClass}>{plan.monthly}€</span>
+              <span class="text-gray-400">/mes</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">
+              O <strong class="text-gray-700">{plan.yearly}€/año</strong>
+              <span class="text-green-600 ml-1">(ahorras {plan.saving}€)</span>
+            </p>
+          </div>
+          <ul class="space-y-2 mb-8 flex-1">
+            {baseFeatures.map(f => (
+              <li class="flex items-start gap-2 text-sm text-gray-600">
+                <svg class="w-4 h-4 text-green-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <a
+            href="https://app.agendadereservas.com"
+            class={plan.btnClass}
+          >
+            Empezar gratis 14 días
+          </a>
+        </div>
+      ))}
     </div>
+
 
     <!-- Addons section -->
     <div class="max-w-5xl mx-auto mb-16">
