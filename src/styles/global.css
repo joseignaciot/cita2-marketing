@@ -13,33 +13,20 @@
     @apply font-sans antialiased text-gray-900 bg-white;
   }
   
-  /* Dark mode support */
+  /* Dark mode support — clase aplicada por DarkModeToggle.astro */
+  /* Los overrides detallados de componentes están en apple-design.css */
   body.dark {
     @apply text-gray-100 bg-gray-900;
+    color-scheme: dark;
   }
   
+  /* Fallback para páginas sin apple-design.css */
   body.dark .bg-white {
     @apply bg-gray-800;
   }
   
   body.dark .bg-gray-50 {
     @apply bg-gray-900;
-  }
-  
-  body.dark .bg-gray-100 {
-    @apply bg-gray-800;
-  }
-  
-  body.dark .text-gray-900 {
-    @apply text-white;
-  }
-  
-  body.dark .text-gray-600 {
-    @apply text-gray-300;
-  }
-  
-  body.dark .text-gray-500 {
-    @apply text-gray-400;
   }
   
   body.dark .border-gray-200 {
@@ -50,6 +37,7 @@
     @apply border-gray-800;
   }
 }
+
 
 @layer components {
   .btn-primary {

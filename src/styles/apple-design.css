@@ -15,6 +15,7 @@
     --color-text-secondary: #86868B;
     --color-background: #FAFAFA;
     --color-surface: #FFFFFF;
+    --color-border: rgba(0,0,0,0.06);
     --color-success: #34C759;
     --color-warning: #FF9500;
     --color-danger: #FF3B30;
@@ -322,13 +323,38 @@
   50% { opacity: 0.7; }
 }
 
-/* Dark mode support */
+/* ── Dark mode ────────────────────────────────────────────────
+   Responde a AMBOS mecanismos:
+   1. Clase `body.dark`  → toggle manual del usuario
+   2. @media prefers-color-scheme: dark → preferencia del SO
+   Los componentes solo usan variables CSS y funcionan automáticamente.
+──────────────────────────────────────────────────────────────── */
+
+/* 1. Toggle manual */
+body.dark {
+  --color-background: #000000;
+  --color-surface: #1C1C1E;
+  --color-text: #F5F5F7;
+  --color-text-secondary: #98989D;
+  --color-border: rgba(255,255,255,0.08);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 24px rgba(0,0,0,0.5);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.6);
+  --shadow-xl: 0 16px 64px rgba(0,0,0,0.7);
+}
+
+/* 2. Preferencia del sistema */
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: #000000;
     --color-surface: #1C1C1E;
-    --color-text: #FFFFFF;
+    --color-text: #F5F5F7;
     --color-text-secondary: #98989D;
+    --color-border: rgba(255,255,255,0.08);
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 24px rgba(0,0,0,0.5);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,0.6);
+    --shadow-xl: 0 16px 64px rgba(0,0,0,0.7);
   }
 }
 
@@ -353,4 +379,151 @@
     padding-top: 80px;
     padding-bottom: 80px;
   }
+}
+
+/* ── Component dark mode overrides ─────────────────────────────
+   Se aplican cuando body.dark está activo (toggle manual).
+   Las mismas reglas se duplican en el media query de abajo
+   para cubrir también la preferencia del sistema operativo.
+─────────────────────────────────────────────────────────────────  */
+
+/* Header */
+body.dark header {
+  background-color: rgba(28,28,30,0.92) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+/* Mockup frame */
+body.dark .mockup-frame {
+  background: #2C2C2E !important;
+  border-color: rgba(255,255,255,0.06) !important;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.6), 0 10px 30px rgba(0,0,0,0.5) !important;
+}
+
+/* Problem / Solution cards */
+body.dark .problem-card {
+  background: linear-gradient(135deg, #2C1010 0%, #1C1C1E 100%) !important;
+  border-color: rgba(255,59,48,0.2) !important;
+}
+body.dark .solution-card {
+  background: linear-gradient(135deg, #0A2010 0%, #1C1C1E 100%) !important;
+  border-color: rgba(52,199,89,0.2) !important;
+}
+
+/* Comparison cards */
+body.dark .comparison-before { background: #2C1010 !important; }
+body.dark .comparison-after  { background: #0A2010 !important; }
+
+/* Gradient backgrounds */
+body.dark .gradient-hero {
+  background: radial-gradient(ellipse at top, rgba(0,113,227,0.12) 0%, transparent 50%),
+              linear-gradient(180deg, #000000 0%, #0a0a0a 100%) !important;
+}
+body.dark .gradient-subtle {
+  background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%) !important;
+}
+
+/* Section backgrounds */
+body.dark section.bg-white { background-color: var(--color-background) !important; }
+
+/* Feature bubble */
+body.dark .feature-bubble { background: rgba(0,113,227,0.15) !important; }
+
+/* stat-number gradient legible en oscuro */
+body.dark .stat-number {
+  background: linear-gradient(135deg, #F5F5F7 0%, #98989D 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Texto Tailwind hardcoded en componentes */
+body.dark .text-gray-900 { color: #F5F5F7 !important; }
+body.dark .text-gray-700 { color: #C7C7CC !important; }
+body.dark .text-gray-600 { color: #AEAEB2 !important; }
+body.dark .text-gray-500 { color: #98989D !important; }
+body.dark .text-gray-400 { color: #636366 !important; }
+
+/* Border colors */
+body.dark .border-gray-200,
+body.dark .border-gray-100 { border-color: rgba(255,255,255,0.08) !important; }
+
+/* Inline bg badges */
+body.dark .bg-white\/80 { background: rgba(28,28,30,0.8) !important; }
+
+/* Cards y panels con bg-white */
+body.dark .bg-white {
+  background-color: #1C1C1E !important;
+  border-color: rgba(255,255,255,0.08);
+}
+body.dark .bg-gray-50  { background-color: #2C2C2E !important; }
+body.dark .bg-gray-100 { background-color: #3A3A3C !important; }
+
+/* Nav dropdown */
+body.dark nav .rounded-2xl { background: #1C1C1E !important; border-color: rgba(255,255,255,0.1) !important; }
+body.dark nav a:hover { background: rgba(255,255,255,0.06) !important; }
+
+/* Vertical tabs */
+body.dark .vertical-tab:not([class*="bg-gray-900"]) {
+  background: #2C2C2E !important;
+  color: #F5F5F7 !important;
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+/* bg-gray-900 cards (savings callout, pricing example) — ok en oscuro, solo ajustamos sombra */
+body.dark .bg-gray-900 { background: #1C1C1E !important; }
+
+/* Btn secondary */
+body.dark .btn-apple-secondary {
+  background: rgba(0,113,227,0.15) !important;
+  color: #60AEFF !important;
+}
+
+/* Pastel gradients en feature mockups */
+body.dark [class*="from-blue-50"]   { background: linear-gradient(135deg,#0D1B2E,#1C1C2E) !important; }
+body.dark [class*="from-green-50"]  { background: linear-gradient(135deg,#0A1F14,#1C1C1E) !important; }
+body.dark [class*="from-purple-50"] { background: linear-gradient(135deg,#170D2E,#1C1C1E) !important; }
+
+/* Light colored bg badges */
+body.dark .bg-blue-100   { background: rgba(0,113,227,0.2)   !important; }
+body.dark .bg-green-100  { background: rgba(52,199,89,0.15)  !important; }
+body.dark .bg-purple-100 { background: rgba(175,82,222,0.15) !important; }
+body.dark .bg-yellow-100 { background: rgba(255,149,0,0.15)  !important; }
+body.dark .bg-red-100    { background: rgba(255,59,48,0.15)  !important; }
+body.dark .bg-green-50   { background: rgba(52,199,89,0.1)   !important; }
+body.dark .bg-red-50     { background: rgba(255,59,48,0.1)   !important; }
+
+/* Pricing cards */
+body.dark .rounded-2xl.border { background: #1C1C1E !important; border-color: rgba(255,255,255,0.1) !important; }
+
+/* Progress bar track */
+body.dark .bg-gray-100.rounded-full { background: #3A3A3C !important; }
+
+/* Card hover shadow in dark */
+body.dark .card-apple:hover { box-shadow: var(--shadow-xl) !important; }
+
+/* ── Mirror for system-level dark mode preference ────────────── */
+@media (prefers-color-scheme: dark) {
+  header { background-color: rgba(28,28,30,0.92) !important; border-color: rgba(255,255,255,0.08) !important; }
+  .mockup-frame { background: #2C2C2E !important; }
+  .problem-card { background: linear-gradient(135deg, #2C1010 0%, #1C1C1E 100%) !important; border-color: rgba(255,59,48,0.2) !important; }
+  .solution-card { background: linear-gradient(135deg, #0A2010 0%, #1C1C1E 100%) !important; border-color: rgba(52,199,89,0.2) !important; }
+  .gradient-hero { background: radial-gradient(ellipse at top, rgba(0,113,227,0.12) 0%, transparent 50%), linear-gradient(180deg, #000000 0%, #0a0a0a 100%) !important; }
+  .gradient-subtle { background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%) !important; }
+  section.bg-white { background-color: var(--color-background) !important; }
+  .bg-white { background-color: #1C1C1E !important; }
+  .bg-gray-50 { background-color: #2C2C2E !important; }
+  .bg-gray-100 { background-color: #3A3A3C !important; }
+  .text-gray-900 { color: #F5F5F7 !important; }
+  .text-gray-700 { color: #C7C7CC !important; }
+  .text-gray-600 { color: #AEAEB2 !important; }
+  .text-gray-500 { color: #98989D !important; }
+  .border-gray-200, .border-gray-100 { border-color: rgba(255,255,255,0.08) !important; }
+  .stat-number { background: linear-gradient(135deg, #F5F5F7 0%, #98989D 100%) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; }
+  .bg-blue-100   { background: rgba(0,113,227,0.2)   !important; }
+  .bg-green-100  { background: rgba(52,199,89,0.15)  !important; }
+  .bg-purple-100 { background: rgba(175,82,222,0.15) !important; }
+  .bg-yellow-100 { background: rgba(255,149,0,0.15)  !important; }
+  .bg-red-100    { background: rgba(255,59,48,0.15)  !important; }
+  .feature-bubble { background: rgba(0,113,227,0.15) !important; }
 }
