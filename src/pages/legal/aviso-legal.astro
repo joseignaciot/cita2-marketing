@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Aviso Legal";
+const description = "Información legal sobre el titular del sitio web agendadereservas.com y las condiciones de uso del servicio.";
+const lastUpdated = "1 de abril de 2026";
+---
+
+<Layout title={`${title} - Agenda de Reservas`} description={description}>
+  <Header />
+  <main class="pt-24 pb-20">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <nav class="mb-8 text-sm text-gray-500" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-blue-600">Inicio</a>
+        <span class="mx-2">›</span>
+        <span class="text-gray-700">{title}</span>
+      </nav>
+      <header class="mb-10 pb-8 border-b border-gray-200">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">{title}</h1>
+        <p class="text-gray-500 text-sm">Última actualización: {lastUpdated}</p>
+      </header>
+      <article class="prose prose-gray max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-a:text-blue-600">
+        <h2>1. Datos identificativos del titular</h2>
+        <p>En cumplimiento con el deber de información recogido en el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSI-CE), se informa:</p>
+        <ul>
+          <li><strong>Razón social:</strong> Tecelia Solutions S.L.</li>
+          <li><strong>Domicilio:</strong> Santiago de Compostela, España</li>
+          <li><strong>Actividad:</strong> Desarrollo y comercialización de software de gestión de citas para negocios</li>
+          <li><strong>Sitio web:</strong> agendadereservas.com</li>
+          <li><strong>Email de contacto:</strong> hola@agendadereservas.com</li>
+        </ul>
+        <h2>2. Objeto y ámbito de aplicación</h2>
+        <p>El presente Aviso Legal regula el acceso y uso del sitio web <strong>agendadereservas.com</strong> (en adelante, "el Sitio Web") de titularidad de Tecelia Solutions S.L. El acceso al Sitio Web implica la aceptación de las condiciones aquí recogidas.</p>
+        <h2>3. Condiciones de uso</h2>
+        <p>El usuario se compromete a hacer un uso adecuado de los contenidos y servicios ofrecidos, y en particular a no emplearlos para realizar actividades ilícitas o contrarias a la buena fe y al orden público, ni para causar daños en los sistemas físicos y lógicos del sitio o sus proveedores.</p>
+        <h2>4. Propiedad intelectual e industrial</h2>
+        <p>Los contenidos del Sitio Web (textos, imágenes, diseños, logotipos, código fuente, etc.) son propiedad exclusiva de Tecelia Solutions S.L. o de sus licenciantes, y están protegidos por la legislación española e internacional sobre propiedad intelectual e industrial. Queda expresamente prohibida su reproducción, distribución o transformación sin autorización expresa.</p>
+        <h2>5. Exclusión de responsabilidad</h2>
+        <p>Tecelia Solutions S.L. no se hace responsable de los daños derivados del acceso o uso del Sitio Web, de interrupciones en el servicio por causas ajenas a su voluntad, ni del contenido de sitios web de terceros enlazados desde el Sitio Web.</p>
+        <h2>6. Legislación aplicable y jurisdicción</h2>
+        <p>Las presentes condiciones se rigen e interpretan conforme a la legislación española. Para la resolución de cualquier controversia, las partes se someten a la jurisdicción de los Juzgados y Tribunales de Santiago de Compostela.</p>
+      </article>
+      <nav class="mt-12 pt-8 border-t border-gray-200 flex flex-wrap gap-4 text-sm text-gray-500">
+        <a href="/legal/aviso-legal" class="hover:text-blue-600">Aviso Legal</a>
+        <a href="/legal/privacidad" class="hover:text-blue-600">Política de Privacidad</a>
+        <a href="/legal/cookies" class="hover:text-blue-600">Política de Cookies</a>
+      </nav>
+    </div>
+  </main>
+  <Footer />
+</Layout>

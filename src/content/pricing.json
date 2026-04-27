@@ -1,0 +1,124 @@
+{
+  "pageTitle": "Precios - Agenda de Reservas | Software de Gestión de Citas",
+  "pageDescription": "Precio adaptado a tu tipo de negocio: servicios desde 19€/mes, restaurantes desde 24€/mes, turismo desde 29€/mes. Módulos opcionales de comunicaciones y cobro online. Sin comisiones ni sorpresas.",
+  "businessTypes": [
+    {
+      "id": "servicios",
+      "icon": "✂️",
+      "label": "Servicios",
+      "examples": "Peluquerías, Estética, Fisioterapia, Dentistas…",
+      "monthly": 19,
+      "yearly": 190,
+      "saving": 38,
+      "colorCls": "blue",
+      "features": [
+        "Reservas online ilimitadas",
+        "Calendario multivista",
+        "CRM de clientes completo",
+        "Página de reservas personalizada",
+        "Gestión de servicios y precios",
+        "Dashboard y estadísticas",
+        "Usuarios ilimitados",
+        "Soporte en español"
+      ]
+    },
+    {
+      "id": "restaurantes",
+      "icon": "🍽️",
+      "label": "Restaurantes",
+      "examples": "Restaurantes, Cafeterías, Bares, Bodegas…",
+      "monthly": 24,
+      "yearly": 240,
+      "saving": 48,
+      "colorCls": "amber",
+      "features": [
+        "Reservas online ilimitadas",
+        "Gestión de mesas y planos",
+        "Gestión de turnos y shifts",
+        "CRM de clientes",
+        "Página de reservas personalizada",
+        "Dashboard y estadísticas",
+        "Usuarios ilimitados",
+        "Soporte en español"
+      ]
+    },
+    {
+      "id": "turismo",
+      "icon": "🧭",
+      "label": "Turismo & Actividades",
+      "examples": "Tours, Kayak, Senderismo, Escape rooms…",
+      "monthly": 29,
+      "yearly": 290,
+      "saving": 58,
+      "colorCls": "emerald",
+      "badge": "Nuevo",
+      "features": [
+        "Reservas por actividad e idioma",
+        "Precios por composición (adultos/niños)",
+        "Manifest de participantes",
+        "Guías y recursos gestionables",
+        "Página de reservas multidioma",
+        "Dashboard y estadísticas",
+        "Usuarios ilimitados",
+        "Soporte en español"
+      ]
+    }
+  ],
+  "addons": [
+    {
+      "id": "comunicaciones",
+      "icon": "💬",
+      "name": "Comunicaciones Avanzadas",
+      "price": 8,
+      "description": "WhatsApp Business API, SMS, hub de mensajes, recordatorios automáticos, encuestas post-cita e informes diarios.",
+      "highlights": [
+        "WhatsApp Business API",
+        "SMS con Twilio",
+        "Hub de mensajes centralizado",
+        "Recordatorios automáticos",
+        "Encuestas de satisfacción",
+        "Informes diarios por email"
+      ]
+    },
+    {
+      "id": "pagos",
+      "icon": "💳",
+      "name": "Cobro Online",
+      "price": 8,
+      "description": "Stripe integrado, depósitos y cobros parciales, enlace de pago, historial de transacciones y gestión de métodos de pago.",
+      "highlights": [
+        "Pagos con Stripe",
+        "Depósitos y cobros parciales",
+        "Enlace de pago para clientes",
+        "Historial de transacciones",
+        "Reembolsos desde el panel"
+      ]
+    }
+  ],
+  "pricingFAQs": [
+    {
+      "question": "¿Por qué el precio varía según el tipo de negocio?",
+      "answer": "Cada sector tiene funcionalidades y complejidad diferente. Servicios (19€) accede a gestión básica de citas. Restaurantes (24€) incluye planos de sala y turnos. Turismo (29€) tiene reservas multidioma, composición de grupos y manifest de actividades. Pagas solo por lo que usas."
+    },
+    {
+      "question": "¿Los módulos add-on son obligatorios?",
+      "answer": "No. Los módulos de Comunicaciones Avanzadas (+8€) y Cobro Online (+8€) son completamente opcionales. Puedes empezar con el plan base y añadirlos cuando los necesites, sin cambiar de plan."
+    },
+    {
+      "question": "¿Hay algún coste oculto?",
+      "answer": "No. El precio que ves es lo que pagas. Sin comisiones por reserva, sin límites de citas, sin cargos extra por usuarios."
+    },
+    {
+      "question": "¿Puedo cancelar cuando quiera?",
+      "answer": "Sí, sin compromiso de permanencia. Cancelas desde tu panel y tu suscripción se detiene al final del período pagado."
+    },
+    {
+      "question": "¿Hay descuento por pago anual?",
+      "answer": "Sí. Al pagar anualmente obtienes el equivalente a 2 meses gratis. Servicios: 190€/año (19€/mes), Restaurantes: 240€/año (20€/mes), Turismo: 290€/año (24€/mes)."
+    },
+    {
+      "question": "¿Necesito tarjeta para la prueba?",
+      "answer": "No. Los 14 días de prueba son completamente gratis, sin tarjeta de crédito. Solo pedimos datos de pago si decides continuar."
+    }
+  ]
+}

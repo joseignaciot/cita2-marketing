@@ -379,3 +379,132 @@ collections:
             fields:
               - { label: "Pregunta", name: "question", widget: "string" }
               - { label: "Respuesta", name: "answer", widget: "text" }
+
+      - name: "spas"
+        label: "🛁 Spas y Balnearios"
+        file: "src/content/sectors/spas.json"
+        fields:
+          - { label: "Meta título (SEO)", name: "pageTitle", widget: "string" }
+          - { label: "Meta descripción (SEO)", name: "pageDescription", widget: "text" }
+          - label: "Descripción para IA (ChatGPT, Perplexity)"
+            name: "aiDescription"
+            widget: "text"
+            hint: "Texto corto y factual (máx. 200 caracteres)."
+            required: false
+          - { label: "Hero — Título principal", name: "heroTitle", widget: "string" }
+          - { label: "Hero — Subtítulo", name: "heroSubtitle", widget: "text" }
+          - label: "Funcionalidades"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text" }
+              - { label: "Icono", name: "icon", widget: "select", options: ["calendar","bell","message","users","chart","zap","credit","smartphone"] }
+          - label: "Testimonios"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Cita", name: "quote", widget: "text" }
+              - { label: "Nombre", name: "author", widget: "string" }
+              - { label: "Cargo", name: "role", widget: "string" }
+              - { label: "Empresa y ciudad", name: "company", widget: "string" }
+          - label: "Preguntas frecuentes"
+            name: "faqs"
+            widget: "list"
+            fields:
+              - { label: "Pregunta", name: "question", widget: "string" }
+              - { label: "Respuesta", name: "answer", widget: "text" }
+
+      - name: "tatuajes"
+        label: "🖋️ Tatuajes y Piercing"
+        file: "src/content/sectors/tatuajes.json"
+        fields:
+          - { label: "Meta título (SEO)", name: "pageTitle", widget: "string" }
+          - { label: "Meta descripción (SEO)", name: "pageDescription", widget: "text" }
+          - label: "Descripción para IA (ChatGPT, Perplexity)"
+            name: "aiDescription"
+            widget: "text"
+            hint: "Texto corto y factual (máx. 200 caracteres)."
+            required: false
+          - { label: "Hero — Título principal", name: "heroTitle", widget: "string" }
+          - { label: "Hero — Subtítulo", name: "heroSubtitle", widget: "text" }
+          - label: "Funcionalidades"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text" }
+              - { label: "Icono", name: "icon", widget: "select", options: ["calendar","bell","message","users","chart","zap","credit","smartphone"] }
+          - label: "Testimonios"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Cita", name: "quote", widget: "text" }
+              - { label: "Nombre", name: "author", widget: "string" }
+              - { label: "Cargo", name: "role", widget: "string" }
+              - { label: "Empresa y ciudad", name: "company", widget: "string" }
+          - label: "Preguntas frecuentes"
+            name: "faqs"
+            widget: "list"
+            fields:
+              - { label: "Pregunta", name: "question", widget: "string" }
+              - { label: "Respuesta", name: "answer", widget: "text" }
+
+  # ─── PRECIOS ──────────────────────────────────────────────────
+  - name: "pricing"
+    label: "💶 Precios y Planes"
+    files:
+      - name: "pricing"
+        label: "💶 Precios y Planes"
+        file: "src/content/pricing.json"
+        fields:
+          - { label: "Meta título (SEO)", name: "pageTitle", widget: "string" }
+          - { label: "Meta descripción (SEO)", name: "pageDescription", widget: "text" }
+          - label: "Planes de negocio"
+            name: "businessTypes"
+            widget: "list"
+            fields:
+              - { label: "ID (no cambiar)", name: "id", widget: "string" }
+              - { label: "Emoji / Icono", name: "icon", widget: "string" }
+              - { label: "Nombre del plan", name: "label", widget: "string" }
+              - { label: "Ejemplos de negocios", name: "examples", widget: "string" }
+              - { label: "Precio mensual (€)", name: "monthly", widget: "number", value_type: "int" }
+              - { label: "Precio anual (€)", name: "yearly", widget: "number", value_type: "int" }
+              - { label: "Ahorro anual (€)", name: "saving", widget: "number", value_type: "int" }
+              - label: "Funcionalidades incluidas"
+                name: "features"
+                widget: "list"
+                field: { label: "Funcionalidad", name: "item", widget: "string" }
+          - label: "Módulos adicionales (add-ons)"
+            name: "addons"
+            widget: "list"
+            fields:
+              - { label: "ID (no cambiar)", name: "id", widget: "string" }
+              - { label: "Emoji / Icono", name: "icon", widget: "string" }
+              - { label: "Nombre del módulo", name: "name", widget: "string" }
+              - { label: "Precio mensual (€)", name: "price", widget: "number", value_type: "int" }
+              - { label: "Descripción", name: "description", widget: "text" }
+              - label: "Qué incluye"
+                name: "highlights"
+                widget: "list"
+                field: { label: "Característica", name: "item", widget: "string" }
+          - label: "Preguntas frecuentes"
+            name: "pricingFAQs"
+            widget: "list"
+            fields:
+              - { label: "Pregunta", name: "question", widget: "string" }
+              - { label: "Respuesta", name: "answer", widget: "text" }
+
+  # ─── PÁGINAS LEGALES ──────────────────────────────────────────
+  - name: "legal"
+    label: "⚖️ Páginas Legales"
+    folder: "src/content/legal"
+    create: false
+    delete: false
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Descripción (SEO)", name: "description", widget: "text" }
+      - { label: "Fecha de última actualización", name: "lastUpdated", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+      - { label: "Contenido", name: "body", widget: "markdown" }

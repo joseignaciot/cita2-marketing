@@ -9,8 +9,9 @@ import Pricing from '../components/Pricing.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 
-const pageTitle = 'Software de Gestión para Estudios de Tatuajes - Agenda de Reservas';
-const pageDescription = 'Gestión integral para estudios de tatuajes y piercing. Gestión de citas, diseños, consentimientos y aftercare. 19€/mes, sin comisiones.';
+import content from '../content/sectors/tatuajes.json';
+
+const { pageTitle, pageDescription, aiDescription, heroTitle, heroSubtitle, features, testimonials, faqs } = content;
 
 const schema = {
   '@context': 'https://schema.org',
@@ -30,96 +31,15 @@ const schema = {
     reviewCount: '75'
   }
 };
-
-const tattooFeatures = [
-  {
-    title: 'Gestión de diseños',
-    description: 'Guarda referencias, bocetos y fotos del tatuaje. Historial visual completo de cada pieza realizada.',
-    icon: 'users'
-  },
-  {
-    title: 'Sesiones múltiples',
-    description: 'Planifica tatuajes que requieren varias sesiones. El sistema controla el tiempo entre sesiones para curación.',
-    icon: 'calendar'
-  },
-  {
-    title: 'Recordatorios aftercare',
-    description: 'Envía instrucciones de cuidado automáticamente después de cada sesión. Reduce infecciones y mejoras resultados.',
-    icon: 'bell'
-  },
-  {
-    title: 'Gestión de cabinas',
-    description: 'Controla qué tatuador usa cada cabina. Optimiza el espacio de tu estudio.',
-    icon: 'chart'
-  },
-  {
-    title: 'Depósitos y pagos',
-    description: 'Cobra señal al reservar para evitar no-shows. Gestiona pagos por sesión o del tatuaje completo.',
-    icon: 'credit'
-  },
-  {
-    title: 'Ficha de estilo',
-    description: 'Registra el estilo preferido de cada cliente, alergias a tintas, y notas especiales para futuros trabajos.',
-    icon: 'message'
-  }
-];
-
-const tattooTestimonials = [
-  {
-    quote: 'Los depósitos han eliminado las ausencias. Antes perdía 2-3 citas por semana. Ahora todo el mundo respeta la cita o avisa con tiempo.',
-    author: 'Marc Sánchez',
-    role: 'Tatuador',
-    company: 'Ink Masters, Barcelona',
-    rating: 5
-  },
-  {
-    quote: 'El sistema de sesiones múltiples es perfecto para mangas y piernas completas. Sé exactamente cuándo toca la siguiente sesión y cuánto tiempo dejar para curación.',
-    author: 'Laura Vega',
-    role: 'Tatuadora',
-    company: 'Arte en Piel, Madrid',
-    rating: 5
-  }
-];
-
-const tattooFAQs = [
-  {
-    question: '¿Puedo cobrar señal al reservar?',
-    answer: 'Sí, puedes configurar depósitos obligatorios para reservar cita. Reduce no-shows drásticamente. El pago se procesa online mediante Stripe.'
-  },
-  {
-    question: '¿Funciona para tatuajes que necesitan varias sesiones?',
-    answer: 'Absolutamente. Programas todas las sesiones desde el principio con el tiempo de curación necesario entre ellas. El cliente recibe recordatorio de cada sesión.'
-  },
-  {
-    question: '¿Se pueden adjuntar fotos de referencia?',
-    answer: 'Sí, cada cita permite subir imágenes de referencia, bocetos, fotos del resultado final, etc. Todo queda organizado en la ficha del cliente.'
-  },
-  {
-    question: '¿Hay recordatorios de aftercare?',
-    answer: 'Sí, automáticamente después de cada sesión se envía al cliente un mensaje con las instrucciones de cuidado del tatuaje.'
-  },
-  {
-    question: '¿Puedo gestionar varios tatuadores?',
-    answer: 'Sí, configuras cada tatuador con su propia disponibilidad, precios por hora, y estilos especializados. Los clientes pueden elegir tatuador al reservar.'
-  },
-  {
-    question: '¿Funciona para piercing también?',
-    answer: 'Sí, puedes configurar servicios de piercing con sus tiempos específicos y cuidados post-procedimiento específicos.'
-  }
-];
 ---
 
-<Layout 
-  title={pageTitle}
-  description={pageDescription}
-  schema={schema}
->
+<Layout title={pageTitle} description={pageDescription} aiDescription={aiDescription} schema={schema}>
   <Header />
   
   <main>
     <Hero 
-      title="Software de gestión para estudios de tatuajes"
-      subtitle="Gestiona citas, diseños, sesiones múltiples y pagos. Envía aftercare automático y reduce no-shops con depósitos online."
+      title={heroTitle}
+      subtitle={heroSubtitle}
       primaryCta="Prueba gratis 14 días"
       primaryCtaHref="https://app.agendadereservas.com"
       secondaryCta="Ver funcionalidades"
@@ -129,13 +49,13 @@ const tattooFAQs = [
     <Features 
       title="¿Qué conseguirás con Agenda de Reservas?"
       subtitle="Funcionalidades específicas para estudios de tatuajes."
-      features={tattooFeatures}
+      features={features}
     />
 
     <Testimonials 
       title="Lo que dicen los tatuadores"
       subtitle="Más de 75 estudios de tatuajes confían en Agenda de Reservas."
-      testimonials={tattooTestimonials}
+      testimonials={testimonials}
     />
 
     <Pricing />
@@ -143,7 +63,7 @@ const tattooFAQs = [
     <FAQ 
       title="Preguntas frecuentes para tatuajes"
       subtitle="Respuestas a las dudas más comunes del sector."
-      faqs={tattooFAQs}
+      faqs={faqs}
     />
 
     <CTA 

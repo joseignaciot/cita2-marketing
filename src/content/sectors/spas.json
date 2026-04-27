@@ -1,0 +1,81 @@
+{
+  "pageTitle": "Software de Gestión para Spas y Balnearios - Agenda de Reservas",
+  "pageDescription": "Gestión integral para spas, balnearios y centros de bienestar. Circuitos, bonos, gestión de vestuarios y recordatorios. 19€/mes, sin comisiones.",
+  "aiDescription": "Software para spas y balnearios: 19€/mes fijo. Gestión de aforo, bonos de entradas, venta de gift cards y circuitos. Reservas grupales y recordatorios automáticos. Sin comisiones.",
+  "heroTitle": "Software de gestión para spas y balnearios",
+  "heroSubtitle": "Controla aforo, vende bonos y gift cards, gestiona circuitos y tratamientos. La solución completa para centros de bienestar.",
+  "features": [
+    {
+      "title": "Circuitos y tratamientos",
+      "description": "Gestiona circuitos termales, masajes, envolturas y tratamientos faciales. Duraciones variables y combinaciones personalizadas.",
+      "icon": "users"
+    },
+    {
+      "title": "Gestión de vestuarios",
+      "description": "Controla la capacidad del spa en tiempo real. Gestiona taquillas y evita saturaciones.",
+      "icon": "chart"
+    },
+    {
+      "title": "Bonos y abonos",
+      "description": "Vende bonos de 5 o 10 entradas, abonos mensuales o pases anuales. Fideliza a tus clientes habituales.",
+      "icon": "credit"
+    },
+    {
+      "title": "Regalos y experiencias",
+      "description": "Vende gift cards digitales para circuitos, tratamientos o días de spa. Perfecto para regalos corporativos.",
+      "icon": "zap"
+    },
+    {
+      "title": "Recordatorios automáticos",
+      "description": "Emails y WhatsApps con instrucciones previas (qué traer, llegar 15min antes) y confirmaciones.",
+      "icon": "bell"
+    },
+    {
+      "title": "Reservas grupales",
+      "description": "Permite reservas para grupos (despedidas, eventos corporativos) con gestión de pagos divididos.",
+      "icon": "users"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "La gestión de vestuarios nos ha ayudado a controlar la afluencia. Antes teníamos colapsos los fines de semana. Ahora sabemos exactamente cuántos clientes tenemos en cada momento.",
+      "author": "Isabel Moreno",
+      "role": "Directora",
+      "company": "Spa Natural, Toledo",
+      "rating": 5
+    },
+    {
+      "quote": "Vendemos un 40% más de bonos desde que usamos Agenda de Reservas. Los clientes lo ven fácil y nosotros tenemos ingresos anticipados.",
+      "author": "Roberto Castro",
+      "role": "Gerente",
+      "company": "Balneario El Manantial, Burgos",
+      "rating": 5
+    }
+  ],
+  "faqs": [
+    {
+      "question": "¿Puedo gestionar la capacidad del spa?",
+      "answer": "Sí, configuras el aforo máximo y el sistema bloquea automáticamente cuando se alcanza el límite. Evitas saturaciones y garantizas la experiencia de cada cliente."
+    },
+    {
+      "question": "¿Funciona para bonos de varias entradas?",
+      "answer": "Sí, vende bonos de 5 o 10 entradas al circuito, abonos mensuales ilimitados, o pases de tratamientos. El sistema controla automáticamente las entradas consumidas."
+    },
+    {
+      "question": "¿Se pueden hacer reservas grupales?",
+      "answer": "Sí, permite reservar para grupos de hasta 20 personas. Ideal para despedidas de soltera, eventos corporativos o cumpleaños."
+    },
+    {
+      "question": "¿Hay control de taquillas?",
+      "answer": "Sí, el sistema puede asignar taquillas automáticamente o permitir elegir. Sabes siempre qué taquillas están libres u ocupadas."
+    },
+    {
+      "question": "¿Funciona para tratamientos de diferente duración?",
+      "answer": "Sí, configuras cada tratamiento con su duración exacta (masaje 30min, circuito 2h, ritual 3h...) y el calendario se ajusta automáticamente."
+    },
+    {
+      "question": "¿Se pueden vender gift cards?",
+      "answer": "Sí, vende gift cards digitales para cualquier servicio o importe. Perfecto para Navidad, San Valentín o regalos corporativos."
+    }
+  ]
+}

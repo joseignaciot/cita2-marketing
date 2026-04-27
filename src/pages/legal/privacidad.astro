@@ -1,0 +1,66 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Política de Privacidad";
+const description = "Cómo Agenda de Reservas recopila, usa y protege tus datos personales conforme al RGPD y la LOPDGDD.";
+const lastUpdated = "1 de abril de 2026";
+---
+
+<Layout title={`${title} - Agenda de Reservas`} description={description}>
+  <Header />
+  <main class="pt-24 pb-20">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <nav class="mb-8 text-sm text-gray-500" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-blue-600">Inicio</a>
+        <span class="mx-2">›</span>
+        <span class="text-gray-700">{title}</span>
+      </nav>
+      <header class="mb-10 pb-8 border-b border-gray-200">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">{title}</h1>
+        <p class="text-gray-500 text-sm">Última actualización: {lastUpdated}</p>
+      </header>
+      <article class="prose prose-gray max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-a:text-blue-600">
+        <h2>1. Responsable del tratamiento</h2>
+        <ul>
+          <li><strong>Responsable:</strong> Tecelia Solutions S.L.</li>
+          <li><strong>Domicilio:</strong> Santiago de Compostela, España</li>
+          <li><strong>Email de contacto:</strong> privacidad@agendadereservas.com</li>
+        </ul>
+        <h2>2. Datos que recopilamos</h2>
+        <p>Recopilamos los siguientes datos personales:</p>
+        <ul>
+          <li><strong>Datos de registro:</strong> nombre, email y contraseña al crear una cuenta.</li>
+          <li><strong>Datos de facturación:</strong> nombre fiscal, NIF/CIF y dirección de facturación.</li>
+          <li><strong>Datos de uso:</strong> información sobre cómo utilizas la plataforma.</li>
+          <li><strong>Cookies:</strong> información técnica sobre tu dispositivo y navegación.</li>
+        </ul>
+        <h2>3. Finalidad y base legal del tratamiento</h2>
+        <table>
+          <thead><tr><th>Finalidad</th><th>Base legal</th></tr></thead>
+          <tbody>
+            <tr><td>Gestionar tu cuenta y el servicio contratado</td><td>Ejecución de contrato (Art. 6.1.b RGPD)</td></tr>
+            <tr><td>Facturación y contabilidad</td><td>Obligación legal (Art. 6.1.c RGPD)</td></tr>
+            <tr><td>Marketing y novedades</td><td>Consentimiento (Art. 6.1.a RGPD)</td></tr>
+            <tr><td>Mejora del servicio</td><td>Interés legítimo (Art. 6.1.f RGPD)</td></tr>
+          </tbody>
+        </table>
+        <h2>4. Conservación de datos</h2>
+        <p>Conservamos tus datos mientras mantengas una cuenta activa. Tras la cancelación, los datos de facturación se conservan <strong>5 años</strong> por obligación fiscal. Los datos de tu cuenta se eliminan en un plazo de <strong>90 días</strong>.</p>
+        <h2>5. Destinatarios y transferencias internacionales</h2>
+        <p>Compartimos datos con proveedores bajo contratos de encargado del tratamiento: <strong>Netlify</strong> (alojamiento), <strong>Stripe</strong> (pagos), <strong>Supabase</strong> (base de datos) y <strong>SendGrid</strong> (emails). No vendemos ni cedemos tus datos a terceros con fines comerciales.</p>
+        <h2>6. Tus derechos</h2>
+        <p>Tienes derecho a acceder, rectificar, suprimir tus datos, oponerte al tratamiento, solicitar portabilidad y retirar tu consentimiento. Para ejercerlos, escríbenos a <strong>privacidad@agendadereservas.com</strong>. También puedes reclamar ante la <a href="https://www.aepd.es" rel="nofollow noopener noreferrer" target="_blank">AEPD</a>.</p>
+        <h2>7. Seguridad</h2>
+        <p>Implementamos cifrado TLS/HTTPS, acceso restringido por roles y copias de seguridad periódicas para proteger tus datos.</p>
+      </article>
+      <nav class="mt-12 pt-8 border-t border-gray-200 flex flex-wrap gap-4 text-sm text-gray-500">
+        <a href="/legal/aviso-legal" class="hover:text-blue-600">Aviso Legal</a>
+        <a href="/legal/privacidad" class="hover:text-blue-600">Política de Privacidad</a>
+        <a href="/legal/cookies" class="hover:text-blue-600">Política de Cookies</a>
+      </nav>
+    </div>
+  </main>
+  <Footer />
+</Layout>
