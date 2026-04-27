@@ -62,12 +62,12 @@ const softwareList = [
   },
   {
     name: 'ElTenedor / TheFork',
-    price: '12-15% comisión',
+    price: '~1€/comensal*',
     rating: 4.0,
     reviews: 5000,
     pros: ['Alta visibilidad', 'Marketing incluido', 'Base de clientes grande'],
-    cons: ['Comisiones altas', 'No tienes datos de clientes', 'Dependencia de la plataforma'],
-    bestFor: 'Restaurantes que necesitan visibilidad rápida',
+    cons: ['Fee por comensal acumulable', 'No tienes datos de clientes', 'Dependencia de la plataforma'],
+    bestFor: 'Restaurantes que necesitan visibilidad rápida o clientes nuevos',
     position: 4
   }
 ];
@@ -98,19 +98,19 @@ const howToData = {
 const faqs = [
   {
     question: '¿Cuál es el mejor software de gestión de citas para peluquerías?',
-    answer: 'Para peluquerías, Agenda de Reservas es la mejor opción calidad-precio porque incluye WhatsApp Business (donde están tus clientes) por 19€/mes plan único. AgendaPro cuesta 147€/mes para 3 peluqueros. Agenda de Reservas ofrece recordatorios automáticos que reducen ausencias un 70%, crítico para peluquerías.',
+    answer: 'Para peluquerías, Agenda de Reservas ofrece la mejor relación calidad-precio: 19€/mes plan base por negocio (no por empleado), vs AgendaPro a 147€/mes para 3 peluqueros. El módulo de WhatsApp Business está disponible como add-on (+8€/mes).'
   },
   {
-    question: '¿ElTenedor o software propio para restaurantes?',
-    answer: 'Para restaurantes establecidos con clientela fija, un software propio como Agenda de Reservas (19€/mes) es mejor que ElTenedor (12-15% comisión). Si haces 100 reservas/mes con ticket 35€, ElTenedor cuesta ~500€/mes vs 19€ de Agenda de Reservas. ElTenedor solo tiene sentido para nuevos restaurantes que necesitan visibilidad.',
+    question: '¿TheFork o software propio para restaurantes?',
+    answer: 'Depende del momento del negocio. TheFork aporta visibilidad y clientes nuevos; su coste es ~1€/comensal (no un porcentaje fijo). Para restaurantes con clientela establecida, un sistema propio como Agenda de Reservas (24€/mes plan Restaurantes) reduce la dependencia y permite construir base de datos propia. Un enfoque mixto suele ser el más inteligente.'
   },
   {
     question: '¿Vale la pena pagar por software de gestión de citas?',
-    answer: 'Absolutamente. Un software de 19€/mes que reduce 10h de trabajo administrativo (vale 180€ a 18€/hora) tiene ROI positivo inmediato. Además, reducir ausencias un 70% puede significar miles de euros adicionales mensuales en ingresos.',
+    answer: 'Sí. El ahorro en tiempo de gestión (llamadas, recordatorios manuales) suele superar el coste del software desde el primer mes. Además, las reservas online 24/7 captan citas que de otro modo se perderían.'
   },
   {
     question: '¿Qué software de citas incluye WhatsApp Business?',
-    answer: 'Agenda de Reservas incluye WhatsApp Business integrado en su plan único de 19€/mes. AgendaPro cobra extra por WhatsApp y Reservio no ofrece integración nativa. El WhatsApp Business es crucial porque tiene tasa de apertura del 90% vs 20% del email.',
+    answer: 'Agenda de Reservas ofrece integración con WhatsApp Business API como módulo adicional (+8€/mes). AgendaPro cobra extra por WhatsApp y Reservio no ofrece integración nativa.'
   }
 ];
 ---
@@ -190,9 +190,8 @@ const faqs = [
                     <p class="text-xs text-gray-700">523 reviews</p>
                   </td>
                   <td class="px-6 py-4 text-center">
-                    <span class="inline-flex items-center gap-1 text-green-600 text-sm">
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                      Incluido
+                    <span class="inline-flex items-center gap-1 text-blue-600 text-sm">
+                      Add-on +8€/mes
                     </span>
                   </td>
                   <td class="px-6 py-4 text-center text-lg font-bold text-green-600">Base</td>
@@ -245,8 +244,8 @@ const faqs = [
                     </div>
                   </td>
                   <td class="px-6 py-4 text-center">
-                    <span class="text-2xl font-bold text-gray-900">~500€</span>
-                    <p class="text-xs text-gray-700">12-15% comisión</p>
+                    <span class="text-2xl font-bold text-gray-900">~400€</span>
+                    <p class="text-xs text-gray-700">~1€/comensal*</p>
                   </td>
                   <td class="px-6 py-4 text-center">
                     <span class="text-lg font-bold text-gray-700">4.0</span>
@@ -401,7 +400,7 @@ const faqs = [
         <div class="text-center">
           <h2 class="text-title text-gray-900 mb-4">Nuestra recomendación 2026</h2>
           <p class="text-body text-lg mb-8 max-w-2xl mx-auto">
-            Tras analizar todas las opciones, <strong>Agenda de Reservas</strong> ofrece la mejor relación calidad-precio para la mayoría de negocios. Precio fijo, sin comisiones, WhatsApp Business incluido, y todo el soporte en español.
+          Tras analizar las opciones, <strong>Agenda de Reservas</strong> ofrece la mejor relación calidad-precio para la mayoría de negocios de servicios. Precio fijo por negocio, sin comisiones, y soporte en español. El módulo de WhatsApp Business está disponible como add-on (+8€/mes) si lo necesitas.
           </p>
           <a href="https://app.agendadereservas.com" class="btn-apple-primary text-lg px-12 py-5 inline-flex">
             Prueba Agenda de Reservas gratis 14 días

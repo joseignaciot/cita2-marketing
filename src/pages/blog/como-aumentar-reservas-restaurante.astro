@@ -96,9 +96,9 @@ const strategies = [
 ];
 
 const metrics = [
-  { before: '35%', after: '70%', metric: 'Reservas directas', period: '3 meses' },
-  { before: '25%', after: '8%', metric: 'Tasa de no-shows', period: '1 mes' },
-  { before: '150', after: '380', metric: 'Reservas mensuales', period: '6 meses' }
+  { before: '20%', after: '70%', metric: 'Reservas directas (objetivo a 6 meses)', period: '~6 meses' },
+  { before: '15-20%', after: 'Reducida', metric: 'Tasa de no-shows con recordatorios', period: 'Desde el inicio' },
+  { before: '0', after: 'Creciente', metric: 'Base de datos de clientes propia', period: 'Permanente' }
 ];
 
 const faqs = [
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: '¿Cuánto cuesta marketing digital para restaurantes?',
-    answer: 'Con Agenda de Reservas (19€/mes) tienes sistema de reservas + herramientas de fidelización. Google Business es gratis. Email marketing con tu base de datos es gratuito. Vs ElTenedor (~500€/mes), ahorras 5.700€/año que puedes invertir en SEO local y ads específicos.'
+    answer: 'Con Agenda de Reservas (24€/mes plan Restaurantes) tienes sistema de reservas + herramientas de fidelización. Google Business es gratis. Email marketing con tu base de datos es gratuito. El coste de TheFork es variable (~1€/comensal), no un porcentaje fijo: consulta tu contrato actual para saber cuánto pagas realmente.'
   },
   {
     question: '¿Cómo fidelizar clientes de restaurante?',
@@ -142,7 +142,7 @@ const faqs = [
 
         {/* Impact Box */}
         <div class="bg-green-50 rounded-2xl p-8 mb-16">
-          <h2 class="text-xl font-bold text-green-900 mb-6 text-center">Resultados reales en 6 meses</h2>
+          <h2 class="text-xl font-bold text-green-900 mb-6 text-center">Objetivos orientativos al implementar estas estrategias</h2>
           <div class="grid md:grid-cols-3 gap-6">
             {metrics.map((m) => (
               <div class="text-center">
@@ -240,21 +240,22 @@ const faqs = [
           <h2 class="text-xl font-bold text-gray-900 mb-4">Calcula tu ahorro potencial</h2>
           <div class="grid md:grid-cols-3 gap-6 text-center">
             <div>
-              <p class="text-sm text-gray-700 mb-1">Si usas ElTenedor</p>
-              <p class="text-3xl font-bold text-red-600">~500€/mes</p>
-              <p class="text-xs text-gray-400">100 reservas × 35€ × 15%</p>
+              <p class="text-sm text-gray-700 mb-1">Coste orientativo TheFork</p>
+              <p class="text-3xl font-bold text-red-600">~400€/mes</p>
+              <p class="text-xs text-gray-400">100 reservas × 4 pax × 1€/comensal*</p>
             </div>
             <div>
               <p class="text-sm text-gray-700 mb-1">Con sistema propio</p>
-              <p class="text-3xl font-bold text-green-600">19€/mes</p>
-              <p class="text-xs text-gray-400">Agenda de Reservas plan único</p>
+              <p class="text-3xl font-bold text-green-600">24€/mes</p>
+              <p class="text-xs text-gray-400">Agenda de Reservas plan Restaurantes</p>
             </div>
             <div class="bg-green-50 rounded-xl p-4">
-              <p class="text-sm text-green-700 mb-1">Ahorro anual</p>
-              <p class="text-4xl font-bold text-green-700">5.772€</p>
+              <p class="text-sm text-green-700 mb-1">Ahorro anual estimado</p>
+              <p class="text-4xl font-bold text-green-700">~4.500€</p>
               <p class="text-xs text-green-600">Para invertir en marketing</p>
             </div>
           </div>
+          <p class="text-xs text-gray-400 mt-4 text-center">*Coste orientativo. La tarifa real de TheFork depende de tu plan y contrato. Consulta tus condiciones actuales.</p>
         </div>
 
         {/* FAQs */}

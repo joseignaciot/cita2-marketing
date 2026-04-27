@@ -45,7 +45,7 @@ const comparison = [
   },
   {
     feature: 'Recordatorios WhatsApp',
-    agendadereservas: { value: '✓ Incluido', highlight: true },
+    agendadereservas: { value: '+8€/mes (add-on)', highlight: false },
     agendapro: { value: '+15€/mes', highlight: false },
     phorest: { value: '+10€/mes', highlight: false },
     reservio: { value: '✗', highlight: false }
@@ -80,13 +80,7 @@ const comparison = [
   }
 ];
 
-const testimonial = {
-  quote: "Desde que uso Agenda de Reservas he dejado de recibir llamadas a deshoras. Mis clientes reservan online y yo solo llego y trabajo. Las ausencias bajaron del 25% al 8%.",
-  author: "María García",
-  role: "Dueña",
-  salon: "Peluquería María, Madrid",
-  improvement: "-70% ausencias"
-};
+
 
 const faqs = [
   {
@@ -143,9 +137,9 @@ const faqs = [
           </p>
           <div class="grid md:grid-cols-2 gap-4">
             <ul class="space-y-2 text-blue-700 text-sm">
-              <li>✓ 19€/mes plan único (no por peluquero)</li>
-              <li>✓ WhatsApp Business incluido</li>
-              <li>✓ Setup en 2 minutos</li>
+              <li>✓ 19€/mes plan base (no por peluquero)</li>
+              <li>✓ WhatsApp Business disponible (+8€/mes add-on)</li>
+              <li>✓ Setup rápido, presets por sector</li>
               <li>✓ Historial de coloraciones</li>
             </ul>
             <div class="bg-white rounded-xl p-4 text-center">
@@ -209,8 +203,8 @@ const faqs = [
               <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
                 <span class="text-2xl">💬</span>
               </div>
-              <h3 class="font-semibold text-gray-900 mb-2">WhatsApp Business incluido</h3>
-              <p class="text-gray-600 text-sm">Las peluqueras viven en WhatsApp. Tus clientes también. Recordatorios automáticos con 90% tasa de apertura, sin coste extra.</p>
+              <h3 class="font-semibold text-gray-900 mb-2">WhatsApp Business (add-on +8€/mes)</h3>
+              <p class="text-gray-600 text-sm">WhatsApp tiene las mayores tasas de apertura. Con el módulo de Comunicaciones Avanzadas envía recordatorios y confirmaciones automáticas.</p>
             </div>
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
               <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
@@ -229,25 +223,16 @@ const faqs = [
           </div>
         </div>
 
-        {/* Testimonial */}
         <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-16">
-          <div class="flex items-start gap-4 mb-4">
-            <div class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-white text-xl font-bold">
-              M
-            </div>
-            <div>
-              <p class="font-semibold text-gray-900">{testimonial.author}</p>
-              <p class="text-sm text-gray-700">{testimonial.role}, {testimonial.salon}</p>
-            </div>
-            <div class="ml-auto">
-              <span class="inline-block px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
-                {testimonial.improvement}
-              </span>
-            </div>
+          <div class="bg-blue-50 rounded-xl p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Lo que suele cambiar con Agenda de Reservas</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li>✓ Menos llamadas para gestionar citas — los clientes reservan online</li>
+              <li>✓ Historial digital de coloraciones — sin depender de la memoria</li>
+              <li>✓ Recordatorios automáticos — menos ausencias por olvido</li>
+              <li>✓ Estadísticas de ocupación — saber qué días y horas son más rentables</li>
+            </ul>
           </div>
-          <blockquote class="text-lg text-gray-700 italic border-l-4 border-pink-200 pl-4">
-            "{testimonial.quote}"
-          </blockquote>
         </div>
 
         {/* Essential Features */}
@@ -266,7 +251,7 @@ const faqs = [
                 <span class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center text-pink-600 text-sm">2</span>
                 Recordatorios automáticos
               </h3>
-              <p class="text-gray-600 text-sm">WhatsApp 24h antes reduce ausencias un 70%. Confirmación con un clic, sin llamadas.</p>
+              <p class="text-gray-600 text-sm">Recordatorios automáticos por WhatsApp y email reducen significativamente las ausencias por olvido. Sin llamadas manuales de confirmación.</p>
             </div>
             <div class="bg-white rounded-xl p-6 shadow-sm">
               <h3 class="font-semibold text-gray-900 mb-2 flex items-center gap-2">
@@ -297,29 +282,26 @@ const faqs = [
           <h2 class="text-xl font-bold text-gray-900 mb-6 text-center">ROI del software de peluquería</h2>
           <div class="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 class="font-semibold text-gray-900 mb-4">Costes vs Beneficios (ejemplo real)</h3>
+              <h3 class="font-semibold text-gray-900 mb-4">Costes vs ahorro (ejemplo orientativo, 3 peluqueros)</h3>
               <ul class="space-y-3 text-sm">
                 <li class="flex justify-between">
-                  <span class="text-gray-600">Coste software Agenda de Reservas</span>
+                  <span class="text-gray-600">Coste Agenda de Reservas</span>
                   <span class="font-medium">228€/año</span>
                 </li>
                 <li class="flex justify-between">
-                  <span class="text-gray-600">Ahorro gestión (10h/semana × 18€)</span>
-                  <span class="font-medium text-green-600">+9.360€/año</span>
-                </li>
-                <li class="flex justify-between">
-                  <span class="text-gray-600">Recuperar ausencias (70% de 100 citas/semana)</span>
-                  <span class="font-medium text-green-600">+25.480€/año</span>
-                </li>
-                <li class="flex justify-between">
-                  <span class="text-gray-600">Ahorro vs AgendaPro</span>
+                  <span class="text-gray-600">Ahorro vs AgendaPro (3 empleados)</span>
                   <span class="font-medium text-green-600">+1.536€/año</span>
                 </li>
+                <li class="flex justify-between">
+                  <span class="text-gray-600">Ahorro en gestión (estimado)</span>
+                  <span class="font-medium text-green-600">Depende del negocio</span>
+                </li>
                 <li class="border-t pt-2 flex justify-between font-bold">
-                  <span class="text-gray-900">Beneficio neto anual</span>
-                  <span class="text-green-700 text-lg">+36.148€</span>
+                  <span class="text-gray-900">Ahorro directo mínimo</span>
+                  <span class="text-green-700 text-lg">+1.308€/año</span>
                 </li>
               </ul>
+              <p class="text-xs text-gray-400 mt-3">El ahorro real en tiempo y ausencias depende del volumen y situación de partida de cada peluquería.</p>
             </div>
             <div class="bg-blue-50 rounded-xl p-6 flex flex-col justify-center">
               <p class="text-sm text-blue-600 mb-2">Tiempo de recuperación</p>

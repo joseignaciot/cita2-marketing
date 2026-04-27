@@ -1,119 +1,104 @@
 ---
-title: 'Cómo aumentar las reservas directas de tu restaurante un 40% sin comisiones'
-description: 'Estrategias probadas para que los clientes reserven directamente contigo, evitando las comisiones del 12-15% de ElTenedor y similares.'
+title: 'Cómo reducir la dependencia de TheFork y conseguir más reservas directas en tu restaurante'
+description: 'TheFork cobra entre 1 y 2€ por comensal en reservas. Te explicamos cómo complementarlo con un canal directo propio para reducir ese coste sin perder visibilidad.'
 pubDate: 2025-03-22
+updatedDate: 2026-04-27
 author: 'Carlos Martínez'
 category: 'marketing'
-tags: ['restaurante', 'reservas directas', 'marketing', 'eltenedor']
+tags: ['restaurante', 'reservas directas', 'marketing', 'thefork']
 featured: true
 readingTime: 6
 ---
 
-## El problema: Estás regalando dinero
+## ¿Cuánto cobra TheFork por cada reserva?
 
-Si usas ElTenedor, TheFork, o similar, estás pagando un **12-15% de comisión** por cada reserva. En un restaurante que factura 15.000€/mes en reservas online, eso son **1.800€ mensuales** que se van en comisiones.
+TheFork (antes ElTenedor) no cobra un porcentaje del ticket, sino un fee fijo por comensal en forma de "YUMS":
 
-Eso es **21.600€ al año**. ¿Imaginas lo que podrías hacer con ese dinero?
+- **Plan estándar**: ~1€ por comensal
+- Una mesa de 4 personas = ~4€ de coste por reserva
+- Para un ticket medio de 35€/persona, eso equivale al **2,8% del valor de la reserva**
 
-## La solución: Relación directa con tus clientes
+En tickets medios bajos (25€/persona) el porcentaje sube. En tickets altos (50€+) baja. En cualquier caso, **es un coste real que se acumula** con el volumen.
 
-### 1. Tu propia página de reservas
+**Ejemplo orientativo** (no representa ningún restaurante real):
+- Restaurante con 300 comensales/mes via TheFork
+- Coste estimado: ~300€/mes en fees de TheFork
+- A lo largo del año: ~3.600€ en intermediación
 
-Necesitas un sistema donde los clientes reserven directamente contigo, sin intermediarios. Esto significa:
-- URL propia: `turestaurante.com/reservar`
-- Sin redirecciones a terceros
-- Datos de clientes tuyos (email, teléfono)
-- Sin comisiones por reserva
+Si tu volumen es mayor, el coste escala de forma proporcional.
 
-### 2. SEO local optimizado
+> **Nota:** Los precios de TheFork varían según plan, país y acuerdo comercial. Consulta siempre tu contrato actual para conocer tu tarifa exacta.
 
-Cuando alguien busca "restaurante italiano en [tu zona]", quieres que te encuentren a TI, no a ElTenedor.
+## ¿Tiene sentido dejar TheFork completamente?
 
-**Acciones concretas:**
-- Google Business Profile optimizado
-- Reseñas reales de clientes
-- Web con contenido local
-- Página de reservas indexada
+**No necesariamente.** TheFork tiene un marketplace con tráfico propio — clientes que buscan restaurantes activamente. Abandonarlo del todo puede suponer perder visibilidad en momentos clave (fines de semana, festivos).
 
-### 3. Incentivos para reservar directo
+La estrategia más inteligente para la mayoría de restaurantes es **tener los dos canales**:
 
-**Ejemplo efectivo:**
-> "Reserva directamente y te regalamos una bebida o postre de cortesía"
+1. **TheFork / plataformas**: para captar clientes nuevos que no te conocen
+2. **Reservas directas**: para que los clientes que ya te conocen vuelvan sin pasar por intermediarios
 
-Coste para ti: 2-3€. Comisión que evitas: 6-10€. **ROI positivo inmediato.**
+El objetivo es que, con el tiempo, el canal directo vaya ganando peso.
 
-## Cómo Agenda de Reservas ayuda a restaurantes
+## Cómo construir tu canal de reservas directas
 
-Hemos diseñado Agenda de Reservas específicamente para restaurantes con:
+### 1. Una página de reservas propia
 
-- **Gestión de mesas**: Visualiza tu sala, capacidad por mesa
-- **Turnos**: Comida y cena con horarios específicos
-- **Reservas online**: Tu propia URL, tu marca, tus clientes
-- **Lista de espera**: Si estás lleno, apuntas interesados
-- **Depósitos**: Opcional, reduce no-shows al 2%
+Necesitas que tus clientes habituales puedan reservar directamente contigo:
 
-## Caso real: Restaurante La Trastienda
+- URL clara: `turestaurante.com/reservas` o `turestaurante.agendadereservas.com`
+- Visible en Google Business Profile, Instagram y tu web
+- Sin redirigir a terceros
 
-**Antes:**
-- 60% reservas por ElTenedor
-- 2.800€/mes en comisiones
-- No tenía datos de clientes
+### 2. Incentiva la reserva directa
 
-**Con Agenda de Reservas (6 meses después):**
-- 85% reservas directas
-- 0€ en comisiones
-- Base de datos de 1.200 clientes para campañas
-- **Ahorro: 2.800€/mes = 33.600€/año**
+Un incentivo pequeño puede mover la balanza:
 
-## Implementación paso a paso
+> "Si reservas directamente, te invitamos a un postre de la casa"
 
-### Semana 1: Setup
-1. Regístrate en Agenda de Reservas
-2. Configura tu sala (mesas, capacidad)
-3. Define horarios (turno comida/cena)
-4. Personaliza tu página de reservas
+El coste del postre (2-3€) es menor que la comisión del intermediario por esa mesa. Y creas fidelidad.
 
-### Semana 2: Transición
-1. Añade botón "Reservar" en tu web
-2. Actualiza Google Business con nueva URL
-3. Comunica a clientes habituales
-4. Ofrece incentivo por reserva directa
+### 3. SEO local y Google Business
 
-### Semana 3+: Optimización
-1. Responde reseñas online
-2. Crea campañas email con tu base de datos
-3. Ajusta horarios según demanda
-4. Analiza métricas en dashboard
+Cuando alguien busca "restaurante en [tu barrio]", quieres aparecer tú directamente:
 
-## Resultados esperados
+- Google Business Profile actualizado y con fotos recientes
+- Enlace de reservas directo en tu ficha de Google
+- Responde a las reseñas — mejora el posicionamiento local
 
-| Métrica | Antes | Después (3 meses) |
-|---|---|---|
-| Reservas directas | 20% | 70% |
-| Comisiones mensuales | 2.000€ | 0€ |
-| Base de datos clientes | 0 | 800+ |
-| No-shows | 15% | 5% |
+### 4. Comunica con tus clientes
 
-## ¿Y si no tengo web?
+TheFork no te da los datos de contacto de los clientes. Con reservas directas, sí los tienes:
 
-No necesitas web completa. Agenda de Reservas te da una **página de reservas profesional** con tu logo, fotos, menú, horarios... Funciona como landing page perfecta.
+- Lista de emails para comunicar menús especiales, eventos, cierres
+- WhatsApp Business para confirmaciones y recordatorios
+- No dependes de que el cliente te busque en la plataforma
 
-URL: `agendadereservas.com/book/tu-restaurante`
+## Qué ofrece Agenda de Reservas para restaurantes
 
-Puedes compartirla en:
-- Instagram Bio
-- Google Business
-- Tarjetas de visita (código QR)
-- WhatsApp
+Agenda de Reservas está pensado para ser tu canal de reservas directo, complementario a las plataformas:
 
-## Conclusión
+- **Gestión de mesas y sala**: configura tu plano, capacidad por mesa, zonas
+- **Turnos diferenciados**: comida y cena con horarios y capacidades distintas
+- **Tu página de reservas**: con tu logo, fotos y datos, sin branding de terceros
+- **Lista de espera**: cuando estás completo, apuntas interesados
+- **Recordatorios automáticos**: reduce los no-shows sin llamar uno a uno
+- **Datos de tus clientes**: email y teléfono quedan en tu base de datos, no en la de la plataforma
 
-Cada reserva que haces por ElTenedor es dinero que regalas. Con las herramientas adecuadas, puedes recuperar ese control y esos ingresos.
+El coste del plan Restaurantes es de **24€/mes** (consulta la [página de precios](/precios) para la tarifa actualizada). Sin comisiones por reserva.
 
-**19€/mes de Agenda de Reservas vs 2.000€/mes de comisiones.** La matemática es simple.
+## Una transición razonable
+
+No hace falta hacer un cambio radical. Un proceso gradual funciona mejor:
+
+**Mes 1:** Configura tu sistema de reservas directo en paralelo a TheFork
+**Mes 2:** Empieza a comunicar la opción directa a tus clientes habituales
+**Mes 3+:** Evalúa qué porcentaje de tus reservas llegan por cada canal y ajusta dónde inviertes en visibilidad
+
+El objetivo no es eliminar TheFork del día a uno, sino tener un canal propio que reduzca tu dependencia de forma progresiva.
 
 ---
 
-[Prueba Agenda de Reservas gratis 14 días →](https://app.agendadereservas.com)
+¿Quieres ver cómo quedaría tu página de reservas? [Prueba Agenda de Reservas gratis 14 días →](https://app.agendadereservas.com)
 
-*Setup en 5 minutos. Sin tarjeta. Sin compromiso.*
+*Sin tarjeta. Sin comisiones. Sin compromiso.*
