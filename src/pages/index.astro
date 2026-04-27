@@ -13,9 +13,11 @@ import AdvancedSEO from '../components/AdvancedSEO.astro';
 // Import Apple Design System
 import '../styles/apple-design.css';
 
+import home from '../content/home.json';
+
 // AI-Optimized Title & Meta
-const title = 'Agenda de Reservas - Software de Gestión de Citas | Tu Agenda Automatizada';
-const description = 'Deja que tus clientes reserven 24/7 mientras tú descansas. Reduce ausencias un 70% con recordatorios automáticos. Desde 19€/mes. Prueba gratis 14 días.';
+const title = home.pageTitle;
+const description = home.pageDescription;
 
 const features = [
   {
@@ -50,29 +52,7 @@ const features = [
   },
 ];
 
-const testimonials = [
-  {
-    quote: 'Desde que uso Agenda de Reservas he dejado de recibir llamadas a deshoras. Mis clientes reservan online y yo solo tengo que llegar y trabajar.',
-    author: 'María García',
-    role: 'Dueña',
-    company: 'Peluquería María',
-    rating: 5,
-  },
-  {
-    quote: 'Hemos ahorrado 2.800€ al mes en comisiones de ElTenedor. Ahora tenemos relación directa con nuestros clientes.',
-    author: 'Carlos Martínez',
-    role: 'Gerente',
-    company: 'Restaurante La Trastienda',
-    rating: 5,
-  },
-  {
-    quote: 'Hemos duplicado reservas directas y ahorrado 15h semanales. Todo está en un sitio, sabemos exactamente cuántos somos cada día.',
-    author: 'Santiago Torres',
-    role: 'Director',
-    company: 'Santiago Tours',
-    rating: 5,
-  },
-];
+const testimonials = home.testimonials;
 
 const pricingPlans = [
   {
@@ -96,32 +76,7 @@ const pricingPlans = [
   },
 ];
 
-const faqItems = [
-  {
-    question: '¿Cuánto tiempo tarda en estar operativo?',
-    answer: 'Menos de 2 minutos. Al registrarte, pre-cargamos servicios según tu sector (peluquería, estética, etc.) para que solo tengas que personalizar precios y duraciones. Tu página de reservas está lista inmediatamente.',
-  },
-  {
-    question: '¿Necesito tarjeta de crédito para la prueba?',
-    answer: 'No. La prueba de 14 días es completamente gratuita y no requiere tarjeta. Solo te pedimos los datos de pago cuando decides quedarte después de la prueba.',
-  },
-  {
-    question: '¿Puedo importar mis clientes actuales?',
-    answer: 'Sí. Puedes importar tu base de clientes desde Excel/CSV. También ofrecemos asistencia gratuita para la migración si tienes muchos datos.',
-  },
-  {
-    question: '¿Qué pasa si supero el límite de citas?',
-    answer: 'No hay límite de citas. Por 19€/mes tienes reservas ilimitadas. No cobramos por comisión ni por volumen.',
-  },
-  {
-    question: '¿Funciona en móvil?',
-    answer: 'Sí. Agenda de Reservas es web responsive, se adapta perfectamente a móvil, tablet y desktop. También puedes añadirla a la pantalla de inicio como una app.',
-  },
-  {
-    question: '¿Qué soporte ofrecéis?',
-    answer: 'Soporte por email y chat en español. Tiempo de respuesta < 2 horas en horario laboral. También tenemos guías, videos tutoriales y webinars semanales.',
-  },
-];
+const faqItems = home.faqs;
 
 // Enhanced Schema for AI SEO - Rich structured data
 const schema = {
@@ -148,23 +103,14 @@ const schema = {
         bestRating: '5',
         worstRating: '1'
       },
-      review: [
-        {
-          '@type': 'Review',
-          author: { '@type': 'Person', name: 'María García' },
-          reviewBody: 'Desde que uso Agenda de Reservas he dejado de recibir llamadas a deshoras. Mis clientes reservan online y yo solo tengo que llegar y trabajar.',
-          reviewRating: { '@type': 'Rating', ratingValue: '5' },
-          datePublished: '2025-02-15'
-        },
-        {
-          '@type': 'Review',
-          author: { '@type': 'Person', name: 'Carlos Martínez' },
-          reviewBody: 'Hemos ahorrado 2.800€ al mes en comisiones de ElTenedor. Ahora tenemos relación directa con nuestros clientes.',
-          reviewRating: { '@type': 'Rating', ratingValue: '5' },
-          datePublished: '2025-01-20'
-        }
-      ],
-      description: description,
+      review: home.testimonials.map(t => ({
+        '@type': 'Review',
+        author: { '@type': 'Person', name: t.author },
+        reviewBody: t.quote,
+        reviewRating: { '@type': 'Rating', ratingValue: String(t.rating) },
+        datePublished: '2026-01-01'
+      })),
+      description: home.aiDescription,
       featureList: 'Reservas online 24/7, Recordatorios automáticos por WhatsApp/Email/SMS, CRM de clientes, Pagos online con Stripe, WhatsApp Business integrado, Estadísticas y dashboard'
     },
     {
@@ -220,9 +166,9 @@ const schema = {
   <main>
     <!-- Hero V2: Apple Style -->
     <HeroV2 
-      title="Tu agenda, automatizada"
-      subtitle="Deja que tus clientes reserven 24/7 mientras tú descansas. El software que reduce las ausencias un 70%."
-      ctaText="Prueba gratis 14 días"
+      title={home.heroTitle}
+      subtitle={home.heroSubtitle}
+      ctaText={home.heroCta}
       ctaHref="https://app.agendadereservas.com"
       secondaryCta={{ text: "Ver cómo funciona", href: "#soluciones" }}
     />

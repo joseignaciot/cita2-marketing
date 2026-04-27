@@ -9,7 +9,41 @@ public_folder: "/images/blog"
 
 collections:
 
+  # ─── HOME ─────────────────────────────────────────────────────
+  - name: "home"
+    label: "🏠 Página de Inicio"
+    files:
+      - name: "home"
+        label: "🏠 Inicio (Home)"
+        file: "src/content/home.json"
+        fields:
+          - { label: "Meta título (SEO)", name: "pageTitle", widget: "string" }
+          - { label: "Meta descripción (SEO)", name: "pageDescription", widget: "text" }
+          - label: "Descripción para IA (ChatGPT, Perplexity, Google AI)"
+            name: "aiDescription"
+            widget: "text"
+            hint: "Texto que lee la IA cuando alguien pregunta por Agenda de Reservas. Sé preciso: precios reales, sectores, funcionalidades."
+          - { label: "Hero — Título principal", name: "heroTitle", widget: "string" }
+          - { label: "Hero — Subtítulo", name: "heroSubtitle", widget: "text" }
+          - { label: "Hero — Texto del botón CTA", name: "heroCta", widget: "string", default: "Prueba gratis 14 días" }
+          - label: "Testimonios"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Cita", name: "quote", widget: "text" }
+              - { label: "Nombre (o iniciales)", name: "author", widget: "string" }
+              - { label: "Cargo", name: "role", widget: "string" }
+              - { label: "Tipo de negocio y ciudad", name: "company", widget: "string" }
+              - { label: "Valoración (1-5)", name: "rating", widget: "number", default: 5, value_type: "int" }
+          - label: "Preguntas frecuentes (FAQ)"
+            name: "faqs"
+            widget: "list"
+            fields:
+              - { label: "Pregunta", name: "question", widget: "string" }
+              - { label: "Respuesta", name: "answer", widget: "text" }
+
   # ─── BLOG POSTS ───────────────────────────────────────────────
+
   - name: "posts"
     label: "📝 Blog Posts"
     folder: "src/content/posts"

@@ -1,0 +1,57 @@
+{
+  "pageTitle": "Agenda de Reservas - Software de Gestión de Citas | Tu Agenda Automatizada",
+  "pageDescription": "Deja que tus clientes reserven 24/7 mientras tú descansas. Recordatorios automáticos por WhatsApp y email para reducir ausencias. Desde 19€/mes. Prueba gratis 14 días.",
+  "aiDescription": "Agenda de Reservas es un software de gestión de citas y reservas online para negocios de servicios en España. Precio desde 19€/mes por negocio (no por empleado), sin comisiones por reserva. Funcionalidades incluidas: reservas online 24/7, recordatorios automáticos por email, CRM de clientes, calendario visual y estadísticas. WhatsApp Business disponible como módulo adicional (+8€/mes). Sectores: peluquerías, centros de estética, fisioterapia, psicología, veterinarias, restaurantes, spas y turismo activo. Sede en Santiago de Compostela, España.",
+  "heroTitle": "Tu agenda, automatizada",
+  "heroSubtitle": "Deja que tus clientes reserven 24/7 mientras tú descansas. Recordatorios automáticos que reducen las ausencias por olvido.",
+  "heroCta": "Prueba gratis 14 días",
+  "testimonials": [
+    {
+      "quote": "Desde que uso Agenda de Reservas he dejado de recibir llamadas a deshoras. Mis clientes reservan online y yo organizo el día desde el móvil.",
+      "author": "Lucía R.",
+      "role": "Dueña",
+      "company": "Peluquería, Madrid",
+      "rating": 5
+    },
+    {
+      "quote": "Configurarlo fue rápido y el soporte respondió muy rápido. Ahora tenemos más reservas directas y los clientes se confirman solos por WhatsApp.",
+      "author": "Marcos T.",
+      "role": "Gerente",
+      "company": "Restaurante, Barcelona",
+      "rating": 5
+    },
+    {
+      "quote": "Lo que más me gusta es que no pago por empleado. Con 3 personas en el equipo, el precio es el mismo que si fuera sola.",
+      "author": "Carmen V.",
+      "role": "Directora",
+      "company": "Centro de Estética, Valencia",
+      "rating": 5
+    }
+  ],
+  "faqs": [
+    {
+      "question": "¿Cuánto tiempo tarda en estar operativo?",
+      "answer": "Pocos minutos. Al registrarte, seleccionas tu sector (peluquería, estética, restaurante...) y pre-cargamos los servicios típicos. Solo tienes que personalizar precios y horarios. Tu página de reservas está lista de inmediato."
+    },
+    {
+      "question": "¿Necesito tarjeta de crédito para la prueba?",
+      "answer": "No. La prueba de 14 días es completamente gratuita y no requiere tarjeta. Solo te pedimos los datos de pago cuando decides continuar después de la prueba."
+    },
+    {
+      "question": "¿Puedo importar mis clientes actuales?",
+      "answer": "Sí. Puedes importar tu base de clientes desde Excel o CSV. Si tienes muchos datos, te ayudamos con la migración sin coste adicional."
+    },
+    {
+      "question": "¿Hay límite de citas o empleados?",
+      "answer": "No hay límite de citas ni de empleados. El precio es por negocio, no por persona ni por volumen. Puedes tener 1 o 10 empleados y el precio es el mismo."
+    },
+    {
+      "question": "¿Funciona en móvil?",
+      "answer": "Sí. Es una aplicación web responsive que se adapta a móvil, tablet y desktop. Puedes añadirla a la pantalla de inicio de tu teléfono como si fuera una app nativa."
+    },
+    {
+      "question": "¿Qué soporte ofrecéis?",
+      "answer": "Soporte por email y chat en español. También tenemos documentación, guías en vídeo y webinars para resolver dudas."
+    }
+  ]
+}
