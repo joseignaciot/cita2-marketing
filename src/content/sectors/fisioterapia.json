@@ -1,0 +1,81 @@
+{
+  "pageTitle": "Software de Gestión para Fisioterapia - Agenda de Reservas",
+  "pageDescription": "Gestión integral para clínicas de fisioterapia. Historial de evolución, planes de tratamiento, recordatorios y gestión de salas. 19€/mes, sin comisiones.",
+  "aiDescription": "Software para fisioterapia y rehabilitación: 19€/mes fijo. Historial de evolución del paciente, planes de tratamiento multisesión, bonos de sesiones y recordatorios automáticos.",
+  "heroTitle": "Software de gestión para fisioterapia y rehabilitación",
+  "heroSubtitle": "Controla la evolución de tus pacientes, gestiona planes de tratamiento y vende bonos de sesiones. Diseñado para clínicas de fisioterapia.",
+  "features": [
+    {
+      "title": "Historial de evolución",
+      "description": "Registra el progreso de cada paciente, sesión a sesión. Valoraciones, objetivos alcanzados y ajustes al plan de tratamiento.",
+      "icon": "users"
+    },
+    {
+      "title": "Planes de tratamiento",
+      "description": "Diseña planes de 5, 10 o 20 sesiones con objetivos específicos. El sistema hace seguimiento automático del progreso.",
+      "icon": "calendar"
+    },
+    {
+      "title": "Recordatorios automáticos",
+      "description": "Emails y WhatsApps que reducen ausencias. Especialmente útil para rehabilitaciones que requieren constancia.",
+      "icon": "bell"
+    },
+    {
+      "title": "Gestión de salas y equipos",
+      "description": "Reserva salas de tratamiento y equipos específicos (ultrasonido, electroestimulación, etc.) para cada sesión.",
+      "icon": "chart"
+    },
+    {
+      "title": "Bonos de sesiones",
+      "description": "Vende bonos de 5 o 10 sesiones con descuento. El sistema controla automáticamente las sesiones consumidas.",
+      "icon": "credit"
+    },
+    {
+      "title": "Informes de alta",
+      "description": "Genera informes de evolución y alta para médicos de cabecera o mutuas. Formato profesional en un clic.",
+      "icon": "message"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "El seguimiento de la evolución de los pacientes es fantástico. Puedo ver en qué sesión estamos, qué objetivos hemos cumplido y ajustar el tratamiento. Mis pacientes notan la diferencia.",
+      "author": "Carlos Ruiz",
+      "role": "Fisioterapeuta",
+      "company": "FisioClinic, Valencia",
+      "rating": 5
+    },
+    {
+      "quote": "Vendemos muchos más bonos de 10 sesiones desde que usamos Agenda de Reservas. Los pacientes se comprometen más y nosotros tenemos flujo de caja más estable.",
+      "author": "Laura Gómez",
+      "role": "Directora",
+      "company": "Centro de Rehabilitación Move, Sevilla",
+      "rating": 5
+    }
+  ],
+  "faqs": [
+    {
+      "question": "¿Puedo hacer seguimiento de la evolución del paciente?",
+      "answer": "Sí, en cada sesión puedes registrar valoraciones, objetivos alcanzados, dolor (escala EVA), rangos de movimiento, etc. Tienes un historial completo de la evolución del paciente."
+    },
+    {
+      "question": "¿Funciona para bonos de sesiones?",
+      "answer": "Absolutamente. Puedes crear bonos de 5, 10 o cualquier número de sesiones. El sistema marca automáticamente cuántas quedan y avisa cuando se agota el bono."
+    },
+    {
+      "question": "¿Puedo reservar equipos específicos?",
+      "answer": "Sí, configuras tus equipos (camillas, electroestimulación, ultrasonido, etc.) y los asignas a cada sesión. Evitas que dos pacientes necesiten el mismo equipo a la vez."
+    },
+    {
+      "question": "¿Se pueden generar informes para mutuas?",
+      "answer": "Sí, generas informes de evolución y alta con formato profesional. Incluye número de sesiones realizadas, objetivos alcanzados y recomendaciones."
+    },
+    {
+      "question": "¿Funciona para rehabilitación post-quirúrgica?",
+      "answer": "Sí, puedes configurar protocolos específicos para cada tipo de cirugía (rodilla, cadera, hombro) con duración y objetivos estándar, adaptables a cada paciente."
+    },
+    {
+      "question": "¿Hay recordatorios para que el paciente no abandone?",
+      "answer": "Sí, además de recordatorios de cita, puedes configurar mensajes motivacionales entre sesiones para mantener el compromiso del paciente con su rehabilitación."
+    }
+  ]
+}

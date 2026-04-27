@@ -9,8 +9,9 @@ import Pricing from '../components/Pricing.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 
-const pageTitle = 'Software de Gestión para Fisioterapia - Agenda de Reservas';
-const pageDescription = 'Gestión integral para clínicas de fisioterapia. Historial de evolución, planes de tratamiento, recordatorios y gestión de salas. 19€/mes, sin comisiones.';
+import content from '../content/sectors/fisioterapia.json';
+
+const { pageTitle, pageDescription, aiDescription, heroTitle, heroSubtitle, features, testimonials, faqs } = content;
 
 const schema = {
   '@context': 'https://schema.org',
@@ -31,95 +32,15 @@ const schema = {
   }
 };
 
-const physioFeatures = [
-  {
-    title: 'Historial de evolución',
-    description: 'Registra el progreso de cada paciente, sesión a sesión. Valoraciones, objetivos alcanzados y ajustes al plan de tratamiento.',
-    icon: 'users'
-  },
-  {
-    title: 'Planes de tratamiento',
-    description: 'Diseña planes de 5, 10 o 20 sesiones con objetivos específicos. El sistema hace seguimiento automático del progreso.',
-    icon: 'calendar'
-  },
-  {
-    title: 'Recordatorios automáticos',
-    description: 'Emails y WhatsApps que reducen ausencias. Especialmente útil para rehabilitaciones que requieren constancia.',
-    icon: 'bell'
-  },
-  {
-    title: 'Gestión de salas y equipos',
-    description: 'Reserva salas de tratamiento y equipos específicos (ultrasonido, electroestimulación, etc.) para cada sesión.',
-    icon: 'chart'
-  },
-  {
-    title: 'Bonos de sesiones',
-    description: 'Vende bonos de 5 o 10 sesiones con descuento. El sistema controla automáticamente las sesiones consumidas.',
-    icon: 'credit'
-  },
-  {
-    title: 'Informes de alta',
-    description: 'Genera informes de evolución y alta para médicos de cabecera o mutuas. Formato profesional en un clic.',
-    icon: 'message'
-  }
-];
-
-const physioTestimonials = [
-  {
-    quote: 'El seguimiento de la evolución de los pacientes es fantástico. Puedo ver en qué sesión estamos, qué objetivos hemos cumplido y ajustar el tratamiento. Mis pacientes notan la diferencia.',
-    author: 'Carlos Ruiz',
-    role: 'Fisioterapeuta',
-    company: 'FisioClinic, Valencia',
-    rating: 5
-  },
-  {
-    quote: 'Vendemos muchos más bonos de 10 sesiones desde que usamos Agenda de Reservas. Los pacientes se comprometen más y nosotros tenemos flujo de caja más estable.',
-    author: 'Laura Gómez',
-    role: 'Directora',
-    company: 'Centro de Rehabilitación Move, Sevilla',
-    rating: 5
-  }
-];
-
-const physioFAQs = [
-  {
-    question: '¿Puedo hacer seguimiento de la evolución del paciente?',
-    answer: 'Sí, en cada sesión puedes registrar valoraciones, objetivos alcanzados, dolor (escala EVA), rangos de movimiento, etc. Tienes un historial completo de la evolución del paciente.'
-  },
-  {
-    question: '¿Funciona para bonos de sesiones?',
-    answer: 'Absolutamente. Puedes crear bonos de 5, 10 o cualquier número de sesiones. El sistema marca automáticamente cuántas quedan y avisa cuando se agota el bono.'
-  },
-  {
-    question: '¿Puedo reservar equipos específicos?',
-    answer: 'Sí, configuras tus equipos (camillas, electroestimulación, ultrasonido, etc.) y los asignas a cada sesión. Evitas que dos pacientes necesiten el mismo equipo a la vez.'
-  },
-  {
-    question: '¿Se pueden generar informes para mutuas?',
-    answer: 'Sí, generas informes de evolución y alta con formato profesional. Incluye número de sesiones realizadas, objetivos alcanzados y recomendaciones.'
-  },
-  {
-    question: '¿Funciona para rehabilitación post-quirúrgica?',
-    answer: 'Sí, puedes configurar protocolos específicos para cada tipo de cirugía (rodilla, cadera, hombro) con duración y objetivos estándar, adaptables a cada paciente.'
-  },
-  {
-    question: '¿Hay recordatorios para que el paciente no abandone?',
-    answer: 'Sí, además de recordatorios de cita, puedes configurar mensajes motivacionales entre sesiones para mantener el compromiso del paciente con su rehabilitación.'
-  }
-];
 ---
 
-<Layout 
-  title={pageTitle}
-  description={pageDescription}
-  schema={schema}
->
+<Layout title={pageTitle} description={pageDescription} aiDescription={aiDescription} schema={schema}>
   <Header />
   
   <main>
     <Hero 
-      title="Software de gestión para fisioterapia y rehabilitación"
-      subtitle="Controla la evolución de tus pacientes, gestiona planes de tratamiento y vende bonos de sesiones. Diseñado para clínicas de fisioterapia."
+      title={heroTitle}
+      subtitle={heroSubtitle}
       primaryCta="Prueba gratis 14 días"
       primaryCtaHref="https://app.agendadereservas.com"
       secondaryCta="Ver funcionalidades"
@@ -129,13 +50,13 @@ const physioFAQs = [
     <Features 
       title="¿Qué conseguirás con Agenda de Reservas?"
       subtitle="Funcionalidades específicas para fisioterapeutas."
-      features={physioFeatures}
+      features={features}
     />
 
     <Testimonials 
       title="Lo que dicen los fisioterapeutas"
       subtitle="Más de 95 clínicas de fisioterapia confían en Agenda de Reservas."
-      testimonials={physioTestimonials}
+      testimonials={testimonials}
     />
 
     <Pricing />
@@ -143,7 +64,7 @@ const physioFAQs = [
     <FAQ 
       title="Preguntas frecuentes para fisioterapia"
       subtitle="Respuestas a las dudas más comunes del sector."
-      faqs={physioFAQs}
+      faqs={faqs}
     />
 
     <CTA 

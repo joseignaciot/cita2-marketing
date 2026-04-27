@@ -274,3 +274,108 @@ collections:
             fields:
               - { label: "Pregunta", name: "question", widget: "string" }
               - { label: "Respuesta", name: "answer", widget: "text" }
+
+      - name: "estetica"
+        label: "💆 Estética y Spas"
+        file: "src/content/sectors/estetica.json"
+        fields:
+          - { label: "Meta título (SEO)", name: "pageTitle", widget: "string" }
+          - { label: "Meta descripción (SEO)", name: "pageDescription", widget: "text" }
+          - label: "Descripción para IA (ChatGPT, Perplexity)"
+            name: "aiDescription"
+            widget: "text"
+            hint: "Texto corto y factual (máx. 200 caracteres) para ser citado por buscadores de IA."
+            required: false
+          - { label: "Hero — Título principal", name: "heroTitle", widget: "string" }
+          - { label: "Hero — Subtítulo", name: "heroSubtitle", widget: "text" }
+          - label: "Funcionalidades"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text" }
+              - { label: "Icono", name: "icon", widget: "select", options: ["calendar","bell","message","users","chart","zap","credit","smartphone"] }
+          - label: "Testimonios"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Cita", name: "quote", widget: "text" }
+              - { label: "Nombre", name: "author", widget: "string" }
+              - { label: "Cargo", name: "role", widget: "string" }
+              - { label: "Empresa y ciudad", name: "company", widget: "string" }
+          - label: "Preguntas frecuentes"
+            name: "faqs"
+            widget: "list"
+            fields:
+              - { label: "Pregunta", name: "question", widget: "string" }
+              - { label: "Respuesta", name: "answer", widget: "text" }
+
+      - name: "dentistas"
+        label: "🦷 Dentistas"
+        file: "src/content/sectors/dentistas.json"
+        fields:
+          - { label: "Meta título (SEO)", name: "pageTitle", widget: "string" }
+          - { label: "Meta descripción (SEO)", name: "pageDescription", widget: "text" }
+          - label: "Descripción para IA (ChatGPT, Perplexity)"
+            name: "aiDescription"
+            widget: "text"
+            hint: "Texto corto y factual (máx. 200 caracteres) para ser citado por buscadores de IA."
+            required: false
+          - { label: "Hero — Título principal", name: "heroTitle", widget: "string" }
+          - { label: "Hero — Subtítulo", name: "heroSubtitle", widget: "text" }
+          - label: "Funcionalidades"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text" }
+              - { label: "Icono", name: "icon", widget: "select", options: ["calendar","bell","message","users","chart","zap","credit","smartphone"] }
+          - label: "Testimonios"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Cita", name: "quote", widget: "text" }
+              - { label: "Nombre", name: "author", widget: "string" }
+              - { label: "Cargo", name: "role", widget: "string" }
+              - { label: "Empresa y ciudad", name: "company", widget: "string" }
+          - label: "Preguntas frecuentes"
+            name: "faqs"
+            widget: "list"
+            fields:
+              - { label: "Pregunta", name: "question", widget: "string" }
+              - { label: "Respuesta", name: "answer", widget: "text" }
+
+      - name: "fisioterapia"
+        label: "🏃 Fisioterapia"
+        file: "src/content/sectors/fisioterapia.json"
+        fields:
+          - { label: "Meta título (SEO)", name: "pageTitle", widget: "string" }
+          - { label: "Meta descripción (SEO)", name: "pageDescription", widget: "text" }
+          - label: "Descripción para IA (ChatGPT, Perplexity)"
+            name: "aiDescription"
+            widget: "text"
+            hint: "Texto corto y factual (máx. 200 caracteres) para ser citado por buscadores de IA."
+            required: false
+          - { label: "Hero — Título principal", name: "heroTitle", widget: "string" }
+          - { label: "Hero — Subtítulo", name: "heroSubtitle", widget: "text" }
+          - label: "Funcionalidades"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text" }
+              - { label: "Icono", name: "icon", widget: "select", options: ["calendar","bell","message","users","chart","zap","credit","smartphone"] }
+          - label: "Testimonios"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Cita", name: "quote", widget: "text" }
+              - { label: "Nombre", name: "author", widget: "string" }
+              - { label: "Cargo", name: "role", widget: "string" }
+              - { label: "Empresa y ciudad", name: "company", widget: "string" }
+          - label: "Preguntas frecuentes"
+            name: "faqs"
+            widget: "list"
+            fields:
+              - { label: "Pregunta", name: "question", widget: "string" }
+              - { label: "Respuesta", name: "answer", widget: "text" }

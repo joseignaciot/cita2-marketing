@@ -7,97 +7,11 @@ import Testimonials from '../components/Testimonials.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 import Footer from '../components/Footer.astro';
+import content from '../content/sectors/peluquerias.json';
 
-const title = 'Software de Gestión para Peluquerías - Agenda de Reservas';
-const description = 'Software diseñado específicamente para peluquerías. Reservas online 24/7, recordatorios automáticos, WhatsApp integrado. Setup en 2 minutos. 19€/mes sin comisiones.';
+const { pageTitle, pageDescription, aiDescription, heroTitle, heroSubtitle, features, testimonials, faqs } = content;
 const canonicalUrl = 'https://agendadereservas.com/peluquerias/';
 
-const heroProps = {
-  title: 'Software de gestión diseñado específicamente para peluquerías',
-  subtitle: 'Olvídate de las llamadas a deshoras y las citas perdidas. Gestiona tu agenda online 24/7 con recordatorios automáticos y una página de reservas profesional que tus clientes adorarán.',
-  ctaText: 'Prueba gratis 14 días',
-  ctaHref: 'https://app.agendadereservas.com',
-  secondaryCta: { text: 'Ver funcionalidades', href: '#producto' },
-};
-
-const features = [
-  {
-    icon: 'calendar',
-    title: 'Reservas online 24/7',
-    description: 'Tus clientes reservan cuando quieren, incluso a las 3 de la mañana. Tú despiertas con la agenda llena y organizada.',
-  },
-  {
-    icon: 'bell',
-    title: 'Recordatorios automáticos',
-    description: 'Emails y WhatsApps automáticos que reducen las ausencias hasta un 80%. Sin que tú hagas nada.',
-  },
-  {
-    icon: 'message',
-    title: 'WhatsApp Business integrado',
-    description: 'Conecta tu WhatsApp y envía confirmaciones, recordatorios y follow-ups automáticamente. Tus clientes responden al instante.',
-  },
-  {
-    icon: 'users',
-    title: 'Ficha de clientes completa',
-    description: 'Historial de cortes, coloraciones, preferencias, cumpleaños. Ofrece un trato personalizado que fideliza.',
-  },
-  {
-    icon: 'chart',
-    title: 'Calendario visual intuitivo',
-    description: 'Vista semanal y diaria con código de colores. Gestiona múltiples sillas de un vistazo. Nada se te escapa.',
-  },
-  {
-    icon: 'zap',
-    title: 'Setup en 2 minutos',
-    description: 'Al registrarte, elegimos el preset "Peluquería" y tendrás servicios de ejemplo listos para usar o modificar.',
-  },
-];
-
-const testimonials = [
-  {
-    quote: 'Desde que uso Agenda de Reservas he dejado de recibir llamadas a deshoras. Mis clientes reservan online y yo solo tengo que llegar y trabajar. Las ausencias se han reducido un 70%. Es el mejor 19€ que gasto al mes.',
-    author: 'María García',
-    role: 'Dueña',
-    company: 'Peluquería María, Madrid',
-    rating: 5,
-  },
-  {
-    quote: 'Antes tenía una agenda en papel donde no se entendía nada. Ahora tengo todo organizado, los recordatorios funcionan genial y mis clientes adoran poder reservar online.',
-    author: 'Laura Sánchez',
-    role: 'Dueña',
-    company: 'Estilo 7, Barcelona',
-    rating: 5,
-  },
-];
-
-const faqItems = [
-  {
-    question: '¿Mis clientes mayores sabrán usarlo?',
-    answer: 'Sí. La página de reservas es muy intuitiva. Además, puedes seguir atendiendo llamadas y tú introduces las citas manualmente en Agenda de Reservas. Es complementario, no excluyente.',
-  },
-  {
-    question: '¿Puedo gestionar varias sillas/empleados?',
-    answer: 'Sí. Puedes configurar tantas sillas como tengas en tu peluquería. Cada una con su propia agenda, o todas centralizadas como prefieras.',
-  },
-  {
-    question: '¿Funciona para peluquerías caninas/tatuajes?',
-    answer: 'Absolutamente. Agenda de Reservas sirve para cualquier negocio de servicios. Tenemos presets específicos para peluquería canina, tatuajes, fisioterapia y más.',
-  },
-  {
-    question: '¿Puedo bloquear días de vacaciones?',
-    answer: 'Sí. Desde el calendario puedes marcar días cerrados, vacaciones, o incluso bloquear franjas horarias específicas. Tu disponibilidad, tus reglas.',
-  },
-  {
-    question: '¿Qué pasa si un cliente cancela?',
-    answer: 'Recibes notificación inmediata. El hueco queda libre automáticamente para que otro cliente pueda reservarlo. Puedes configurar política de cancelación si quieres.',
-  },
-  {
-    question: '¿Tiene aplicación para móvil?',
-    answer: 'Agenda de Reservas es web responsive, funciona perfectamente en móvil. Puedes añadirla a tu pantalla de inicio y funciona como una app. También estamos desarrollando app nativa.',
-  },
-];
-
-// SoftwareApplication Schema para peluquerías
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
@@ -116,23 +30,21 @@ const schema = {
     ratingValue: '4.8',
     ratingCount: '200',
   },
-  description: description,
-  featureList: [
-    'Reservas online 24/7',
-    'Recordatorios automáticos',
-    'WhatsApp Business integrado',
-    'CRM clientes',
-    'Calendario visual',
-    'Setup en 2 minutos',
-  ],
+  description: pageDescription,
+  featureList: features.map((f: any) => f.title),
 };
 ---
 
-<Layout title={title} description={description} canonicalUrl={canonicalUrl} schema={schema}>
+<Layout title={pageTitle} description={pageDescription} aiDescription={aiDescription} canonicalUrl={canonicalUrl} schema={schema}>
   <Header />
   
   <main>
-    <Hero {...heroProps} />
+    <Hero
+      title={heroTitle}
+      subtitle={heroSubtitle}
+      ctaText="Prueba gratis 14 días"
+      ctaHref="https://app.agendadereservas.com"
+    />
     
     <Features
       title="¿Qué conseguirás con Agenda de Reservas?"
@@ -215,7 +127,7 @@ const schema = {
     <FAQ
       title="Preguntas frecuentes"
       subtitle="Respuestas a las dudas más comunes de las peluquerías."
-      items={faqItems}
+      items={faqs}
     />
     
     <CTA

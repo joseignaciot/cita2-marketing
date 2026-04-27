@@ -1,0 +1,81 @@
+{
+  "pageTitle": "Software de Gestión para Clínicas Dentales - Agenda de Reservas",
+  "pageDescription": "Gestión integral para clínicas dentales. Historial clínico, recordatorios automáticos, gestión de tratamientos y seguimiento de pacientes. 19€/mes, sin comisiones.",
+  "aiDescription": "Software para clínicas dentales: 19€/mes fijo. Historial clínico digital, planificación de tratamientos multisesión, gestión de gabinetes y recordatorios automáticos. Sin comisiones.",
+  "heroTitle": "Software de gestión diseñado para clínicas dentales",
+  "heroSubtitle": "Digitaliza tu clínica dental. Historial clínico completo, planificación de tratamientos multisesión, recordatorios automáticos y gestión de gabinetes. Todo en una plataforma.",
+  "features": [
+    {
+      "title": "Historial clínico digital",
+      "description": "Ficha completa del paciente con tratamientos realizados, radiografías, alergias y contraindicaciones. Acceso instantáneo.",
+      "icon": "users"
+    },
+    {
+      "title": "Planificación de tratamientos",
+      "description": "Organiza tratamientos multisesión con seguimiento de fases. El sistema avisa qué toca en cada cita.",
+      "icon": "calendar"
+    },
+    {
+      "title": "Recordatorios automáticos",
+      "description": "Emails y WhatsApps que reducen las ausencias hasta un 70%. Confirmaciones automáticas 24h antes.",
+      "icon": "bell"
+    },
+    {
+      "title": "Gestión de gabinetes",
+      "description": "Controla la ocupación de cada gabinete y dentista. Evita solapamientos y maximiza tu capacidad.",
+      "icon": "chart"
+    },
+    {
+      "title": "Recetas y presupuestos",
+      "description": "Genera presupuestos detallados y recetas digitales. Envío automático por email al paciente.",
+      "icon": "credit"
+    },
+    {
+      "title": "Recordatorios de revisiones",
+      "description": "El sistema avisa automáticamente cuando un paciente debe volver para revisión o limpieza.",
+      "icon": "message"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Antes tenía papeles por todos lados. Ahora tengo todo digitalizado, sé exactamente qué tratamiento estaba haciendo cada paciente y las revisiones se programan solas.",
+      "author": "Dr. Javier Martínez",
+      "role": "Director",
+      "company": "Clínica Dental Martínez, Barcelona",
+      "rating": 5
+    },
+    {
+      "quote": "Los recordatorios automáticos han reducido nuestras ausencias un 60%. Además, la gestión de presupuestos nos ha ayudado a aumentar la tasa de aceptación de tratamientos.",
+      "author": "Dra. Ana López",
+      "role": "Odontóloga",
+      "company": "Dental Smiles, Madrid",
+      "rating": 5
+    }
+  ],
+  "faqs": [
+    {
+      "question": "¿Puedo guardar radiografías y documentos del paciente?",
+      "answer": "Sí, cada ficha de paciente permite adjuntar radiografías, fotos intraorales, presupuestos firmados y cualquier documento relevante. Almacenamiento seguro y ilimitado incluido."
+    },
+    {
+      "question": "¿Funciona para tratamientos que requieren varias citas?",
+      "answer": "Absolutamente. Puedes planificar tratamientos en fases (endodoncia en 3 sesiones, implantes con tiempos de espera, etc.) y el sistema te avisa en cada cita qué procedimiento corresponde."
+    },
+    {
+      "question": "¿Puedo gestionar varios dentistas y gabinetes?",
+      "answer": "Sí, puedes configurar todos los dentistas de tu clínica y asignarles gabinetes específicos. El calendario muestra la disponibilidad de cada uno en tiempo real."
+    },
+    {
+      "question": "¿Se pueden enviar presupuestos por email?",
+      "answer": "Sí, generas el presupuesto en el sistema y se envía automáticamente al paciente por email. El paciente puede confirmar y queda registrado en su historial."
+    },
+    {
+      "question": "¿Hay recordatorios para revisiones periódicas?",
+      "answer": "Sí, configuras el intervalo de revisiones (ej: cada 6 meses para limpieza) y el sistema envía automáticamente un recordatorio al paciente cuando toca su visita."
+    },
+    {
+      "question": "¿Es compatible con facturación médica?",
+      "answer": "Sí, el sistema permite generar facturas con los datos fiscales necesarios para clínicas dentales, incluyendo número de colegiado y otros requisitos específicos."
+    }
+  ]
+}

@@ -9,8 +9,9 @@ import Pricing from '../components/Pricing.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 
-const pageTitle = 'Software de Gestión para Centros de Estética - Agenda de Reservas';
-const pageDescription = 'Gestión integral para centros de estética, spas y bienestar. Reservas online, recordatorios, ficha de clientes con historial de tratamientos. 19€/mes, sin comisiones.';
+import content from '../content/sectors/estetica.json';
+
+const { pageTitle, pageDescription, aiDescription, heroTitle, heroSubtitle, features, testimonials, faqs } = content;
 
 const schema = {
   '@context': 'https://schema.org',
@@ -31,95 +32,15 @@ const schema = {
   }
 };
 
-const beautyFeatures = [
-  {
-    title: 'Ficha de tratamientos',
-    description: 'Historial completo de cada cliente: tratamientos realizados, productos usados, contraindicaciones, preferencias.',
-    icon: 'users'
-  },
-  {
-    title: 'Reservas online 24/7',
-    description: 'Tus clientes reservan faciales, masajes o depilaciones cuando quieran. Tú descansas con la agenda llena.',
-    icon: 'calendar'
-  },
-  {
-    title: 'Recordatorios automáticos',
-    description: 'Emails y WhatsApps que reducen las ausencias hasta un 80%. Sin que tú hagas nada.',
-    icon: 'bell'
-  },
-  {
-    title: 'Gestión de cabinas',
-    description: 'Controla la ocupación de cada cabina y profesional. Evita solapamientos y maximiza tu capacidad.',
-    icon: 'chart'
-  },
-  {
-    title: 'Paquetes y bonos',
-    description: 'Vende sesiones múltiples, bonos de tratamientos y gift cards. Fideliza y aumenta el ticket medio.',
-    icon: 'credit'
-  },
-  {
-    title: 'WhatsApp Business',
-    description: 'Envía confirmaciones, recordatorios y post-tratamiento automáticamente. Tus clientes responden al instante.',
-    icon: 'message'
-  }
-];
-
-const beautyTestimonials = [
-  {
-    quote: 'Antes tenía un caos de agendas en papel. Ahora todo está digitalizado, sé exactamente qué tratamiento hizo cada cliente y cuándo le toca su siguiente sesión.',
-    author: 'Ana Rodríguez',
-    role: 'Directora',
-    company: 'Spa Relax, Valencia',
-    rating: 5
-  },
-  {
-    quote: 'Los recordatorios automáticos han reducido nuestras ausencias un 75%. Además, vendemos muchos más bonos de 5 sesiones gracias al sistema de paquetes.',
-    author: 'Carmen López',
-    role: 'Propietaria',
-    company: 'Centro de Estética Belleza',
-    rating: 5
-  }
-];
-
-const beautyFAQs = [
-  {
-    question: '¿Puedo gestionar varias cabinas y profesionales?',
-    answer: 'Sí, puedes configurar todas las cabinas y profesionales que tengas. El calendario te muestra la ocupación de cada uno en tiempo real, evitando solapamientos y maximizando tu capacidad.'
-  },
-  {
-    question: '¿Se pueden vender bonos o paquetes de sesiones?',
-    answer: 'Absolutamente. Puedes crear bonos de 5 o 10 sesiones, pases de tratamientos o gift cards. El sistema controla automáticamente las sesiones consumidas y las pendientes.'
-  },
-  {
-    question: '¿Funciona para tratamientos que requieren varias citas?',
-    answer: 'Sí, puedes configurar tratamientos con múltiples sesiones y el sistema te avisará cuándo toca la siguiente cita de cada cliente, con su historial de tratamientos previos.'
-  },
-  {
-    question: '¿Puedo registrar contraindicaciones y alergias?',
-    answer: 'Sí, la ficha de cliente incluye campos para alergias, contraindicaciones, medicación y observaciones importantes. Siempre visibles antes de cada tratamiento.'
-  },
-  {
-    question: '¿Hay control de stock de productos?',
-    answer: 'Sí, puedes llevar el inventario de productos, registrar consumo por tratamiento y recibir alertas cuando haya que reponer stock.'
-  },
-  {
-    question: '¿Funciona para centros con spa, masajes y estética?',
-    answer: 'Sí, Agenda de Reservas está diseñado para centros integrales. Puedes configurar diferentes tipos de servicios con distintas duraciones, precios y requerimientos de cabina.'
-  }
-];
 ---
 
-<Layout 
-  title={pageTitle}
-  description={pageDescription}
-  schema={schema}
->
+<Layout title={pageTitle} description={pageDescription} aiDescription={aiDescription} schema={schema}>
   <Header />
   
   <main>
     <Hero 
-      title="Software de gestión diseñado para centros de estética y spas"
-      subtitle="Gestiona reservas, tratamientos, cabinas y clientes desde una sola plataforma. Recordatorios automáticos, bonos de sesiones y ficha completa de cada cliente."
+      title={heroTitle}
+      subtitle={heroSubtitle}
       primaryCta="Prueba gratis 14 días"
       primaryCtaHref="https://app.agendadereservas.com"
       secondaryCta="Ver funcionalidades"
@@ -129,7 +50,7 @@ const beautyFAQs = [
     <Features 
       title="¿Qué conseguirás con Agenda de Reservas?"
       subtitle="Funcionalidades diseñadas específicamente para centros de estética, spas y bienestar."
-      features={beautyFeatures}
+      features={features}
     />
 
     <section class="py-16 bg-gray-50">
@@ -194,7 +115,7 @@ const beautyFAQs = [
     <Testimonials 
       title="Lo que dicen los centros de estética"
       subtitle="Más de 150 centros de estética y spas ya gestionan sus citas con Agenda de Reservas."
-      testimonials={beautyTestimonials}
+      testimonials={testimonials}
     />
 
     <Pricing />
@@ -202,7 +123,7 @@ const beautyFAQs = [
     <FAQ 
       title="Preguntas frecuentes para centros de estética"
       subtitle="Respuestas a las dudas más comunes de spas y centros de bienestar."
-      faqs={beautyFAQs}
+      faqs={faqs}
     />
 
     <CTA 
