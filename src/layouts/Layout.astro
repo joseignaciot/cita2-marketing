@@ -132,50 +132,9 @@ const finalSchema = schema ? [websiteSchema, schema] : websiteSchema;
       src="https://plausible.io/js/script.js"
     ></script>
   )}
-  <!-- Meta Pixel Code -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'YOUR_PIXEL_ID'); // Reemplazar con Pixel ID real
-    fbq('track', 'PageView');
-  </script>
-  
-  <!-- Event Tracking for CTAs -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Track primary CTA clicks
-      document.querySelectorAll('.btn-apple-primary, .btn-primary').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          if (typeof fbq !== 'undefined') fbq('track', 'Lead');
-          if (typeof gtag !== 'undefined') gtag('event', 'conversion', {'send_to': 'AW-CONVERSION_ID'});
-        });
-      });
-      
-      // Track pricing views
-      var pricingSection = document.getElementById('precios');
-      if (pricingSection) {
-        var observer = new IntersectionObserver(function(entries) {
-          if (entries[0].isIntersecting) {
-            if (typeof fbq !== 'undefined') fbq('track', 'ViewContent', {content_name: 'Pricing'});
-            observer.disconnect();
-          }
-        }, {threshold: 0.5});
-        observer.observe(pricingSection);
-      }
-    });
-  </script>
-  
-  <noscript>
-    <img height="1" width="1" style="display:none" 
-         src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
-  </noscript>
-  <!-- End Meta Pixel Code -->
+  <!-- Meta Pixel: desactivado hasta configurar un Pixel ID real en GTM -->
+  <!-- Para activar: configurar NEXT_PUBLIC_FB_PIXEL_ID en variables de entorno -->
+
     <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -196,8 +155,10 @@ const finalSchema = schema ? [websiteSchema, schema] : websiteSchema;
   <LiveChat />
   <StickyCTA />
   <!-- Netlify Identity (para Decap CMS) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script>
+  <!-- is:inline es obligatorio: evita que Astro/Vite procese el script como módulo ES,
+       lo que causaba un error CORS al intentar importarlo dinámicamente -->
+  <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script is:inline>
     if (window.netlifyIdentity) {
       // Tras login exitoso (incluyendo tras reset de contraseña), redirigir al admin
       window.netlifyIdentity.on("login", function() {
