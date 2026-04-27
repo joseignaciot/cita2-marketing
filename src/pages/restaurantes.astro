@@ -12,7 +12,7 @@ import '../styles/apple-design.css';
 
 // Contenido editable desde el CMS → public/admin → Páginas de Sector → Restaurantes
 import content from '../content/sectors/restaurantes.json';
-const { pageTitle, pageDescription, heroTitle, heroSubtitle, features: restaurantFeatures, testimonials: restaurantTestimonials, faqs: restaurantFAQs } = content;
+const { pageTitle, pageDescription, aiDescription, heroTitle, heroSubtitle, features: restaurantFeatures, testimonials: restaurantTestimonials, faqs: restaurantFAQs } = content;
 
 const schema = {
   '@context': 'https://schema.org',
@@ -78,6 +78,7 @@ const schema = {
 <Layout 
   title={pageTitle}
   description={pageDescription}
+  aiDescription={aiDescription}
   schema={schema}
 >
   <Header />
@@ -141,7 +142,7 @@ const schema = {
               <li>❌ Cuota crece con éxito del negocio</li>
             </ul>
             <p class="text-xs text-gray-300 mt-3">
-              Fuente: <a data-competitor-source-url="thefork" href="https://www.thefork.es" target="_blank" class="underline hover:text-white"><span data-competitor-source="thefork">thefork.es · verificado</span></a>
+              Fuente: <a data-competitor-source-url="thefork" href="https://www.thefork.es" target="_blank" rel="nofollow noopener noreferrer" class="underline hover:text-white"><span data-competitor-source="thefork">thefork.es · verificado</span></a>
               · <span data-competitor-date="thefork">2026-04</span>
             </p>
           </div>
@@ -175,7 +176,7 @@ const schema = {
               <li>✓ Empresa española</li>
             </ul>
             <p class="text-xs text-gray-300 mt-3">
-              Fuente: <a data-competitor-source-url="restoo" href="https://www.restoo.es/precios" target="_blank" class="underline hover:text-white"><span data-competitor-source="restoo">restoo.es · verificado</span></a>
+              Fuente: <a data-competitor-source-url="restoo" href="https://www.restoo.es/precios" target="_blank" rel="nofollow noopener noreferrer" class="underline hover:text-white"><span data-competitor-source="restoo">restoo.es · verificado</span></a>
               · <span data-competitor-date="restoo">2026-04</span>
             </p>
           </div>

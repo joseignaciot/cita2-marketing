@@ -171,5 +171,37 @@
 ---
 
 **Estado:** ✅ Implementación completa de SEO avanzado y AI-SEO
-**Próxima revisión:** Después de 3 meses de indexación
-**Prioridad:** Generar backlinks desde directorios de software españoles
+**Última revisión:** 2026-04-27
+
+## 🔧 Cambios aplicados en 2026-04-27
+
+### Correcciones críticas — PageRank
+- ✅ `rel="nofollow noopener noreferrer"` en links a TheFork, Restoo, Bokun, Fareharbor
+- ✅ `rel="nofollow noopener noreferrer"` en redes sociales del Footer
+- ✅ `rel="nofollow noopener noreferrer"` en botones de compartir del blog
+- ✅ `Disallow: /admin/` y `Disallow: /.netlify/` en robots.txt
+
+### Mejoras de meta tags
+- ✅ `<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">` en todas las páginas
+- ✅ `og:image:width`, `og:image:height`, `og:image:alt` añadidos
+- ✅ `twitter:site`, `twitter:creator`, `twitter:image:alt` añadidos
+
+### Regla establecida para links salientes
+| Tipo de link | rel aplicado |
+|---|---|
+| Links internos (mismo dominio) | *(ninguno — pasa PageRank interno)* |
+| Links a app.agendadereservas.com | *(ninguno — es nuestro dominio)* |
+| Links a competidores (fuentes/comparativas) | `nofollow noopener noreferrer` |
+| Links a redes sociales propias | `nofollow noopener noreferrer` |
+| Botones de compartir en blog | `nofollow noopener noreferrer` |
+
+## 🤖 GEO — Generative Engine Optimization (para IAs)
+
+Ver sección dedicada en la auditoría. Estado actual:
+- ✅ FAQPage schema en todas las landings de sector
+- ✅ SoftwareApplication schema con reviews y ratings
+- ✅ HowTo schema en guías
+- ✅ Definiciones directas en contenido
+- ⏳ Falta: `/llms.txt` — fichero de contexto para LLMs
+- ⏳ Falta: campos SEO/AI en CMS (meta AI description)
+- ⏳ Falta: sección "¿Qué es..." explícita en cada landing

@@ -10,8 +10,9 @@ import DynamicPricing from '../components/DynamicPricing.astro';
 import FAQ from '../components/FAQ.astro';
 import '../styles/apple-design.css';
 
-const pageTitle = 'Software de Reservas para Actividades Turísticas - Agenda de Reservas';
-const pageDescription = 'Software para tours, excursiones y actividades turísticas en España. 29€/mes fijo, sin comisiones. WhatsApp nativo, manifest de participantes, precios por persona. vs Bókun 49$/mes+1,5%.';
+// Contenido editable desde el CMS → public/admin → Páginas de Sector → Turismo
+import content from '../content/sectors/turismo.json';
+const { pageTitle, pageDescription, aiDescription, heroTitle, heroSubtitle, features: tourismFeatures, testimonials: tourismTestimonials, faqs: tourismFAQs } = content;
 
 const schema = {
   '@context': 'https://schema.org',
@@ -32,87 +33,12 @@ const schema = {
   }
 };
 
-const tourismFeatures = [
-  {
-    title: 'Precios por persona o grupo',
-    description: 'Configura tarifas por adulto, niño, senior o precios fijos por grupo. El sistema calcula automáticamente según el número de reservas.',
-    icon: 'credit'
-  },
-  {
-    title: 'Gestión de capacidad',
-    description: 'Controla plazas disponibles en tiempo real. Overbooking controlado, lista de espera y gestión de grupos grandes.',
-    icon: 'users'
-  },
-  {
-    title: 'Extras y suplementos',
-    description: 'Vende extras como recogida en hotel, comida, equipo de snorkel... Aumenta el ticket medio de cada reserva.',
-    icon: 'zap'
-  },
-  {
-    title: 'Calendario de disponibilidad',
-    description: 'Define qué días hay salidas, a qué horas, cuántas plazas. El cliente ve solo opciones disponibles en tiempo real.',
-    icon: 'calendar'
-  },
-  {
-    title: 'Pagos online seguros',
-    description: 'Stripe integrado para cobrar al reservar. Depósitos o pago completo. Reduce no-shows y asegura ingresos.',
-    icon: 'credit'
-  },
-  {
-    title: 'Panel de control operativo',
-    description: 'Lista de pasajeros por actividad, check-in digital, exportación a Excel. Todo lo que necesitas para el día de la excursión.',
-    icon: 'smartphone'
-  }
-];
-
-const tourismTestimonials = [
-  {
-    quote: 'Hemos duplicado reservas directas y ahorrado 15h semanales. Todo está en un sitio, sabemos exactamente cuántos somos cada día y quién ha pagado qué.',
-    author: 'Santiago Torres',
-    role: 'Director',
-    company: 'Santiago Tours, Santiago de Compostela',
-    rating: 5
-  },
-  {
-    quote: 'La gestión de extras es genial. Vendemos un 30% más de recogidas en hotel y almuerzos gracias a que se ofrecen durante la reserva online.',
-    author: 'Elena Vázquez',
-    role: 'Propietaria',
-    company: 'Aventuras Norte, Lugo',
-    rating: 5
-  }
-];
-
-const tourismFAQs = [
-  {
-    question: '¿Funciona para tours de un día y multi-día?',
-    answer: 'Sí, puedes configurar actividades de cualquier duración. Para tours multi-día, gestionamos cada día como slot independiente o como bloque completo según prefieras.'
-  },
-  {
-    question: '¿Puedo limitar plazas por actividad?',
-    answer: 'Sí, defines capacidad máxima por actividad y slot horario. El sistema bloquea automáticamente cuando se alcanza el límite y puede mostrar "solo X plazas disponibles" para crear urgencia.'
-  },
-  {
-    question: '¿Cómo funcionan los precios por categorías?',
-    answer: 'Configuras precios base (adulto, niño, senior...) y el cliente selecciona cuántos de cada categoría. El sistema calcula el total automáticamente. También puedes poner precios por grupo (hasta 4 personas: 100€).'
-  },
-  {
-    question: '¿Se pueden añadir extras después de reservar?',
-    answer: 'Sí, los clientes pueden modificar su reserva para añadir extras hasta 24h antes (configurable). También tú puedes añadir extras manualmente desde el panel.'
-  },
-  {
-    question: '¿Tengo lista de pasajeros para el día de la actividad?',
-    answer: 'Sí, tienes una vista operativa con todos los pasajeros, sus datos de contacto, extras contratados y estado de pago. Exportable a PDF/Excel y accesible desde móvil.'
-  },
-  {
-    question: '¿Funciona para actividades con salidas múltiples al día?',
-    answer: 'Sí, configuras tantos horarios como necesites (10:00, 14:00, 18:00...) con capacidad independiente para cada slot. El cliente elige horario al reservar.'
-  }
-];
 ---
 
 <Layout 
   title={pageTitle}
   description={pageDescription}
+  aiDescription={aiDescription}
   schema={schema}
 >
   <Header />
@@ -177,7 +103,7 @@ const tourismFAQs = [
               <li>✔ Channel manager Viator</li>
             </ul>
             <p class="text-xs text-gray-300 mt-3">
-              Fuente: <a data-competitor-source-url="bokun" href="https://www.bokun.io/pricing" target="_blank" class="underline hover:text-white"><span data-competitor-source="bokun">bokun.io · verificado</span></a>
+              Fuente: <a data-competitor-source-url="bokun" href="https://www.bokun.io/pricing" target="_blank" rel="nofollow noopener noreferrer" class="underline hover:text-white"><span data-competitor-source="bokun">bokun.io · verificado</span></a>
               · <span data-competitor-date="bokun">2026-04</span>
             </p>
           </div>
@@ -216,7 +142,7 @@ const tourismFAQs = [
               <li>❌ No adaptado al mercado español</li>
             </ul>
             <p class="text-xs text-gray-300 mt-3">
-              Fuente: <a data-competitor-source-url="fareharbor" href="https://fareharbor.com/pricing/" target="_blank" class="underline hover:text-white"><span data-competitor-source="fareharbor">fareharbor.com · verificado</span></a>
+              Fuente: <a data-competitor-source-url="fareharbor" href="https://fareharbor.com/pricing/" target="_blank" rel="nofollow noopener noreferrer" class="underline hover:text-white"><span data-competitor-source="fareharbor">fareharbor.com · verificado</span></a>
               · <span data-competitor-date="fareharbor">2026-04</span>
             </p>
           </div>

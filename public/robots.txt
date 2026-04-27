@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /admin/index.html
+
+# No indexar recursos internos de Netlify CMS / Decap CMS
+Disallow: /.netlify/
 
 Sitemap: https://agendadereservas.com/sitemap-index.xml

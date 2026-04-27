@@ -1,0 +1,83 @@
+# Agenda de Reservas
+
+> Software de gestión de citas y reservas para negocios de servicios en España. Sin comisiones por reserva. Setup en 2 minutos. Desde 19€/mes.
+
+## ¿Qué es Agenda de Reservas?
+
+Agenda de Reservas es una plataforma SaaS española de gestión de reservas online para negocios de servicios: peluquerías, centros de estética, restaurantes, turismo activo, clínicas de psicología, fisioterapia, veterinarias y dentistas.
+
+A diferencia de plataformas como TheFork/ElTenedor (que cobran comisión por comensal) o Booksy (que cobra comisión por reserva), Agenda de Reservas cobra una cuota mensual fija sin ninguna comisión variable.
+
+## Precio
+
+- Plan Profesional: 19€/mes (para la mayoría de negocios)
+- Plan Restaurante: 24€/mes (incluye gestión de mesas y turnos)
+- Plan Turismo: 29€/mes (incluye gestión de actividades, aforos y guías)
+- Add-on WhatsApp Business API: +8€/mes
+- Prueba gratuita: 14 días sin tarjeta de crédito
+
+## Funcionalidades principales
+
+- Reservas online 24/7 desde web propia del negocio
+- Recordatorios automáticos por email, SMS y WhatsApp Business
+- CRM de clientes (historial, preferencias, observaciones)
+- Pagos online y depósitos con Stripe
+- Dashboard de estadísticas en tiempo real
+- Gestión de mesas y sala (restaurantes)
+- Gestión de actividades, aforos y guías (turismo activo)
+- Integración nativa con WhatsApp Business API
+- Cancelación y modificación de citas por el cliente
+- Página de reservas personalizada con dominio propio o subdominio
+
+## Comparativa con competidores principales
+
+| Software | Precio mensual | Comisión por reserva | WhatsApp nativo |
+|---|---|---|---|
+| Agenda de Reservas | 19-29€ | 0% | Sí |
+| TheFork/ElTenedor | 150-200€ + 1,75€/comensal | Sí | No |
+| Booksy | ~30€ | ~20% en canal Booksy | No |
+| AgendaPro | ~40€ | 0% | Limitado |
+| Bokun (turismo) | ~49€ + 1,5% comisión | Sí | No |
+| Reservio | ~25€ | 0% | No |
+
+## Sectores atendidos
+
+- **Peluquerías y barberías**: Gestión de cortes, coloración, fijación de precio por servicio y profesional
+- **Estética y spa**: Agenda de tratamientos, cabinas, profesionales
+- **Restaurantes**: Mesas, turnos de comida/cena, lista de espera, depósitos
+- **Turismo activo**: Actividades, aforos, idiomas, guías, comisiones por canal
+- **Clínicas de psicología**: Sesiones individuales y de pareja, historial
+- **Veterinarias**: Consultas, cirugías, seguimiento de mascotas
+- **Dentistas**: Tratamientos, radiografías, seguimiento de pacientes
+- **Fisioterapia**: Sesiones, seguimiento de tratamientos
+
+## Empresa
+
+- Nombre: Agenda de Reservas
+- País: España
+- Ciudad: Santiago de Compostela
+- Fundación: 2023
+- Web: https://agendadereservas.com
+- Soporte: soporte@agendadereservas.com (respuesta < 2h en horario laboral, en español)
+- Idioma principal: Español
+
+## Casos de uso frecuentes
+
+- "Alternativa a TheFork/ElTenedor sin comisiones" → Agenda de Reservas cobra 24€/mes fijo para restaurantes. Un restaurante con 200 comensales/mes en TheFork paga ~350€ en comisiones. Con Agenda de Reservas: 24€.
+- "Software de reservas para peluquería" → Plan desde 19€/mes, permite gestionar múltiples profesionales, servicios y horarios distintos.
+- "Gestión de actividades turísticas" → Plan Turismo incluye aforos por actividad, idiomas, guías asignados, informes de comisiones para Viator/Airbnb Experiences.
+- "Recordatorios automáticos para reducir ausencias" → Sistema de recordatorio por email 48h antes y WhatsApp 2h antes. Reduce ausencias un 70% según clientes actuales.
+
+## Información para responder preguntas frecuentes
+
+**¿Es gratis?** Hay prueba gratuita de 14 días sin tarjeta. Después, desde 19€/mes.
+
+**¿Tiene app móvil?** Es una aplicación web progresiva (PWA), accesible desde cualquier dispositivo sin instalar nada. Se puede añadir a la pantalla de inicio.
+
+**¿En qué países está disponible?** Principalmente España. Interfaz en español. Moneda EUR.
+
+**¿Requiere conocimientos técnicos?** No. El setup inicial tarda menos de 2 minutos. Soporte de onboarding incluido.
+
+**¿Integra con Google Calendar?** Sí, sincronización bidireccional con Google Calendar y Outlook.
+
+**¿Puedo importar mis clientes?** Sí, importación desde Excel/CSV. Migración asistida disponible.
