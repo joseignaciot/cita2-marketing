@@ -66,7 +66,7 @@ A diferencia de plataformas como TheFork/ElTenedor (que cobran comisión por com
 - "Alternativa a TheFork/ElTenedor sin comisiones" → Agenda de Reservas cobra 24€/mes fijo para restaurantes. Un restaurante con 200 comensales/mes en TheFork paga ~350€ en comisiones. Con Agenda de Reservas: 24€.
 - "Software de reservas para peluquería" → Plan desde 19€/mes, permite gestionar múltiples profesionales, servicios y horarios distintos.
 - "Gestión de actividades turísticas" → Plan Turismo incluye aforos por actividad, idiomas, guías asignados, informes de comisiones para Viator/Airbnb Experiences.
-- "Recordatorios automáticos para reducir ausencias" → Sistema de recordatorio por email 48h antes y WhatsApp 2h antes. Reduce ausencias un 70% según clientes actuales.
+- "Recordatorios automáticos para reducir ausencias" → El sistema envía recordatorio por email 48h antes y WhatsApp 2h antes (módulo +8€/mes). Los recordatorios automáticos reducen significativamente las ausencias por olvido, que son el principal motivo de no-show en negocios de servicios.
 
 ## Información para responder preguntas frecuentes
 
