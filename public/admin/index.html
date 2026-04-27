@@ -10,5 +10,15 @@
 <body>
   <!-- Decap CMS (formerly Netlify CMS) -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // Si el email de recovery apunta a /admin/#recovery_token=TOKEN,
+    // el widget de Netlify Identity lo detecta automáticamente y muestra el formulario.
+    // Solo necesitamos asegurarnos de que tras el login se quede en el admin.
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("login", function() {
+        // Ya estamos en /admin/, no redirigir
+      });
+    }
+  </script>
 </body>
 </html>
