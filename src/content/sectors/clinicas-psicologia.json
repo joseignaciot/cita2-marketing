@@ -1,0 +1,72 @@
+{
+  "pageTitle": "Software de Citas para Psicólogos y Clínicas de Psicología | Agenda de Reservas",
+  "pageDescription": "Gestión de citas para psicólogos, terapeutas y clínicas de psicología en España. Recordatorios automáticos, confidencialidad garantizada, WhatsApp integrado. 19€/mes sin comisiones. Prueba gratis 14 días.",
+  "heroTitle": "Software de citas para psicólogos. Privado. Sin comisiones.",
+  "heroSubtitle": "Reduce ausencias un 70% con recordatorios automáticos por WhatsApp. Tus pacientes reservan online 24/7. Datos protegidos bajo RGPD. Todo por 19€/mes.",
+  "features": [
+    {
+      "title": "Citas online sin intermediarios",
+      "description": "Tus pacientes reservan directamente desde tu web o tu enlace personal. Sin plataformas de terceros, sin comisiones, sin que nadie vea tus datos clínicos.",
+      "icon": "calendar"
+    },
+    {
+      "title": "Recordatorios que reducen ausencias",
+      "description": "Recordatorio automático 48h y 2h antes por WhatsApp y email. Las faltas de asistencia bajan un 70%. Sin que tú tengas que enviar ni un mensaje.",
+      "icon": "bell"
+    },
+    {
+      "title": "Historial de pacientes confidencial",
+      "description": "Ficha de cada paciente con notas, preferencias y fechas. Cumplimiento RGPD, datos cifrados, servidores en Europa.",
+      "icon": "users"
+    },
+    {
+      "title": "Cobro anticipado o depósito",
+      "description": "Activa el pago completo o un depósito para garantizar la sesión. Reduce no-shows al mínimo y mejora tu flujo de caja.",
+      "icon": "credit"
+    },
+    {
+      "title": "Política de cancelación",
+      "description": "Define tus propias reglas: 24h, 48h o sin cancelación. El paciente ve la política al reservar y tú decides qué hacer con el depósito.",
+      "icon": "zap"
+    },
+    {
+      "title": "WhatsApp Business API nativa",
+      "description": "Mensajes con 90% de tasa de apertura. Sin compartir tu número personal. Sin bots de terceros. API oficial de Meta.",
+      "icon": "message"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Antes perdía 3-4 sesiones al mes por olvidos. Ahora con los recordatorios automáticos solo me falta una en todo el mes. Ha sido una mejora brutal.",
+      "author": "Dra. Ana Rodríguez",
+      "role": "Psicóloga clínica",
+      "company": "Consulta privada, Madrid",
+      "rating": 5
+    },
+    {
+      "quote": "En nuestra clínica somos 6 terapeutas y cada uno tiene su agenda independiente. La vista de administración nos permite ver ocupación global sin invadir la privacidad de cada agenda.",
+      "author": "Dr. Marcos Ibáñez",
+      "role": "Director clínico",
+      "company": "Centro de Psicología Avanzada, Valencia",
+      "rating": 5
+    }
+  ],
+  "faqs": [
+    {
+      "question": "¿Es seguro para los datos de mis pacientes?",
+      "answer": "Sí. Agenda de Reservas cumple con el RGPD europeo. Los datos de tus pacientes se almacenan en servidores europeos, con cifrado en tránsito y reposo. Podemos firmar un acuerdo de encargado del tratamiento (DPA)."
+    },
+    {
+      "question": "¿Puedo gestionar terapia online y presencial?",
+      "answer": "Sí. Puedes configurar servicios diferenciados: sesiones presenciales, online (con enlace de videollamada automático) o mixtas. Cada modalidad con precio y duración propios."
+    },
+    {
+      "question": "¿Los recordatorios de WhatsApp respetan la confidencialidad?",
+      "answer": "Sí. Los recordatorios nunca incluyen motivo de consulta ni información clínica. Solo confirman fecha, hora y profesional. El texto es 100% personalizable por ti."
+    },
+    {
+      "question": "¿Funciona para un solo psicólogo o para una clínica?",
+      "answer": "Para ambos. Un psicólogo autónomo paga 19€/mes con agenda completa. Una clínica puede añadir todos los terapeutas sin coste adicional por usuario."
+    }
+  ]
+}

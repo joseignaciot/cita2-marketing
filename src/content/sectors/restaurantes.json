@@ -1,0 +1,80 @@
+{
+  "pageTitle": "Software de Reservas para Restaurantes sin Comisiones - Agenda de Reservas",
+  "pageDescription": "Sistema de reservas para restaurantes. Gestiona mesas, turnos y lista de espera sin comisiones por comensal. Solo 24€/mes vs 300-500€/mes en TheFork. Prueba gratis 14 días.",
+  "heroTitle": "Reservas para restaurantes. Sin comisiones.",
+  "heroSubtitle": "TheFork cobra 150-200€/mes en cuota más 1,5-2€ por cada comensal. Nosotros: 24€/mes fijo. Sin sorpresas. Con WhatsApp incluido.",
+  "features": [
+    {
+      "title": "Reservas online sin comisiones",
+      "description": "Tu propia página de reservas con tu marca. Sin pagar el 12-15% de comisión a ElTenedor ni a TheFork.",
+      "icon": "credit"
+    },
+    {
+      "title": "Gestión de mesas y sala",
+      "description": "Mapa de tu sala con capacidad por mesa. Controla turnos de comida y cena. Visualiza ocupación en tiempo real.",
+      "icon": "chart"
+    },
+    {
+      "title": "Lista de espera inteligente",
+      "description": "Cuando estás lleno, los clientes se apuntan a lista de espera. Si hay cancelación, se notifica automáticamente.",
+      "icon": "bell"
+    },
+    {
+      "title": "Depósitos para reservas",
+      "description": "Opcional: pide depósito al reservar. Reduce no-shows al 2% y asegura ingresos. Configurable por tamaño de grupo.",
+      "icon": "credit"
+    },
+    {
+      "title": "Preferencias de clientes",
+      "description": "Ficha de cliente con alergias, preferencias de mesa, ocasiones especiales. Ofrece un servicio personalizado.",
+      "icon": "users"
+    },
+    {
+      "title": "Estadísticas de ocupación",
+      "description": "Análisis de mesas vacías, ticket medio, rotación y días más demandados. Toma decisiones con datos reales.",
+      "icon": "chart"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Hemos ahorrado 2.800€ al mes en comisiones de ElTenedor. Ahora tenemos relación directa con nuestros clientes y una base de datos de más de 2.000 comensales.",
+      "author": "Carlos Martínez",
+      "role": "Gerente",
+      "company": "Restaurante La Trastienda, Madrid",
+      "rating": 5
+    },
+    {
+      "quote": "El mapa de mesas nos permite organizar la sala mucho mejor. Sabemos exactamente qué mesas tenemos libres y el sistema no permite overbooking.",
+      "author": "Laura Pérez",
+      "role": "Directora",
+      "company": "Bistró Central, Barcelona",
+      "rating": 5
+    }
+  ],
+  "faqs": [
+    {
+      "question": "¿Realmente ahorro dinero vs ElTenedor?",
+      "answer": "Sí. ElTenedor cobra 12-15% por reserva. Si facturas 10.000€/mes en reservas online, pagas 1.200-1.500€ de comisión. Con Agenda de Reservas pagas 24€ fijos. Ahorro mensual: hasta 1.476€."
+    },
+    {
+      "question": "¿Puedo gestionar turnos de comida y cena?",
+      "answer": "Sí, configuras horarios específicos para cada turno. Puedes definir duración estándar de reserva por turno y número de cubiertos máximo por franja horaria."
+    },
+    {
+      "question": "¿Cómo funciona la lista de espera?",
+      "answer": "Cuando un cliente intenta reservar y estás lleno, puede apuntarse a lista de espera. Si hay una cancelación, el sistema notifica automáticamente por email/WhatsApp al primer cliente de la lista."
+    },
+    {
+      "question": "¿Se pueden pedir depósitos?",
+      "answer": "Sí, es opcional y configurable. Puedes pedir depósito para grupos grandes, fines de semana o días especiales. El pago se procesa mediante Stripe."
+    },
+    {
+      "question": "¿Funciona para restaurantes con terraza?",
+      "answer": "Sí, puedes configurar diferentes zonas (interior, terraza, barra) con capacidad independiente. Los clientes pueden preferir zona al reservar."
+    },
+    {
+      "question": "¿Y si no tengo web propia?",
+      "answer": "Agenda de Reservas te genera una página de reservas profesional con tu logo, fotos, menú y horarios. URL: agendadereservas.com/book/tu-restaurante. Puedes compartirla en Google Business, Instagram, etc."
+    }
+  ]
+}

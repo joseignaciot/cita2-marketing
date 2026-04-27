@@ -181,14 +181,24 @@ const finalSchema = schema ? [websiteSchema, schema] : websiteSchema;
   <!-- Netlify Identity (para Decap CMS) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
+    // Cuando el widget cargue, configurar redirección al admin tras login
     if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
+      window.netlifyIdentity.on("init", function(user) {
         if (!user) {
-          window.netlifyIdentity.on("login", () => {
+          window.netlifyIdentity.on("login", function() {
             document.location.href = "/admin/";
           });
         }
       });
+
+      // Si la URL tiene un token de recuperación o invitación, abrir el widget automáticamente
+      var hash = window.location.hash;
+      if (hash && (hash.indexOf('recovery_token') !== -1 || hash.indexOf('invite_token') !== -1 || hash.indexOf('confirmation_token') !== -1)) {
+        // Esperar a que el widget esté listo antes de abrirlo
+        window.netlifyIdentity.on("init", function() {
+          window.netlifyIdentity.open();
+        });
+      }
     }
   </script>
 </body>

@@ -1,0 +1,72 @@
+{
+  "pageTitle": "Software de Reservas para Actividades Turísticas - Agenda de Reservas",
+  "pageDescription": "Software para tours, excursiones y actividades turísticas en España. 29€/mes fijo, sin comisiones. WhatsApp nativo, manifest de participantes, precios por persona. vs Bókun 49$/mes+1,5%.",
+  "heroTitle": "Reservas para tours y actividades. Sin comisiones.",
+  "heroSubtitle": "Bókun cobra 49$/mes + 1,5% por reserva. FareHarbor, hasta el 6%. Nosotros: 29€/mes fijo. Sin comisiones, sin letra pequeña. Con WhatsApp y pago online incluidos.",
+  "features": [
+    {
+      "title": "Precios por persona o grupo",
+      "description": "Configura tarifas por adulto, niño, senior o precios fijos por grupo. El sistema calcula automáticamente según el número de reservas.",
+      "icon": "credit"
+    },
+    {
+      "title": "Gestión de capacidad",
+      "description": "Controla plazas disponibles en tiempo real. Overbooking controlado, lista de espera y gestión de grupos grandes.",
+      "icon": "users"
+    },
+    {
+      "title": "Extras y suplementos",
+      "description": "Vende extras como recogida en hotel, comida, equipo de snorkel... Aumenta el ticket medio de cada reserva.",
+      "icon": "zap"
+    },
+    {
+      "title": "Calendario de disponibilidad",
+      "description": "Define qué días hay salidas, a qué horas, cuántas plazas. El cliente ve solo opciones disponibles en tiempo real.",
+      "icon": "calendar"
+    },
+    {
+      "title": "Pagos online seguros",
+      "description": "Stripe integrado para cobrar al reservar. Depósitos o pago completo. Reduce no-shows y asegura ingresos.",
+      "icon": "credit"
+    },
+    {
+      "title": "Panel de control operativo",
+      "description": "Lista de pasajeros por actividad, check-in digital, exportación a Excel. Todo lo que necesitas para el día de la excursión.",
+      "icon": "smartphone"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Hemos duplicado reservas directas y ahorrado 15h semanales. Todo está en un sitio, sabemos exactamente cuántos somos cada día y quién ha pagado qué.",
+      "author": "Santiago Torres",
+      "role": "Director",
+      "company": "Santiago Tours, Santiago de Compostela",
+      "rating": 5
+    },
+    {
+      "quote": "La gestión de extras es genial. Vendemos un 30% más de recogidas en hotel y almuerzos gracias a que se ofrecen durante la reserva online.",
+      "author": "Elena Vázquez",
+      "role": "Propietaria",
+      "company": "Aventuras Norte, Lugo",
+      "rating": 5
+    }
+  ],
+  "faqs": [
+    {
+      "question": "¿Cuánto ahorro vs Bókun o FareHarbor?",
+      "answer": "Con 100 reservas mensuales de 80€ de media: Bókun cobra 49$/mes + 120€ en comisiones = ~165€/mes. FareHarbor: 6% × 8.000€ = 480€/mes. Nosotros: 29€/mes fijo. Ahorro anual: hasta 5.412€."
+    },
+    {
+      "question": "¿Puedo gestionar varias actividades con horarios distintos?",
+      "answer": "Sí. Cada actividad tiene su propio calendario, capacidad, precios y extras. Kayak por la mañana, senderismo por la tarde: completamente independientes."
+    },
+    {
+      "question": "¿Funciona el pago online en euros desde España?",
+      "answer": "Sí. Stripe en euros, sin conversión de divisa. A diferencia de Bókun (en USD), tus precios y pagos son siempre en euros."
+    },
+    {
+      "question": "¿Puedo imprimir el manifest del día?",
+      "answer": "Sí. Cada día genera automáticamente la lista de participantes por actividad con nombre, teléfono y estado de pago. Exportable a PDF o Excel."
+    }
+  ]
+}

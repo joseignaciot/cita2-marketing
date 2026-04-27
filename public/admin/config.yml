@@ -2,17 +2,13 @@ backend:
   name: git-gateway
   branch: main
 
-# Netlify Identity
-local_backend: false
-
-# Idioma del panel
 locale: es
 
-# Carpeta de media
 media_folder: "public/images/blog"
 public_folder: "/images/blog"
 
 collections:
+
   # ─── BLOG POSTS ───────────────────────────────────────────────
   - name: "posts"
     label: "📝 Blog Posts"
@@ -41,7 +37,7 @@ collections:
       - { label: "Imagen de portada", name: "image", widget: "image", required: false }
       - { label: "Contenido", name: "body", widget: "markdown" }
 
-  # ─── TESTIMONIALS ─────────────────────────────────────────────
+  # ─── TESTIMONIOS ──────────────────────────────────────────────
   - name: "testimonials"
     label: "⭐ Testimonios"
     folder: "src/content/testimonials"
@@ -54,9 +50,21 @@ collections:
       - { label: "Nombre", name: "name", widget: "string" }
       - { label: "Empresa", name: "business", widget: "string" }
       - { label: "Cargo", name: "role", widget: "string" }
-      - { label: "Sector", name: "sector", widget: "string" }
+      - label: "Sector"
+        name: "sector"
+        widget: "select"
+        options:
+          - { label: "Peluquería", value: "peluquerias" }
+          - { label: "Restaurante", value: "restaurantes" }
+          - { label: "Turismo", value: "turismo" }
+          - { label: "Estética", value: "estetica" }
+          - { label: "Fisioterapia", value: "fisioterapia" }
+          - { label: "Psicología", value: "psicologia" }
+          - { label: "Veterinaria", value: "veterinarias" }
+          - { label: "General", value: "general" }
       - { label: "Ciudad", name: "location", widget: "string" }
       - { label: "Testimonio", name: "quote", widget: "text" }
+      - { label: "Valoración (1-5)", name: "rating", widget: "number", default: 5, value_type: "int" }
       - { label: "Resultado 1 (valor)", name: "stat1Value", widget: "string", required: false }
       - { label: "Resultado 1 (etiqueta)", name: "stat1Label", widget: "string", required: false }
       - { label: "Resultado 2 (valor)", name: "stat2Value", widget: "string", required: false }
@@ -74,12 +82,170 @@ collections:
     fields:
       - { label: "Pregunta", name: "question", widget: "string" }
       - { label: "Respuesta", name: "answer", widget: "text" }
-      - label: "Categoría"
+      - label: "Categoría / Sector"
         name: "category"
         widget: "select"
         options:
           - { label: "General", value: "general" }
           - { label: "Precios", value: "precios" }
-          - { label: "Funcionalidades", value: "funcionalidades" }
-          - { label: "Soporte", value: "soporte" }
+          - { label: "Peluquerías", value: "peluquerias" }
+          - { label: "Restaurantes", value: "restaurantes" }
+          - { label: "Turismo", value: "turismo" }
+          - { label: "Psicología", value: "psicologia" }
+          - { label: "Veterinarias", value: "veterinarias" }
       - { label: "Orden", name: "order", widget: "number", default: 0, value_type: "int" }
+
+  # ─── PÁGINAS DE SECTOR ────────────────────────────────────────
+  - name: "sector-pages"
+    label: "📄 Páginas de Sector"
+    files:
+
+      - name: "peluquerias"
+        label: "✂️ Peluquerías"
+        file: "src/content/sectors/peluquerias.json"
+        fields:
+          - { label: "Meta título (SEO)", name: "pageTitle", widget: "string" }
+          - { label: "Meta descripción (SEO)", name: "pageDescription", widget: "text" }
+          - { label: "Hero — Título principal", name: "heroTitle", widget: "string" }
+          - { label: "Hero — Subtítulo", name: "heroSubtitle", widget: "text" }
+          - label: "Funcionalidades"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text" }
+              - { label: "Icono", name: "icon", widget: "select", options: ["calendar","bell","message","users","chart","zap","credit","smartphone"] }
+          - label: "Testimonios"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Cita", name: "quote", widget: "text" }
+              - { label: "Nombre", name: "author", widget: "string" }
+              - { label: "Cargo", name: "role", widget: "string" }
+              - { label: "Empresa y ciudad", name: "company", widget: "string" }
+          - label: "Preguntas frecuentes"
+            name: "faqs"
+            widget: "list"
+            fields:
+              - { label: "Pregunta", name: "question", widget: "string" }
+              - { label: "Respuesta", name: "answer", widget: "text" }
+
+      - name: "restaurantes"
+        label: "🍽️ Restaurantes"
+        file: "src/content/sectors/restaurantes.json"
+        fields:
+          - { label: "Meta título (SEO)", name: "pageTitle", widget: "string" }
+          - { label: "Meta descripción (SEO)", name: "pageDescription", widget: "text" }
+          - { label: "Hero — Título principal", name: "heroTitle", widget: "string" }
+          - { label: "Hero — Subtítulo", name: "heroSubtitle", widget: "text" }
+          - label: "Funcionalidades"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text" }
+              - { label: "Icono", name: "icon", widget: "select", options: ["calendar","bell","message","users","chart","zap","credit","smartphone"] }
+          - label: "Testimonios"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Cita", name: "quote", widget: "text" }
+              - { label: "Nombre", name: "author", widget: "string" }
+              - { label: "Cargo", name: "role", widget: "string" }
+              - { label: "Empresa y ciudad", name: "company", widget: "string" }
+          - label: "Preguntas frecuentes"
+            name: "faqs"
+            widget: "list"
+            fields:
+              - { label: "Pregunta", name: "question", widget: "string" }
+              - { label: "Respuesta", name: "answer", widget: "text" }
+
+      - name: "turismo"
+        label: "🏔️ Turismo"
+        file: "src/content/sectors/turismo.json"
+        fields:
+          - { label: "Meta título (SEO)", name: "pageTitle", widget: "string" }
+          - { label: "Meta descripción (SEO)", name: "pageDescription", widget: "text" }
+          - { label: "Hero — Título principal", name: "heroTitle", widget: "string" }
+          - { label: "Hero — Subtítulo", name: "heroSubtitle", widget: "text" }
+          - label: "Funcionalidades"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text" }
+              - { label: "Icono", name: "icon", widget: "select", options: ["calendar","bell","message","users","chart","zap","credit","smartphone"] }
+          - label: "Testimonios"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Cita", name: "quote", widget: "text" }
+              - { label: "Nombre", name: "author", widget: "string" }
+              - { label: "Cargo", name: "role", widget: "string" }
+              - { label: "Empresa y ciudad", name: "company", widget: "string" }
+          - label: "Preguntas frecuentes"
+            name: "faqs"
+            widget: "list"
+            fields:
+              - { label: "Pregunta", name: "question", widget: "string" }
+              - { label: "Respuesta", name: "answer", widget: "text" }
+
+      - name: "clinicas-psicologia"
+        label: "🧠 Psicología"
+        file: "src/content/sectors/clinicas-psicologia.json"
+        fields:
+          - { label: "Meta título (SEO)", name: "pageTitle", widget: "string" }
+          - { label: "Meta descripción (SEO)", name: "pageDescription", widget: "text" }
+          - { label: "Hero — Título principal", name: "heroTitle", widget: "string" }
+          - { label: "Hero — Subtítulo", name: "heroSubtitle", widget: "text" }
+          - label: "Funcionalidades"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text" }
+              - { label: "Icono", name: "icon", widget: "select", options: ["calendar","bell","message","users","chart","zap","credit","smartphone"] }
+          - label: "Testimonios"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Cita", name: "quote", widget: "text" }
+              - { label: "Nombre", name: "author", widget: "string" }
+              - { label: "Cargo", name: "role", widget: "string" }
+              - { label: "Empresa y ciudad", name: "company", widget: "string" }
+          - label: "Preguntas frecuentes"
+            name: "faqs"
+            widget: "list"
+            fields:
+              - { label: "Pregunta", name: "question", widget: "string" }
+              - { label: "Respuesta", name: "answer", widget: "text" }
+
+      - name: "veterinarias"
+        label: "🐾 Veterinarias"
+        file: "src/content/sectors/veterinarias.json"
+        fields:
+          - { label: "Meta título (SEO)", name: "pageTitle", widget: "string" }
+          - { label: "Meta descripción (SEO)", name: "pageDescription", widget: "text" }
+          - { label: "Hero — Título principal", name: "heroTitle", widget: "string" }
+          - { label: "Hero — Subtítulo", name: "heroSubtitle", widget: "text" }
+          - label: "Funcionalidades"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text" }
+              - { label: "Icono", name: "icon", widget: "select", options: ["calendar","bell","message","users","chart","zap","credit","smartphone"] }
+          - label: "Testimonios"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Cita", name: "quote", widget: "text" }
+              - { label: "Nombre", name: "author", widget: "string" }
+              - { label: "Cargo", name: "role", widget: "string" }
+              - { label: "Empresa y ciudad", name: "company", widget: "string" }
+          - label: "Preguntas frecuentes"
+            name: "faqs"
+            widget: "list"
+            fields:
+              - { label: "Pregunta", name: "question", widget: "string" }
+              - { label: "Respuesta", name: "answer", widget: "text" }
