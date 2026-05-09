@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FAQ from '../components/FAQ.astro';
+import DynamicPricing from '../components/DynamicPricing.astro';
 import pricing from '../content/pricing.json';
 
 const { pageTitle, pageDescription, businessTypes, addons, pricingFAQs } = pricing;
@@ -196,17 +197,17 @@ const appUrl = "https://app.agendadereservas.com";
           <div class="grid md:grid-cols-3 gap-6">
             <div class="bg-white/5 rounded-2xl p-5">
               <p class="text-sm text-gray-400 mb-1">Solo base</p>
-              <p class="text-3xl font-extrabold">19€<span class="text-base font-normal text-gray-400">/mes</span></p>
+              <p class="text-3xl font-extrabold"><span data-price-key="service_business.monthly">19</span>€<span class="text-base font-normal text-gray-400">/mes</span></p>
               <p class="text-sm text-gray-500 mt-1">✂️ Peluquería o servicio</p>
             </div>
             <div class="bg-white/5 rounded-2xl p-5">
               <p class="text-sm text-gray-400 mb-1">Base + comunicaciones</p>
-              <p class="text-3xl font-extrabold">27€<span class="text-base font-normal text-gray-400">/mes</span></p>
+              <p class="text-3xl font-extrabold"><span data-price-calc="restaurant.monthly+addon_communications.monthly">32</span>€<span class="text-base font-normal text-gray-400">/mes</span></p>
               <p class="text-sm text-gray-500 mt-1">🍽️ Restaurante + WhatsApp</p>
             </div>
             <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
               <p class="text-sm text-gray-400 mb-1">Todo incluido</p>
-              <p class="text-3xl font-extrabold text-purple-300">45€<span class="text-base font-normal text-gray-400">/mes</span></p>
+              <p class="text-3xl font-extrabold text-purple-300"><span data-price-calc="tourism_activities.monthly+addon_communications.monthly+addon_payments.monthly">45</span>€<span class="text-base font-normal text-gray-400">/mes</span></p>
               <p class="text-sm text-gray-500 mt-1">🧭 Turismo + comms + cobro</p>
             </div>
           </div>
@@ -251,10 +252,10 @@ const appUrl = "https://app.agendadereservas.com";
             <tbody>
               <tr class="border-b border-gray-100">
                 <td class="p-5 text-sm text-gray-700">Precio mensual</td>
-                <td class="p-5 text-center text-sm font-bold text-green-700 bg-blue-50/30">desde 19€</td>
-                <td class="p-5 text-center text-sm text-gray-600">147€*</td>
-                <td class="p-5 text-center text-sm text-gray-600">63€*</td>
-                <td class="p-5 text-center text-sm text-gray-600">~500€**</td>
+                <td class="p-5 text-center text-sm font-bold text-green-700 bg-blue-50/30">desde <span data-price-key="service_business.monthly">19</span>€</td>
+                <td class="p-5 text-center text-sm text-gray-600"><span data-competitor-key="booksy.monthly_fee">35</span>€/empleado*</td>
+                <td class="p-5 text-center text-sm text-gray-600"><span data-competitor-key="restoo.monthly_fee">39</span>€*</td>
+                <td class="p-5 text-center text-sm text-gray-600">~<span data-competitor-total="thefork">475</span>€**</td>
               </tr>
               <tr class="border-b border-gray-100 bg-gray-50/30">
                 <td class="p-5 text-sm text-gray-700">Reservas incluidas</td>
@@ -287,9 +288,9 @@ const appUrl = "https://app.agendadereservas.com";
               <tr class="bg-green-50">
                 <td class="p-5 text-sm font-bold text-gray-900">Ahorro anual</td>
                 <td class="p-5 text-center text-sm font-bold text-gray-400 bg-blue-50/30">—</td>
-                <td class="p-5 text-center text-sm font-bold text-green-700">hasta 1.536€</td>
-                <td class="p-5 text-center text-sm font-bold text-green-700">hasta 528€</td>
-                <td class="p-5 text-center text-sm font-bold text-green-700">hasta 5.772€</td>
+                <td class="p-5 text-center text-sm font-bold text-green-700">hasta <span data-price-saving-annual="service_business.monthly:105">1.032</span>€</td>
+                <td class="p-5 text-center text-sm font-bold text-green-700">hasta <span data-price-saving-annual="service_business.monthly:39">240</span>€</td>
+                <td class="p-5 text-center text-sm font-bold text-green-700">hasta <span data-price-saving-annual="service_business.monthly:475">5.472</span>€</td>
               </tr>
             </tbody>
           </table>
@@ -323,6 +324,7 @@ const appUrl = "https://app.agendadereservas.com";
   </main>
   
   <Footer />
+  <DynamicPricing />
 </Layout>
 
 <script>

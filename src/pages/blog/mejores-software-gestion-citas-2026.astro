@@ -4,6 +4,21 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import AdvancedSEO from '../../components/AdvancedSEO.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import DynamicPricing from '../../components/DynamicPricing.astro';
+
+const API_URL = 'https://api.agendadereservas.com';
+const FALLBACK_PRICING = {
+  service_business:     { monthly: 19, yearly: 190 },
+  addon_communications: { monthly: 8,  yearly: 80  },
+};
+let apiPricing = FALLBACK_PRICING;
+try {
+  const res = await fetch(`${API_URL}/pricing`, { signal: AbortSignal.timeout(3000) });
+  if (res.ok) {
+    const data = await res.json();
+    if (data?.pricing) apiPricing = { ...FALLBACK_PRICING, ...data.pricing };
+  }
+} catch { /* fallback */ }
 
 const pageTitle = 'Mejor Software de Gestión de Citas 2026: Comparativa Definitiva';
 const pageDescription = 'Análisis honesto de los mejores software de gestión de citas para 2026. Comparamos Agenda de Reservas, AgendaPro, Reservio y más. Precios, funciones y valoraciones reales.';
@@ -32,7 +47,7 @@ const articleData = {
 const softwareList = [
   {
     name: 'Agenda de Reservas',
-    price: '19€/mes',
+    price: `${apiPricing.service_business.monthly}€/mes`,
     rating: 4.9,
     reviews: 523,
     pros: ['Precio fijo sin comisiones', 'WhatsApp Business incluido', 'Setup 2 minutos', 'Sin límites de usuarios'],
@@ -82,7 +97,7 @@ const howToData = {
     },
     {
       name: 'Calcula el ROI',
-      text: 'Un software que cuesta 19€/mes y te ahorra 10 horas de trabajo vale 180€/mes (a 18€/hora). Si además reduce ausencias un 70%, el ROI es inmediato.',
+      text: 'Con una cuota mensual baja, si ahorras 10 horas de trabajo a la semana (a 18€/hora son 180€), el ROI es inmediato. Si además reduces ausencias un 70%, la diferencia es aún mayor.',
     },
     {
       name: 'Prueba antes de comprometerte',
@@ -98,11 +113,11 @@ const howToData = {
 const faqs = [
   {
     question: '¿Cuál es el mejor software de gestión de citas para peluquerías?',
-    answer: 'Para peluquerías, Agenda de Reservas ofrece la mejor relación calidad-precio: 19€/mes plan base por negocio (no por empleado), vs AgendaPro a 147€/mes para 3 peluqueros. El módulo de WhatsApp Business está disponible como add-on (+8€/mes).'
+    answer: 'Para peluquerías, Agenda de Reservas ofrece la mejor relación calidad-precio: precio plano por negocio (no por empleado), vs AgendaPro a 147€/mes para 3 peluqueros. El módulo de WhatsApp Business está disponible como add-on de comunicaciones.'
   },
   {
     question: '¿TheFork o software propio para restaurantes?',
-    answer: 'Depende del momento del negocio. TheFork aporta visibilidad y clientes nuevos; su coste es ~1€/comensal (no un porcentaje fijo). Para restaurantes con clientela establecida, un sistema propio como Agenda de Reservas (24€/mes plan Restaurantes) reduce la dependencia y permite construir base de datos propia. Un enfoque mixto suele ser el más inteligente.'
+    answer: 'Depende del momento del negocio. TheFork aporta visibilidad y clientes nuevos; su coste es ~1€/comensal (no un porcentaje fijo). Para restaurantes con clientela establecida, un sistema propio como Agenda de Reservas (plan Restaurantes) reduce la dependencia y permite construir base de datos propia. Un enfoque mixto suele ser el más inteligente.'
   },
   {
     question: '¿Vale la pena pagar por software de gestión de citas?',
@@ -110,7 +125,7 @@ const faqs = [
   },
   {
     question: '¿Qué software de citas incluye WhatsApp Business?',
-    answer: 'Agenda de Reservas ofrece integración con WhatsApp Business API como módulo adicional (+8€/mes). AgendaPro cobra extra por WhatsApp y Reservio no ofrece integración nativa.'
+    answer: 'Agenda de Reservas ofrece integración con WhatsApp Business API como módulo adicional (add-on de Comunicaciones Avanzadas). AgendaPro cobra extra por WhatsApp y Reservio no ofrece integración nativa.'
   }
 ];
 ---
@@ -182,7 +197,7 @@ const faqs = [
                     </div>
                   </td>
                   <td class="px-6 py-4 text-center">
-                    <span class="text-2xl font-bold text-gray-900">19€</span>
+                    <span class="text-2xl font-bold text-gray-900"><span data-price-key="service_business.monthly">19</span>€</span>
                     <p class="text-xs text-gray-700">Plan único</p>
                   </td>
                   <td class="px-6 py-4 text-center">
@@ -191,7 +206,7 @@ const faqs = [
                   </td>
                   <td class="px-6 py-4 text-center">
                     <span class="inline-flex items-center gap-1 text-blue-600 text-sm">
-                      Add-on +8€/mes
+                      Add-on +<span data-price-key="addon_communications.monthly">8</span>€/mes
                     </span>
                   </td>
                   <td class="px-6 py-4 text-center text-lg font-bold text-green-600">Base</td>
@@ -415,4 +430,5 @@ const faqs = [
   </main>
   
   <Footer />
+  <DynamicPricing />
 </Layout>

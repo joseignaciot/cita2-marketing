@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import DynamicPricing from '../components/DynamicPricing.astro';
 
 const pageTitle = 'Funcionalidades - Agenda de Reservas | Todo lo que incluye';
 const pageDescription = 'Descubre todas las funcionalidades de Agenda de Reservas: reservas online, recordatorios automáticos, CRM, pagos online, WhatsApp Business, estadísticas y mucho más.';
@@ -139,7 +140,7 @@ const featureCategories = [
     <section class="py-16 bg-blue-600 text-white">
       <div class="container mx-auto px-4 max-w-4xl text-center">
         <h2 class="text-2xl md:text-3xl font-bold mb-6">
-          Todo esto por 19€/mes
+          Todo esto por <span data-price-key="service_business.monthly">19</span>€/mes
         </h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-sm">
           <div class="bg-white/10 rounded-lg p-4">
@@ -187,7 +188,7 @@ const featureCategories = [
               <tr class="border-t"><td class="p-4">Pagos online</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td></tr>
               <tr class="border-t bg-gray-50"><td class="p-4">Bonos/paquetes</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-red-500">❌</td><td class="p-4 text-center text-yellow-500">⚠️</td></tr>
               <tr class="border-t"><td class="p-4">Usuarios ilimitados</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-red-500">❌</td><td class="p-4 text-center text-red-500">❌</td></tr>
-              <tr class="border-t bg-gray-50"><td class="p-4">Precio (3 empleados)</td><td class="p-4 text-center font-bold text-green-600">19€</td><td class="p-4 text-center font-bold">147€</td><td class="p-4 text-center font-bold">63€</td></tr>
+              <tr class="border-t bg-gray-50"><td class="p-4">Precio (3 empleados)</td><td class="p-4 text-center font-bold text-green-600"><span data-price-key="service_business.monthly">19</span>€</td><td class="p-4 text-center font-bold">147€</td><td class="p-4 text-center font-bold">63€</td></tr>
             </tbody>
           </table>
         </div>
@@ -217,4 +218,5 @@ const featureCategories = [
   </main>
   
   <Footer />
+  <DynamicPricing />
 </Layout>

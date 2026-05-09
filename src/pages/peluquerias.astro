@@ -8,6 +8,7 @@ import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 import Footer from '../components/Footer.astro';
 import content from '../content/sectors/peluquerias.json';
+import DynamicPricing from '../components/DynamicPricing.astro';
 
 const { pageTitle, pageDescription, aiDescription, heroTitle, heroSubtitle, features, testimonials, faqs } = content;
 const canonicalUrl = 'https://agendadereservas.com/peluquerias/';
@@ -73,7 +74,7 @@ const schema = {
             <tbody class="divide-y divide-gray-100">
               <tr>
                 <td class="py-4 px-4 font-medium">Precio mensual</td>
-                <td class="py-4 px-4 text-primary-600 font-semibold">19€ plan único</td>
+                <td class="py-4 px-4 text-primary-600 font-semibold"><span data-price-key="service_business.monthly">19</span>€ plan único</td>
                 <td class="py-4 px-4 text-gray-700">Desde 49€</td>
                 <td class="py-4 px-4 text-gray-700">Desde 31€</td>
               </tr>
@@ -137,4 +138,5 @@ const schema = {
   </main>
   
   <Footer />
+  <DynamicPricing />
 </Layout>

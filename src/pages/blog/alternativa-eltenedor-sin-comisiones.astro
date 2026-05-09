@@ -4,6 +4,18 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import AdvancedSEO from '../../components/AdvancedSEO.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import DynamicPricing from '../../components/DynamicPricing.astro';
+
+const API_URL = 'https://api.agendadereservas.com';
+const FALLBACK_PRICING = { restaurant: { monthly: 24, yearly: 240 } };
+let apiPricing = FALLBACK_PRICING;
+try {
+  const res = await fetch(`${API_URL}/pricing`, { signal: AbortSignal.timeout(3000) });
+  if (res.ok) {
+    const data = await res.json();
+    if (data?.pricing) apiPricing = { ...FALLBACK_PRICING, ...data.pricing };
+  }
+} catch { /* fallback */ }
 
 const pageTitle = 'Alternativa a TheFork/ElTenedor: Reservas directas sin intermediarios';
 const pageDescription = 'TheFork cobra ~1€ por comensal en cada reserva. Con un sistema propio pagas una cuota fija mensual y los datos de tus clientes son tuyos. Cómo hacer la transición.';
@@ -29,7 +41,7 @@ const articleData = {
 };
 
 const comparisonTable = [
-  { metric: 'Coste mensual (100 reservas, 4 pax)', eltenedor: '~400€ (1€/comensal)*', agendadereservas: '24€ (plan fijo)' },
+  { metric: 'Coste mensual (100 reservas, 4 pax)', eltenedor: '~400€ (1€/comensal)*', agendadereservas: `${apiPricing.restaurant.monthly}€ (plan fijo)` },
   { metric: 'Propiedad de datos clientes', eltenedor: '❌ No son tuyos', agendadereservas: '✅ Tuyos 100%' },
   { metric: 'Reservas directas', eltenedor: 'Dependencia de plataforma', agendadereservas: 'Canal propio' },
   { metric: 'Visibilidad a clientes nuevos', eltenedor: '✅ Marketplace activo', agendadereservas: '— (SEO + Google Business)' },
@@ -39,7 +51,7 @@ const comparisonTable = [
 const hypotheticalExample = {
   description: "Ejemplo orientativo (restaurante con 120 reservas/mes, 4 pax de media):",
   theforkCost: "~480€/mes en fees de TheFork",
-  agendaCost: "24€/mes con Agenda de Reservas",
+  agendaCost: `${apiPricing.restaurant.monthly}€/mes con Agenda de Reservas`,
   saving: "~456€/mes · ~5.500€/año",
   note: "* Basado en tarifa estándar ~1€/comensal. Tu coste real depende de tu contrato y plan con TheFork."
 };
@@ -59,7 +71,7 @@ const faqs = [
   },
   {
     question: '¿Cuánto tiempo tarda en recuperar la inversión?',
-    answer: 'Depende de tu volumen. Si pagas 400€/mes en fees de TheFork y pasas a 24€/mes con Agenda de Reservas, el ahorro neto es de ~376€ el primer mes. A mayor volumen de reservas, mayor ahorro. Recuerda que TheFork también aporta visibilidad, por lo que una estrategia mixta puede tener sentido al principio.'
+    answer: 'Depende de tu volumen. Si pagas cientos de euros al mes en fees de TheFork y pasas a una cuota mensual fija con sistema propio, el ahorro puede ser muy significativo desde el primer mes. A mayor volumen de reservas, mayor diferencia. Recuerda que TheFork también aporta visibilidad, por lo que una estrategia mixta puede tener sentido al principio. Consulta nuestros precios para calcular tu ahorro exacto.'
   }
 ];
 ---
@@ -267,4 +279,5 @@ const faqs = [
   </main>
   
   <Footer />
+  <DynamicPricing />
 </Layout>

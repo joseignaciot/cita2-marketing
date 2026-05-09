@@ -10,6 +10,7 @@ import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 
 import content from '../content/sectors/estetica.json';
+import DynamicPricing from '../components/DynamicPricing.astro';
 
 const { pageTitle, pageDescription, aiDescription, heroTitle, heroSubtitle, features, testimonials, faqs } = content;
 
@@ -69,7 +70,7 @@ const schema = {
             <tbody>
               <tr class="border-t">
                 <td class="p-4">Precio mensual</td>
-                <td class="p-4 text-center font-medium text-blue-600">19€ plan único</td>
+                <td class="p-4 text-center font-medium text-blue-600"><span data-price-key="service_business.monthly">19</span>€ plan único</td>
                 <td class="p-4 text-center">Desde 49€</td>
                 <td class="p-4 text-center">Desde 31€</td>
               </tr>
@@ -133,4 +134,5 @@ const schema = {
   </main>
   
   <Footer />
+  <DynamicPricing />
 </Layout>

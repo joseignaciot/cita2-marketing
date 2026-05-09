@@ -10,6 +10,7 @@ import '../styles/apple-design.css';
 
 // Contenido editable desde el CMS → public/admin → Páginas de Sector → Veterinarias
 import content from '../content/sectors/veterinarias.json';
+import DynamicPricing from '../components/DynamicPricing.astro';
 const { pageTitle, pageDescription, features, testimonials, faqs, heroTitle, heroSubtitle } = content;
 const canonicalUrl = 'https://agendadereservas.com/veterinarias/';
 
@@ -175,7 +176,7 @@ const schema = {
           Más tiempo para tus pacientes.<br/>
           <span class="text-green-400">Menos tiempo al teléfono.</span>
         </h2>
-        <p class="text-gray-400 mb-8">19€/mes · Sin límite de citas ni veterinarios · Prueba 14 días gratis</p>
+        <p class="text-gray-400 mb-8"><span data-price-key="service_business.monthly">19</span>€/mes · Sin límite de citas ni veterinarios · Prueba 14 días gratis</p>
         <a href="https://app.agendadereservas.com" class="inline-block bg-white text-gray-900 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors">
           Empezar prueba gratuita — sin tarjeta
         </a>
@@ -184,4 +185,5 @@ const schema = {
   </main>
 
   <Footer />
+  <DynamicPricing />
 </Layout>

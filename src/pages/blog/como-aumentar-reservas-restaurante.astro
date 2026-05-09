@@ -4,6 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import AdvancedSEO from '../../components/AdvancedSEO.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import DynamicPricing from '../../components/DynamicPricing.astro';
 
 const pageTitle = 'Cómo Aumentar Reservas en Restaurante: 8 Estrategias Comprobadas';
 const pageDescription = 'Guía práctica para aumentar reservas en tu restaurante sin depender de ElTenedor. Estrategias de marketing digital, fidelización y optimización que funcionan en 2026.';
@@ -112,7 +113,7 @@ const faqs = [
   },
   {
     question: '¿Cuánto cuesta marketing digital para restaurantes?',
-    answer: 'Con Agenda de Reservas (24€/mes plan Restaurantes) tienes sistema de reservas + herramientas de fidelización. Google Business es gratis. Email marketing con tu base de datos es gratuito. El coste de TheFork es variable (~1€/comensal), no un porcentaje fijo: consulta tu contrato actual para saber cuánto pagas realmente.'
+    answer: 'Con Agenda de Reservas (plan Restaurantes) tienes sistema de reservas + herramientas de fidelización por una cuota mensual fija. Google Business es gratis. Email marketing con tu base de datos es gratuito. El coste de TheFork es variable (~1€/comensal), no un porcentaje fijo: consulta tu contrato actual para saber cuánto pagas realmente.'
   },
   {
     question: '¿Cómo fidelizar clientes de restaurante?',
@@ -246,7 +247,7 @@ const faqs = [
             </div>
             <div>
               <p class="text-sm text-gray-700 mb-1">Con sistema propio</p>
-              <p class="text-3xl font-bold text-green-600">24€/mes</p>
+              <p class="text-3xl font-bold text-green-600"><span data-price-key="restaurant.monthly">24</span>€/mes</p>
               <p class="text-xs text-gray-400">Agenda de Reservas plan Restaurantes</p>
             </div>
             <div class="bg-green-50 rounded-xl p-4">
@@ -299,4 +300,5 @@ const faqs = [
   </main>
   
   <Footer />
+  <DynamicPricing />
 </Layout>

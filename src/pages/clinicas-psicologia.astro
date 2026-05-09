@@ -10,6 +10,7 @@ import '../styles/apple-design.css';
 
 // Contenido editable desde el CMS → public/admin → Páginas de Sector → Psicología
 import content from '../content/sectors/clinicas-psicologia.json';
+import DynamicPricing from '../components/DynamicPricing.astro';
 const { pageTitle, pageDescription, features, testimonials, faqs, heroTitle, heroSubtitle } = content;
 
 const canonicalUrl = 'https://agendadereservas.com/clinicas-psicologia/';
@@ -27,7 +28,7 @@ const schema = {
         price: '19',
         priceCurrency: 'EUR',
         priceValidUntil: '2026-12-31',
-        description: '19€/mes, citas ilimitadas, sin comisiones'
+        description: 'Precio plano mensual, citas ilimitadas, sin comisiones'
       },
       aggregateRating: {
         '@type': 'AggregateRating',
@@ -85,7 +86,7 @@ const schema = {
           name: '¿Funciona para un solo psicólogo o para una clínica con varios terapeutas?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Para ambos. Un psicólogo autónomo paga 19€/mes y gestiona su agenda completa. Una clínica puede añadir todos los terapeutas sin coste adicional por usuario.'
+            text: 'Para ambos. Un psicólogo autónomo con una cuota plana mensual gestiona su agenda completa. Una clínica puede añadir todos los terapeutas sin coste adicional por usuario.'
           }
         }
       ]
@@ -211,7 +212,7 @@ const schema = {
           Céntrate en tus pacientes.<br/>
           <span class="text-green-400">Nosotros gestionamos tu agenda.</span>
         </h2>
-        <p class="text-gray-400 mb-8">19€/mes · Sin comisiones · Sin permanencia · Soporte en español</p>
+        <p class="text-gray-400 mb-8"><span data-price-key="service_business.monthly">19</span>€/mes · Sin comisiones · Sin permanencia · Soporte en español</p>
         <a href="https://app.agendadereservas.com" class="inline-block bg-white text-gray-900 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors">
           Prueba gratis 14 días — sin tarjeta
         </a>
@@ -220,4 +221,5 @@ const schema = {
   </main>
 
   <Footer />
+  <DynamicPricing />
 </Layout>

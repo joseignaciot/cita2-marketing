@@ -4,6 +4,24 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import AdvancedSEO from '../../components/AdvancedSEO.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import DynamicPricing from '../../components/DynamicPricing.astro';
+
+const API_URL = 'https://api.agendadereservas.com';
+const FALLBACK_PRICING = { service_business: { monthly: 19, yearly: 190 } };
+const FALLBACK_COMPETITORS = {
+  agendapro: { price_per_employee: 49 },
+  reservio:  { base_price: 31, price_per_staff: 26.25 }
+};
+let apiPricing     = FALLBACK_PRICING;
+let apiCompetitors = FALLBACK_COMPETITORS;
+try {
+  const res = await fetch(`${API_URL}/pricing`, { signal: AbortSignal.timeout(3000) });
+  if (res.ok) {
+    const data = await res.json();
+    if (data?.pricing)     apiPricing     = { ...FALLBACK_PRICING, ...data.pricing };
+    if (data?.competitors) apiCompetitors = { ...FALLBACK_COMPETITORS, ...data.competitors };
+  }
+} catch { /* fallback */ }
 
 const pageTitle = 'Software de Agenda para Estética: Comparativa 2026 + Precios';
 const pageDescription = 'Análisis completo de los mejores software de agenda para centros de estética. Comparamos funciones, precios y valoraciones. Agenda de Reservas, AgendaPro, Treatwell y más.';
@@ -35,14 +53,22 @@ const features = [
   { name: 'Recordatorios WhatsApp', agendadereservas: true, agendapro: false, treatwell: false, reservio: false },
   { name: 'Marketing integrado', agendadereservas: true, agendapro: true, treatwell: true, reservio: false },
   { name: 'App nativa móvil', agendadereservas: false, agendapro: true, treatwell: true, reservio: true },
-  { name: 'Precio fijo', agendadereservas: '19€/mes', agendapro: '49-147€', treatwell: 'Comisión', reservio: '31-84€' }
+  { name: 'Precio fijo', agendadereservas: `${apiPricing.service_business.monthly}€/mes`, agendapro: '49-147€', treatwell: 'Comisión', reservio: '31-84€' }
 ];
 
-const pricing = [
-  { esteticistas: 1, agendadereservas: 19, agendapro: 49, treatwell: '20% comisión', reservio: 31 },
-  { esteticistas: 3, agendadereservas: 19, agendapro: 147, treatwell: '20% comisión', reservio: 84 },
-  { esteticistas: 5, agendadereservas: 19, agendapro: 245, treatwell: '20% comisión', reservio: 136 },
-];
+// Precios obtenidos de la BD → calculados dinámicamente
+const p   = apiPricing.service_business.monthly;
+const ppe = (apiCompetitors.agendapro as any)?.price_per_employee ?? 49;   // AgendaPro: € por empleado
+const rb  = (apiCompetitors.reservio  as any)?.base_price         ?? 31;   // Reservio: base
+const rps = (apiCompetitors.reservio  as any)?.price_per_staff     ?? 26.25; // Reservio: por empleado adicional
+
+const pricing = [1, 3, 5].map(n => ({
+  esteticistas:     n,
+  agendadereservas: p,
+  agendapro:        ppe * n,
+  reservio:         Math.round(rb + (n - 1) * rps),
+  treatwell:        '20% comisión'
+}));
 
 const testimonial = {
   quote: "Teníamos 3 cabinas y era un caos organizar quién usa cada una. Con Agenda de Reservas cada esteticista ve su agenda, las cabinas se asignan automáticamente y los conflictos desaparecieron.",
@@ -55,7 +81,7 @@ const testimonial = {
 const faqs = [
   {
     question: '¿Qué software es mejor para centro de estética pequeño?',
-    answer: 'Para centros de estética con 1-3 esteticistas, Agenda de Reservas es la mejor opción porque ofrece precio fijo de 19€/mes independientemente del número de empleados, incluye gestión de cabinas, bonos de sesiones y WhatsApp Business integrado. AgendaPro cuesta 49€ por cada esteticista, lo que para 3 empleados son 147€/mes.'
+    answer: 'Para centros de estética con 1-3 esteticistas, Agenda de Reservas es la mejor opción: precio fijo mensual por negocio (independientemente del número de empleados), incluye gestión de cabinas, bonos de sesiones y WhatsApp Business integrado. AgendaPro cuesta 49€ por cada esteticista, lo que para 3 empleados son 147€/mes.'
   },
   {
     question: '¿Cómo gestionar cabinas en centro de estética?',
@@ -63,7 +89,7 @@ const faqs = [
   },
   {
     question: '¿Vale la pena Treatwell para estética?',
-    answer: 'Treatwell cobra comisión del 20% por cada reserva, lo que para un tratamiento de 80€ son 16€ de comisión. Si haces 50 tratamientos al mes, pagas 800€ solo en comisiones. Para estética con clientela fija, un software con precio fijo como Agenda de Reservas (19€/mes) es mucho más rentable.'
+    answer: 'Treatwell cobra comisión del 20% por cada reserva, lo que para un tratamiento de 80€ son 16€ de comisión. Si haces 50 tratamientos al mes, pagas 800€ solo en comisiones. Para estética con clientela fija, un software con precio fijo como Agenda de Reservas es mucho más rentable. Ver precios en /precios'
   },
   {
     question: '¿Qué funciones necesita un software de estética?',
@@ -100,7 +126,7 @@ const faqs = [
                 Para la mayoría de centros de estética con 1-5 cabinas, <strong>Agenda de Reservas</strong> ofrece la mejor relación calidad-precio.
               </p>
               <ul class="space-y-2 text-blue-700 text-sm">
-                <li>✓ Precio fijo 19€/mes (no por empleado)</li>
+                <li>✓ Precio fijo <span data-price-key="service_business.monthly">19</span>€/mes (no por empleado)</li>
                 <li>✓ Gestión de cabinas incluida</li>
                 <li>✓ WhatsApp Business integrado</li>
                 <li>✓ Bonos de sesiones</li>
@@ -109,7 +135,7 @@ const faqs = [
             <div class="bg-white rounded-xl p-6">
               <p class="text-sm text-gray-700 mb-2">Ahorro vs AgendaPro (3 esteticistas)</p>
               <p class="text-4xl font-bold text-green-600">1.536€/año</p>
-              <p class="text-sm text-gray-700">Agenda de Reservas 19€/mes vs AgendaPro 147€/mes</p>
+              <p class="text-sm text-gray-700">Agenda de Reservas <span data-price-key="service_business.monthly">19</span>€/mes vs AgendaPro 147€/mes</p>
             </div>
           </div>
         </div>
@@ -218,7 +244,7 @@ const faqs = [
                     <td class="px-6 py-4 text-center text-gray-600">{row.agendapro}€/mes</td>
                     <td class="px-6 py-4 text-center text-gray-600">{row.reservio}€/mes</td>
                     <td class="px-6 py-4 text-center">
-                      <span class="text-lg font-bold text-green-600">{row.agendapro - row.agendadereservas * 12}€/año</span>
+                      <span class="text-lg font-bold text-green-600">{(row.agendapro - row.agendadereservas) * 12}€/año</span>
                     </td>
                   </tr>
                 ))}
@@ -327,11 +353,12 @@ const faqs = [
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
-          <p class="text-sm text-purple-200 mt-4">Sin tarjeta · Setup en 2 min · Precio fijo 19€/mes</p>
+          <p class="text-sm text-purple-200 mt-4">Sin tarjeta · Setup en 2 min · Precio fijo <span data-price-key="service_business.monthly">19</span>€/mes</p>
         </div>
       </article>
     </div>
   </main>
   
   <Footer />
+  <DynamicPricing />
 </Layout>

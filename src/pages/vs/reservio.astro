@@ -2,6 +2,14 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import DynamicPricing from '../../components/DynamicPricing.astro';
+import pricingData from '../../content/pricing.json';
+
+// Precios leídos de pricing.json en build-time
+const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
+const svcPrice = svcPlan?.monthly ?? 19;
+const reservioProPrice = 63; // competidor — verificado reservio.com/es abril 2026
+const savingAnnual = (reservioProPrice - svcPrice) * 12;
 
 const pageTitle = 'Agenda de Reservas vs Reservio: Comparativa Detallada 2025';
 const pageDescription = 'Análisis completo entre Agenda de Reservas y Reservio. Precios, funcionalidades, soporte en español y más. Descubre cuál es mejor para tu negocio.';
@@ -17,8 +25,8 @@ const schema = {
 };
 
 const comparisonRows = [
-  { feature: 'Precio plan básico', agendadereservas: '19€/mes (todo incluido)', reservio: '0€ (limitado) / 31€ (pro)', winner: 'agendadereservas' },
-  { feature: 'Precio plan premium', agendadereservas: '19€ (único plan)', reservio: '63€/mes (max 5 staff)', winner: 'agendadereservas' },
+  { feature: 'Precio plan básico', agendadereservas: `${svcPrice}€/mes (todo incluido)`, reservio: '0€ (limitado) / 31€ (pro)', winner: 'agendadereservas' },
+  { feature: 'Precio plan premium', agendadereservas: `${svcPrice}€ (\u00fanico plan)`, reservio: `${reservioProPrice}€/mes (max 5 staff)`, winner: 'agendadereservas' },
   { feature: 'Usuarios/staff', agendadereservas: 'Ilimitados', reservio: 'Limitado por plan', winner: 'agendadereservas' },
   { feature: 'Reservas mensuales', agendadereservas: 'Ilimitadas', reservio: 'Limitadas en plan gratis', winner: 'agendadereservas' },
   { feature: 'Soporte en español', agendadereservas: '✅ Nativo (chat/email)', reservio: '⚠️ Inglés/Alemán principal', winner: 'agendadereservas' },
@@ -110,14 +118,14 @@ const comparisonRows = [
         <div class="flex justify-center gap-8 mb-8">
           <div class="text-center">
             <p class="text-sm text-gray-600">Agenda de Reservas</p>
-            <p class="text-3xl font-bold text-blue-600">19€/mes</p>
+            <p class="text-3xl font-bold text-blue-600"><span data-price-key="service_business.monthly">{svcPrice}</span>€/mes</p>
           </div>
           <div class="text-center">
             <p class="text-sm text-gray-600">Reservio Pro</p>
             <p class="text-3xl font-bold text-purple-600">63€/mes</p>
           </div>
         </div>
-        <p class="text-green-600 font-semibold text-xl">Ahorro anual con Agenda de Reservas: 528€</p>
+        <p class="text-green-600 font-semibold text-xl">Ahorro anual con Agenda de Reservas: {savingAnnual.toLocaleString('es-ES')}€</p>
       </div>
     </section>
 
@@ -133,4 +141,5 @@ const comparisonRows = [
   </main>
   
   <Footer />
+  <DynamicPricing />
 </Layout>

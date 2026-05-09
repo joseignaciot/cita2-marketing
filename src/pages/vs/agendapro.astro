@@ -2,6 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import DynamicPricing from '../../components/DynamicPricing.astro';
+import pricingData from '../../content/pricing.json';
+
+// Precios de build-time leídos desde pricing.json
+const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
+const svcPrice = svcPlan?.monthly ?? 19;
+const agendaProPerSeat = 49; // competidor — precio verificado
+const saving1 = agendaProPerSeat - svcPrice;
+const saving3 = agendaProPerSeat * 3 - svcPrice;
+const saving5 = agendaProPerSeat * 5 - svcPrice;
+const savingAnnual3 = saving3 * 12;
 
 const pageTitle = 'Agenda de Reservas vs AgendaPro: Comparativa Detallada 2025';
 const pageDescription = 'Análisis completo y honesto entre Agenda de Reservas y AgendaPro. Precios reales, funcionalidades comparadas, ventajas y desventajas. Elige el mejor software para tu negocio.';
@@ -31,9 +42,9 @@ const comparisonData = [
   {
     category: 'Precios',
     features: [
-      { name: 'Coste mensual base', cita2: '19€ plan único', agendapro: 'Desde 49€/puesto', winner: 'cita2' },
-      { name: 'Coste 3 empleados', cita2: '19€', agendapro: '147€', winner: 'cita2' },
-      { name: 'Coste 5 empleados', cita2: '19€', agendapro: '245€', winner: 'cita2' },
+      { name: 'Coste mensual base', cita2: `${svcPrice}€ plan único`, agendapro: `Desde ${agendaProPerSeat}€/puesto`, winner: 'cita2' },
+      { name: 'Coste 3 empleados', cita2: `${svcPrice}€`, agendapro: `${agendaProPerSeat * 3}€`, winner: 'cita2' },
+      { name: 'Coste 5 empleados', cita2: `${svcPrice}€`, agendapro: `${agendaProPerSeat * 5}€`, winner: 'cita2' },
       { name: 'Comisiones por reserva', cita2: '0%', agendapro: '0%', winner: 'tie' },
       { name: 'Setup inicial', cita2: 'Gratis', agendapro: 'Gratis', winner: 'tie' },
     ]
@@ -201,32 +212,32 @@ comparisonData.forEach(cat => {
           <div class="bg-white p-6 rounded-xl text-center">
             <h3 class="font-semibold text-gray-600 mb-2">1 empleado</h3>
             <div class="space-y-2">
-              <p class="text-sm">Agenda de Reservas: <span class="font-bold text-blue-600">19€</span></p>
-              <p class="text-sm">AgendaPro: <span class="font-bold">49€</span></p>
-              <p class="text-sm text-green-600">Ahorro: 30€/mes</p>
+              <p class="text-sm">Agenda de Reservas: <span class="font-bold text-blue-600" data-price-key="service_business.monthly">{svcPrice}€</span></p>
+              <p class="text-sm">AgendaPro: <span class="font-bold">{agendaProPerSeat}€</span></p>
+              <p class="text-sm text-green-600">Ahorro: {saving1}€/mes</p>
             </div>
           </div>
           <div class="bg-white p-6 rounded-xl text-center border-2 border-blue-500">
             <h3 class="font-semibold text-gray-600 mb-2">3 empleados</h3>
             <div class="space-y-2">
-              <p class="text-sm">Agenda de Reservas: <span class="font-bold text-blue-600">19€</span></p>
-              <p class="text-sm">AgendaPro: <span class="font-bold">147€</span></p>
-              <p class="text-sm text-green-600 font-semibold">Ahorro: 128€/mes</p>
+              <p class="text-sm">Agenda de Reservas: <span class="font-bold text-blue-600" data-price-key="service_business.monthly">{svcPrice}€</span></p>
+              <p class="text-sm">AgendaPro: <span class="font-bold">{agendaProPerSeat * 3}€</span></p>
+              <p class="text-sm text-green-600 font-semibold">Ahorro: {saving3}€/mes</p>
             </div>
           </div>
           <div class="bg-white p-6 rounded-xl text-center">
             <h3 class="font-semibold text-gray-600 mb-2">5 empleados</h3>
             <div class="space-y-2">
-              <p class="text-sm">Agenda de Reservas: <span class="font-bold text-blue-600">19€</span></p>
-              <p class="text-sm">AgendaPro: <span class="font-bold">245€</span></p>
-              <p class="text-sm text-green-600">Ahorro: 226€/mes</p>
+              <p class="text-sm">Agenda de Reservas: <span class="font-bold text-blue-600" data-price-key="service_business.monthly">{svcPrice}€</span></p>
+              <p class="text-sm">AgendaPro: <span class="font-bold">{agendaProPerSeat * 5}€</span></p>
+              <p class="text-sm text-green-600">Ahorro: {saving5}€/mes</p>
             </div>
           </div>
         </div>
 
         <div class="bg-blue-600 text-white p-8 rounded-xl text-center">
           <p class="text-lg mb-2">Ahorro anual con 3 empleados:</p>
-          <p class="text-4xl font-bold">1.536€</p>
+          <p class="text-4xl font-bold">{savingAnnual3.toLocaleString('es-ES')}€</p>
           <p class="text-blue-200 mt-2">Suficiente para unas buenas vacaciones 💙</p>
         </div>
       </div>
@@ -255,4 +266,5 @@ comparisonData.forEach(cat => {
   </main>
   
   <Footer />
+  <DynamicPricing />
 </Layout>
