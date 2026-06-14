@@ -12,21 +12,11 @@ echo -e "${YELLOW}========================================"
 echo "   Deploy Marketing Site → Producción"
 echo -e "========================================${NC}"
 
-# ── Busca automáticamente la clave SSH y el directorio remoto ──────────────
-SSH_HOST="agendadereservas.com"
-SSH_USER="joseignacio"
+SSH_HOST="75.119.150.113"
+SSH_PORT="1968"
+SSH_USER="root"
+SSH_KEY="$HOME/.ssh/id_rsa"
 LOCAL_DIST="./dist"
-
-# Detecta clave SSH (misma que usa deploy-quick.sh de cita2)
-SSH_KEY=""
-for KEY in "$HOME/.ssh/id_rsa" "$HOME/.ssh/id_ed25519" "$HOME/.ssh/agendadereservas"; do
-  if [ -f "$KEY" ]; then SSH_KEY="$KEY"; break; fi
-done
-
-if [ -z "$SSH_KEY" ]; then
-  echo -e "${RED}✗ No se encontró clave SSH en ~/.ssh/${NC}"
-  exit 1
-fi
 
 # Verifica que dist/ existe y tiene contenido
 if [ ! -f "${LOCAL_DIST}/index.html" ]; then
@@ -36,8 +26,8 @@ fi
 
 echo ""
 echo "[1/3] Conectando al servidor..."
-if ! ssh -o ConnectTimeout=8 -i "$SSH_KEY" "${SSH_USER}@${SSH_HOST}" "echo ok" &>/dev/null; then
-  echo -e "${RED}✗ No se pudo conectar. Comprueba la clave SSH y el servidor.${NC}"
+if ! ssh -o ConnectTimeout=8 -o StrictHostKeyChecking=no -i "$SSH_KEY" -p "$SSH_PORT" "${SSH_USER}@${SSH_HOST}" "echo ok" &>/dev/null; then
+  echo -e "${RED}✗ No se pudo conectar a ${SSH_HOST}:${SSH_PORT}${NC}"
   exit 1
 fi
 echo -e "${GREEN}✓ SSH OK${NC}"
@@ -45,12 +35,10 @@ echo -e "${GREEN}✓ SSH OK${NC}"
 # Descubre el directorio raíz del marketing site en el servidor
 echo ""
 echo "[2/3] Localizando directorio en el servidor..."
-REMOTE_DIR=$(ssh -i "$SSH_KEY" "${SSH_USER}@${SSH_HOST}" "
-  # Busca en nginx dónde está mapeado agendadereservas.com
-  ROOT=\$(grep -r 'root\|alias' /etc/nginx/sites-enabled/ 2>/dev/null | grep -v '#' | grep -v 'app\.' | awk '{print \$2}' | tr -d ';' | head -1)
+REMOTE_DIR=$(ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" -p "$SSH_PORT" "${SSH_USER}@${SSH_HOST}" "
+  ROOT=\$(grep -r 'root\|alias' /etc/nginx/sites-enabled/ 2>/dev/null | grep -v '#' | grep 'agendadereservas' | awk '{print \$2}' | tr -d ';' | head -1)
   if [ -n \"\$ROOT\" ]; then echo \"\$ROOT\"; exit 0; fi
-  # Fallback: busca el index.html del marketing
-  find /var/www /srv /home -name 'index.html' -not -path '*/node_modules/*' 2>/dev/null | head -1 | xargs dirname
+  find /var/www /srv /home -name 'index.html' -not -path '*/node_modules/*' 2>/dev/null | head -1 | xargs dirname 2>/dev/null
 ")
 
 if [ -z "$REMOTE_DIR" ]; then
@@ -65,7 +53,7 @@ echo ""
 echo "[3/3] Subiendo dist/ → ${SSH_HOST}:${REMOTE_DIR}..."
 rsync -avz --delete \
   --exclude='.DS_Store' \
-  -e "ssh -i ${SSH_KEY}" \
+  -e "ssh -i ${SSH_KEY} -p ${SSH_PORT} -o StrictHostKeyChecking=no" \
   "${LOCAL_DIST}/" \
   "${SSH_USER}@${SSH_HOST}:${REMOTE_DIR}/"
 
