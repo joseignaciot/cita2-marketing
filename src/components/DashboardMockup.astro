@@ -1,0 +1,189 @@
+---
+/**
+ * DashboardMockup.astro — Recreación fiel del panel real de Agenda de Reservas
+ * (verificado por capturas, junio 2026). HTML/CSS estático, sin JS de cliente.
+ * Datos SIEMPRE ficticios. Una variante por sector vía prop `sector`.
+ */
+interface Cita {
+  hora: string;
+  nombre: string;
+  detalle: string;
+  estado: 'Confirmada' | 'Pendiente';
+  color: string; // tailwind bg-* para la barra lateral de la tarjeta
+}
+interface SectorData {
+  marca: string;
+  kpis: {
+    reservas: string;
+    ingresos: string;
+    ocupacionPct: number;
+    ocupacionTxt: string;
+    proxHora: string;
+    proxNombre: string;
+  };
+  citas: Cita[];
+}
+
+interface Props {
+  sector?: keyof typeof SECTORS;
+  class?: string;
+}
+
+const SECTORS = {
+  peluquerias: {
+    marca: 'Peluquería Lúa',
+    kpis: { reservas: '14', ingresos: '486 €', ocupacionPct: 82, ocupacionTxt: '14 / 17 huecos', proxHora: '10:00', proxNombre: 'María García' },
+    citas: [
+      { hora: '10:00', nombre: 'María García', detalle: 'Corte y color · 90 min', estado: 'Confirmada', color: 'bg-blue-500' },
+      { hora: '11:30', nombre: 'Carlos Ruiz', detalle: 'Corte caballero · 30 min', estado: 'Confirmada', color: 'bg-blue-500' },
+      { hora: '12:30', nombre: 'Lucía Méndez', detalle: 'Mechas balayage · 120 min', estado: 'Pendiente', color: 'bg-amber-400' },
+    ],
+  },
+  estetica: {
+    marca: 'Centro Estética Aura',
+    kpis: { reservas: '11', ingresos: '612 €', ocupacionPct: 75, ocupacionTxt: '3 / 4 cabinas', proxHora: '10:30', proxNombre: 'Elena Soto' },
+    citas: [
+      { hora: '10:30', nombre: 'Elena Soto', detalle: 'Depilación láser · Cabina 2', estado: 'Confirmada', color: 'bg-blue-500' },
+      { hora: '12:00', nombre: 'Marta Vidal', detalle: 'Facial antiedad · Cabina 1', estado: 'Confirmada', color: 'bg-blue-500' },
+      { hora: '16:00', nombre: 'Nuria Pena', detalle: 'Drenaje linfático · Cabina 3', estado: 'Pendiente', color: 'bg-amber-400' },
+    ],
+  },
+  restaurantes: {
+    marca: 'Restaurante O Forno',
+    kpis: { reservas: '38', ingresos: '—', ocupacionPct: 76, ocupacionTxt: '61 / 80 comensales', proxHora: '13:30', proxNombre: 'Familia Torres' },
+    citas: [
+      { hora: '13:30', nombre: 'Familia Torres', detalle: 'Turno comida · 4 pax · Terraza', estado: 'Confirmada', color: 'bg-blue-500' },
+      { hora: '14:00', nombre: 'Grupo empresa', detalle: 'Turno comida · 12 pax · Depósito', estado: 'Confirmada', color: 'bg-blue-500' },
+      { hora: '21:00', nombre: 'Ana Castro', detalle: 'Turno cena · 2 pax · Sala', estado: 'Pendiente', color: 'bg-amber-400' },
+    ],
+  },
+  turismo: {
+    marca: 'Ribeira Sacra Tours',
+    kpis: { reservas: '23', ingresos: '1.150 €', ocupacionPct: 70, ocupacionTxt: '28 / 40 plazas', proxHora: '09:00', proxNombre: 'Grupo catamarán' },
+    citas: [
+      { hora: '09:00', nombre: 'Grupo catamarán', detalle: 'Cañón del Sil · 12 plazas · Guía Marta', estado: 'Confirmada', color: 'bg-blue-500' },
+      { hora: '10:30', nombre: 'J. Williams (EN)', detalle: 'Ruta viñedos · 2 adultos', estado: 'Confirmada', color: 'bg-blue-500' },
+      { hora: '16:00', nombre: 'Familia Pérez', detalle: 'Kayak guiado · 2 ad. + 2 niños', estado: 'Pendiente', color: 'bg-amber-400' },
+    ],
+  },
+  clinicas: {
+    marca: 'Psicología Brétema',
+    kpis: { reservas: '9', ingresos: '540 €', ocupacionPct: 90, ocupacionTxt: '9 / 10 sesiones', proxHora: '09:00', proxNombre: 'Paciente — sesión' },
+    citas: [
+      { hora: '09:00', nombre: 'Sesión individual', detalle: 'Terapia · 60 min · Consulta 1', estado: 'Confirmada', color: 'bg-blue-500' },
+      { hora: '11:00', nombre: 'Primera consulta', detalle: 'Evaluación · 50 min · Consulta 2', estado: 'Confirmada', color: 'bg-blue-500' },
+      { hora: '17:00', nombre: 'Sesión de pareja', detalle: 'Terapia · 75 min · Consulta 1', estado: 'Pendiente', color: 'bg-amber-400' },
+    ],
+  },
+  fisioterapia: {
+    marca: 'Fisio Compostela',
+    kpis: { reservas: '16', ingresos: '624 €', ocupacionPct: 80, ocupacionTxt: '16 / 20 sesiones', proxHora: '09:30', proxNombre: 'Pablo Iglesias' },
+    citas: [
+      { hora: '09:30', nombre: 'Pablo Iglesias', detalle: 'Rehabilitación rodilla · Box 1', estado: 'Confirmada', color: 'bg-blue-500' },
+      { hora: '11:00', nombre: 'Sara Lema', detalle: 'Masaje descontracturante · Box 2', estado: 'Confirmada', color: 'bg-blue-500' },
+      { hora: '18:00', nombre: 'Diego Varela', detalle: 'Punción seca · Box 1', estado: 'Pendiente', color: 'bg-amber-400' },
+    ],
+  },
+} satisfies Record<string, SectorData>;
+
+const { sector = 'peluquerias', class: className = '' } = Astro.props;
+const data = SECTORS[sector] ?? SECTORS.peluquerias;
+const k = data.kpis;
+
+const navItems = ['Panel', 'Calendario', 'Reservas', 'Clientes', 'Estadísticas'];
+---
+
+<div class={`dashboard-mockup ${className}`}>
+  <!-- Marco navegador -->
+  <div class="rounded-2xl bg-white shadow-2xl border border-gray-200 overflow-hidden">
+    <!-- Barra de ventana -->
+    <div class="flex items-center gap-2 px-4 py-3 bg-gray-100 border-b border-gray-200">
+      <span class="w-3 h-3 rounded-full bg-red-400"></span>
+      <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+      <span class="w-3 h-3 rounded-full bg-green-400"></span>
+      <div class="ml-3 flex-1 max-w-[220px] truncate rounded-md bg-white border border-gray-200 px-3 py-1 text-[11px] text-gray-400">
+        app.agendadereservas.com
+      </div>
+    </div>
+
+    <div class="flex">
+      <!-- Sidebar -->
+      <aside class="hidden sm:flex flex-col w-44 flex-shrink-0 bg-white border-r border-gray-100 p-3">
+        <div class="flex items-center gap-2 px-1 mb-4">
+          <span class="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white text-xs font-bold">A</span>
+          <span class="font-semibold text-gray-900 text-sm">Agenda</span>
+        </div>
+        <div class="rounded-lg bg-blue-600 text-white text-xs font-medium text-center py-2 mb-4">+ Nueva reserva</div>
+        <nav class="space-y-1">
+          {navItems.map((item, i) => (
+            <div class={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs ${i === 0 ? 'bg-blue-50 text-blue-700 font-medium' : 'text-gray-500'}`}>
+              <span class={`w-1.5 h-1.5 rounded-full ${i === 0 ? 'bg-blue-600' : 'bg-gray-300'}`}></span>
+              {item}
+            </div>
+          ))}
+        </nav>
+      </aside>
+
+      <!-- Contenido -->
+      <div class="flex-1 bg-gray-50 p-4 min-w-0">
+        <p class="text-[11px] text-gray-400 mb-1">{data.marca}</p>
+        <!-- KPIs -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 mb-4">
+          <div class="rounded-xl bg-white border border-gray-200 p-3">
+            <p class="text-[10px] text-gray-400 mb-1">📅 Reservas de hoy</p>
+            <p class="text-xl font-bold text-gray-900 leading-none">{k.reservas}</p>
+          </div>
+          <div class="rounded-xl bg-white border border-gray-200 p-3">
+            <p class="text-[10px] text-gray-400 mb-1">💶 Ingresos del día</p>
+            <p class="text-xl font-bold text-green-600 leading-none">{k.ingresos}</p>
+          </div>
+          <div class="rounded-xl bg-white border border-gray-200 p-3">
+            <p class="text-[10px] text-gray-400 mb-1">📈 Ocupación</p>
+            <p class="text-xl font-bold text-gray-900 leading-none mb-1.5">{k.ocupacionPct}%</p>
+            <div class="h-1 rounded-full bg-gray-100 overflow-hidden">
+              <div class="h-full bg-blue-600 rounded-full" style={`width:${k.ocupacionPct}%`}></div>
+            </div>
+            <p class="text-[9px] text-gray-400 mt-1">{k.ocupacionTxt}</p>
+          </div>
+          <div class="rounded-xl bg-white border border-gray-200 p-3">
+            <p class="text-[10px] text-gray-400 mb-1">⏱ Próxima reserva</p>
+            <p class="text-base font-bold text-gray-900 leading-none">{k.proxHora}</p>
+            <p class="text-[10px] text-gray-500 mt-1 truncate">{k.proxNombre}</p>
+          </div>
+        </div>
+
+        <!-- Citas de hoy -->
+        <div class="rounded-xl bg-white border border-gray-200 p-3">
+          <div class="flex items-center justify-between mb-2">
+            <p class="text-xs font-semibold text-gray-900">✅ Citas de hoy</p>
+            <span class="text-[10px] text-gray-400">{data.citas.length} citas</span>
+          </div>
+          <div class="space-y-2">
+            {data.citas.map((c) => (
+              <div class="flex items-center gap-2.5 rounded-lg border border-gray-100 p-2">
+                <span class={`w-1 h-9 rounded-full flex-shrink-0 ${c.color}`}></span>
+                <span class="text-[11px] font-semibold text-gray-500 w-9 flex-shrink-0">{c.hora}</span>
+                <div class="min-w-0 flex-1">
+                  <p class="text-xs font-medium text-gray-900 truncate">{c.nombre}</p>
+                  <p class="text-[10px] text-gray-500 truncate">{c.detalle}</p>
+                </div>
+                <span class={`text-[9px] font-medium px-2 py-0.5 rounded-full flex-shrink-0 ${c.estado === 'Confirmada' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
+                  {c.estado}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón Asistente IA flotante (decorativo) -->
+  <div class="hidden md:flex absolute -bottom-3 right-4 items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 text-white text-[11px] font-medium px-3 py-1.5 shadow-lg">
+    ✨ Asistente
+  </div>
+</div>
+
+<style>
+  .dashboard-mockup { position: relative; }
+</style>
