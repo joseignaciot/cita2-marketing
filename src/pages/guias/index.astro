@@ -1,0 +1,182 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const pageTitle = 'Guías para negocios de reservas | Agenda de Reservas';
+const pageDescription = 'Guías prácticas para peluquerías, restaurantes y negocios de servicios: reducir no-shows, digitalizar la agenda, cobrar anticipos y gestionar turnos sin comisiones.';
+const canonicalUrl = 'https://agendadereservas.com/guias/';
+
+const guias = [
+  {
+    sector: 'Peluquerías y barberías',
+    items: [
+      {
+        href: '/guias/reducir-ausencias',
+        titulo: 'Cómo reducir ausencias hasta un 70%',
+        desc: '7 estrategias probadas con recordatorios automáticos para eliminar los no-shows en tu negocio.',
+        tiempo: '8 min',
+      },
+      {
+        href: '/guias/digitalizar-agenda-barberia',
+        titulo: 'Digitalizar la agenda de tu barbería',
+        desc: 'Paso a paso: de la agenda en papel a reservas online 24/7 sin complicaciones técnicas.',
+        tiempo: '6 min',
+      },
+      {
+        href: '/guias/cobrar-anticipo-peluqueria',
+        titulo: 'Cobrar anticipo en peluquerías sin perder clientes',
+        desc: 'Marco legal, cómo comunicarlo y qué importe pedir para reducir no-shows sin fricción.',
+        tiempo: '7 min',
+      },
+    ],
+  },
+  {
+    sector: 'Estética y spas',
+    items: [
+      {
+        href: '/guias/software-cabinas-estetica',
+        titulo: 'Software para gestionar cabinas de estética',
+        desc: 'Calendario de cabinas, bonos de sesiones y recordatorios específicos para tratamientos de larga duración.',
+        tiempo: '7 min',
+      },
+    ],
+  },
+  {
+    sector: 'Restaurantes',
+    items: [
+      {
+        href: '/guias/gestionar-turnos-restaurante',
+        titulo: 'Gestionar turnos en tu restaurante sin marketplace',
+        desc: 'Turnos de comida y cena, lista de espera digital y depósito para grupos: todo en una agenda propia.',
+        tiempo: '8 min',
+      },
+      {
+        href: '/guias/depositos-reservas-restaurante',
+        titulo: 'Cobrar depósito en reservas de restaurante',
+        desc: 'Cuándo pedir anticipo, cuánto cobrar y cómo comunicarlo sin espantar a tus clientes.',
+        tiempo: '6 min',
+      },
+    ],
+  },
+  {
+    sector: 'Turismo activo',
+    items: [
+      {
+        href: '/guias/gestionar-aforos-actividades',
+        titulo: 'Gestionar aforos y actividades de turismo activo',
+        desc: 'Cupos por salida, guías asignados, variantes de idioma y canales externos sin comisión.',
+        tiempo: '9 min',
+      },
+    ],
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://agendadereservas.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Guías', item: canonicalUrl },
+      ],
+    },
+    {
+      '@type': 'ItemList',
+      name: 'Guías para negocios de reservas',
+      description: pageDescription,
+      numberOfItems: guias.reduce((acc, s) => acc + s.items.length, 0),
+      itemListElement: guias.flatMap((sector, si) =>
+        sector.items.map((g, gi) => ({
+          '@type': 'ListItem',
+          position: guias.slice(0, si).reduce((acc, s) => acc + s.items.length, 0) + gi + 1,
+          url: `https://agendadereservas.com${g.href}`,
+          name: g.titulo,
+        }))
+      ),
+    },
+  ],
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
+  <Header />
+
+  <main>
+    <!-- Breadcrumb -->
+    <nav aria-label="Ruta de navegación" class="bg-gray-50 border-b border-gray-100">
+      <div class="container-apple py-3">
+        <ol class="flex items-center gap-2 text-sm text-gray-500">
+          <li><a href="/" class="hover:text-blue-600">Inicio</a></li>
+          <li class="text-gray-300">/</li>
+          <li class="text-gray-700 font-medium">Guías</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple text-center max-w-3xl mx-auto">
+        <h1 class="text-headline text-gray-900 mb-4">
+          Guías prácticas para negocios de reservas
+        </h1>
+        <p class="text-body text-lg text-gray-600">
+          Estrategias probadas para reducir no-shows, digitalizar tu agenda y gestionar tu negocio de servicios sin comisiones.
+        </p>
+      </div>
+    </section>
+
+    <!-- Guías por sector -->
+    <section class="section-apple bg-gray-50">
+      <div class="container-apple max-w-4xl mx-auto">
+        <div class="space-y-12">
+          {guias.map(sector => (
+            <div>
+              <h2 class="text-xl font-bold text-gray-900 mb-6 pb-3 border-b border-gray-200">
+                {sector.sector}
+              </h2>
+              <div class="grid sm:grid-cols-2 gap-4">
+                {sector.items.map(guia => (
+                  <a
+                    href={guia.href}
+                    class="group block bg-white border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-md transition-all"
+                  >
+                    <div class="flex items-start justify-between gap-3 mb-2">
+                      <h3 class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors leading-snug">
+                        {guia.titulo}
+                      </h3>
+                      <span class="text-xs text-gray-400 flex-shrink-0 mt-1">{guia.tiempo}</span>
+                    </div>
+                    <p class="text-sm text-gray-500 leading-relaxed">{guia.desc}</p>
+                    <p class="text-sm text-blue-600 font-medium mt-3 group-hover:underline">Leer guía →</p>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-apple bg-gray-900">
+      <div class="container-apple text-center">
+        <h2 class="text-headline text-white mb-4">
+          ¿Listo para poner en práctica lo que has aprendido?
+        </h2>
+        <p class="text-gray-400 mb-8">
+          14 días gratis, sin tarjeta. Software de reservas desde 19€/mes sin comisiones.
+        </p>
+        <a
+          href="https://app.agendadereservas.com"
+          class="inline-block bg-white text-gray-900 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors"
+        >
+          Empezar gratis ahora
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,648 @@
+
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import DynamicPricing from '../../components/DynamicPricing.astro';
+import '../../styles/apple-design.css';
+import pricingData from '../../content/pricing.json';
+
+// Precios de build-time desde pricing.json — fuente de verdad
+const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
+const svcPrice = svcPlan?.monthly ?? 19;
+const commsAddon = pricingData.addons.find(a => a.id === 'comunicaciones');
+const commsPrice = commsAddon?.price ?? 39;
+const pagosAddon = pricingData.addons.find(a => a.id === 'pagos');
+const pagosPrice = pagosAddon?.price ?? 12;
+
+const pageTitle = 'Alternativa a Acuity Scheduling en español | Agenda de Reservas';
+const pageDescription = 'Acuity Scheduling no tiene soporte en español, almacena datos en EE. UU. y carece de WhatsApp. Agenda de Reservas: la alternativa española con soporte humano, RGPD y WhatsApp desde 19€/mes.';
+const canonicalUrl = 'https://agendadereservas.com/vs/acuity';
+
+// Tabla comparativa Acuity Scheduling vs Agenda de Reservas
+// Precios Acuity Scheduling según acuityscheduling.com (junio 2026):
+// Emerging ~16 USD/mes (1 profesional), Growing ~27 USD/mes (hasta 6 calendarios),
+// Powerhouse ~61 USD/mes (hasta 36 calendarios). Verificar en acuityscheduling.com.
+const comparativa = [
+  {
+    feature: 'Precio mensual',
+    acuity: 'Desde ~16 USD/mes (1 profesional) hasta ~61 USD/mes — en USD',
+    agenda: `${svcPrice}€/mes (plan fijo, todos los profesionales)`,
+    winner: 'agenda',
+  },
+  {
+    feature: 'Idioma de la interfaz',
+    acuity: 'Inglés (traducciones parciales en algunos idiomas)',
+    agenda: '100 % en español (ES)',
+    winner: 'agenda',
+  },
+  {
+    feature: 'Soporte en español',
+    acuity: 'No — solo en inglés',
+    agenda: 'Sí — humano, <2 h en horario laboral',
+    winner: 'agenda',
+  },
+  {
+    feature: 'WhatsApp Business API',
+    acuity: 'No — no disponible de forma nativa',
+    agenda: `Sí — disponible (+${commsPrice}€/mes add-on)`,
+    winner: 'agenda',
+  },
+  {
+    feature: 'Gestión de múltiples profesionales',
+    acuity: 'Sí — pero cobrando por número de calendarios',
+    agenda: 'Sí — multi-staff incluido en el plan base',
+    winner: 'agenda',
+  },
+  {
+    feature: 'Formularios previos a la cita (intake forms)',
+    acuity: 'Sí — característica diferenciadora muy completa',
+    agenda: 'Funcionalidad básica de campos personalizados',
+    winner: 'acuity',
+  },
+  {
+    feature: 'TPV / cobro online',
+    acuity: 'Sí — Stripe, Square, PayPal (planes de pago)',
+    agenda: `Sí — Stripe integrado (+${pagosPrice}€/mes add-on)`,
+    winner: 'empate',
+  },
+  {
+    feature: 'RGPD / servidores UE',
+    acuity: 'No — empresa de Squarespace, datos en EE. UU.',
+    agenda: 'Sí — servidores en la UE, conforme al RGPD ES',
+    winner: 'agenda',
+  },
+  {
+    feature: 'Recordatorios automáticos (email/SMS)',
+    acuity: 'Sí — en todos los planes de pago',
+    agenda: 'Sí — incluidos en el plan base',
+    winner: 'empate',
+  },
+  {
+    feature: 'Integración con Squarespace',
+    acuity: 'Sí — integración nativa (mismo grupo empresarial)',
+    agenda: 'Mediante enlace externo a la página de reservas',
+    winner: 'acuity',
+  },
+  {
+    feature: 'Marketplace / directorio de clientes',
+    acuity: 'No — no dispone de directorio propio',
+    agenda: 'No — cuota fija, sin comisiones por marketplace',
+    winner: 'empate',
+  },
+  {
+    feature: 'Prueba gratuita',
+    acuity: '7 días',
+    agenda: '14 días sin tarjeta',
+    winner: 'agenda',
+  },
+  {
+    feature: 'Moneda de facturación',
+    acuity: 'USD (dólares americanos)',
+    agenda: 'EUR — factura española con IVA incluido',
+    winner: 'agenda',
+  },
+  {
+    feature: 'Comisión por reserva',
+    acuity: 'No',
+    agenda: 'No',
+    winner: 'empate',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Acuity Scheduling tiene versión en español?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'No de forma completa. A junio de 2026, Acuity Scheduling (propiedad de Squarespace) dispone de algunas traducciones parciales, pero la interfaz principal de gestión y el soporte funcionan en inglés. Esto supone una barrera real para muchos negocios en España y para sus clientes al recibir el enlace de reserva. Agenda de Reservas está 100 % en español, incluyendo el panel de gestión, la página de reservas del cliente y el soporte humano.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Por qué Acuity Scheduling no es la mejor opción para negocios en España?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Acuity Scheduling tiene tres limitaciones principales para negocios en España: (1) la interfaz y el soporte son en inglés, (2) los datos se almacenan en servidores de EE. UU. bajo la empresa Squarespace, lo que puede generar dudas de cumplimiento RGPD para clínicas y profesionales de la salud, y (3) factura en dólares americanos sin IVA español, complicando la deducibilidad del gasto. Además, no dispone de integración nativa con WhatsApp Business, el canal de comunicación predominante en España.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cuánto cuesta Acuity Scheduling en euros?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Acuity Scheduling factura en dólares americanos (USD), no en euros. A junio de 2026, los planes orientativos son: Emerging ~16 USD/mes (1 profesional), Growing ~27 USD/mes (hasta 6 calendarios) y Powerhouse ~61 USD/mes (hasta 36 calendarios). Al convertir a euros, el tipo de cambio añade variabilidad al coste mensual. Verifica los precios actuales en acuityscheduling.com. Agenda de Reservas cobra en euros: desde 19€/mes con todos los profesionales incluidos.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cuál es la mejor alternativa a Acuity Scheduling para negocios de servicios en España?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Para negocios de servicios presenciales en España (peluquerías, clínicas, fisioterapia, spas, estudios de tatuaje), Agenda de Reservas es la alternativa más completa a Acuity: interfaz y soporte al 100 % en español, recordatorios por WhatsApp Business, gestión de múltiples profesionales incluida en el precio base, cobro online opcional y servidores en la UE conformes al RGPD, todo desde 19€/mes sin comisiones por reserva y con 14 días de prueba sin tarjeta.'
+          }
+        }
+      ]
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: 'https://agendadereservas.com/'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Comparativas',
+          item: 'https://agendadereservas.com/vs/'
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Acuity Scheduling vs Agenda de Reservas',
+          item: 'https://agendadereservas.com/vs/acuity'
+        }
+      ]
+    },
+    {
+      '@type': 'Article',
+      headline: pageTitle,
+      description: pageDescription,
+      datePublished: '2026-06-14',
+      dateModified: '2026-06-14',
+      author: {
+        '@type': 'Organization',
+        name: 'Agenda de Reservas',
+        url: 'https://agendadereservas.com'
+      }
+    }
+  ]
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
+  <Header />
+
+  <main>
+
+    <!-- Breadcrumb visible -->
+    <nav aria-label="Ruta de navegación" class="bg-gray-50 border-b border-gray-100">
+      <div class="container-apple py-3">
+        <ol class="flex items-center gap-2 text-sm text-gray-500">
+          <li><a href="/" class="hover:text-blue-600">Inicio</a></li>
+          <li class="text-gray-300">/</li>
+          <li><a href="/vs/" class="hover:text-blue-600">Comparativas</a></li>
+          <li class="text-gray-300">/</li>
+          <li class="text-gray-700 font-medium">Acuity Scheduling vs Agenda de Reservas</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Hero comparativa -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple">
+        <div class="text-center max-w-3xl mx-auto">
+          <span class="feature-bubble mb-4 inline-block">Comparativa verificada · Junio 2026</span>
+          <h1 class="text-headline text-gray-900 mb-6">
+            Alternativa a Acuity Scheduling en español:<br/>
+            <span class="text-blue-600">soporte en castellano, datos en la UE y WhatsApp incluido</span>
+          </h1>
+          <p class="text-body text-lg mb-4">
+            Acuity Scheduling es una herramienta funcional para negocios de servicios, con pagos integrados y formularios previos a la cita muy completos. Pero si tu negocio está en España, tiene tres fricciones difíciles de ignorar: <strong>la interfaz y el soporte son en inglés</strong>, los datos se almacenan en servidores de EE. UU. (empresa Squarespace) y factura en dólares sin IVA español.
+          </p>
+          <p class="text-body text-lg mb-8">
+            <strong>Agenda de Reservas</strong> es la alternativa española: 100 % en castellano, datos en la UE conforme al RGPD, soporte humano en menos de 2 horas y WhatsApp Business disponible como complemento, desde
+            <strong class="text-blue-600"><span data-price-key="service_business.monthly">{svcPrice}</span>€/mes</strong> sin comisiones.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://app.agendadereservas.com" class="btn-apple-primary px-8 py-4">
+              Probar gratis 14 dias — sin tarjeta
+            </a>
+            <a href="#comparativa" class="btn-apple-secondary px-8 py-4">
+              Ver comparativa completa
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 1: ¿Qué es Acuity Scheduling y para qué tipo de negocio está pensado? -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Qué es Acuity Scheduling y para qué tipo de negocio está pensado?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          Acuity Scheduling es un software de reservas online orientado a profesionales independientes y pequeñas empresas: coaches, fotógrafos, consultores, salones de belleza y clínicas. Fue adquirido por Squarespace en 2019 y desde entonces forma parte de su ecosistema de herramientas para creadores web.
+        </p>
+        <p class="text-gray-700 mb-8 text-lg">
+          Su punto fuerte es la personalización del proceso de reserva: permite crear <strong>formularios de admisión (intake forms)</strong> muy detallados que el cliente rellena antes de confirmar la cita, lo que resulta especialmente útil para coaches, terapeutas o fotógrafos que necesitan capturar información previa. También integra pagos con Stripe, Square y PayPal, y sincroniza con Google Calendar, iCloud y Outlook.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-green-50 rounded-2xl p-7 border border-green-100">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Acuity encaja bien si...</h3>
+            <ul class="space-y-3 text-sm text-gray-700">
+              {[
+                'Trabajas con Squarespace y quieres integración nativa con tu web.',
+                'Necesitas formularios de admisión detallados antes de la cita (intake forms).',
+                'Tu clientela es internacional o angloparlante y el idioma no es barrera.',
+                'Gestionas pagos con Stripe o Square y cobras online al reservar.',
+                'Eres un profesional independiente: coach, fotógrafo, consultor o terapeuta.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-red-50 rounded-2xl p-7 border border-red-100">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Acuity no encaja bien si...</h3>
+            <ul class="space-y-3 text-sm text-gray-700">
+              {[
+                'Tus clientes son consumidores finales españoles y esperan una interfaz en castellano.',
+                'Necesitas soporte técnico en español con respuesta rápida.',
+                'Tienes varios empleados y no quieres pagar por cada calendario adicional.',
+                'Necesitas recordatorios por WhatsApp, el canal principal en España.',
+                'Tu sector (clínicas, fisioterapia) requiere datos almacenados en la UE por el RGPD.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 2: ¿Cuánto cuesta Acuity Scheduling y qué incluye cada plan? -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Cuánto cuesta Acuity Scheduling y qué incluye cada plan?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          Acuity Scheduling ofrece tres planes de pago, todos facturados en dólares americanos. El coste escala según el número de calendarios (profesionales o localizaciones) que necesites gestionar. Los precios que se muestran a continuación son <strong>orientativos</strong>: verifica las tarifas actuales en <a href="https://acuityscheduling.com/pricing" class="text-blue-600 underline" rel="noopener noreferrer" target="_blank">acuityscheduling.com</a>, pues Acuity los actualiza periódicamente.
+        </p>
+        <div class="overflow-x-auto mb-6">
+          <table class="w-full text-sm bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+            <thead>
+              <tr class="bg-gray-100 text-gray-700">
+                <th class="text-left py-4 px-5 font-semibold">Plan Acuity</th>
+                <th class="text-center py-4 px-5 font-semibold">Precio orientativo</th>
+                <th class="text-center py-4 px-5 font-semibold">Calendarios</th>
+                <th class="text-center py-4 px-5 font-semibold">Pagos online</th>
+                <th class="text-center py-4 px-5 font-semibold">Intake forms</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { plan: 'Emerging', precio: '~16 USD/mes', calendarios: '1', pagos: 'Sí', intakeForms: 'Sí' },
+                { plan: 'Growing', precio: '~27 USD/mes', calendarios: 'Hasta 6', pagos: 'Sí', intakeForms: 'Sí' },
+                { plan: 'Powerhouse', precio: '~61 USD/mes', calendarios: 'Hasta 36', pagos: 'Sí', intakeForms: 'Sí' },
+              ].map(({ plan, precio, calendarios, pagos, intakeForms }) => (
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="py-3 px-5 font-medium text-gray-800">{plan}</td>
+                  <td class="py-3 px-5 text-center text-gray-700">{precio}</td>
+                  <td class="py-3 px-5 text-center text-gray-600">{calendarios}</td>
+                  <td class="py-3 px-5 text-center text-green-700 font-medium">{pagos}</td>
+                  <td class="py-3 px-5 text-center text-green-700 font-medium">{intakeForms}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mb-6">
+          Precios orientativos en USD segun acuityscheduling.com (junio 2026). Verifica las tarifas actuales directamente en la web. El tipo de cambio EUR/USD añade variabilidad al coste mensual real para negocios en España.
+        </p>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-5">
+          <p class="text-sm text-gray-700">
+            <strong>Importante para negocios en España:</strong> Acuity Scheduling factura desde EE. UU. en dólares sin IVA español. Esto puede complicar la deducibilidad del gasto como autónomo o pyme. Agenda de Reservas emite facturas desde España con IVA al tipo vigente, válidas para Hacienda.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 3: ¿Por qué Acuity no es la mejor opción para negocios de servicios en España? -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Por qué Acuity no es la mejor opción para negocios de servicios en España?
+        </h2>
+        <p class="text-gray-700 mb-8 text-lg">
+          Acuity Scheduling es una herramienta sólida, pero está concebida para el mercado anglosajón. Para un negocio de servicios presenciales en España — ya sea una peluquería en Madrid, una clínica en Barcelona o un centro de fisioterapia en Sevilla — hay cuatro fricciones estructurales que van más allá de preferencias personales.
+        </p>
+        <div class="grid md:grid-cols-2 gap-5 mb-8">
+          {[
+            {
+              titulo: 'Interfaz y soporte exclusivamente en inglés',
+              desc: 'El panel de gestión, la página de reservas que ven tus clientes y el soporte técnico operan en inglés. Para negocios con clientes españoles, recibir un formulario de reserva en inglés genera fricción y abandono. No existe soporte en español con respuesta garantizada.',
+              icono: '🌐',
+              tipo: 'problema',
+            },
+            {
+              titulo: 'Sin WhatsApp Business integrado',
+              desc: 'España tiene una de las tasas de uso de WhatsApp más altas de Europa. Sin embargo, Acuity no dispone de integración nativa con WhatsApp Business API. Los recordatorios se limitan a email y SMS. La ausencia de WhatsApp puede traducirse en más citas perdidas (no-shows).',
+              icono: '💬',
+              tipo: 'problema',
+            },
+            {
+              titulo: 'Datos en servidores de EE. UU.',
+              desc: 'Acuity Scheduling pertenece a Squarespace, empresa americana con servidores en EE. UU. Aunque dispone de un acuerdo de tratamiento de datos (DPA), para clínicas, fisioterapeutas y psicólogos en España — obligados por el RGPD y la LOPD — puede plantear dudas regulatorias adicionales sobre la transferencia internacional de datos de salud.',
+              icono: '🔒',
+              tipo: 'problema',
+            },
+            {
+              titulo: 'Coste escala por número de calendarios',
+              desc: 'Si tienes un equipo de cuatro profesionales en una peluquería, necesitas el plan Growing (~27 USD/mes, orientativo). Si creces a siete, saltas al Powerhouse (~61 USD/mes). Agenda de Reservas incluye todos los profesionales en el precio base sin restricción por número de calendarios.',
+              icono: '💶',
+              tipo: 'problema',
+            },
+            {
+              titulo: 'Prueba gratuita más corta',
+              desc: 'Acuity ofrece 7 días de prueba, frente a los 14 días sin tarjeta de Agenda de Reservas. Evaluar un software de gestión de agenda en 7 días es justo: necesitas al menos una semana completa de operación real para valorar recordatorios, flujo de reservas y experiencia del cliente.',
+              icono: '⏱',
+              tipo: 'problema',
+            },
+            {
+              titulo: 'Facturación en USD sin IVA español',
+              desc: 'Al ser una empresa americana, Acuity no emite facturas con IVA español. Esto dificulta la deducción del gasto para autónomos y pymes en España. Agenda de Reservas factura desde Santiago de Compostela con IVA incluido y factura electrónica válida para Hacienda.',
+              icono: '🧾',
+              tipo: 'problema',
+            },
+          ].map(({ titulo, desc, icono, tipo }) => (
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+              <div class="text-3xl mb-3">{icono}</div>
+              <h3 class="font-bold text-gray-900 mb-2">{titulo}</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">{desc}</p>
+            </div>
+          ))}
+        </div>
+        <p class="text-sm text-gray-600">
+          Si gestionas una peluquería o barbería, el <a href="/peluquerias" class="text-blue-600 underline">software para peluquerías en España</a> de Agenda de Reservas está diseñado específicamente para ese caso de uso. Para centros de fisioterapia, el <a href="/fisioterapia" class="text-blue-600 underline">software de citas para fisioterapia</a> incluye gestión de salas y recordatorios automáticos. Y si atiendes pacientes de salud mental, la <a href="/clinicas-psicologia" class="text-blue-600 underline">agenda para clínicas de psicología</a> cubre la privacidad y multi-profesional que necesitas.
+        </p>
+      </div>
+    </section>
+
+    <!-- H2 4: Acuity Scheduling vs Agenda de Reservas — tabla comparativa -->
+    <section id="comparativa" class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple">
+        <h2 class="text-headline text-gray-900 text-center mb-4">
+          Acuity Scheduling vs Agenda de Reservas: tabla de funciones
+        </h2>
+        <p class="text-center text-gray-500 text-sm mb-10">
+          Actualizado: junio 2026 · Fuentes: webs oficiales de Acuity Scheduling y Agenda de Reservas. Los precios de Acuity son orientativos en USD; verifica en acuityscheduling.com.
+        </p>
+        <div class="max-w-4xl mx-auto overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-gray-200">
+                <th class="text-left py-4 px-4 text-gray-700 font-semibold">Característica</th>
+                <th class="text-center py-4 px-4 text-gray-600 font-semibold">Acuity Scheduling</th>
+                <th class="text-center py-4 px-4 text-blue-700 font-semibold bg-blue-50 rounded-t-lg">Agenda de Reservas</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparativa.map(({ feature, acuity, agenda, winner }) => (
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="py-3 px-4 font-medium text-gray-800">{feature}</td>
+                  <td class={`py-3 px-4 text-center ${winner === 'acuity' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-red-600' : 'text-gray-600'}`}>
+                    {acuity}
+                  </td>
+                  <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'acuity' ? 'text-gray-500' : 'text-gray-600'}`}>
+                    {agenda}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="text-xs text-gray-400 mt-3 text-right">
+            Precios Acuity Scheduling en USD segun web oficial (junio 2026). Verifica en acuityscheduling.com.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 5: ¿Cuándo tiene sentido usar Acuity Scheduling? -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Cuándo tiene sentido usar Acuity Scheduling?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          Esta comparativa sería deshonesta si solo destacara las limitaciones de Acuity. Hay escenarios concretos en los que Acuity es una buena elección, y tiene sentido reconocerlo.
+        </p>
+        <div class="bg-white rounded-2xl p-7 border border-gray-200 mb-6">
+          <h3 class="font-bold text-gray-900 text-lg mb-5">Acuity Scheduling es una opción sólida si...</h3>
+          <ul class="space-y-4 text-sm text-gray-700">
+            {[
+              {
+                titulo: 'Ya usas Squarespace para tu web',
+                desc: 'La integración entre Squarespace y Acuity es nativa y directa: el widget de reservas se incrusta en tu web sin configuración técnica adicional. Si tu ecosistema digital ya está en Squarespace, el coste de cambio es bajo.',
+              },
+              {
+                titulo: 'Necesitas formularios de admisión muy detallados (intake forms)',
+                desc: 'Acuity tiene uno de los sistemas de intake forms más completos del mercado: campos condicionales, carga de documentos, firmas digitales y políticas de cancelación. Para coaches, terapeutas o fotógrafos que necesitan capturar información exhaustiva antes de la sesión, esta función diferencia a Acuity.',
+              },
+              {
+                titulo: 'Tus clientes son internacionales o angloparlantes',
+                desc: 'Si trabajas con clientes de EE. UU., Reino Unido u otros países anglófonos y la barrera del idioma no existe, Acuity funciona perfectamente. Fotógrafos con clientela de destino, coaches con audiencia internacional o consultores con clientes en múltiples países.',
+              },
+              {
+                titulo: 'Gestionas pagos con Square o PayPal',
+                desc: 'Acuity integra con Square y PayPal, además de Stripe. Si tu negocio ya opera con Square — más habitual en el mercado americano — la integración es directa.',
+              },
+            ].map(({ titulo, desc }) => (
+              <li class="flex items-start gap-3">
+                <span class="text-blue-500 mt-0.5 flex-shrink-0 font-bold">→</span>
+                <div>
+                  <strong class="text-gray-900">{titulo}:</strong>{' '}
+                  <span>{desc}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-5">
+          <p class="text-sm text-gray-700">
+            <strong>Conclusión honesta:</strong> si tu negocio está en España y atiende a clientes españoles, las ventajas de Acuity (especialmente los intake forms y la integración Squarespace) no compensan las fricciones del idioma, el soporte en inglés y los datos fuera de la UE. Si en cambio tienes un perfil internacional o ya dependes del ecosistema Squarespace, Acuity puede ser razonable. Para ver cómo se compara otra herramienta anglosajona similar, consulta nuestra <a href="/vs/calendly" class="text-blue-600 underline">comparativa con Calendly</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 6: ¿Cuál es la mejor alternativa a Acuity para negocios en España? -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Cuál es la mejor alternativa a Acuity Scheduling para negocios en España?
+        </h2>
+        <p class="text-gray-700 mb-8 text-lg">
+          Para negocios de servicios presenciales en España — peluquerías, barberías, clínicas de fisioterapia, psicología, spas y centros de estética — <strong>Agenda de Reservas es la alternativa más completa a Acuity Scheduling</strong>: diseñada en España, en castellano, con soporte humano, datos en la UE y WhatsApp Business disponible, desde <strong class="text-blue-600">{svcPrice}€/mes sin comisiones</strong>.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-gray-50 rounded-2xl p-7 border border-gray-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Elige Acuity Scheduling si...</h3>
+            <ul class="space-y-3 text-sm text-gray-700">
+              {[
+                'Ya tienes una web en Squarespace y quieres integración directa.',
+                'Necesitas formularios de admisión (intake forms) muy avanzados.',
+                'Tus clientes son internacionales y el inglés no es barrera.',
+                'Usas Square o PayPal como pasarela de pago principal.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-0.5 flex-shrink-0">→</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-blue-50 rounded-2xl p-7 border-2 border-blue-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Elige Agenda de Reservas si...</h3>
+            <ul class="space-y-3 text-sm text-gray-800">
+              {[
+                'Tu negocio de servicios está en España y atiende a clientes españoles.',
+                'Necesitas la interfaz, la reserva del cliente y el soporte en español.',
+                'Quieres recordatorios por WhatsApp para reducir las ausencias (no-shows).',
+                'Gestionas varios profesionales sin pagar por cada calendario adicional.',
+                'Necesitas factura española con IVA y datos alojados en servidores de la UE.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p class="text-sm text-gray-600">
+          Consulta el <a href="/peluquerias" class="text-blue-600 underline">software para peluquerías en España</a> si tienes un salón de peluquería o barbería, o el <a href="/fisioterapia" class="text-blue-600 underline">software de citas para fisioterapia</a> si gestionas un centro de rehabilitación. Para clínicas, la <a href="/clinicas-psicologia" class="text-blue-600 underline">agenda para clínicas de psicología</a> cubre multi-profesional y privacidad de datos. Si también estás evaluando Calendly, nuestra <a href="/vs/calendly" class="text-blue-600 underline">comparativa con Calendly</a> te ayudará a decidir. Para conocer todos los planes, <a href="/precios" class="text-blue-600 underline">ver planes de Agenda de Reservas</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-3xl mx-auto">
+        <h2 class="text-headline text-gray-900 text-center mb-12">Preguntas frecuentes</h2>
+        <div class="space-y-4">
+          {[
+            {
+              q: '¿Acuity Scheduling tiene versión en español?',
+              a: 'No de forma completa. A junio de 2026, Acuity Scheduling dispone de algunas traducciones parciales, pero la interfaz principal de gestión y el soporte técnico funcionan en inglés. La página de reservas que ven los clientes tampoco está completamente en castellano. Agenda de Reservas está al 100 % en español: panel de gestión, página de reservas del cliente y soporte humano.'
+            },
+            {
+              q: '¿Por qué Acuity Scheduling no es la mejor opción para negocios en España?',
+              a: 'Acuity tiene tres limitaciones principales para el mercado español: (1) la interfaz y el soporte son en inglés, lo que genera fricción con clientes españoles; (2) los datos se almacenan en servidores de EE. UU. (empresa Squarespace), lo que puede generar dudas de cumplimiento RGPD para clínicas y profesionales de la salud; y (3) factura en dólares sin IVA español, complicando la deducibilidad del gasto. Además, no tiene integración nativa con WhatsApp Business.'
+            },
+            {
+              q: '¿Cuánto cuesta Acuity Scheduling en euros?',
+              a: 'Acuity Scheduling factura en dólares americanos (USD), no en euros. Los planes orientativos son: Emerging ~16 USD/mes (1 profesional), Growing ~27 USD/mes (hasta 6 calendarios) y Powerhouse ~61 USD/mes (hasta 36 calendarios). Al convertir a euros, el tipo de cambio añade variabilidad. Verifica los precios actuales en acuityscheduling.com. Agenda de Reservas cobra en euros: desde 19€/mes con todos los profesionales incluidos.'
+            },
+            {
+              q: '¿Cuál es la mejor alternativa a Acuity Scheduling para negocios de servicios en España?',
+              a: 'Para negocios de servicios presenciales en España (peluquerías, clínicas, fisioterapia, spas, estudios de tatuaje), Agenda de Reservas es la alternativa más completa: interfaz y soporte al 100 % en español, recordatorios por WhatsApp Business disponibles, gestión de múltiples profesionales incluida en el precio base, cobro online opcional y servidores en la UE conformes al RGPD, todo desde 19€/mes sin comisiones por reserva y con 14 días de prueba gratuita sin tarjeta.'
+            }
+          ].map(({ q, a }) => (
+            <div class="border border-gray-200 rounded-xl overflow-hidden bg-white">
+              <details class="group">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                  {q}
+                  <span class="text-gray-400 group-open:rotate-180 transition-transform">▾</span>
+                </summary>
+                <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{a}</div>
+              </details>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Enlazado interno saliente -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-3xl mx-auto">
+        <h2 class="text-xl font-bold text-gray-900 mb-6 text-center">Recursos relacionados</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {[
+            {
+              href: '/peluquerias',
+              label: 'software para peluquerías en España',
+              desc: 'Gestión de cabinas, turnos y recordatorios por WhatsApp para salones.',
+            },
+            {
+              href: '/clinicas-psicologia',
+              label: 'agenda para clínicas de psicología',
+              desc: 'Multi-profesional, privacidad de datos y gestión de sesiones.',
+            },
+            {
+              href: '/fisioterapia',
+              label: 'software de citas para fisioterapia',
+              desc: 'Control de salas, historial de pacientes y reservas online 24/7.',
+            },
+            {
+              href: '/vs/calendly',
+              label: 'comparativa con Calendly',
+              desc: 'Otra herramienta anglosajona de reservas: ve cómo se compara.',
+            },
+            {
+              href: '/precios',
+              label: 'ver planes de Agenda de Reservas',
+              desc: 'Planes desde 19€/mes. Prueba 14 días sin tarjeta de crédito.',
+            },
+          ].map(({ href, label, desc }) => (
+            <a
+              href={href}
+              class="flex flex-col gap-1 bg-gray-50 rounded-2xl px-5 py-4 border border-gray-200 hover:border-blue-300 hover:shadow-sm transition-all"
+            >
+              <span class="text-blue-600 font-semibold text-sm underline">{label}</span>
+              <span class="text-gray-500 text-xs">{desc}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="section-apple bg-gray-900">
+      <div class="container-apple text-center">
+        <h2 class="text-headline text-white mb-4">
+          La alternativa a Acuity Scheduling pensada para España.<br/>
+          <span class="text-blue-400">
+            <span data-price-key="service_business.monthly">{svcPrice}</span>€/mes, en español, sin comisiones.
+          </span>
+        </h2>
+        <p class="text-gray-400 mb-2">WhatsApp · Multi-profesional · RGPD · Soporte humano en español</p>
+        <p class="text-gray-500 text-sm mb-8">Prueba gratis 14 dias — sin tarjeta de crédito</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="https://app.agendadereservas.com"
+            class="inline-block bg-white text-gray-900 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors"
+          >
+            Empezar gratis ahora
+          </a>
+          <a
+            href="/precios"
+            class="inline-block border border-gray-600 text-gray-300 font-semibold px-10 py-4 rounded-2xl hover:border-gray-400 hover:text-white transition-colors"
+          >
+            Ver todos los planes
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+  <DynamicPricing />
+</Layout>
