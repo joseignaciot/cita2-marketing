@@ -29,11 +29,23 @@ Agenda de Reservas es un SaaS español para gestionar citas, reservas online y c
 - [Agenda de Reservas vs Reservio](https://agendadereservas.com/vs/reservio): comparativa de funciones y precios
 - [Agenda de Reservas vs Bokun](https://agendadereservas.com/vs/bokun): para turismo activo sin comisiones
 - [Agenda de Reservas vs Restoo](https://agendadereservas.com/vs/restoo): para restaurantes
+- [Agenda de Reservas vs Treatwell](https://agendadereservas.com/vs/treatwell): sin comisión del 20-35% por reserva
+- [Agenda de Reservas vs Fresha](https://agendadereservas.com/vs/fresha): sin comisión por cliente nuevo
+- [Agenda de Reservas vs Koibox](https://agendadereservas.com/vs/koibox): alternativa española con Kit Digital
+- [Agenda de Reservas vs Calendly](https://agendadereservas.com/vs/calendly): para negocios de servicios presenciales, no reuniones B2B
+- [Agenda de Reservas vs SimplyBook](https://agendadereservas.com/vs/simplybook): interfaz y soporte en español, datos en la UE
+- [Agenda de Reservas vs Acuity Scheduling](https://agendadereservas.com/vs/acuity): alternativa en español para peluquerías y clínicas
 
 ## Guías y recursos
 
 - [Guías y recursos](https://agendadereservas.com/guias): índice de todas las guías disponibles
 - [Cómo reducir ausencias hasta un 70%](https://agendadereservas.com/guias/reducir-ausencias): 7 estrategias probadas contra los no-shows
+- [Digitalizar la agenda de una barbería](https://agendadereservas.com/guias/digitalizar-agenda-barberia): de la agenda en papel a reservas online 24/7
+- [Cobrar anticipo en peluquerías](https://agendadereservas.com/guias/cobrar-anticipo-peluqueria): cómo pedir anticipo sin perder clientes
+- [Software para gestionar cabinas de estética](https://agendadereservas.com/guias/software-cabinas-estetica): calendario de cabinas, bonos y recordatorios para tratamientos
+- [Gestionar turnos en un restaurante](https://agendadereservas.com/guias/gestionar-turnos-restaurante): turnos, aforos, lista de espera y depósito para grupos
+- [Cobrar depósito en reservas de restaurante](https://agendadereservas.com/guias/depositos-reservas-restaurante): cuándo y cómo pedir anticipo para eliminar no-shows
+- [Gestionar aforos y actividades de turismo activo](https://agendadereservas.com/guias/gestionar-aforos-actividades): cupos, guías asignados y canales externos
 
 ## Blog
 
