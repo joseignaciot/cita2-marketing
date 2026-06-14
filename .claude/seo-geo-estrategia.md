@@ -4,6 +4,30 @@ Plan vivo. Basado en investigación de junio 2026 (GEO, schema, crawlers IA, pat
 
 ---
 
+## Decisiones de arquitectura (FIJADAS — no reabrir sin motivo)
+
+- **Un solo dominio, subdirectorios.** Todo en `agendadereservas.com` (`/guias`, `/comparativas` (=`/vs`), sectores…). NADA de dominios separados ni subdominios: la autoridad topical se acumula en un dominio y las páginas solo "se potencian entre sí" vía enlazado interno dentro del mismo sitio. Varios dominios = enlaces entre sitios propios (esquema de enlaces, penalizable) + cada dominio parte de cero.
+- **Sin dominios exact-match ni satélites.** Los EMD ya no dan ventaja (EMD update). No comprar dominios extra de momento.
+- **Hosting = el actual, ya óptimo.** Astro SSG → HTML estático → lo más rápido y accesible que existe. Servido desde el VPS; recomendado poner **Cloudflare gratis** delante (CDN + caché + SSL). No usar hosting "gratuito" tipo `*.netlify.app`/`*.vercel.app` (posicionan mal, no se controlan). Cero infra nueva.
+- **Gestión:** todo en este repo Astro; cada página es un `.astro`; los agentes las generan; git versiona; `deploy.sh` publica.
+
+---
+
+## Pilar 0 — Estudio de palabras (cómo, sin presupuesto)
+
+El método, con herramientas gratis, en orden de valor:
+
+1. **Google Search Console (ya verificado)** — LA fuente principal. Da las *queries reales* por las que el sitio ya aparece (impresiones, posición, CTR). De ahí salen: páginas que faltan, páginas a mejorar, y keywords con impresiones pero mala posición (fruta madura). Ninguna herramienta de pago iguala esto para *este* sitio.
+2. **Google Keyword Planner** (gratis con cuenta Ads) — volúmenes orientativos.
+3. **Autocompletar + "Otras preguntas (PAA)" + búsquedas relacionadas** — material para H2 en forma de pregunta y FAQ.
+4. **Google Trends** — estacionalidad por sector.
+5. **Competidores** (Booksy, AgendaPro, Koibox, TheFork…) — qué cubren que nosotros no.
+6. **Prompts reales a IA** — preguntas que la gente hace a ChatGPT/Perplexity, para GEO.
+
+Flujo: *semilla (sector × intención) → expandir con GSC + autocomplete + competidores → agrupar en clusters → 1 keyword primaria por página → priorizar por intención y "ganabilidad" (long-tail en español = victorias rápidas)*. Lo ejecuta `estratega-keywords`, coordinado con `arquitecto-red-paginas`.
+
+---
+
 ## Pilar 1 — Red de páginas especializadas (topical authority)
 
 Objetivo: que sectores, comparativas y guías formen **clusters hub-and-spoke** que se enlacen entre sí, de modo que cada página transfiera autoridad a las demás y el sitio sea reconocido como la fuente experta del nicho (clave tanto para Google como para citación por IA).
