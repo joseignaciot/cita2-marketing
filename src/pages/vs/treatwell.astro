@@ -1,0 +1,624 @@
+
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import DynamicPricing from '../../components/DynamicPricing.astro';
+import '../../styles/apple-design.css';
+import pricingData from '../../content/pricing.json';
+
+// Precios de build-time desde pricing.json — fuente de verdad
+const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
+const svcPrice = svcPlan?.monthly ?? 19;
+const commsAddon = pricingData.addons.find(a => a.id === 'comunicaciones');
+const commsPrice = commsAddon?.price ?? 39;
+const pagosAddon = pricingData.addons.find(a => a.id === 'pagos');
+const pagosPrice = pagosAddon?.price ?? 12;
+
+const pageTitle = 'Alternativa a Treatwell sin comisiones | Agenda de Reservas';
+const pageDescription = 'Treatwell cobra comisión por cada reserva. Con Agenda de Reservas pagas 19€/mes fijo, sin comisiones y con los datos de tus clientes siempre tuyos.';
+const canonicalUrl = 'https://agendadereservas.com/vs/treatwell/';
+
+// Tabla de escenarios de coste Treatwell (estimación orientativa)
+// Treatwell publica una comisión por reserva (modelo marketplace).
+// Se estima una comisión media del 20-25% sobre un ticket medio de 35€ → 7-9€/reserva.
+// Estas cifras son estimaciones orientativas. Verifica en treatwell.com.
+const ticketMedio = 35; // €, ticket medio estimado peluquería/estética
+const comisionBaja = 0.20; // 20%
+const comisionAlta = 0.25; // 25%
+
+const escenarios = [
+  { reservas: 50,  twMin: Math.round(50 * ticketMedio * comisionBaja),  twMax: Math.round(50 * ticketMedio * comisionAlta) },
+  { reservas: 100, twMin: Math.round(100 * ticketMedio * comisionBaja), twMax: Math.round(100 * ticketMedio * comisionAlta) },
+  { reservas: 200, twMin: Math.round(200 * ticketMedio * comisionBaja), twMax: Math.round(200 * ticketMedio * comisionAlta) },
+];
+
+// Ahorros anuales pre-computados para evitar expresiones en template
+const ahorro50min  = (escenarios[0].twMin  - svcPrice) * 12;
+const ahorro50max  = (escenarios[0].twMax  - svcPrice) * 12;
+const ahorro100min = (escenarios[1].twMin  - svcPrice) * 12;
+const ahorro100max = (escenarios[1].twMax  - svcPrice) * 12;
+const ahorro200min = (escenarios[2].twMin  - svcPrice) * 12;
+const ahorro200max = (escenarios[2].twMax  - svcPrice) * 12;
+
+const comparativa = [
+  { feature: 'Precio mensual',               treatwell: 'Comisión por reserva (sin cuota fija)', agenda: `${svcPrice}€/mes fijo`,           winner: 'agenda' },
+  { feature: 'Comisión por reserva',          treatwell: 'Sí — % sobre cada servicio vendido',   agenda: '0€ — ninguna comisión',            winner: 'agenda' },
+  { feature: 'Control de base de clientes',  treatwell: 'Limitado (son clientes del marketplace)', agenda: '✅ 100% tuyos, exportables',      winner: 'agenda' },
+  { feature: 'Soporte en español',           treatwell: '⚠️ Email/chat, no siempre en ES',       agenda: '✅ Humano, <2h en español',         winner: 'agenda' },
+  { feature: 'RGPD / alojamiento UE',        treatwell: '⚠️ Treatwell Group (con sede en UK/UE)',agenda: '✅ Servidores UE, RGPD conforme',   winner: 'agenda' },
+  { feature: 'WhatsApp Business API',        treatwell: '❌ No integrado',                        agenda: `✅ Disponible (+${commsPrice}€/mes)`, winner: 'agenda' },
+  { feature: 'Reservas 24/7 en tu web propia',treatwell:'⚠️ Solo en la plataforma Treatwell',    agenda: '✅ Widget en tu web + enlace directo', winner: 'agenda' },
+  { feature: 'Prueba gratuita',              treatwell: '⚠️ No estándar (contactar ventas)',     agenda: '✅ 14 días sin tarjeta',            winner: 'agenda' },
+  { feature: 'Marketplace de captación',     treatwell: '✅ Sí — visibilidad en Treatwell.com',  agenda: '❌ No (reservas directas)',          winner: 'treatwell' },
+  { feature: 'Gestión de personal/agenda',   treatwell: '✅ Básica',                             agenda: '✅ Completa (multi-staff)',          winner: 'agenda' },
+  { feature: 'Pagos online',                 treatwell: '✅ Integrado en el marketplace',        agenda: `✅ Stripe (+${pagosPrice}€/mes)`,   winner: 'empate' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Treatwell cobra comisión por cada reserva?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Treatwell funciona como un marketplace: no cobra cuota mensual fija, sino una comisión por cada reserva gestionada a través de su plataforma. La comisión exacta depende de tu contrato, pero se estima entre el 20 % y el 25 % del valor de cada servicio. En contraste, Agenda de Reservas cobra una cuota fija de 19 €/mes sin ninguna comisión por reserva.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Qué pasa con mis clientes si dejo Treatwell?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Los clientes que te llegan a través del marketplace de Treatwell son, técnicamente, clientes de Treatwell. Al dejar la plataforma, perderás visibilidad en ella y potencialmente el acceso a esa base de datos. Con Agenda de Reservas, los datos de todos tus clientes son siempre tuyos: los exportas en cualquier momento en formato CSV.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Puedo usar Agenda de Reservas junto con Treatwell?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí, es posible usar ambos en paralelo: Treatwell para captar clientes nuevos vía su marketplace, y Agenda de Reservas para gestionar tu agenda propia, los recordatorios por WhatsApp y las reservas directas desde tu web. Muchos negocios hacen esta transición gradual antes de abandonar Treatwell por completo.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Agenda de Reservas tiene app para el cliente?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Agenda de Reservas no requiere que tus clientes se instalen ninguna app. Pueden reservar desde cualquier navegador móvil o escritorio a través de tu página de reservas personalizada o del widget integrado en tu web. Esto elimina la fricción de la descarga y aumenta la tasa de conversión.'
+          }
+        }
+      ]
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: 'https://agendadereservas.com/'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Comparativas',
+          item: 'https://agendadereservas.com/vs/'
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Treatwell vs Agenda de Reservas',
+          item: 'https://agendadereservas.com/vs/treatwell/'
+        }
+      ]
+    },
+    {
+      '@type': 'Article',
+      headline: pageTitle,
+      description: pageDescription,
+      datePublished: '2026-06-14',
+      dateModified: '2026-06-14',
+      author: {
+        '@type': 'Organization',
+        name: 'Agenda de Reservas',
+        url: 'https://agendadereservas.com'
+      }
+    }
+  ]
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
+  <Header />
+
+  <main>
+
+    <!-- Breadcrumb visible -->
+    <nav aria-label="Ruta de navegación" class="bg-gray-50 border-b border-gray-100">
+      <div class="container-apple py-3">
+        <ol class="flex items-center gap-2 text-sm text-gray-500">
+          <li><a href="/" class="hover:text-blue-600">Inicio</a></li>
+          <li class="text-gray-300">/</li>
+          <li><a href="/vs/" class="hover:text-blue-600">Comparativas</a></li>
+          <li class="text-gray-300">/</li>
+          <li class="text-gray-700 font-medium">Treatwell vs Agenda de Reservas</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Hero comparativa -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple">
+        <div class="text-center max-w-3xl mx-auto">
+          <span class="feature-bubble mb-4 inline-block">Comparativa verificada · Junio 2026</span>
+          <h1 class="text-headline text-gray-900 mb-6">
+            Alternativa a Treatwell:<br/>
+            <span class="text-blue-600">sin comisiones y con tus clientes siempre en tu poder</span>
+          </h1>
+          <p class="text-body text-lg mb-8">
+            Treatwell cobra una <strong class="text-red-600">comisión por cada reserva</strong> que entra por su plataforma.
+            Con Agenda de Reservas pagas <strong class="text-green-600"><span data-price-key="service_business.monthly">{svcPrice}</span>€/mes fijo</strong>
+            — sin importar cuántas reservas gestiones ni cuántos empleados tengáis.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://app.agendadereservas.com" class="btn-apple-primary px-8 py-4">
+              Probar gratis 14 días — sin tarjeta
+            </a>
+            <a href="#comparativa" class="btn-apple-secondary px-8 py-4">
+              Ver comparativa completa ↓
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 1: ¿Cuánto cobra Treatwell por cada reserva? -->
+    <section class="section-apple bg-red-50 border-b border-red-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Cuánto cobra Treatwell por cada reserva?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          Treatwell no cobra una cuota mensual fija: aplica una <strong>comisión variable sobre el precio de cada servicio</strong> reservado a través de su plataforma. Según estimaciones basadas en su modelo de marketplace publicado, esa comisión oscila entre el <strong class="text-red-600">20 % y el 25 %</strong> del valor del servicio. La cifra exacta de tu contrato puede variar; consúltala siempre en
+          <a href="https://www.treatwell.es" class="text-blue-600 underline" rel="noopener noreferrer" target="_blank">treatwell.es</a>.
+        </p>
+
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">
+          Cuánto pagas al mes en Treatwell según el volumen de reservas
+        </h3>
+        <p class="text-sm text-gray-500 mb-4">
+          Estimación orientativa con ticket medio de 35€ por servicio y comisión del 20-25 %.
+          <strong>Verifica las tarifas actuales en treatwell.es</strong> — los contratos individuales pueden variar.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm bg-white rounded-2xl overflow-hidden shadow-sm">
+            <thead>
+              <tr class="bg-red-100 text-red-900">
+                <th class="text-left py-4 px-5 font-semibold">Reservas/mes</th>
+                <th class="text-center py-4 px-5 font-semibold">Coste estimado en Treatwell</th>
+                <th class="text-center py-4 px-5 font-semibold bg-blue-50 text-blue-900">Agenda de Reservas</th>
+                <th class="text-center py-4 px-5 font-semibold bg-blue-50 text-blue-900">Ahorro mensual estimado</th>
+              </tr>
+            </thead>
+            <tbody>
+              {escenarios.map(({ reservas, twMin, twMax }, i) => {
+                const ahorroMin = [ahorro50min, ahorro100min, ahorro200min][i];
+                const ahorroMax = [ahorro50max, ahorro100max, ahorro200max][i];
+                return (
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="py-3 px-5 font-medium text-gray-800">{reservas} reservas/mes</td>
+                    <td class="py-3 px-5 text-center text-red-700 font-semibold">{twMin}–{twMax}€/mes</td>
+                    <td class="py-3 px-5 text-center bg-blue-50 text-green-700 font-bold">
+                      <span data-price-key="service_business.monthly">{svcPrice}</span>€/mes
+                    </td>
+                    <td class="py-3 px-5 text-center bg-blue-50">
+                      <span class="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded-full">
+                        {twMin - svcPrice}–{twMax - svcPrice}€/mes
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Estimación orientativa, verifica en treatwell.es. Ticket medio 35€, comisión 20-25 %. Junio 2026.
+        </p>
+      </div>
+    </section>
+
+    <!-- H2 2: ¿Qué diferencia hay entre un marketplace y tu propia agenda online? -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Qué diferencia hay entre un marketplace y tu propia agenda online?
+        </h2>
+        <p class="text-gray-700 mb-8 text-lg">
+          Treatwell es un <strong>marketplace de belleza</strong>: tus clientes te encuentran dentro de la plataforma de Treatwell, no en tu web. Agenda de Reservas es una <strong>herramienta de gestión propia</strong>: tus clientes reservan en tu página, bajo tu marca, y todos sus datos son tuyos.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-red-50 rounded-2xl p-7 border border-red-100">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Treatwell (marketplace)</h3>
+            <ul class="space-y-3 text-sm text-gray-700">
+              {[
+                'El cliente te busca dentro de Treatwell.com, no en tu web.',
+                'Pagas comisión en cada reserva: cuanto más vendes, más pagas.',
+                'Los datos del cliente pertenecen a la plataforma, no solo a ti.',
+                'Compites con otros negocios del mismo marketplace por precio y reseñas.',
+                'Dependes de que Treatwell cambie tarifas, algoritmo o política.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-blue-50 rounded-2xl p-7 border-2 border-blue-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Agenda de Reservas (agenda propia)</h3>
+            <ul class="space-y-3 text-sm text-gray-800">
+              {[
+                'El cliente reserva en tu web, con tu nombre y tu marca.',
+                'Pagas cuota fija: el coste no sube aunque tengas 500 reservas al mes.',
+                'Todos los datos de clientes son tuyos, exportables en cualquier momento.',
+                'Sin competencia interna: no compites con otros negocios en la misma plataforma.',
+                'Independiente: cambias de proveedor cuando quieras, sin perder tu historial.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p class="text-sm text-gray-600 mt-6 bg-amber-50 border border-amber-200 rounded-xl p-4">
+          <strong>Nota importante:</strong> Treatwell sí aporta visibilidad y captación de clientes nuevos que, de otro modo, no te encontrarían. Si acabas de abrir o no tienes base de clientes propia, eso tiene valor. El modelo marketplace tiene sentido en arranque; la comisión se vuelve costosa a medida que el negocio crece.
+        </p>
+      </div>
+    </section>
+
+    <!-- H2 3: ¿Cuánto ahorras al mes cambiando de Treatwell? -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Cuánto ahorras al mes cambiando de Treatwell a Agenda de Reservas?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          Con 100 reservas al mes a ticket medio de 35€, una peluquería paga a Treatwell
+          entre <strong class="text-red-600">{escenarios[1].twMin}€ y {escenarios[1].twMax}€ al mes</strong> en comisiones.
+          Con Agenda de Reservas, el coste fijo es de <strong class="text-green-600">{svcPrice}€/mes</strong>.
+          Eso supone un ahorro de <strong>{escenarios[1].twMin - svcPrice}–{escenarios[1].twMax - svcPrice}€ al mes</strong>
+          ({ahorro100min}–{ahorro100max}€ al año), estimación orientativa.
+        </p>
+        <div class="grid sm:grid-cols-3 gap-4">
+          {escenarios.map(({ reservas, twMin, twMax }, i) => {
+            const savMin = [ahorro50min, ahorro100min, ahorro200min][i];
+            const savMax = [ahorro50max, ahorro100max, ahorro200max][i];
+            return (
+              <div class="bg-white rounded-2xl p-6 border border-gray-200 text-center shadow-sm">
+                <p class="text-sm text-gray-500 mb-1">Volumen</p>
+                <p class="font-bold text-gray-900 text-xl mb-4">{reservas} reservas/mes</p>
+                <p class="text-xs text-gray-400 mb-1">Coste Treatwell estimado</p>
+                <p class="text-red-600 font-bold text-lg mb-3">{twMin}–{twMax}€/mes</p>
+                <p class="text-xs text-gray-400 mb-1">Con Agenda de Reservas</p>
+                <p class="text-green-600 font-bold text-lg mb-4">
+                  <span data-price-key="service_business.monthly">{svcPrice}</span>€/mes
+                </p>
+                <div class="bg-green-50 rounded-xl px-3 py-2">
+                  <p class="text-xs text-green-700 font-semibold">Ahorro anual estimado</p>
+                  <p class="text-green-800 font-bold">{savMin}–{savMax}€</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <p class="text-xs text-gray-400 mt-3 text-center">
+          Estimación orientativa (verifica en treatwell.es). No incluye el valor de captación del marketplace de Treatwell.
+        </p>
+      </div>
+    </section>
+
+    <!-- H2 4: ¿Puedes tener clientes propios sin depender de Treatwell? -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Puedes tener clientes propios sin depender de Treatwell?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          Sí. Con Agenda de Reservas construyes una <strong>base de clientes propia</strong> que no desaparece si cambias de software o dejas un marketplace. Cada reserva queda registrada en tu CRM: historial de visitas, preferencias, datos de contacto y, si usas WhatsApp Business API, un canal directo con cada cliente.
+        </p>
+        <div class="grid md:grid-cols-3 gap-5">
+          {[
+            {
+              titulo: 'CRM de clientes completo',
+              desc: 'Historial de citas, servicios contratados, notas internas y datos de contacto. Exportable en CSV en cualquier momento.',
+              icon: '👤',
+            },
+            {
+              titulo: 'Reservas en tu web, sin intermediarios',
+              desc: 'Widget de reservas en tu web o enlace directo. El cliente reserva bajo tu marca, sin pasar por ninguna plataforma externa.',
+              icon: '🔗',
+            },
+            {
+              titulo: 'Recordatorios por WhatsApp',
+              desc: `Con el módulo de comunicaciones (+${commsPrice}€/mes) envías recordatorios automáticos por WhatsApp Business API. Tasa de apertura media del 90 % frente al 20-30 % del email.`,
+              icon: '💬',
+            },
+          ].map(({ titulo, desc, icon }) => (
+            <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+              <div class="text-3xl mb-3">{icon}</div>
+              <h3 class="font-bold text-gray-900 mb-2">{titulo}</h3>
+              <p class="text-sm text-gray-600">{desc}</p>
+            </div>
+          ))}
+        </div>
+        <p class="text-sm text-gray-600 mt-6">
+          Consulta cómo gestionar las ausencias y fidelizar a tu base propia en nuestra
+          <a href="/guias/reducir-ausencias" class="text-blue-600 underline">guía para reducir ausencias</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Tabla comparativa completa -->
+    <section id="comparativa" class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple">
+        <h2 class="text-headline text-gray-900 text-center mb-4">
+          Treatwell vs Agenda de Reservas: comparativa completa
+        </h2>
+        <p class="text-center text-gray-500 text-sm mb-10">
+          Actualizado: junio 2026 · Fuentes: webs oficiales de Treatwell y Agenda de Reservas.
+        </p>
+        <div class="max-w-4xl mx-auto overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-gray-200">
+                <th class="text-left py-4 px-4 text-gray-700 font-semibold">Característica</th>
+                <th class="text-center py-4 px-4 text-gray-600 font-semibold">Treatwell</th>
+                <th class="text-center py-4 px-4 text-blue-700 font-semibold bg-blue-50 rounded-t-lg">Agenda de Reservas</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparativa.map(({ feature, treatwell, agenda, winner }) => (
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="py-3 px-4 font-medium text-gray-800">{feature}</td>
+                  <td class={`py-3 px-4 text-center ${winner === 'treatwell' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-red-600' : 'text-gray-600'}`}>
+                    {treatwell}
+                  </td>
+                  <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'treatwell' ? 'text-gray-500' : 'text-gray-600'}`}>
+                    {agenda}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="text-xs text-gray-400 mt-3 text-right">
+            Precios Treatwell: estimación orientativa basada en modelo marketplace publicado. Verifica en treatwell.es.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 5: ¿Es fácil migrar de Treatwell a Agenda de Reservas? -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Es fácil migrar de Treatwell a Agenda de Reservas?
+        </h2>
+        <p class="text-gray-700 mb-8 text-lg">
+          La migración lleva menos de una hora y no requiere conocimientos técnicos. El proceso más habitual tiene tres pasos.
+        </p>
+        <ol class="space-y-5">
+          {[
+            {
+              paso: '1',
+              titulo: 'Exporta tu historial de clientes desde Treatwell',
+              desc: 'Solicita a Treatwell la exportación de tu base de clientes (tienen obligación de entregártela bajo el RGPD). Obtendrás un fichero CSV con nombres, emails y teléfonos.',
+            },
+            {
+              paso: '2',
+              titulo: 'Importa los datos en Agenda de Reservas',
+              desc: 'Sube el CSV directamente desde el panel de Agenda de Reservas. Los clientes quedan disponibles de inmediato en tu CRM, con su historial listo para usar.',
+            },
+            {
+              paso: '3',
+              titulo: 'Configura tu página de reservas y comparte el enlace',
+              desc: 'Personaliza tu página de reservas con tu logo y colores en menos de 10 minutos. Comparte el enlace en tu Instagram, Google Business y web. Los clientes empiezan a reservar directamente contigo.',
+            },
+          ].map(({ paso, titulo, desc }) => (
+            <li class="flex gap-5 items-start">
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold text-lg flex items-center justify-center">
+                {paso}
+              </span>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">{titulo}</h3>
+                <p class="text-sm text-gray-600">{desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <div class="mt-8 bg-blue-50 rounded-2xl p-6 border border-blue-100">
+          <p class="text-sm text-gray-700">
+            <strong>Prueba gratuita de 14 días:</strong> puedes configurar tu cuenta, importar clientes y hacer pruebas reales sin pagar nada y sin introducir tarjeta.
+            Si durante la prueba tienes dudas, el equipo de soporte en español te ayuda por email o chat en menos de 2 horas en horario laboral.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 6: ¿Es Agenda de Reservas una buena alternativa a Treatwell? -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Es Agenda de Reservas una buena alternativa a Treatwell para peluquerías y centros de estética?
+        </h2>
+        <p class="text-gray-700 mb-8 text-lg">
+          Depende de en qué momento está tu negocio. Agenda de Reservas es la mejor opción si ya tienes clientela recurrente y quieres dejar de pagar comisiones. No es un marketplace, así que no capta clientes nuevos desde su plataforma — ese es el punto fuerte de Treatwell en fase de arranque.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-white rounded-2xl p-7 border border-gray-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Elige Treatwell si...</h3>
+            <ul class="space-y-3 text-sm text-gray-700">
+              {[
+                'Acabas de abrir y no tienes clientes propios todavía.',
+                'Quieres visibilidad inmediata en el marketplace de Treatwell.',
+                'El volumen de reservas es bajo y la comisión no supera 19€/mes.',
+                'Tu prioridad es la captación de nuevos clientes, no la gestión.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-0.5 flex-shrink-0">→</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-blue-50 rounded-2xl p-7 border-2 border-blue-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Elige Agenda de Reservas si...</h3>
+            <ul class="space-y-3 text-sm text-gray-800">
+              {[
+                'Tienes clientela recurrente y las comisiones ya superan 19€/mes.',
+                'Quieres que los datos de tus clientes sean siempre tuyos.',
+                'Necesitas reservas 24/7 en tu propia web, bajo tu marca.',
+                'Quieres WhatsApp Business para recordatorios automáticos.',
+                'Buscas soporte en español con respuesta en menos de 2 horas.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p class="text-sm text-gray-600">
+          Si gestionas una peluquería, consulta nuestro
+          <a href="/peluquerias" class="text-blue-600 underline">software de gestión para peluquerías sin comisiones</a>.
+          Para centros de estética y spa, tenemos una página específica con el
+          <a href="/estetica" class="text-blue-600 underline">agenda online para centros de estética</a>.
+          También puedes ver nuestra <a href="/vs/booksy" class="text-blue-600 underline">comparativa con Booksy</a>
+          si estás evaluando varias opciones.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-3xl mx-auto">
+        <h2 class="text-headline text-gray-900 text-center mb-12">Preguntas frecuentes</h2>
+        <div class="space-y-4">
+          {[
+            {
+              q: '¿Treatwell cobra comisión por cada reserva?',
+              a: 'Sí. Treatwell funciona como marketplace: no cobra cuota mensual fija, sino una comisión por cada reserva gestionada en su plataforma. La comisión exacta depende del contrato individual; se estima entre el 20 % y el 25 % del valor del servicio. Verifica las condiciones actuales en treatwell.es. Agenda de Reservas, en cambio, cobra una cuota fija de 19€/mes sin ninguna comisión.'
+            },
+            {
+              q: '¿Qué pasa con mis clientes si dejo Treatwell?',
+              a: 'Los clientes captados a través del marketplace de Treatwell son, técnicamente, usuarios de la plataforma. Al darte de baja perderás visibilidad en Treatwell.com. Sin embargo, tienes derecho a solicitar la exportación de tus datos de clientes bajo el RGPD. Con Agenda de Reservas, todos los datos son tuyos desde el primer día y los exportas libremente en formato CSV cuando quieras.'
+            },
+            {
+              q: '¿Puedo usar Agenda de Reservas junto con Treatwell?',
+              a: 'Sí. Muchos negocios usan Treatwell para captar clientes nuevos vía su marketplace y Agenda de Reservas para gestionar su agenda propia, enviar recordatorios por WhatsApp y aceptar reservas directas desde su web. Esto te permite migrar de forma gradual sin perder el canal de captación mientras construyes tu base propia.'
+            },
+            {
+              q: '¿Agenda de Reservas tiene app para el cliente?',
+              a: 'No requiere ninguna app. Tus clientes reservan desde cualquier navegador móvil o escritorio a través de tu página de reservas personalizada o del widget embebido en tu web. Esto elimina la fricción de tener que descargar una aplicación, lo que suele traducirse en más reservas completadas.'
+            }
+          ].map(({ q, a }) => (
+            <div class="border border-gray-200 rounded-xl overflow-hidden">
+              <details class="group">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                  {q}
+                  <span class="text-gray-400 group-open:rotate-180 transition-transform">▾</span>
+                </summary>
+                <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{a}</div>
+              </details>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Enlazado interno saliente -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-3xl mx-auto">
+        <h2 class="text-xl font-bold text-gray-900 mb-6 text-center">Recursos relacionados</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {[
+            {
+              href: '/peluquerias',
+              label: 'software de gestión para peluquerías sin comisiones',
+              desc: 'Funcionalidades específicas para peluquerías y barberías.',
+            },
+            {
+              href: '/estetica',
+              label: 'agenda online para centros de estética',
+              desc: 'Gestión de cabinas, tratamientos y servicios de belleza.',
+            },
+            {
+              href: '/vs/booksy',
+              label: 'comparativa con Booksy',
+              desc: 'Booksy cobra por empleado. Compara con Agenda de Reservas.',
+            },
+            {
+              href: '/precios',
+              label: 'ver todos los planes de Agenda de Reservas',
+              desc: 'Planes desde 19€/mes. Prueba 14 días sin tarjeta.',
+            },
+            {
+              href: '/guias/reducir-ausencias',
+              label: 'guía para reducir ausencias',
+              desc: 'Cómo bajar los no-shows con recordatorios automáticos.',
+            },
+          ].map(({ href, label, desc }) => (
+            <a
+              href={href}
+              class="flex flex-col gap-1 bg-white rounded-2xl px-5 py-4 border border-gray-200 hover:border-blue-300 hover:shadow-sm transition-all"
+            >
+              <span class="text-blue-600 font-semibold text-sm underline">{label}</span>
+              <span class="text-gray-500 text-xs">{desc}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="section-apple bg-gray-900">
+      <div class="container-apple text-center">
+        <h2 class="text-headline text-white mb-4">
+          Deja de pagar comisión por cada reserva.<br/>
+          <span class="text-blue-400">
+            <span data-price-key="service_business.monthly">{svcPrice}</span>€/mes fijo, sin sorpresas.
+          </span>
+        </h2>
+        <p class="text-gray-400 mb-2">Sin comisiones · Sin permanencia · Soporte humano en español</p>
+        <p class="text-gray-500 text-sm mb-8">Prueba gratis 14 días — sin tarjeta de crédito</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="https://app.agendadereservas.com"
+            class="inline-block bg-white text-gray-900 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors"
+          >
+            Empezar gratis ahora
+          </a>
+          <a
+            href="/precios"
+            class="inline-block border border-gray-600 text-gray-300 font-semibold px-10 py-4 rounded-2xl hover:border-gray-400 hover:text-white transition-colors"
+          >
+            Ver todos los planes
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+  <DynamicPricing />
+</Layout>
