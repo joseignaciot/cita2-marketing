@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Términos y Condiciones";
+const description = "Términos y condiciones de uso del servicio Agenda de Reservas. Condiciones del contrato, pagos, cancelación y responsabilidades.";
+const lastUpdated = "1 de junio de 2026";
+---
+
+<Layout title={`${title} - Agenda de Reservas`} description={description} noindex={true}>
+  <Header />
+  <main class="pt-24 pb-20">
+    <div class="container mx-auto px-4 max-w-3xl">
+
+      <nav class="mb-8 text-sm text-gray-500" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-blue-600">Inicio</a>
+        <span class="mx-2">›</span>
+        <span class="text-gray-700">{title}</span>
+      </nav>
+
+      <header class="mb-10 pb-8 border-b border-gray-200">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">{title}</h1>
+        <p class="text-gray-500 text-sm">Última actualización: {lastUpdated}</p>
+      </header>
+
+      <article class="prose prose-gray max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-a:text-blue-600">
+
+        <h2>1. Identificación del prestador</h2>
+        <p>Estos Términos y Condiciones regulan el acceso y uso del servicio <strong>Agenda de Reservas</strong>, titularidad de <strong>Tecelia Solutions S.L.</strong>, con domicilio en Santiago de Compostela, España (en adelante, "la Empresa").</p>
+        <p>Correo de contacto: <a href="mailto:hola@agendadereservas.com">hola@agendadereservas.com</a></p>
+
+        <h2>2. Objeto del servicio</h2>
+        <p>Agenda de Reservas es un software SaaS (Software as a Service) de gestión de citas y reservas online para negocios de servicios. El servicio incluye, entre otras funcionalidades: reservas online 24/7, recordatorios automáticos, CRM de clientes, pagos online, integración con WhatsApp Business y panel de estadísticas.</p>
+
+        <h2>3. Aceptación de los términos</h2>
+        <p>El acceso y uso del servicio implica la aceptación plena y sin reservas de estos Términos y Condiciones. Si no estás de acuerdo con alguno de los términos aquí recogidos, debes abstenerte de usar el servicio.</p>
+        <p>La Empresa se reserva el derecho a modificar estos términos en cualquier momento. Los cambios serán comunicados con al menos 30 días de antelación por correo electrónico.</p>
+
+        <h2>4. Registro y cuenta de usuario</h2>
+        <p>Para acceder al servicio es necesario crear una cuenta proporcionando información veraz y actualizada. El usuario es responsable de:</p>
+        <ul>
+          <li>Mantener la confidencialidad de sus credenciales de acceso.</li>
+          <li>Todas las actividades realizadas desde su cuenta.</li>
+          <li>Notificar inmediatamente a la Empresa ante cualquier uso no autorizado de su cuenta.</li>
+        </ul>
+        <p>Está prohibido crear cuentas de forma automatizada o con información falsa. La Empresa podrá suspender o cancelar cuentas que infrinjan estas condiciones.</p>
+
+        <h2>5. Planes y precios</h2>
+        <p>El servicio se ofrece bajo los siguientes modelos de suscripción:</p>
+        <ul>
+          <li><strong>Plan Profesional:</strong> 19 €/mes por negocio, sin comisiones por reserva.</li>
+          <li><strong>Plan Restaurante:</strong> 24 €/mes por negocio, sin comisiones por reserva.</li>
+        </ul>
+        <p>Los precios incluyen IVA cuando aplica según la normativa vigente. La Empresa se reserva el derecho a modificar los precios, notificando al usuario con al menos 30 días de antelación. Las modificaciones no afectarán a suscripciones ya pagadas en el período en curso.</p>
+
+        <h2>6. Facturación y pago</h2>
+        <p>Los pagos se procesan de forma segura a través de <strong>Stripe</strong>. La suscripción se renueva automáticamente de forma mensual o anual según el plan elegido.</p>
+        <p>En caso de impago, el acceso al servicio podrá suspenderse tras 7 días naturales desde el vencimiento. Los datos del negocio se conservarán durante 30 días adicionales antes de su eliminación definitiva.</p>
+
+        <h2>7. Período de prueba</h2>
+        <p>La Empresa podrá ofrecer períodos de prueba gratuitos. Al finalizar el período de prueba, el servicio se convertirá automáticamente en una suscripción de pago salvo que el usuario cancele antes de la finalización del mismo.</p>
+
+        <h2>8. Cancelación</h2>
+        <p>El usuario puede cancelar su suscripción en cualquier momento desde el panel de control de su cuenta. La cancelación tendrá efecto al final del período de facturación en curso. No se realizarán reembolsos por períodos no consumidos, salvo en los casos previstos por la normativa de consumidores aplicable.</p>
+
+        <h2>9. Uso aceptable</h2>
+        <p>El usuario se compromete a utilizar el servicio únicamente para fines lícitos y conforme a estos términos. Queda expresamente prohibido:</p>
+        <ul>
+          <li>Usar el servicio para actividades ilegales o fraudulentas.</li>
+          <li>Intentar acceder a sistemas o datos de otros usuarios.</li>
+          <li>Transmitir spam, malware o contenido dañino.</li>
+          <li>Revender o sublicenciar el acceso al servicio sin autorización expresa.</li>
+          <li>Hacer ingeniería inversa o copiar el software.</li>
+        </ul>
+
+        <h2>10. Propiedad intelectual</h2>
+        <p>Todo el software, diseños, logotipos, textos y demás contenidos de Agenda de Reservas son propiedad exclusiva de Tecelia Solutions S.L. o de sus licenciantes, y están protegidos por la legislación española e internacional de propiedad intelectual.</p>
+        <p>El usuario únicamente adquiere una licencia de uso limitada, no exclusiva e intransferible del servicio durante la vigencia de su suscripción.</p>
+
+        <h2>11. Datos del negocio</h2>
+        <p>Los datos introducidos por el usuario en la plataforma (clientes, citas, configuraciones) son propiedad del usuario. La Empresa actúa como encargada del tratamiento de dichos datos conforme al Reglamento General de Protección de Datos (RGPD).</p>
+        <p>El usuario puede exportar sus datos en cualquier momento desde el panel de control. Tras la cancelación, los datos se conservarán 30 días antes de su eliminación permanente.</p>
+
+        <h2>12. Disponibilidad del servicio</h2>
+        <p>La Empresa se compromete a mantener una disponibilidad del servicio del 99,5% mensual. En caso de interrupciones planificadas por mantenimiento, se notificará con al menos 24 horas de antelación. Las interrupciones de fuerza mayor quedan excluidas de este compromiso.</p>
+
+        <h2>13. Limitación de responsabilidad</h2>
+        <p>La Empresa no será responsable de daños indirectos, pérdida de beneficios o lucro cesante derivados del uso o imposibilidad de uso del servicio, salvo en casos de dolo o negligencia grave imputable a la Empresa.</p>
+        <p>La responsabilidad máxima de la Empresa frente al usuario quedará limitada al importe abonado por el usuario en los 3 meses anteriores al evento que origine la reclamación.</p>
+
+        <h2>14. Legislación aplicable y jurisdicción</h2>
+        <p>Estos Términos y Condiciones se rigen por la legislación española. Para la resolución de cualquier controversia derivada de su interpretación o cumplimiento, las partes se someten a los Juzgados y Tribunales de Santiago de Compostela, con renuncia expresa a cualquier otro fuero que pudiera corresponderles.</p>
+        <p>Para consumidores dentro de la Unión Europea, también puede acceder a la <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">plataforma de resolución de litigios en línea de la UE</a>.</p>
+
+        <h2>15. Contacto</h2>
+        <p>Para cualquier consulta relacionada con estos Términos y Condiciones:</p>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:hola@agendadereservas.com">hola@agendadereservas.com</a></li>
+          <li><strong>Web:</strong> <a href="https://agendadereservas.com">agendadereservas.com</a></li>
+        </ul>
+
+      </article>
+
+      <div class="mt-12 pt-8 border-t border-gray-200 flex flex-wrap gap-4 text-sm text-gray-500">
+        <a href="/legal/privacidad" class="hover:text-blue-600">Política de Privacidad</a>
+        <a href="/legal/cookies" class="hover:text-blue-600">Política de Cookies</a>
+        <a href="/legal/aviso-legal" class="hover:text-blue-600">Aviso Legal</a>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+</Layout>
