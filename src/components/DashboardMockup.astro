@@ -17,6 +17,7 @@ interface SectorData {
     reservas: string;
     ingresos: string;
     ocupacionPct: number;
+    ocupacionLabel: string;
     ocupacionTxt: string;
     proxHora: string;
     proxNombre: string;
@@ -29,10 +30,25 @@ interface Props {
   class?: string;
 }
 
+// Iconos de línea (Heroicons outline, single-path) — coherentes con el panel real.
+const ICON = {
+  building: 'M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21',
+  grid: 'M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25A2.25 2.25 0 0113.5 8.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z',
+  calendar: 'M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5',
+  clipboard: 'M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25z',
+  users: 'M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z',
+  chart: 'M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z',
+  euro: 'M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+  trending: 'M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941',
+  clock: 'M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z',
+  check: 'M9 12.75l2.25 2.25 4.5-4.5m6 2.25a9 9 0 11-18 0 9 9 0 0118 0z',
+  sparkles: 'M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z',
+};
+
 const SECTORS = {
   peluquerias: {
     marca: 'Peluquería Lúa',
-    kpis: { reservas: '14', ingresos: '486 €', ocupacionPct: 82, ocupacionTxt: '14 / 17 huecos', proxHora: '10:00', proxNombre: 'María García' },
+    kpis: { reservas: '14', ingresos: '486 €', ocupacionPct: 82, ocupacionLabel: 'Ocupación de agenda', ocupacionTxt: '14 / 17 huecos', proxHora: '10:00', proxNombre: 'María García' },
     citas: [
       { hora: '10:00', nombre: 'María García', detalle: 'Corte y color · 90 min', estado: 'Confirmada', color: 'bg-blue-500' },
       { hora: '11:30', nombre: 'Carlos Ruiz', detalle: 'Corte caballero · 30 min', estado: 'Confirmada', color: 'bg-blue-500' },
@@ -41,7 +57,7 @@ const SECTORS = {
   },
   estetica: {
     marca: 'Centro Estética Aura',
-    kpis: { reservas: '11', ingresos: '612 €', ocupacionPct: 75, ocupacionTxt: '3 / 4 cabinas', proxHora: '10:30', proxNombre: 'Elena Soto' },
+    kpis: { reservas: '11', ingresos: '612 €', ocupacionPct: 75, ocupacionLabel: 'Ocupación de cabinas', ocupacionTxt: '3 / 4 cabinas', proxHora: '10:30', proxNombre: 'Elena Soto' },
     citas: [
       { hora: '10:30', nombre: 'Elena Soto', detalle: 'Depilación láser · Cabina 2', estado: 'Confirmada', color: 'bg-blue-500' },
       { hora: '12:00', nombre: 'Marta Vidal', detalle: 'Facial antiedad · Cabina 1', estado: 'Confirmada', color: 'bg-blue-500' },
@@ -50,7 +66,7 @@ const SECTORS = {
   },
   restaurantes: {
     marca: 'Restaurante O Forno',
-    kpis: { reservas: '38', ingresos: '—', ocupacionPct: 76, ocupacionTxt: '61 / 80 comensales', proxHora: '13:30', proxNombre: 'Familia Torres' },
+    kpis: { reservas: '38', ingresos: '920 €', ocupacionPct: 76, ocupacionLabel: 'Ocupación de sala', ocupacionTxt: '61 / 80 comensales', proxHora: '13:30', proxNombre: 'Familia Torres' },
     citas: [
       { hora: '13:30', nombre: 'Familia Torres', detalle: 'Turno comida · 4 pax · Terraza', estado: 'Confirmada', color: 'bg-blue-500' },
       { hora: '14:00', nombre: 'Grupo empresa', detalle: 'Turno comida · 12 pax · Depósito', estado: 'Confirmada', color: 'bg-blue-500' },
@@ -59,7 +75,7 @@ const SECTORS = {
   },
   turismo: {
     marca: 'Ribeira Sacra Tours',
-    kpis: { reservas: '23', ingresos: '1.150 €', ocupacionPct: 70, ocupacionTxt: '28 / 40 plazas', proxHora: '09:00', proxNombre: 'Grupo catamarán' },
+    kpis: { reservas: '23', ingresos: '1.150 €', ocupacionPct: 70, ocupacionLabel: 'Ocupación de plazas', ocupacionTxt: '28 / 40 plazas', proxHora: '09:00', proxNombre: 'Grupo catamarán' },
     citas: [
       { hora: '09:00', nombre: 'Grupo catamarán', detalle: 'Cañón del Sil · 12 plazas · Guía Marta', estado: 'Confirmada', color: 'bg-blue-500' },
       { hora: '10:30', nombre: 'J. Williams (EN)', detalle: 'Ruta viñedos · 2 adultos', estado: 'Confirmada', color: 'bg-blue-500' },
@@ -68,7 +84,7 @@ const SECTORS = {
   },
   clinicas: {
     marca: 'Psicología Brétema',
-    kpis: { reservas: '9', ingresos: '540 €', ocupacionPct: 90, ocupacionTxt: '9 / 10 sesiones', proxHora: '09:00', proxNombre: 'Paciente — sesión' },
+    kpis: { reservas: '9', ingresos: '540 €', ocupacionPct: 90, ocupacionLabel: 'Ocupación de consultas', ocupacionTxt: '9 / 10 sesiones', proxHora: '09:00', proxNombre: 'Sesión individual' },
     citas: [
       { hora: '09:00', nombre: 'Sesión individual', detalle: 'Terapia · 60 min · Consulta 1', estado: 'Confirmada', color: 'bg-blue-500' },
       { hora: '11:00', nombre: 'Primera consulta', detalle: 'Evaluación · 50 min · Consulta 2', estado: 'Confirmada', color: 'bg-blue-500' },
@@ -77,7 +93,7 @@ const SECTORS = {
   },
   fisioterapia: {
     marca: 'Fisio Compostela',
-    kpis: { reservas: '16', ingresos: '624 €', ocupacionPct: 80, ocupacionTxt: '16 / 20 sesiones', proxHora: '09:30', proxNombre: 'Pablo Iglesias' },
+    kpis: { reservas: '16', ingresos: '624 €', ocupacionPct: 80, ocupacionLabel: 'Ocupación de boxes', ocupacionTxt: '16 / 20 sesiones', proxHora: '09:30', proxNombre: 'Pablo Iglesias' },
     citas: [
       { hora: '09:30', nombre: 'Pablo Iglesias', detalle: 'Rehabilitación rodilla · Box 1', estado: 'Confirmada', color: 'bg-blue-500' },
       { hora: '11:00', nombre: 'Sara Lema', detalle: 'Masaje descontracturante · Box 2', estado: 'Confirmada', color: 'bg-blue-500' },
@@ -90,10 +106,20 @@ const { sector = 'peluquerias', class: className = '' } = Astro.props;
 const data = SECTORS[sector] ?? SECTORS.peluquerias;
 const k = data.kpis;
 
-const navItems = ['Panel', 'Calendario', 'Reservas', 'Clientes', 'Estadísticas'];
+const navItems = [
+  { label: 'Panel', icon: ICON.grid, active: true },
+  { label: 'Calendario', icon: ICON.calendar, active: false },
+  { label: 'Reservas', icon: ICON.clipboard, active: false },
+  { label: 'Clientes', icon: ICON.users, active: false },
+  { label: 'Estadísticas', icon: ICON.chart, active: false },
+];
 ---
 
-<div class={`dashboard-mockup ${className}`}>
+<div
+  class:list={['dashboard-mockup', className]}
+  role="img"
+  aria-label={`Vista previa del panel de Agenda de Reservas para ${data.marca}, con datos de ejemplo`}
+>
   <!-- Marco navegador -->
   <div class="rounded-2xl bg-white shadow-2xl border border-gray-200 overflow-hidden">
     <!-- Barra de ventana -->
@@ -110,15 +136,26 @@ const navItems = ['Panel', 'Calendario', 'Reservas', 'Clientes', 'Estadísticas'
       <!-- Sidebar -->
       <aside class="hidden sm:flex flex-col w-44 flex-shrink-0 bg-white border-r border-gray-100 p-3">
         <div class="flex items-center gap-2 px-1 mb-4">
-          <span class="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white text-xs font-bold">A</span>
+          <span class="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d={ICON.building} />
+            </svg>
+          </span>
           <span class="font-semibold text-gray-900 text-sm">Agenda</span>
         </div>
-        <div class="rounded-lg bg-blue-600 text-white text-xs font-medium text-center py-2 mb-4">+ Nueva reserva</div>
+        <div class="flex items-center justify-center gap-1 rounded-lg bg-blue-600 text-white text-xs font-medium py-2 mb-4">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+          Nueva reserva
+        </div>
         <nav class="space-y-1">
-          {navItems.map((item, i) => (
-            <div class={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs ${i === 0 ? 'bg-blue-50 text-blue-700 font-medium' : 'text-gray-500'}`}>
-              <span class={`w-1.5 h-1.5 rounded-full ${i === 0 ? 'bg-blue-600' : 'bg-gray-300'}`}></span>
-              {item}
+          {navItems.map((item) => (
+            <div class={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs ${item.active ? 'bg-blue-50 text-blue-700 font-medium' : 'text-gray-500'}`}>
+              <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d={item.icon} />
+              </svg>
+              {item.label}
             </div>
           ))}
         </nav>
@@ -126,19 +163,28 @@ const navItems = ['Panel', 'Calendario', 'Reservas', 'Clientes', 'Estadísticas'
 
       <!-- Contenido -->
       <div class="flex-1 bg-gray-50 p-4 min-w-0">
-        <p class="text-[11px] text-gray-400 mb-1">{data.marca}</p>
+        <p class="text-[11px] text-gray-400 mb-2">{data.marca}</p>
         <!-- KPIs -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 mb-4">
           <div class="rounded-xl bg-white border border-gray-200 p-3">
-            <p class="text-[10px] text-gray-400 mb-1">📅 Reservas de hoy</p>
+            <p class="flex items-center gap-1 text-[10px] text-gray-400 mb-1.5">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d={ICON.calendar} /></svg>
+              Reservas de hoy
+            </p>
             <p class="text-xl font-bold text-gray-900 leading-none">{k.reservas}</p>
           </div>
           <div class="rounded-xl bg-white border border-gray-200 p-3">
-            <p class="text-[10px] text-gray-400 mb-1">💶 Ingresos del día</p>
+            <p class="flex items-center gap-1 text-[10px] text-gray-400 mb-1.5">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d={ICON.euro} /></svg>
+              Ingresos del día
+            </p>
             <p class="text-xl font-bold text-green-600 leading-none">{k.ingresos}</p>
           </div>
           <div class="rounded-xl bg-white border border-gray-200 p-3">
-            <p class="text-[10px] text-gray-400 mb-1">📈 Ocupación</p>
+            <p class="flex items-center gap-1 text-[10px] text-gray-400 mb-1.5">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d={ICON.trending} /></svg>
+              {k.ocupacionLabel}
+            </p>
             <p class="text-xl font-bold text-gray-900 leading-none mb-1.5">{k.ocupacionPct}%</p>
             <div class="h-1 rounded-full bg-gray-100 overflow-hidden">
               <div class="h-full bg-blue-600 rounded-full" style={`width:${k.ocupacionPct}%`}></div>
@@ -146,7 +192,10 @@ const navItems = ['Panel', 'Calendario', 'Reservas', 'Clientes', 'Estadísticas'
             <p class="text-[9px] text-gray-400 mt-1">{k.ocupacionTxt}</p>
           </div>
           <div class="rounded-xl bg-white border border-gray-200 p-3">
-            <p class="text-[10px] text-gray-400 mb-1">⏱ Próxima reserva</p>
+            <p class="flex items-center gap-1 text-[10px] text-gray-400 mb-1.5">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d={ICON.clock} /></svg>
+              Próxima reserva
+            </p>
             <p class="text-base font-bold text-gray-900 leading-none">{k.proxHora}</p>
             <p class="text-[10px] text-gray-500 mt-1 truncate">{k.proxNombre}</p>
           </div>
@@ -155,7 +204,10 @@ const navItems = ['Panel', 'Calendario', 'Reservas', 'Clientes', 'Estadísticas'
         <!-- Citas de hoy -->
         <div class="rounded-xl bg-white border border-gray-200 p-3">
           <div class="flex items-center justify-between mb-2">
-            <p class="text-xs font-semibold text-gray-900">✅ Citas de hoy</p>
+            <p class="flex items-center gap-1.5 text-xs font-semibold text-gray-900">
+              <svg class="w-3.5 h-3.5 text-green-600" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d={ICON.check} /></svg>
+              Citas de hoy
+            </p>
             <span class="text-[10px] text-gray-400">{data.citas.length} citas</span>
           </div>
           <div class="space-y-2">
@@ -180,7 +232,8 @@ const navItems = ['Panel', 'Calendario', 'Reservas', 'Clientes', 'Estadísticas'
 
   <!-- Botón Asistente IA flotante (decorativo) -->
   <div class="hidden md:flex absolute -bottom-3 right-4 items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 text-white text-[11px] font-medium px-3 py-1.5 shadow-lg">
-    ✨ Asistente
+    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d={ICON.sparkles} /></svg>
+    Asistente
   </div>
 </div>
 
