@@ -242,6 +242,29 @@ const schema = {
       faqs={restaurantFAQs}
     />
 
+    <!-- Recursos para restaurantes — hub-and-spoke -->
+    <section class="section-apple bg-gray-50 border-t border-gray-100">
+      <div class="container-apple">
+        <h2 class="text-2xl font-bold text-gray-900 mb-2 text-center">Recursos para restaurantes</h2>
+        <p class="text-center text-gray-500 mb-10">Guías y comparativas para gestionar mejor tus reservas y reducir comisiones.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+          {[
+            { href: '/guias/gestionar-turnos-restaurante', tipo: 'Guía', titulo: 'Gestionar turnos en tu restaurante', desc: 'Turnos de comida y cena, lista de espera digital y depósito para grupos.' },
+            { href: '/guias/depositos-reservas-restaurante', tipo: 'Guía', titulo: 'Cobrar depósito en reservas de restaurante', desc: 'Cuándo, cuánto y cómo comunicar el anticipo para eliminar no-shows.' },
+            { href: '/guias/reducir-ausencias', tipo: 'Guía', titulo: 'Cómo reducir ausencias hasta un 70%', desc: 'Estrategias probadas para minimizar los no-shows en hostelería.' },
+            { href: '/vs/thefork', tipo: 'Comparativa', titulo: 'TheFork vs Agenda de Reservas', desc: 'Sin comisión por comensal: cuota fija y reservas directas desde tu web.' },
+            { href: '/vs/restoo', tipo: 'Comparativa', titulo: 'Restoo vs Agenda de Reservas', desc: 'Dos sistemas especializados en hostelería, comparados función a función.' },
+          ].map(({ href, tipo, titulo, desc }) => (
+            <a href={href} class="group block bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all">
+              <p class="text-xs text-blue-600 font-medium mb-1 uppercase tracking-wide">{tipo}</p>
+              <p class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors mb-1">{titulo}</p>
+              <p class="text-sm text-gray-500">{desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <section class="section-apple bg-gray-900">
       <div class="container-apple text-center">
         <h2 class="text-headline text-white mb-4">Deja de pagar comisiones.<br/><span class="text-green-400">Empieza hoy por <span data-price-key="restaurant.monthly">24</span>€/mes.</span></h2>

@@ -359,6 +359,27 @@ const schema = {
       faqs={tourismFAQs}
     />
 
+    <!-- Recursos para turismo activo — hub-and-spoke -->
+    <section class="section-apple bg-gray-50 border-t border-gray-100">
+      <div class="container-apple">
+        <h2 class="text-2xl font-bold text-gray-900 mb-2 text-center">Recursos para turismo activo</h2>
+        <p class="text-center text-gray-500 mb-10">Guías y comparativas para gestionar aforos, guías y actividades sin comisiones.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+          {[
+            { href: '/guias/gestionar-aforos-actividades', tipo: 'Guía', titulo: 'Gestionar aforos y actividades turísticas', desc: 'Cupos por salida, guías asignados, idiomas y canales externos sin comisión.' },
+            { href: '/guias/reducir-ausencias', tipo: 'Guía', titulo: 'Cómo reducir ausencias hasta un 70%', desc: 'Estrategias con recordatorios automáticos para actividades con cupo limitado.' },
+            { href: '/vs/bokun', tipo: 'Comparativa', titulo: 'Bokun vs Agenda de Reservas', desc: 'Sin comisión del 1,5% por reserva y sin fluctuación USD/EUR.' },
+          ].map(({ href, tipo, titulo, desc }) => (
+            <a href={href} class="group block bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all">
+              <p class="text-xs text-blue-600 font-medium mb-1 uppercase tracking-wide">{tipo}</p>
+              <p class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors mb-1">{titulo}</p>
+              <p class="text-sm text-gray-500">{desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <section class="section-apple bg-gray-900">
       <div class="container-apple text-center">
         <h2 class="text-headline text-white mb-4">Gestiona tus actividades profesionalmente.<br/><span class="text-green-400">Por <span data-price-key="tourism_activities.monthly">29</span>€/mes.</span></h2>

@@ -127,7 +127,31 @@ const schema = {
       faqs={faqs}
     />
 
-    <CTA 
+    <!-- Recursos para estética — hub-and-spoke -->
+    <section class="section-apple bg-gray-50 border-t border-gray-100">
+      <div class="container-apple">
+        <h2 class="text-2xl font-bold text-gray-900 mb-2 text-center">Recursos para centros de estética y spas</h2>
+        <p class="text-center text-gray-500 mb-10">Guías y comparativas para gestionar mejor tu centro.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+          {[
+            { href: '/guias/software-cabinas-estetica', tipo: 'Guía', titulo: 'Software para gestionar cabinas de estética', desc: 'Calendario de cabinas, bonos de sesiones y recordatorios para tratamientos.' },
+            { href: '/guias/cobrar-anticipo-peluqueria', tipo: 'Guía', titulo: 'Cobrar anticipo para tratamientos', desc: 'Cómo pedir anticipo en sesiones largas para eliminar no-shows.' },
+            { href: '/guias/reducir-ausencias', tipo: 'Guía', titulo: 'Cómo reducir ausencias hasta un 70%', desc: '7 estrategias probadas para negocios de belleza y bienestar.' },
+            { href: '/vs/treatwell', tipo: 'Comparativa', titulo: 'Treatwell vs Agenda de Reservas', desc: 'Sin comisión del 20-35%: tus clientes y tus datos, siempre tuyos.' },
+            { href: '/vs/fresha', tipo: 'Comparativa', titulo: 'Fresha vs Agenda de Reservas', desc: '"Gratis" con comisión vs cuota fija: qué sale mejor para tu centro.' },
+            { href: '/vs/booksy', tipo: 'Comparativa', titulo: 'Booksy vs Agenda de Reservas', desc: 'Sin pago por profesional: precio fijo sin sorpresas al mes.' },
+          ].map(({ href, tipo, titulo, desc }) => (
+            <a href={href} class="group block bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all">
+              <p class="text-xs text-blue-600 font-medium mb-1 uppercase tracking-wide">{tipo}</p>
+              <p class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors mb-1">{titulo}</p>
+              <p class="text-sm text-gray-500">{desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTA
       title="Empieza a gestionar tu centro de estética como un profesional"
       subtitle="Únete a 150+ centros de estética que ya ahorran tiempo y ganan más con Agenda de Reservas."
     />
