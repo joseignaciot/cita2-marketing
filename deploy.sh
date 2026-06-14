@@ -15,7 +15,7 @@ echo -e "========================================${NC}"
 SSH_HOST="75.119.150.113"
 SSH_PORT="1968"
 SSH_USER="root"
-SSH_KEY="$HOME/.ssh/id_rsa"
+SSH_KEY="$HOME/.ssh/id_ed25519"
 LOCAL_DIST="./dist"
 
 # Verifica que dist/ existe y tiene contenido
