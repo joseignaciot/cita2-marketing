@@ -1,0 +1,653 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const pageTitle = 'Software para gestionar cabinas de estética en 2026 | Guía';
+const pageDescription = 'Cómo gestionar las cabinas, tratamientos y profesionales de tu centro de estética online. Reservas 24/7, recordatorios y cobro de anticipo incluidos.';
+const canonicalUrl = 'https://agendadereservas.com/guias/software-cabinas-estetica/';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: 'https://agendadereservas.com'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Guías',
+          item: 'https://agendadereservas.com/guias'
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Software para cabinas de estética',
+          item: canonicalUrl
+        }
+      ]
+    },
+    {
+      '@type': 'HowTo',
+      name: 'Cómo gestionar las cabinas de estética con software de reservas',
+      description: 'Guía práctica para centros de estética y spas que quieren digitalizar la gestión de cabinas, terapeutas, bonos de sesiones y recordatorios automáticos.',
+      totalTime: 'PT45M',
+      estimatedCost: {
+        '@type': 'MonetaryAmount',
+        currency: 'EUR',
+        value: '19'
+      },
+      step: [
+        {
+          '@type': 'HowToStep',
+          position: 1,
+          name: 'Configura cada cabina como recurso independiente con su disponibilidad',
+          text: 'Define cada cabina del centro (cabina 1, cabina facial, sala de masajes…) como un recurso con su propio calendario. Asigna a cada terapeuta las cabinas que puede usar y los tratamientos que ofrece, con sus duraciones reales incluyendo tiempo de preparación entre cliente y cliente.'
+        },
+        {
+          '@type': 'HowToStep',
+          position: 2,
+          name: 'Activa el calendario de terapeutas para evitar solapamientos',
+          text: 'Configura la disponibilidad horaria de cada terapeuta y vincula su agenda a las cabinas asignadas. El sistema cruzará ambos calendarios y solo mostrará huecos donde haya terapeuta disponible Y cabina libre, eliminando los solapamientos manuales.'
+        },
+        {
+          '@type': 'HowToStep',
+          position: 3,
+          name: 'Crea los bonos y packs de sesiones para fidelizar clientes',
+          text: 'Define los bonos de sesiones (5 sesiones de drenaje, 10 sesiones de depilación láser…) en el catálogo. El sistema descuenta sesiones automáticamente cuando el cliente reserva, y avisa cuando el bono está próximo a agotarse para facilitar la renovación.'
+        },
+        {
+          '@type': 'HowToStep',
+          position: 4,
+          name: 'Configura recordatorios adaptados a la duración de cada tratamiento',
+          text: 'Para tratamientos de 60 minutos o más, programa un recordatorio de preparación (lo que el cliente debe hacer antes: no depilarse, no aplicar cremas, acudir con ropa cómoda). Combínalo con el recordatorio estándar de confirmación 24 horas antes y el de último aviso 2 horas antes.'
+        }
+      ]
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Puedo gestionar varios tipos de cabina con diferente disponibilidad?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Cada cabina se configura como un recurso independiente con su propio horario de disponibilidad. Puedes tener una cabina facial activa de lunes a sábado y una sala de masajes solo martes, jueves y sábado. El sistema solo ofrecerá reservas en los huecos en que la cabina específica esté disponible.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿El software permite vender bonos de sesiones?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Puedes crear bonos de N sesiones para cualquier tratamiento. El sistema registra las sesiones consumidas y las disponibles por cliente. Cuando el bono se acerca al agotamiento, el software puede avisar automáticamente para facilitar la renovación y mantener la fidelización.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Funciona para spas con varios profesionales especializados?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Puedes añadir todos los terapeutas con sus especialidades y disponibilidad horaria. El cliente elige el tratamiento y el sistema solo muestra los profesionales que lo realizan y los huecos en que están libres. Es la forma más eficiente de gestionar un equipo especializado sin conflictos de agenda.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cuánto tiempo tarda la configuración inicial?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'La configuración básica (cabinas, terapeutas, catálogo de tratamientos y horarios) se completa en menos de 45 minutos. Con el apoyo del equipo de soporte en español de Agenda de Reservas, la mayoría de centros de estética están operativos el mismo día del registro.'
+          }
+        }
+      ]
+    }
+  ]
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl={canonicalUrl}
+  schema={schema}
+  aiDescription="Guía completa para que centros de estética y spas en España gestionen sus cabinas, terapeutas, bonos de sesiones y recordatorios con software de reservas online. Incluye tabla comparativa estética vs peluquería, explicación de gestión de recursos por cabina, control de bonos/packs y precios desde 19€/mes sin comisiones (Agenda de Reservas, 2026)."
+>
+  <Header />
+
+  <main class="pt-24">
+
+    <!-- Hero -->
+    <section class="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      <div class="container mx-auto px-4 max-w-4xl">
+
+        <!-- Breadcrumb -->
+        <nav class="text-sm text-gray-400 mb-8" aria-label="Ruta de navegación">
+          <ol class="flex flex-wrap items-center gap-1">
+            <li><a href="/" class="hover:text-white transition-colors">Inicio</a></li>
+            <li class="mx-1 text-gray-600">/</li>
+            <li><a href="/guias" class="hover:text-white transition-colors">Guías</a></li>
+            <li class="mx-1 text-gray-600">/</li>
+            <li class="text-gray-300">Software para cabinas de estética</li>
+          </ol>
+        </nav>
+
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <span class="inline-block px-3 py-1 bg-blue-600/30 border border-blue-500/40 rounded-full text-xs text-blue-300 font-medium">
+            Guía práctica
+          </span>
+          <span class="text-sm text-gray-400">Actualizado: junio 2026</span>
+          <span class="text-sm text-gray-400">Lectura: 10 min</span>
+        </div>
+
+        <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+          Software para gestionar<br class="hidden md:block" /> cabinas de estética en 2026
+        </h1>
+        <p class="text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed">
+          Reservas 24/7 por cabina y terapeuta, control de bonos de sesiones, recordatorios automáticos y cobro de anticipo. Todo sin comisiones y en español.
+        </p>
+
+        <div class="flex flex-wrap gap-6 text-sm text-gray-300">
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            Gestión por cabina y terapeuta
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            Tabla comparativa estética vs peluquería
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            Bonos, packs y anticipo incluidos
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contenido principal -->
+    <div class="container mx-auto px-4 max-w-4xl py-16">
+
+      <!-- Sección 1: Funciones específicas de estética -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Qué funciones necesita el software de un centro de estética que no necesita una peluquería?
+        </h2>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+          Un centro de estética no es una peluquería con otro nombre. La gestión de cabinas físicas, la duración variable de los tratamientos, los bonos de sesiones y las instrucciones de preparación previa son requisitos específicos que el software genérico de citas no cubre bien.
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          La diferencia más importante es la <strong>gestión de recursos dobles</strong>: en estética necesitas que coincidan la disponibilidad del terapeuta y la disponibilidad de la cabina. En una peluquería solo hay que cuadrar al profesional con la hora libre. Esta complejidad, si se gestiona manualmente, genera errores constantes de solapamiento en el 40% de los centros con dos o más cabinas, según estimaciones del sector.
+        </p>
+
+        <div class="bg-blue-50 border-l-4 border-blue-600 rounded-r-xl p-5 mb-6">
+          <p class="text-blue-900 font-medium">
+            "Con la libreta teníamos conflictos de cabina al menos dos veces por semana. Desde que usamos Agenda de Reservas no ha vuelto a pasar: el sistema directamente no deja que dos clientas coincidan en la misma cabina."
+          </p>
+          <p class="text-blue-700 text-sm mt-2">— Laura G., directora de centro de estética, Zaragoza (clienta de Agenda de Reservas)</p>
+        </div>
+
+        <p class="text-gray-700 leading-relaxed">
+          El <a href="/estetica" class="text-blue-600 hover:underline font-medium">software de reservas para centros de estética</a> debe resolver también la gestión de bonos (que en peluquería apenas se usa), el tiempo de preparación de cabina entre clientes, y los recordatorios con instrucciones específicas del tratamiento. A continuación te explicamos cómo funciona cada uno.
+        </p>
+      </section>
+
+      <!-- Tabla comparativa -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          Funciones de software para estética vs peluquería
+        </h2>
+        <p class="text-gray-700 mb-6">
+          No todos los software de gestión son iguales. Esta tabla muestra qué necesita realmente cada tipo de negocio para que puedas evaluar si el software que estás considerando cubre tus requisitos específicos.
+        </p>
+
+        <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="bg-gray-50 border-b border-gray-200">
+                <th class="py-4 px-5 font-semibold text-gray-900 w-2/5">Función</th>
+                <th class="py-4 px-5 font-semibold text-gray-600 w-[30%]">Peluquería / barbería</th>
+                <th class="py-4 px-5 font-semibold text-blue-700 w-[30%]">Centro de estética / spa</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Gestión de cabinas / salas</td>
+                <td class="py-4 px-5 text-gray-500">No necesaria (solo sillones)</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">Imprescindible — cada cabina tiene su propio calendario</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Duración de tratamientos</td>
+                <td class="py-4 px-5 text-gray-600">Fija (corte 30 min, barba 20 min)</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">Variable y larga (30-120 min) + tiempo de preparación</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Bonos y packs de sesiones</td>
+                <td class="py-4 px-5 text-gray-500">Raramente usado</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">Central para el negocio (depilación, drenaje, faciales…)</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Instrucciones previas al cliente</td>
+                <td class="py-4 px-5 text-gray-500">No habituales</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">Necesarias (no depilarse, ayuno, ropa cómoda…)</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Cobro de anticipo</td>
+                <td class="py-4 px-5 text-gray-600">Útil para degradados y servicios largos</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">Muy recomendado — tratamientos largos y de alto valor</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Reservas online 24/7</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">Necesaria</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">Necesaria — muchas clientas reservan fuera del horario</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Recordatorios automáticos</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">Necesarios (reducen no-shows)</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">Críticos — tratamientos largos tienen mayor coste de hueco vacío</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">TPV integrado / pago en línea</td>
+                <td class="py-4 px-5 text-gray-600">Útil para anticipos</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">Importante para anticipo y venta de bonos online</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Historial de tratamientos por cliente</td>
+                <td class="py-4 px-5 text-gray-600">Útil para servicios de coloración</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">Imprescindible — la terapeuta necesita el historial antes de cada sesión</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">
+          Elaboración propia basada en las necesidades operativas de centros de estética y peluquerías clientes de Agenda de Reservas, 2026.
+        </p>
+      </section>
+
+      <!-- Sección 2: Calendario de cabinas -->
+      <section class="mb-16 space-y-14">
+
+        <div>
+          <div class="flex items-center gap-4 mb-5">
+            <span class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">1</span>
+            <h2 class="text-2xl font-bold text-gray-900">
+              ¿Cómo gestionar el calendario de cabinas con varios terapeutas?
+            </h2>
+          </div>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            La clave es tratar cada cabina como un recurso con disponibilidad propia y cruzarla con la agenda del terapeuta. Solo se ofrecen al cliente los huecos en que ambos están libres al mismo tiempo.
+          </p>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            En la práctica, esto significa que si la cabina 2 está ocupada de 11:00 a 12:30 por un tratamiento facial, no puede aparecer disponible para ningún otro cliente en ese intervalo, aunque el terapeuta esté libre. Y si el terapeuta tiene su descanso de 14:00 a 15:00, tampoco aparecerá disponible ese hueco aunque la cabina esté vacía.
+          </p>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            Otro elemento crítico es el <strong>tiempo de preparación entre clientes</strong>. Un tratamiento de 60 minutos necesita al menos 10-15 minutos extra para que la terapeuta limpie y prepare la cabina. Configurar ese "buffer" en el software evita que el siguiente cliente quede citado antes de que la cabina esté lista.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4 mt-6">
+            <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+              <h3 class="font-semibold text-gray-900 mb-2">Vista por cabina</h3>
+              <p class="text-sm text-gray-600">Cada cabina tiene su propio carril en el calendario. El centro puede ver en un vistazo qué cabina está ocupada, por quién y durante cuánto tiempo, sin necesidad de revisar la agenda de cada terapeuta por separado.</p>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+              <h3 class="font-semibold text-gray-900 mb-2">Vista por terapeuta</h3>
+              <p class="text-sm text-gray-600">Cada terapeuta ve solo sus citas en las cabinas que tiene asignadas. Puede gestionar su propia disponibilidad sin acceder a la agenda del resto del equipo, lo que simplifica la coordinación diaria.</p>
+            </div>
+          </div>
+
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-900 mt-4">
+            <strong>Consejo:</strong> Si tienes terapeutas polivalentes que pueden usar varias cabinas, configuralas todas en su perfil. El sistema elegirá automáticamente la cabina disponible según el tratamiento, sin que tengas que asignarla manualmente en cada reserva.
+          </div>
+        </div>
+
+        <!-- Sección 3: Bonos y packs -->
+        <div>
+          <div class="flex items-center gap-4 mb-5">
+            <span class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">2</span>
+            <h2 class="text-2xl font-bold text-gray-900">
+              ¿Cómo controlar los bonos y packs de sesiones de clientes?
+            </h2>
+          </div>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            Los bonos son el mecanismo de fidelización más habitual en los centros de estética, pero su gestión manual en libreta o Excel es una fuente constante de errores y conflictos con clientes. El software los automatiza completamente.
+          </p>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            Cada vez que un cliente con bono activo reserva una sesión, el sistema descuenta automáticamente una sesión del saldo disponible. La terapeuta puede consultar en el perfil del cliente cuántas sesiones le quedan antes de atenderle, sin preguntar ni buscar en papel.
+          </p>
+
+          <div class="bg-gray-50 rounded-xl border border-gray-200 p-6 mb-6">
+            <h3 class="font-semibold text-gray-900 mb-4">Tipos de bono habituales en centros de estética</h3>
+            <ul class="space-y-3">
+              {[
+                { tipo: 'Bono depilación láser', ejemplo: '6 sesiones zona pequeña — descuento 15% sobre precio unitario' },
+                { tipo: 'Bono drenaje linfático', ejemplo: '5 sesiones — precio cerrado con ahorro frente a sesión suelta' },
+                { tipo: 'Pack facial antiedad', ejemplo: '4 sesiones mensuales con tratamiento específico por temporada' },
+                { tipo: 'Bono masajes relajantes', ejemplo: '10 sesiones de 60 min — válido 12 meses desde la compra' },
+                { tipo: 'Pack novias / eventos', ejemplo: 'Sesiones combinadas de depilación + facial + manicura pre-evento' }
+              ].map(b => (
+                <li class="flex items-start gap-3">
+                  <svg class="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                  <div>
+                    <span class="font-medium text-gray-900">{b.tipo}:</span>
+                    <span class="text-gray-600 ml-1 text-sm">{b.ejemplo}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <p class="text-gray-700 leading-relaxed">
+            Cuando a una cliente le quedan 1 o 2 sesiones del bono, el software puede enviar un aviso automático por email o WhatsApp para que renueve antes de quedarse sin saldo. Este aviso proactivo mejora la tasa de renovación de bonos y reduce la pérdida de clientes por olvido.
+          </p>
+        </div>
+
+        <!-- Sección 4: Recordatorios para tratamientos largos -->
+        <div>
+          <div class="flex items-center gap-4 mb-5">
+            <span class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">3</span>
+            <h2 class="text-2xl font-bold text-gray-900">
+              ¿Cómo enviar recordatorios automáticos para tratamientos de larga duración?
+            </h2>
+          </div>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            Los tratamientos de 60 minutos o más tienen un coste de hueco vacío mucho mayor que un corte de pelo. Un no-show en una sesión de láser de 90 minutos puede suponer 60-90€ directamente perdidos. Los recordatorios bien configurados reducen ese riesgo entre un 60% y un 80%.
+          </p>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            La diferencia con una peluquería está en el <strong>contenido del recordatorio</strong>. Un recordatorio de estética no es solo "recuerda tu cita mañana": incluye las instrucciones de preparación específicas del tratamiento, que si el cliente ignora pueden obligar a suspender la sesión.
+          </p>
+
+          <div class="grid sm:grid-cols-3 gap-4 mb-6">
+            <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+              <h3 class="font-semibold text-gray-900 mb-2 text-sm">Recordatorio 48 h antes</h3>
+              <p class="text-xs text-gray-600">Instrucciones de preparación específicas del tratamiento. Ejemplo para láser: "No depiles la zona en las últimas 4 semanas. Acude con la piel limpia y sin cremas."</p>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+              <h3 class="font-semibold text-gray-900 mb-2 text-sm">Recordatorio 24 h antes</h3>
+              <p class="text-xs text-gray-600">Confirmación de la cita con opción de cancelar o reagendar. Da tiempo para reasignar el hueco a otra clienta si hay cancelación de última hora.</p>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+              <h3 class="font-semibold text-gray-900 mb-2 text-sm">Recordatorio 2 h antes</h3>
+              <p class="text-xs text-gray-600">Último aviso. Alta tasa de lectura en móvil. Incluye dirección del centro y cualquier detalle de acceso (aparcamiento, puerta, etc.).</p>
+            </div>
+          </div>
+
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            Para profundizar en la estrategia completa de reducción de ausencias, incluyendo el uso del anticipo como herramienta complementaria, consulta nuestra <a href="/guias/reducir-ausencias" class="text-blue-600 hover:underline font-medium">guía para reducir ausencias</a> en tu negocio.
+          </p>
+
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 text-sm">
+            <h3 class="font-semibold text-blue-900 mb-2">Como configurarlo en Agenda de Reservas</h3>
+            <ol class="space-y-2 text-blue-800 list-decimal ml-4">
+              <li>Ve a la configuración del servicio y activa los recordatorios automáticos.</li>
+              <li>Elige los momentos de envío (48 h, 24 h, 2 h) según la duración del tratamiento.</li>
+              <li>Redacta el mensaje con las instrucciones de preparación específicas de ese servicio.</li>
+              <li>Selecciona el canal: email, SMS o WhatsApp (WhatsApp tiene tasa de apertura superior al 90%).</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Sección 5: Precio -->
+        <div>
+          <div class="flex items-center gap-4 mb-5">
+            <span class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">4</span>
+            <h2 class="text-2xl font-bold text-gray-900">
+              ¿Cuánto cuesta digitalizar la gestión de un centro de estética?
+            </h2>
+          </div>
+          <p class="text-gray-700 mb-6 leading-relaxed">
+            El coste de un software de gestión para un centro de estética en España oscila entre los 20€ y los 100€ mensuales según el proveedor y el número de profesionales. Pero la variable que más diferencia el coste real es si el software cobra o no comisión por cada reserva.
+          </p>
+
+          <div class="grid sm:grid-cols-3 gap-4 mb-6">
+            <div class="bg-white border-2 border-blue-600 rounded-2xl p-6 shadow-sm">
+              <p class="text-sm font-medium text-blue-600 mb-1">Plan Profesional</p>
+              <p class="text-3xl font-bold text-gray-900 mb-1">19€<span class="text-base font-normal text-gray-500">/mes</span></p>
+              <p class="text-xs text-gray-500 mb-4">Cuota fija, sin comisiones por reserva</p>
+              <ul class="space-y-2 text-sm text-gray-700">
+                {[
+                  'Agenda online 24/7',
+                  'Gestión de cabinas y terapeutas',
+                  'Recordatorios email y SMS',
+                  'Historial de clientes',
+                  'Cobro de anticipo',
+                  'Soporte en español'
+                ].map(f => (
+                  <li class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <p class="text-sm font-medium text-gray-600 mb-1">Add-on WhatsApp Business</p>
+              <p class="text-3xl font-bold text-gray-900 mb-1">+8€<span class="text-base font-normal text-gray-500">/mes</span></p>
+              <p class="text-xs text-gray-500 mb-4">Opcional, se añade al plan base</p>
+              <ul class="space-y-2 text-sm text-gray-700">
+                {[
+                  'Recordatorios por WhatsApp',
+                  'Reservas desde el chat',
+                  'Confirmaciones automáticas',
+                  'API oficial de Meta'
+                ].map(f => (
+                  <li class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+              <div>
+                <p class="text-sm font-medium text-gray-600 mb-1">Total máximo con WhatsApp</p>
+                <p class="text-3xl font-bold text-gray-900 mb-1">27€<span class="text-base font-normal text-gray-500">/mes</span></p>
+                <p class="text-xs text-gray-500 mb-4">Plan completo, sin comisiones</p>
+                <p class="text-sm text-gray-600">Sin límite de citas, terapeutas ni cabinas. Sin permanencia. Conforme al RGPD europeo.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-4">
+            <table class="w-full text-left text-sm">
+              <thead>
+                <tr class="bg-gray-50 border-b border-gray-200">
+                  <th class="py-3 px-5 font-semibold text-gray-900">Software</th>
+                  <th class="py-3 px-5 font-semibold text-gray-700">Precio base / mes</th>
+                  <th class="py-3 px-5 font-semibold text-gray-700">Comisión por reserva</th>
+                  <th class="py-3 px-5 font-semibold text-gray-700">Soporte en español</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                <tr class="hover:bg-gray-50 transition-colors bg-blue-50">
+                  <td class="py-3 px-5 font-semibold text-blue-700">Agenda de Reservas</td>
+                  <td class="py-3 px-5 text-blue-700 font-medium">19€</td>
+                  <td class="py-3 px-5 text-blue-700 font-medium">Ninguna</td>
+                  <td class="py-3 px-5 text-blue-700 font-medium">Sí, nativo</td>
+                </tr>
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="py-3 px-5 font-medium text-gray-900">Treatwell</td>
+                  <td class="py-3 px-5 text-gray-600">Gratuito</td>
+                  <td class="py-3 px-5 text-gray-600">Sí — 20-35% por reserva externa</td>
+                  <td class="py-3 px-5 text-gray-600">Parcial</td>
+                </tr>
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="py-3 px-5 font-medium text-gray-900">Fresha</td>
+                  <td class="py-3 px-5 text-gray-600">Gratuito</td>
+                  <td class="py-3 px-5 text-gray-600">Sí — 20% por reserva nueva</td>
+                  <td class="py-3 px-5 text-gray-600">Limitado</td>
+                </tr>
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="py-3 px-5 font-medium text-gray-900">Booksy</td>
+                  <td class="py-3 px-5 text-gray-600">Desde 20-35€/profesional</td>
+                  <td class="py-3 px-5 text-gray-600">Sí, en algunas modalidades</td>
+                  <td class="py-3 px-5 text-gray-600">Sí</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500 mb-4">
+            Precios orientativos de mercado, junio 2026. Verifica siempre las condiciones actuales en la web de cada proveedor. Las comisiones de Treatwell y Fresha aplican sobre reservas procedentes de sus marketplaces.
+          </p>
+
+          <p class="text-gray-700">
+            Consulta todos los detalles en nuestra página de <a href="/precios" class="text-blue-600 hover:underline font-medium">planes desde 19€/mes</a> sin comisiones ni permanencia.
+          </p>
+        </div>
+
+        <!-- Sección 6: Qué software usan los centros de estética en España -->
+        <div>
+          <div class="flex items-center gap-4 mb-5">
+            <span class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">5</span>
+            <h2 class="text-2xl font-bold text-gray-900">
+              ¿Qué software de gestión usan los centros de estética en España?
+            </h2>
+          </div>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            En España, los centros de estética trabajan principalmente con cuatro tipos de herramientas: marketplaces con software integrado (Treatwell, Fresha), software especializado en belleza (Booksy, Koibox), software de gestión genérico (Calendly, SimplyBook.me) y plataformas SaaS sin comisiones como Agenda de Reservas.
+          </p>
+          <p class="text-gray-700 mb-6 leading-relaxed">
+            La elección depende del modelo de negocio. Los marketplaces como Treatwell o Fresha aportan visibilidad en su plataforma, pero cobran una comisión del 20% al 35% por cada reserva que llega a través de ellos. Para un centro de estética con facturación media-alta, esa comisión supera con frecuencia los 200-400€ mensuales, lo que hace que la alternativa de cuota fija sea más rentable a partir de cierto volumen.
+          </p>
+
+          <div class="space-y-4 mb-6">
+            <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+              <div class="flex items-start justify-between gap-4 mb-2">
+                <h3 class="font-semibold text-gray-900">Treatwell</h3>
+                <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full font-medium flex-shrink-0">Comisión 20-35%</span>
+              </div>
+              <p class="text-sm text-gray-600 mb-3">Marketplace con buena visibilidad en España. Útil para captación de clientes nuevos, pero la comisión por reserva puede ser elevada en centros con alta facturación. No es propietario del cliente: si te vas, pierdes el historial de reservas del marketplace.</p>
+              <a href="/vs/treatwell" class="text-sm text-blue-600 hover:underline font-medium">Ver comparativa: alternativa a Treatwell sin comisiones</a>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+              <div class="flex items-start justify-between gap-4 mb-2">
+                <h3 class="font-semibold text-gray-900">Fresha</h3>
+                <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full font-medium flex-shrink-0">Comisión 20% clientes nuevos</span>
+              </div>
+              <p class="text-sm text-gray-600 mb-3">Software gratuito con comisión sobre los clientes nuevos que llegan por su marketplace. Buena opción para arrancar, pero el coste crece con el éxito: cuantos más clientes nuevos captas, más pagas.</p>
+              <a href="/vs/fresha" class="text-sm text-blue-600 hover:underline font-medium">Ver comparativa: alternativa a Fresha para estética</a>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+              <div class="flex items-start justify-between gap-4 mb-2">
+                <h3 class="font-semibold text-gray-900">Agenda de Reservas</h3>
+                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full font-medium flex-shrink-0">Sin comisiones</span>
+              </div>
+              <p class="text-sm text-gray-600">Cuota fija de 19€/mes, sin comisión por reserva, soporte en español y alojado en la UE. La mejor opción para centros que ya tienen su base de clientes y quieren maximizar el margen sin depender de un marketplace.</p>
+            </div>
+          </div>
+
+          <p class="text-gray-700">
+            Si gestionas también un spa o instalaciones con aforos diferenciados, consulta nuestra sección de <a href="/spas" class="text-blue-600 hover:underline font-medium">gestión de reservas para spas</a>, donde explicamos cómo gestionar múltiples tipos de servicio con acceso diferenciado.
+          </p>
+        </div>
+
+      </section>
+
+      <!-- FAQ -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
+          Preguntas frecuentes sobre software de gestión de cabinas de estética
+        </h2>
+
+        <div class="space-y-4">
+          {[
+            {
+              q: '¿Puedo gestionar varios tipos de cabina con diferente disponibilidad?',
+              a: 'Sí. Cada cabina se configura como un recurso independiente con su propio horario de disponibilidad. Puedes tener una cabina facial activa de lunes a sábado y una sala de masajes solo martes, jueves y sábado. El sistema solo ofrecerá reservas en los huecos en que la cabina específica esté disponible, sin posibilidad de solapamiento.'
+            },
+            {
+              q: '¿El software permite vender bonos de sesiones?',
+              a: 'Sí. Puedes crear bonos de N sesiones para cualquier tratamiento del catálogo. El sistema registra las sesiones consumidas y las disponibles por cliente, y puede avisar automáticamente cuando el bono se acerca al agotamiento para facilitar la renovación. El historial de sesiones queda vinculado al perfil de la clienta.'
+            },
+            {
+              q: '¿Funciona para spas con varios profesionales especializados?',
+              a: 'Sí. Puedes añadir todos los terapeutas con sus especialidades, disponibilidad horaria y cabinas asignadas. El cliente elige el tratamiento y el sistema muestra solo los profesionales que lo realizan en los huecos disponibles. Es la forma más eficiente de gestionar un equipo especializado sin conflictos de agenda ni solapamientos.'
+            },
+            {
+              q: '¿Cuánto tiempo tarda la configuración inicial?',
+              a: 'La configuración básica (cabinas, terapeutas, catálogo de tratamientos y horarios) se completa en menos de 45 minutos. El equipo de soporte en español de Agenda de Reservas responde en menos de 2 horas en horario laboral. La mayoría de centros de estética están operativos el mismo día que se registran.'
+            }
+          ].map(faq => (
+            <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden">
+              <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer font-semibold text-gray-900 list-none hover:bg-gray-50 transition-colors">
+                <span>{faq.q}</span>
+                <svg class="w-5 h-5 text-gray-500 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-gray-700 leading-relaxed border-t border-gray-100 pt-4">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Métricas de impacto -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          ¿Qué impacto tiene digitalizar la gestión de un centro de estética?
+        </h2>
+        <p class="text-gray-700 mb-8 leading-relaxed">
+          El retorno de un software de gestión en un centro de estética es más rápido que en la mayoría de negocios de servicios, porque el coste de un hueco vacío es especialmente alto: un tratamiento de 90 minutos perdido por no-show equivale a 2-3 horas de trabajo sin facturar.
+        </p>
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="text-center bg-white border border-gray-200 rounded-xl p-5">
+            <p class="text-3xl font-bold text-blue-600 mb-1">-70%</p>
+            <p class="text-sm text-gray-600">Reducción de no-shows con recordatorios activos (estimación sector belleza)</p>
+          </div>
+          <div class="text-center bg-white border border-gray-200 rounded-xl p-5">
+            <p class="text-3xl font-bold text-blue-600 mb-1">+30%</p>
+            <p class="text-sm text-gray-600">Reservas fuera de horario de apertura cuando hay agenda online 24/7</p>
+          </div>
+          <div class="text-center bg-white border border-gray-200 rounded-xl p-5">
+            <p class="text-3xl font-bold text-blue-600 mb-1">0€</p>
+            <p class="text-sm text-gray-600">Comisión por reserva en Agenda de Reservas frente al 20-35% de los marketplaces</p>
+          </div>
+          <div class="text-center bg-white border border-gray-200 rounded-xl p-5">
+            <p class="text-3xl font-bold text-blue-600 mb-1">&lt; 45 min</p>
+            <p class="text-sm text-gray-600">Tiempo de configuración inicial para estar operativo el mismo día</p>
+          </div>
+        </div>
+        <p class="text-xs text-gray-500 mt-4">
+          Estimaciones basadas en datos del sector de belleza en Europa y en la experiencia de clientes de Agenda de Reservas, 2026. Los resultados individuales varían según el volumen de citas y la configuración del negocio.
+        </p>
+      </section>
+
+      <!-- CTA final -->
+      <section class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-8 md:p-12 text-white text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">
+          Gestiona tus cabinas sin comisiones desde hoy
+        </h2>
+        <p class="text-blue-100 mb-8 max-w-xl mx-auto leading-relaxed">
+          14 días de prueba gratuita. Sin tarjeta de crédito. Configuración en menos de 45 minutos con soporte en español incluido.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="https://app.agendadereservas.com"
+            class="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-xl hover:bg-blue-50 transition-colors shadow-sm"
+          >
+            Empieza gratis — 14 días sin tarjeta
+          </a>
+          <a
+            href="/estetica"
+            class="inline-block bg-white/10 text-white font-medium px-8 py-4 rounded-xl border border-white/30 hover:bg-white/20 transition-colors"
+          >
+            Ver funciones para estética
+          </a>
+        </div>
+        <p class="text-blue-200 text-sm mt-6">
+          Desde 19€/mes · Sin comisiones · Soporte en español · RGPD europeo · Alojado en la UE
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

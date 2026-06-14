@@ -1,0 +1,651 @@
+
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import DynamicPricing from '../../components/DynamicPricing.astro';
+import '../../styles/apple-design.css';
+import pricingData from '../../content/pricing.json';
+
+// Precios de build-time desde pricing.json — fuente de verdad
+const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
+const svcPrice = svcPlan?.monthly ?? 19;
+const commsAddon = pricingData.addons.find(a => a.id === 'comunicaciones');
+const commsPrice = commsAddon?.price ?? 39;
+const pagosAddon = pricingData.addons.find(a => a.id === 'pagos');
+const pagosPrice = pagosAddon?.price ?? 12;
+
+const pageTitle = 'Alternativa a Calendly para negocios en España | Agenda de Reservas';
+const pageDescription = 'Calendly está pensado para reuniones B2B, no para peluquerías o clínicas. Agenda de Reservas: reservas de servicios, recordatorios WhatsApp y soporte en español.';
+const canonicalUrl = 'https://agendadereservas.com/vs/calendly/';
+
+// Tabla comparativa Calendly vs Agenda de Reservas
+// Precios Calendly según plan publicado en calendly.com (junio 2026): gratuito (1 tipo evento),
+// Standard 10 USD/usuario/mes, Teams 16 USD/usuario/mes, Enterprise (precio bajo petición).
+// Se trabaja con precios en USD pues Calendly no publica precio en EUR para España.
+const comparativa = [
+  {
+    feature: 'Precio mensual',
+    calendly: 'Gratis (limitado) / desde 10 USD/usuario/mes',
+    agenda: `${svcPrice}€/mes (plan fijo, todos los profesionales)`,
+    winner: 'agenda',
+  },
+  {
+    feature: 'Idioma de la interfaz',
+    calendly: 'Inglés (sin versión en español nativa)',
+    agenda: '100 % en español (ES)',
+    winner: 'agenda',
+  },
+  {
+    feature: 'Soporte en español',
+    calendly: 'No — solo en inglés',
+    agenda: 'Sí — humano, <2 h en horario laboral',
+    winner: 'agenda',
+  },
+  {
+    feature: 'WhatsApp Business API',
+    calendly: 'No — no integrado de forma nativa',
+    agenda: `Sí — disponible (+${commsPrice}€/mes)`,
+    winner: 'agenda',
+  },
+  {
+    feature: 'Gestión de múltiples profesionales / cabinas',
+    calendly: 'Parcial (plan Teams, por usuario)',
+    agenda: 'Sí — multi-staff incluido en el plan base',
+    winner: 'agenda',
+  },
+  {
+    feature: 'TPV / cobro online',
+    calendly: 'Stripe/PayPal (plan de pago)',
+    agenda: `Stripe integrado (+${pagosPrice}€/mes)`,
+    winner: 'empate',
+  },
+  {
+    feature: 'RGPD / servidores UE',
+    calendly: 'Servidores en EE. UU. — DPA disponible',
+    agenda: 'Servidores en la UE, conforme al RGPD ES',
+    winner: 'agenda',
+  },
+  {
+    feature: 'Pensado para',
+    calendly: 'Reuniones B2B, demos, videollamadas',
+    agenda: 'Servicios presenciales: peluquerías, clínicas, spas',
+    winner: 'ninguno',
+  },
+  {
+    feature: 'Recordatorio automático por SMS/Email',
+    calendly: 'Sí (plan de pago)',
+    agenda: 'Sí (incluido en el plan base)',
+    winner: 'agenda',
+  },
+  {
+    feature: 'Página de reservas bajo tu marca',
+    calendly: 'Sí (con branding Calendly en el plan gratuito)',
+    agenda: 'Sí — sin mención a Agenda de Reservas',
+    winner: 'agenda',
+  },
+  {
+    feature: 'Prueba gratuita',
+    calendly: '14 días en plan Standard',
+    agenda: '14 días sin tarjeta',
+    winner: 'empate',
+  },
+  {
+    feature: 'Comisión por reserva',
+    calendly: 'No',
+    agenda: 'No',
+    winner: 'empate',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Calendly tiene versión en español?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'No. A junio de 2026, Calendly no dispone de una interfaz completa en español. La plataforma y el soporte funcionan en inglés, lo que supone una barrera de uso para muchos negocios en España y para sus clientes cuando reciben el enlace de reserva. Agenda de Reservas está 100 % en español, incluyendo el panel de gestión, la página de reservas del cliente y el soporte.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Puedo usar Calendly para una clínica de psicología en España?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Técnicamente sí, pero Calendly no está pensado para este caso. Carece de gestión de múltiples psicólogos con disponibilidades distintas, de recordatorios por WhatsApp, de historial de pacientes ni de flujos adaptados al RGPD español en cuanto a consentimiento informado. Para clínicas de psicología en España, un software específico como Agenda de Reservas resulta más adecuado: incluye gestión multi-profesional, recordatorios automáticos y datos alojados en servidores de la UE.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Agenda de Reservas sirve para agendar reuniones de empresa?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Agenda de Reservas está optimizado para negocios de servicios presenciales (peluquerías, clínicas, fisioterapia, restaurantes, actividades turísticas). Si lo que necesitas es programar videollamadas B2B, integrar tu calendario de Google/Outlook y enviar enlaces de reunión, Calendly o una herramienta similar te servirá mejor. Cada producto tiene su propósito; en esta página somos honestos sobre ello.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Qué alternativa a Calendly recomiendan para negocios de servicios en España?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Para negocios de servicios presenciales en España (peluquerías, clínicas, spas, fisioterapia, actividades turísticas), Agenda de Reservas es la alternativa más completa: interfaz y soporte en español, recordatorios por WhatsApp Business, gestión de múltiples profesionales, cobro online y servidores en la UE conformes al RGPD, todo desde 19€/mes sin comisiones por reserva.'
+          }
+        }
+      ]
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: 'https://agendadereservas.com/'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Comparativas',
+          item: 'https://agendadereservas.com/vs/'
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Calendly vs Agenda de Reservas',
+          item: 'https://agendadereservas.com/vs/calendly/'
+        }
+      ]
+    },
+    {
+      '@type': 'Article',
+      headline: pageTitle,
+      description: pageDescription,
+      datePublished: '2026-06-14',
+      dateModified: '2026-06-14',
+      author: {
+        '@type': 'Organization',
+        name: 'Agenda de Reservas',
+        url: 'https://agendadereservas.com'
+      }
+    }
+  ]
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
+  <Header />
+
+  <main>
+
+    <!-- Breadcrumb visible -->
+    <nav aria-label="Ruta de navegación" class="bg-gray-50 border-b border-gray-100">
+      <div class="container-apple py-3">
+        <ol class="flex items-center gap-2 text-sm text-gray-500">
+          <li><a href="/" class="hover:text-blue-600">Inicio</a></li>
+          <li class="text-gray-300">/</li>
+          <li><a href="/vs/" class="hover:text-blue-600">Comparativas</a></li>
+          <li class="text-gray-300">/</li>
+          <li class="text-gray-700 font-medium">Calendly vs Agenda de Reservas</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Hero comparativa -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple">
+        <div class="text-center max-w-3xl mx-auto">
+          <span class="feature-bubble mb-4 inline-block">Comparativa verificada · Junio 2026</span>
+          <h1 class="text-headline text-gray-900 mb-6">
+            Alternativa a Calendly para negocios de servicios en España:<br/>
+            <span class="text-blue-600">diseñado para peluquerías y clínicas, no para videollamadas</span>
+          </h1>
+          <p class="text-body text-lg mb-4">
+            Calendly es una herramienta excelente para programar reuniones B2B y demos comerciales.
+            Pero si tienes una <strong>peluquería, clínica de psicología, centro de fisioterapia o cualquier negocio de servicios presenciales</strong>,
+            Calendly no está pensado para ti: le faltan recordatorios por WhatsApp, gestión de múltiples profesionales,
+            TPV integrado, soporte en español y adaptación al RGPD español.
+          </p>
+          <p class="text-body text-lg mb-8">
+            <strong>Agenda de Reservas</strong> sí cubre todo eso, desde
+            <strong class="text-blue-600"><span data-price-key="service_business.monthly">{svcPrice}</span>€/mes</strong>,
+            sin comisiones y con soporte humano en español.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://app.agendadereservas.com" class="btn-apple-primary px-8 py-4">
+              Probar gratis 14 dias — sin tarjeta
+            </a>
+            <a href="#comparativa" class="btn-apple-secondary px-8 py-4">
+              Ver comparativa completa
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 1: ¿Para qué está diseñado Calendly y para qué no? -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Para qué está diseñado Calendly y para qué no?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          Calendly es una herramienta de programación de reuniones: el visitante elige un hueco en tu calendario y recibe un enlace de videollamada (Zoom, Google Meet, Teams). Es ideal para equipos de ventas, reclutadores, consultores y cualquiera que necesite coordinar reuniones virtuales con personas externas. Para eso, es muy bueno.
+        </p>
+        <p class="text-gray-700 mb-8 text-lg">
+          Lo que Calendly <strong>no hace bien</strong> — y no pretende hacer — es gestionar un negocio de servicios presenciales: no conoce el concepto de "cabina libre", no envía recordatorios por WhatsApp, no registra el historial de servicios de un cliente ni permite gestionar varios empleados con turnos distintos. Eso no es un defecto de Calendly; sencillamente es otro producto para otro caso de uso.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-green-50 rounded-2xl p-7 border border-green-100">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Calendly encaja bien si...</h3>
+            <ul class="space-y-3 text-sm text-gray-700">
+              {[
+                'Necesitas programar reuniones, demos o entrevistas de trabajo.',
+                'Tu cliente está en cualquier zona horaria y la cita es por videollamada.',
+                'Trabajas solo y gestionas tu propio calendario de Google u Outlook.',
+                'No necesitas registro de historial de servicios ni CRM de clientes.',
+                'Quieres compartir un enlace de disponibilidad en un email o en LinkedIn.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-red-50 rounded-2xl p-7 border border-red-100">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Calendly no encaja si...</h3>
+            <ul class="space-y-3 text-sm text-gray-700">
+              {[
+                'Tienes una peluquería, clínica, spa o centro de fisioterapia.',
+                'Necesitas gestionar varios profesionales o cabinas con disponibilidades distintas.',
+                'Quieres enviar recordatorios por WhatsApp para reducir las ausencias.',
+                'Necesitas soporte en español y datos alojados en la UE (RGPD).',
+                'Tus clientes son consumidores finales en España, no empresas B2B.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 2: ¿Cuánto cuesta Calendly y qué incluye el plan gratuito? -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Cuánto cuesta Calendly y qué incluye el plan gratuito?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          Calendly ofrece un plan gratuito con un solo tipo de evento y funciones muy limitadas.
+          Los planes de pago, facturados en dólares americanos por usuario y mes, amplían las capacidades pero siguen orientados a la coordinación de reuniones, no a la gestión de una agenda de servicios.
+          Verifica los precios actuales en <a href="https://calendly.com/pricing" class="text-blue-600 underline" rel="noopener noreferrer" target="_blank">calendly.com/pricing</a>, pues Calendly los actualiza con frecuencia.
+        </p>
+        <div class="overflow-x-auto mb-6">
+          <table class="w-full text-sm bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+            <thead>
+              <tr class="bg-gray-100 text-gray-700">
+                <th class="text-left py-4 px-5 font-semibold">Plan Calendly</th>
+                <th class="text-center py-4 px-5 font-semibold">Precio orientativo</th>
+                <th class="text-center py-4 px-5 font-semibold">Tipos de evento</th>
+                <th class="text-center py-4 px-5 font-semibold">Recordatorios</th>
+                <th class="text-center py-4 px-5 font-semibold">WhatsApp</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { plan: 'Free', precio: '0 USD', eventos: '1 tipo de evento', recordatorios: 'No', whatsapp: 'No' },
+                { plan: 'Standard', precio: '~10 USD/usuario/mes', eventos: 'Ilimitados', recordatorios: 'Email', whatsapp: 'No' },
+                { plan: 'Teams', precio: '~16 USD/usuario/mes', eventos: 'Ilimitados + routing', recordatorios: 'Email', whatsapp: 'No' },
+                { plan: 'Enterprise', precio: 'Bajo petición', eventos: 'Ilimitados + SSO', recordatorios: 'Email', whatsapp: 'No' },
+              ].map(({ plan, precio, eventos, recordatorios, whatsapp }) => (
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="py-3 px-5 font-medium text-gray-800">{plan}</td>
+                  <td class="py-3 px-5 text-center text-gray-700">{precio}</td>
+                  <td class="py-3 px-5 text-center text-gray-600">{eventos}</td>
+                  <td class="py-3 px-5 text-center text-gray-600">{recordatorios}</td>
+                  <td class="py-3 px-5 text-center text-red-600 font-medium">{whatsapp}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mb-6">
+          Precios orientativos en USD. Verifica las tarifas actuales en calendly.com/pricing. Calendly no publica precios en EUR para el mercado español. Junio 2026.
+        </p>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-5">
+          <p class="text-sm text-gray-700">
+            <strong>Importante para negocios en Espana:</strong> al facturar en USD desde EE. UU., Calendly no incluye IVA en la factura de forma nativa según la normativa española. Esto puede complicar la deducibilidad del gasto para autónomos y pymes. Agenda de Reservas factura desde España con IVA incluido y factura válida para Hacienda.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 3: ¿Por qué Calendly no es suficiente para una peluquería o clínica? -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Por qué Calendly no es suficiente para una peluquería o clínica?
+        </h2>
+        <p class="text-gray-700 mb-8 text-lg">
+          Calendly resuelve un problema concreto: coordinar la disponibilidad de una o varias personas para una reunion virtual. Los negocios de servicios presenciales tienen necesidades completamente distintas que Calendly no contempla en su diseño de producto.
+        </p>
+        <div class="grid md:grid-cols-3 gap-5 mb-8">
+          {[
+            {
+              titulo: 'Sin gestion de recursos fisicos',
+              desc: 'Una peluqueria tiene sillas, cabinas o boxes. Una clinica tiene consultas. Calendly no entiende el concepto de recurso fisico: no puede saber si la "cabina de color" esta libre o si el box de fisioterapia esta ocupado.',
+              icon: '🪑',
+            },
+            {
+              titulo: 'Sin recordatorios por WhatsApp',
+              desc: 'En Espana, WhatsApp es el canal de comunicacion predominante. El 90 % de los mensajes de WhatsApp se abren, frente al 20-30 % del email. Calendly no ofrece integracion nativa con WhatsApp Business API.',
+              icon: '💬',
+            },
+            {
+              titulo: 'Sin historial de clientes ni CRM',
+              desc: 'Una peluquera necesita saber que color uso Maria la ultima vez. Un psicologo necesita el historial de sesiones. Calendly no tiene CRM: solo gestiona el hueco en el calendario, no la relacion con el cliente.',
+              icon: '📋',
+            },
+            {
+              titulo: 'Interfaz y soporte solo en ingles',
+              desc: 'La pagina de reservas que ven tus clientes y el panel de gestion estan en ingles. Para muchos clientes y negocios espanoles esto es una barrera real. El soporte de Calendly tambien opera en ingles.',
+              icon: '🌐',
+            },
+            {
+              titulo: 'RGPD: datos en EE. UU.',
+              desc: 'Calendly almacena datos en servidores americanos. Aunque dispone de DPA (acuerdo de tratamiento de datos), para clinicas y profesionales de la salud en Espana puede plantear dudas regulatorias adicionales. Agenda de Reservas opera con servidores en la UE.',
+              icon: '🔒',
+            },
+            {
+              titulo: 'Precio por usuario, no por negocio',
+              desc: 'Calendly cobra por cada usuario/empleado. Si tienes tres peluqueras, pagas tres licencias de 10 USD/mes cada una. Agenda de Reservas cobra una cuota fija por negocio, con usuarios ilimitados incluidos.',
+              icon: '💶',
+            },
+          ].map(({ titulo, desc, icon }) => (
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+              <div class="text-3xl mb-3">{icon}</div>
+              <h3 class="font-bold text-gray-900 mb-2">{titulo}</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">{desc}</p>
+            </div>
+          ))}
+        </div>
+        <p class="text-sm text-gray-600">
+          Si gestionas una clinica de psicologia, el
+          <a href="/clinicas-psicologia" class="text-blue-600 underline">software de citas para clinicas de psicologia</a>
+          de Agenda de Reservas esta disenado especificamente para ese caso de uso.
+          Para consultas de fisioterapia, la
+          <a href="/fisioterapia" class="text-blue-600 underline">agenda online para fisioterapia</a>
+          incluye gestion de salas y recordatorios automaticos.
+        </p>
+      </div>
+    </section>
+
+    <!-- H2 4: Calendly vs Agenda de Reservas — tabla de funciones -->
+    <section id="comparativa" class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple">
+        <h2 class="text-headline text-gray-900 text-center mb-4">
+          Calendly vs Agenda de Reservas: tabla de funciones
+        </h2>
+        <p class="text-center text-gray-500 text-sm mb-10">
+          Actualizado: junio 2026 · Fuentes: webs oficiales de Calendly y Agenda de Reservas.
+        </p>
+        <div class="max-w-4xl mx-auto overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-gray-200">
+                <th class="text-left py-4 px-4 text-gray-700 font-semibold">Caracteristica</th>
+                <th class="text-center py-4 px-4 text-gray-600 font-semibold">Calendly</th>
+                <th class="text-center py-4 px-4 text-blue-700 font-semibold bg-blue-50 rounded-t-lg">Agenda de Reservas</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparativa.map(({ feature, calendly, agenda, winner }) => (
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="py-3 px-4 font-medium text-gray-800">{feature}</td>
+                  <td class={`py-3 px-4 text-center ${winner === 'calendly' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-red-600' : 'text-gray-600'}`}>
+                    {calendly}
+                  </td>
+                  <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'calendly' ? 'text-gray-500' : 'text-gray-600'}`}>
+                    {agenda}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="text-xs text-gray-400 mt-3 text-right">
+            Precios Calendly en USD segun web oficial (junio 2026). Verifica en calendly.com/pricing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 5: ¿En qué casos tiene sentido usar Calendly? -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿En que casos tiene sentido usar Calendly?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          Esta pagina seria deshonesta si solo presentara las limitaciones de Calendly. Hay escenarios concretos en los que Calendly es la mejor herramienta disponible — y no tiene sentido forzar el uso de Agenda de Reservas en esos casos.
+        </p>
+        <div class="bg-white rounded-2xl p-7 border border-gray-200 mb-6">
+          <h3 class="font-bold text-gray-900 text-lg mb-5">Calendly es la opcion correcta si tu necesidad es...</h3>
+          <ul class="space-y-4 text-sm text-gray-700">
+            {[
+              {
+                titulo: 'Reuniones de ventas B2B',
+                desc: 'Un comercial que quiere compartir su calendario con un prospecto para acordar una demo. Calendly integra con Zoom, Google Meet y Teams, y se sincroniza con Google Calendar y Outlook.',
+              },
+              {
+                titulo: 'Entrevistas de RRHH',
+                desc: 'Un equipo de seleccion que necesita coordinar entrevistas en multiples zonas horarias, con varios entrevistadores disponibles.',
+              },
+              {
+                titulo: 'Consultores o coaches que trabajan exclusivamente online',
+                desc: 'Si todas tus sesiones son por videollamada, no tienes empleados a gestionar y tu cliente es siempre una empresa u otro profesional, Calendly resuelve el problema con un enlace simple.',
+              },
+              {
+                titulo: 'Startups o equipos tecnicos angloparlantes',
+                desc: 'Equipos que ya trabajan en ingles y necesitan coordinacion de demos o reuniones de producto con clientes internacionales.',
+              },
+            ].map(({ titulo, desc }) => (
+              <li class="flex items-start gap-3">
+                <span class="text-blue-500 mt-0.5 flex-shrink-0 font-bold">→</span>
+                <div>
+                  <strong class="text-gray-900">{titulo}:</strong>{' '}
+                  <span>{desc}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-5">
+          <p class="text-sm text-gray-700">
+            <strong>Conclusion honesta:</strong> si tienes dudas sobre si Calendly encaja con tu negocio de servicios, la prueba mas sencilla es preguntarte: ¿mis citas terminan en una videollamada o en una persona que viene fisicamente a mi local? Si la respuesta es lo segundo, Calendly no es la herramienta adecuada.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 6: ¿Cuál es la mejor alternativa a Calendly para negocios de servicios en España? -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Cual es la mejor alternativa a Calendly para negocios de servicios en Espana?
+        </h2>
+        <p class="text-gray-700 mb-8 text-lg">
+          Para negocios de servicios presenciales en Espana — peluquerias, clinicas, fisioterapeutas, spas, tatuadores, centros veterinarios — <strong>Agenda de Reservas es la alternativa mas completa a Calendly</strong>: esta en espanol, tiene soporte humano, gestiona multiples profesionales, incluye recordatorios por WhatsApp y cumple el RGPD con datos en la UE, desde <strong class="text-blue-600">{svcPrice}€/mes sin comisiones</strong>.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-gray-50 rounded-2xl p-7 border border-gray-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Elige Calendly si...</h3>
+            <ul class="space-y-3 text-sm text-gray-700">
+              {[
+                'Tu negocio es 100 % online y las citas son videoconferencias.',
+                'Coordinas reuniones con clientes B2B o perfiles internacionales.',
+                'Trabajas en solitario y solo necesitas compartir tu disponibilidad.',
+                'El ingles no es una barrera para ti ni para tus clientes.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-0.5 flex-shrink-0">→</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-blue-50 rounded-2xl p-7 border-2 border-blue-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Elige Agenda de Reservas si...</h3>
+            <ul class="space-y-3 text-sm text-gray-800">
+              {[
+                'Tienes un negocio de servicios presenciales en Espana.',
+                'Necesitas gestionar varios profesionales o recursos fisicos (cabinas, salas).',
+                'Quieres recordatorios automaticos por WhatsApp para reducir no-shows.',
+                'Necesitas soporte en espanol con respuesta en menos de 2 horas.',
+                'Requieres factura espanola con IVA y datos alojados en la UE.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p class="text-sm text-gray-600">
+          Consulta el
+          <a href="/peluquerias" class="text-blue-600 underline">software para peluquerias</a>
+          si tienes un salon de peluqueria o barberia, el
+          <a href="/clinicas-psicologia" class="text-blue-600 underline">software de citas para clinicas de psicologia</a>
+          para consultas de salud mental, o la
+          <a href="/fisioterapia" class="text-blue-600 underline">agenda online para fisioterapia</a>
+          si gestionas un centro de fisioterapia. Tambien puedes ver la
+          <a href="/vs/booksy" class="text-blue-600 underline">comparativa con Booksy</a>
+          si estas evaluando otras opciones. Para ver todos los planes disponibles,
+          <a href="/precios" class="text-blue-600 underline">ver planes de Agenda de Reservas</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-3xl mx-auto">
+        <h2 class="text-headline text-gray-900 text-center mb-12">Preguntas frecuentes</h2>
+        <div class="space-y-4">
+          {[
+            {
+              q: '¿Calendly tiene version en espanol?',
+              a: 'No. A junio de 2026, Calendly no dispone de interfaz completa en espanol. La plataforma, el panel de gestion y el soporte funcionan en ingles. La pagina de reservas que ven tus clientes tampoco esta en espanol. Agenda de Reservas esta 100 % en espanol, incluyendo panel, pagina de reservas del cliente y soporte.'
+            },
+            {
+              q: '¿Puedo usar Calendly para una clinica de psicologia en Espana?',
+              a: 'Tecnicamente si, pero Calendly no esta disenado para ello. No gestiona multiples psicologos con disponibilidades distintas, no envia recordatorios por WhatsApp, no tiene historial de pacientes ni flujos adaptados al RGPD espanol. Para clinicas de psicologia en Espana, un software especifico como Agenda de Reservas encaja mucho mejor: gestion multi-profesional, recordatorios automaticos y datos en servidores de la UE.'
+            },
+            {
+              q: '¿Agenda de Reservas sirve para agendar reuniones de empresa?',
+              a: 'Agenda de Reservas esta optimizado para negocios de servicios presenciales: peluquerias, clinicas, fisioterapia, restaurantes, actividades turisticas. Si lo que necesitas es programar videoconferencias B2B con integracion de Zoom o Google Meet, Calendly es mejor opcion. Cada producto tiene su proposito; ser honestos sobre ello nos parece lo correcto.'
+            },
+            {
+              q: '¿Que alternativa a Calendly recomiendan para negocios de servicios en Espana?',
+              a: 'Para negocios de servicios presenciales en Espana (peluquerias, clinicas, spas, fisioterapia, actividades turisticas), Agenda de Reservas es la alternativa mas completa: interfaz y soporte en espanol, recordatorios por WhatsApp Business, gestion de multiples profesionales, cobro online y servidores en la UE conformes al RGPD, desde 19€/mes sin comisiones por reserva.'
+            }
+          ].map(({ q, a }) => (
+            <div class="border border-gray-200 rounded-xl overflow-hidden bg-white">
+              <details class="group">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                  {q}
+                  <span class="text-gray-400 group-open:rotate-180 transition-transform">▾</span>
+                </summary>
+                <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{a}</div>
+              </details>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Enlazado interno saliente -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-3xl mx-auto">
+        <h2 class="text-xl font-bold text-gray-900 mb-6 text-center">Recursos relacionados</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {[
+            {
+              href: '/clinicas-psicologia',
+              label: 'software de citas para clinicas de psicologia',
+              desc: 'Gestion de sesiones, multiples psicologos y recordatorios automaticos.',
+            },
+            {
+              href: '/fisioterapia',
+              label: 'agenda online para fisioterapia',
+              desc: 'Control de salas, historial de pacientes y reservas online 24/7.',
+            },
+            {
+              href: '/peluquerias',
+              label: 'software para peluquerias',
+              desc: 'Gestion de cabinas, turnos y recordatorios por WhatsApp.',
+            },
+            {
+              href: '/vs/booksy',
+              label: 'comparativa con Booksy',
+              desc: 'Booksy cobra por empleado. Ve como se compara con Agenda de Reservas.',
+            },
+            {
+              href: '/precios',
+              label: 'ver planes de Agenda de Reservas',
+              desc: 'Planes desde 19€/mes. Prueba 14 dias sin tarjeta.',
+            },
+          ].map(({ href, label, desc }) => (
+            <a
+              href={href}
+              class="flex flex-col gap-1 bg-gray-50 rounded-2xl px-5 py-4 border border-gray-200 hover:border-blue-300 hover:shadow-sm transition-all"
+            >
+              <span class="text-blue-600 font-semibold text-sm underline">{label}</span>
+              <span class="text-gray-500 text-xs">{desc}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="section-apple bg-gray-900">
+      <div class="container-apple text-center">
+        <h2 class="text-headline text-white mb-4">
+          La alternativa a Calendly pensada para negocios de servicios en Espana.<br/>
+          <span class="text-blue-400">
+            <span data-price-key="service_business.monthly">{svcPrice}</span>€/mes, en espanol, sin comisiones.
+          </span>
+        </h2>
+        <p class="text-gray-400 mb-2">WhatsApp · Multi-profesional · RGPD · Soporte humano en espanol</p>
+        <p class="text-gray-500 text-sm mb-8">Prueba gratis 14 dias — sin tarjeta de credito</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="https://app.agendadereservas.com"
+            class="inline-block bg-white text-gray-900 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors"
+          >
+            Empezar gratis ahora
+          </a>
+          <a
+            href="/precios"
+            class="inline-block border border-gray-600 text-gray-300 font-semibold px-10 py-4 rounded-2xl hover:border-gray-400 hover:text-white transition-colors"
+          >
+            Ver todos los planes
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+  <DynamicPricing />
+</Layout>

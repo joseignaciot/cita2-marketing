@@ -1,0 +1,638 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const pageTitle = 'Cómo gestionar los turnos de tu restaurante sin TheFork (2026)';
+const pageDescription = 'Gestiona reservas de mesas, turnos de comida y cena y lista de espera desde tu web, sin pagar comisión por comensal. Guía práctica para restaurantes.';
+const canonicalUrl = 'https://agendadereservas.com/guias/gestionar-turnos-restaurante/';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: 'https://agendadereservas.com'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Guías',
+          item: 'https://agendadereservas.com/guias'
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Gestionar turnos de restaurante',
+          item: canonicalUrl
+        }
+      ]
+    },
+    {
+      '@type': 'HowTo',
+      name: 'Cómo gestionar los turnos de comida y cena en un restaurante sin depender de TheFork',
+      description: 'Guía práctica para configurar turnos, lista de espera digital y cobro de depósito en grupos grandes con un sistema de reservas propio para restaurantes.',
+      totalTime: 'PT45M',
+      estimatedCost: {
+        '@type': 'MonetaryAmount',
+        currency: 'EUR',
+        value: '24'
+      },
+      step: [
+        {
+          '@type': 'HowToStep',
+          position: 1,
+          name: 'Configura los turnos de comida y cena con sus aforos',
+          text: 'Define cada turno (comida 13:00-15:30, cena 20:30-23:00) con su propio aforo máximo de comensales. El sistema bloqueará automáticamente nuevas reservas cuando se alcance el límite de cada turno, sin que tengas que controlarlo manualmente.'
+        },
+        {
+          '@type': 'HowToStep',
+          position: 2,
+          name: 'Activa la lista de espera digital',
+          text: 'Cuando un turno está completo, el sistema puede ofrecer al comensal unirse a la lista de espera. Si se produce una cancelación, el sistema avisa al siguiente de la lista de forma automática por WhatsApp o email.'
+        },
+        {
+          '@type': 'HowToStep',
+          position: 3,
+          name: 'Configura el depósito para reservas de grupos grandes',
+          text: 'Activa el cobro de un depósito (fijo o por comensal) para reservas a partir de un número de personas que determines, por ejemplo 8 o más comensales. El comensal abona el depósito con tarjeta al confirmar la reserva online.'
+        },
+        {
+          '@type': 'HowToStep',
+          position: 4,
+          name: 'Publica el botón de reserva en tu web y redes sociales',
+          text: 'Incrusta el widget de reservas en tu web o comparte el enlace directo en Instagram, Google Business Profile y en el menú de WhatsApp. Los comensales reservan directamente contigo, sin comisión para ningún intermediario.'
+        }
+      ]
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Puedo tener turnos de comida y cena con aforos distintos?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. En el plan Restaurante de Agenda de Reservas puedes configurar cada turno de forma independiente con su propio aforo máximo de comensales. Así el turno de comida puede tener un aforo diferente al de cena, por ejemplo por disponibilidad de terraza o por configuración de sala.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cómo aviso a los comensales con recordatorio automático?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'El sistema envía recordatorios automáticos por email y, con el add-on de WhatsApp Business API (+8€/mes), también por WhatsApp. Puedes configurar el momento del envío: habitualmente 24 horas antes y 2 horas antes de la reserva. El comensal puede confirmar o cancelar directamente desde el mensaje.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Puedo cobrar depósito solo para grupos grandes?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Puedes configurar el cobro de depósito únicamente cuando la reserva supera un número de comensales que determines (por ejemplo, a partir de 8 personas). Para reservas individuales o de pareja no se aplica ningún cargo, y el cliente lo vive como algo natural y razonable.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿El sistema funciona para terrazas con aforo separado?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Puedes crear zonas diferenciadas (sala interior, terraza, privado) con sus propios aforos. El comensal puede elegir zona al reservar o dejarla a criterio del restaurante. Cada zona gestiona su propio cupo dentro del turno.'
+          }
+        }
+      ]
+    }
+  ]
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl={canonicalUrl}
+  schema={schema}
+  aiDescription="Guía práctica para que restaurantes en España gestionen sus turnos de comida y cena, lista de espera digital y depósitos para grupos grandes con un sistema de reservas propio, sin pagar comisión por comensal a TheFork ni a ningún marketplace. Plan Restaurante de Agenda de Reservas: 24€/mes fijo."
+>
+  <Header />
+
+  <main class="pt-24">
+
+    <!-- Hero -->
+    <section class="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <!-- Breadcrumb -->
+        <nav class="text-sm text-gray-400 mb-8" aria-label="Ruta de navegación">
+          <ol class="flex flex-wrap items-center gap-1">
+            <li><a href="/" class="hover:text-white transition-colors">Inicio</a></li>
+            <li class="mx-1 text-gray-600">/</li>
+            <li><a href="/guias" class="hover:text-white transition-colors">Guías</a></li>
+            <li class="mx-1 text-gray-600">/</li>
+            <li class="text-gray-300">Gestionar turnos de restaurante</li>
+          </ol>
+        </nav>
+
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <span class="inline-block px-3 py-1 bg-blue-600/30 border border-blue-500/40 rounded-full text-xs text-blue-300 font-medium">
+            Guía práctica
+          </span>
+          <span class="text-sm text-gray-400">Actualizado: junio 2026</span>
+          <span class="text-sm text-gray-400">Lectura: 9 min</span>
+        </div>
+
+        <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+          Cómo gestionar los turnos<br class="hidden md:block" /> de tu restaurante sin TheFork
+        </h1>
+        <p class="text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed">
+          Reservas de mesas, turnos de comida y cena, lista de espera digital y cobro de depósito para grupos: todo desde tu propia web, sin ceder un céntimo por comensal a ningún intermediario.
+        </p>
+
+        <div class="flex flex-wrap gap-6 text-sm text-gray-300">
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            4 pasos concretos
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            Tabla comparativa de costes TheFork vs agenda propia
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            Válido para restaurantes de cualquier tamaño
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contenido principal -->
+    <div class="container mx-auto px-4 max-w-4xl py-16">
+
+      <!-- Sección 1: TheFork y sus comisiones -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Cuánto cobra TheFork por cada comensal y cuándo deja de compensar?
+        </h2>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+          TheFork aplica una comisión estimada de entre 1,50€ y 2,00€ por comensal sentado procedente de su plataforma, según las condiciones de cada contrato (el importe exacto varía y no es público de forma uniforme). Con un ticket medio de 30-40€ por persona, eso equivale a entre un 4% y un 6% de la factura directamente cedido al marketplace.
+        </p>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          El modelo tiene sentido si TheFork te trae comensales nuevos que de otra forma no llegarían. Pero para restaurantes con clientela fidelizada o con presencia propia en Google y redes sociales, la comisión acaba siendo un peaje por reservas que habrías conseguido igual. Cuando un comensal habitual te busca por nombre en TheFork y reserva desde ahí, pagas por un cliente que ya era tuyo.
+        </p>
+
+        <div class="bg-amber-50 border-l-4 border-amber-500 rounded-r-xl p-5 mb-6">
+          <p class="text-amber-900 font-medium">
+            "En temporada alta llenamos sin TheFork. Pero las reservas seguían entrando por ahí porque los clientes lo tenían como hábito. Estábamos pagando comisión por mesas que habríamos llenado igual."
+          </p>
+          <p class="text-amber-700 text-sm mt-2">— Raúl G., propietario de restaurante, Valencia (cliente de Agenda de Reservas)</p>
+        </div>
+
+        <p class="text-gray-700 leading-relaxed">
+          La pregunta clave es cuántos comensales recibes realmente de TheFork frente a los que llegarían directamente. Si más del 60-70% de tus reservas en el marketplace son de clientes que ya te conocen, el coste de esa dependencia supera con creces los beneficios. Puedes ampliar este análisis en nuestra <a href="/vs/thefork" class="text-blue-600 hover:underline font-medium">comparativa TheFork vs Agenda de Reservas</a>.
+        </p>
+      </section>
+
+      <!-- Tabla comparativa de costes -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          Coste mensual TheFork vs agenda propia según comensales/mes
+        </h2>
+        <p class="text-gray-700 mb-6">
+          A continuación, una comparativa del gasto mensual en gestión de reservas según el volumen de comensales que recibes, usando una comisión orientativa de 1,75€ por comensal para TheFork (estimación; el importe real depende de tu contrato). El plan Restaurante de Agenda de Reservas tiene un coste fijo de 24€/mes sin comisiones adicionales.
+        </p>
+
+        <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-4">
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="bg-gray-50 border-b border-gray-200">
+                <th class="py-4 px-5 font-semibold text-gray-900">Comensales/mes</th>
+                <th class="py-4 px-5 font-semibold text-gray-600">TheFork (est. 1,75€/comensal) *</th>
+                <th class="py-4 px-5 font-semibold text-blue-700">Agenda de Reservas</th>
+                <th class="py-4 px-5 font-semibold text-green-700">Ahorro mensual</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">50 comensales</td>
+                <td class="py-4 px-5 text-gray-600">~87,50€</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">24€ fijo</td>
+                <td class="py-4 px-5 text-green-700 font-medium">~63,50€</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">100 comensales</td>
+                <td class="py-4 px-5 text-gray-600">~175€</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">24€ fijo</td>
+                <td class="py-4 px-5 text-green-700 font-medium">~151€</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">200 comensales</td>
+                <td class="py-4 px-5 text-gray-600">~350€</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">24€ fijo</td>
+                <td class="py-4 px-5 text-green-700 font-medium">~326€</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-500">
+          * Estimación orientativa basada en una comisión de 1,75€/comensal. El importe real de TheFork varía según el contrato, el plan contratado y las promociones activas. Consulta tu contrato vigente para el dato exacto. Los cálculos anteriores asumen que todos los comensales proceden del marketplace; si solo una parte llega por TheFork, el coste proporcional es menor.
+        </p>
+      </section>
+
+      <!-- Sección 2: ¿Puede un restaurante gestionar reservas sin marketplace? -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Puede un restaurante gestionar reservas sin depender de un marketplace?
+        </h2>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+          Sí, y cada vez más restaurantes en España lo hacen. Un sistema de reservas propio integrado en tu web permite recibir reservas directas de Google, Instagram, WhatsApp y tu página web sin ceder ninguna comisión. La clave es tener un botón de reserva visible y un flujo tan rápido como el de cualquier marketplace.
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          No se trata de abandonar TheFork de un día para otro. La estrategia habitual es instalar primero tu propio sistema para capturar todas las reservas directas (redes sociales, Google Business Profile, web propia), medir cuánto del volumen de TheFork puedes sustituir, y en función de eso decidir si mantienes el marketplace solo para captación de clientes nuevos o lo abandonas completamente.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+            <h3 class="font-semibold text-gray-900 mb-3">Canales donde tu agenda propia capta reservas</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              {[
+                'Botón "Reservar" en tu web',
+                'Enlace en Instagram y Facebook',
+                'Google Business Profile (botón de reserva)',
+                'WhatsApp Business (reserva desde el chat)',
+                'QR en la mesa para siguiente visita'
+              ].map(item => (
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+            <h3 class="font-semibold text-gray-900 mb-3">Lo que ganas con reservas directas</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              {[
+                'Cero comisión por comensal',
+                'Los datos del cliente son tuyos (RGPD)',
+                'Fidelización directa sin intermediario',
+                'Control total sobre el aforo y los turnos',
+                'Historial de visitas para cada comensal'
+              ].map(item => (
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <p class="text-gray-700 mt-6 leading-relaxed">
+          El <a href="/restaurantes" class="text-blue-600 hover:underline font-medium">software de reservas para restaurantes sin comisiones</a> de Agenda de Reservas está diseñado específicamente para esta transición: capturar reservas directas sin fricción para el comensal ni para el equipo de sala. También puedes comparar opciones en nuestra <a href="/vs/restoo" class="text-blue-600 hover:underline font-medium">comparativa con Restoo</a>, otro sistema especializado en hostelería.
+        </p>
+      </section>
+
+      <!-- Pasos how-to -->
+      <section class="mb-16 space-y-14">
+
+        <!-- Paso 3 -->
+        <div>
+          <div class="flex items-center gap-4 mb-5">
+            <span class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">1</span>
+            <h2 class="text-2xl font-bold text-gray-900">
+              ¿Cómo configurar los turnos de comida y cena en una agenda online?
+            </h2>
+          </div>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            La configuración de turnos es el núcleo de la gestión de mesas de restaurante. Cada turno (comida, cena, brunch de fin de semana) es un bloque de tiempo con su propio aforo máximo: cuando ese aforo se alcanza, el sistema deja de mostrar disponibilidad para ese turno y ofrece el siguiente.
+          </p>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            En Agenda de Reservas, un restaurante típico configura dos turnos diarios:
+          </p>
+
+          <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-6">
+            <table class="w-full text-left text-sm">
+              <thead>
+                <tr class="bg-gray-50 border-b border-gray-200">
+                  <th class="py-4 px-5 font-semibold text-gray-900">Turno</th>
+                  <th class="py-4 px-5 font-semibold text-gray-700">Ejemplo de horario</th>
+                  <th class="py-4 px-5 font-semibold text-gray-700">Aforo (ejemplo)</th>
+                  <th class="py-4 px-5 font-semibold text-gray-700">Duración media por mesa</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="py-4 px-5 font-medium text-gray-900">Comida</td>
+                  <td class="py-4 px-5 text-gray-600">13:00 – 15:30</td>
+                  <td class="py-4 px-5 text-gray-600">60 comensales</td>
+                  <td class="py-4 px-5 text-gray-600">90 min</td>
+                </tr>
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="py-4 px-5 font-medium text-gray-900">Cena</td>
+                  <td class="py-4 px-5 text-gray-600">20:30 – 23:00</td>
+                  <td class="py-4 px-5 text-gray-600">80 comensales</td>
+                  <td class="py-4 px-5 text-gray-600">120 min</td>
+                </tr>
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="py-4 px-5 font-medium text-gray-900">Brunch (fin de semana)</td>
+                  <td class="py-4 px-5 text-gray-600">11:00 – 14:00</td>
+                  <td class="py-4 px-5 text-gray-600">40 comensales</td>
+                  <td class="py-4 px-5 text-gray-600">75 min</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            Cada turno puede tener franjas horarias de entrada distintas: en cena, por ejemplo, puedes ofrecer reservas a las 20:30, 21:00 y 21:30. El sistema distribuye el aforo entre esas franjas y bloquea automáticamente cuando cada una se llena.
+          </p>
+
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 text-sm">
+            <h3 class="font-semibold text-blue-900 mb-2">Cómo configurarlo en Agenda de Reservas</h3>
+            <ol class="space-y-2 text-blue-800 list-decimal ml-4">
+              <li>Entra en <strong>Configuración &gt; Turnos y servicios</strong> y crea un turno por cada franja horaria.</li>
+              <li>Define el aforo máximo de comensales por turno (no por mesa: el sistema gestiona comensales totales).</li>
+              <li>Activa las franjas de entrada dentro de cada turno (cada 30 min, 45 min o libre).</li>
+              <li>Repite el proceso para cada día de la semana; puedes tener horarios distintos entre semana y fin de semana.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Paso 4: Lista de espera -->
+        <div>
+          <div class="flex items-center gap-4 mb-5">
+            <span class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">2</span>
+            <h2 class="text-2xl font-bold text-gray-900">
+              ¿Cómo gestionar la lista de espera digital en tu restaurante?
+            </h2>
+          </div>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            La lista de espera digital convierte una cancelación de última hora en una mesa ocupada en minutos, sin que tengas que hacer ninguna llamada. Cuando un turno está completo, el sistema ofrece al comensal unirse a la lista de espera. Si se produce una cancelación, avisa automáticamente al siguiente en la lista.
+          </p>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            Este proceso, que antes requería un cuaderno y varias llamadas, ocurre de forma automática. Según datos internos de Agenda de Reservas (2026), los restaurantes con lista de espera digital activa recuperan entre el 8% y el 15% de las mesas de turnos completos que de otro modo habrían quedado vacías por cancelaciones.
+          </p>
+
+          <div class="grid sm:grid-cols-3 gap-4 mt-4">
+            <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm text-center">
+              <p class="text-2xl font-bold text-blue-600 mb-1">1</p>
+              <p class="text-sm font-semibold text-gray-900 mb-1">Turno completo</p>
+              <p class="text-xs text-gray-600">El sistema ofrece al comensal unirse a la lista de espera con su nombre, teléfono y número de personas.</p>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm text-center">
+              <p class="text-2xl font-bold text-blue-600 mb-1">2</p>
+              <p class="text-sm font-semibold text-gray-900 mb-1">Cancelación</p>
+              <p class="text-xs text-gray-600">Cuando otro comensal cancela, el sistema detecta el hueco y avisa al primero de la lista por WhatsApp o email.</p>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm text-center">
+              <p class="text-2xl font-bold text-blue-600 mb-1">3</p>
+              <p class="text-sm font-semibold text-gray-900 mb-1">Confirmación</p>
+              <p class="text-xs text-gray-600">El comensal confirma en un clic. Si no responde en el plazo que fijes, el sistema pasa al siguiente de la lista.</p>
+            </div>
+          </div>
+
+          <p class="text-gray-700 mt-6 leading-relaxed">
+            Reducir las mesas vacías por cancelaciones también impacta en los no-shows. Si quieres profundizar, lee nuestra <a href="/guias/reducir-ausencias" class="text-blue-600 hover:underline font-medium">guía para reducir ausencias y no-shows</a> en cualquier tipo de negocio.
+          </p>
+        </div>
+
+        <!-- Paso 5: Depósito para grupos grandes -->
+        <div>
+          <div class="flex items-center gap-4 mb-5">
+            <span class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">3</span>
+            <h2 class="text-2xl font-bold text-gray-900">
+              ¿Cómo cobrar un depósito para reservas de grupos grandes?
+            </h2>
+          </div>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            El depósito para grupos grandes es la medida más efectiva contra los no-shows en reservas de alto impacto. Un grupo de 10 personas que no aparece puede arruinar la noche de un restaurante mediano. Con un depósito de 10-20€ por persona, el compromiso es real y la tasa de ausencias cae drásticamente.
+          </p>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            En Agenda de Reservas puedes configurar el cobro de depósito de forma condicional: solo se activa cuando la reserva supera el número de comensales que determines. Para una pareja o una familia de cuatro no hay ningún cargo; para un grupo de cumpleaños de doce personas, el depósito se cobra automáticamente al confirmar.
+          </p>
+
+          <div class="bg-gray-50 rounded-xl border border-gray-200 p-5 mb-6">
+            <h3 class="font-semibold text-gray-900 mb-3">Opciones de depósito para restaurantes</h3>
+            <div class="grid sm:grid-cols-2 gap-4 text-sm">
+              <div>
+                <p class="font-medium text-gray-800 mb-2">Depósito fijo por reserva</p>
+                <p class="text-gray-600">Por ejemplo, 50€ por reserva de grupo, independientemente del número de personas. Sencillo de comunicar y de gestionar.</p>
+              </div>
+              <div>
+                <p class="font-medium text-gray-800 mb-2">Depósito por comensal</p>
+                <p class="text-gray-600">Por ejemplo, 10€ por persona para grupos de 8 o más. Se adapta al tamaño del grupo y resulta más equitativo.</p>
+              </div>
+              <div>
+                <p class="font-medium text-gray-800 mb-2">Prepago del menú</p>
+                <p class="text-gray-600">Para menús cerrados de grupos, puedes cobrar el 100% del menú por adelantado. Elimina completamente el riesgo de no-show.</p>
+              </div>
+              <div>
+                <p class="font-medium text-gray-800 mb-2">Sin depósito para clientes habituales</p>
+                <p class="text-gray-600">Puedes eximir del depósito a clientes con historial de reservas cumplidas, manteniendo la flexibilidad para clientes de confianza.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-900">
+            <strong>Comunicación recomendada:</strong> Presenta el depósito como una "reserva garantizada" para grupos, no como un cargo adicional. El mensaje "Tu mesa queda confirmada con un depósito de X€ que se descuenta del total al llegar" es percibido de forma muy positiva por los comensales que organizan eventos.
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Sección 6: Precio -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Cuánto cuesta tener un sistema de reservas propio para un restaurante?
+        </h2>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          El coste es fijo y predecible: sin comisiones por comensal, sin sorpresas al final de mes. Para un restaurante, el plan específico es el <a href="/precios" class="text-blue-600 hover:underline font-medium">plan Restaurante desde 24€/mes</a>, que incluye gestión de mesas, turnos, aforos y lista de espera.
+        </p>
+
+        <div class="grid sm:grid-cols-3 gap-4 mb-8">
+          <div class="bg-white border-2 border-blue-600 rounded-2xl p-6 shadow-sm">
+            <p class="text-sm font-medium text-blue-600 mb-1">Plan Restaurante</p>
+            <p class="text-3xl font-bold text-gray-900 mb-1">24€<span class="text-base font-normal text-gray-500">/mes</span></p>
+            <p class="text-xs text-gray-500 mb-4">Precio fijo, sin comisiones por comensal</p>
+            <ul class="space-y-2 text-sm text-gray-700">
+              {[
+                'Turnos de comida y cena',
+                'Aforos por turno y zona',
+                'Lista de espera digital',
+                'Depósito para grupos',
+                'Recordatorios email/SMS',
+                'Historial de comensales',
+                'Soporte en español'
+              ].map(f => (
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <p class="text-sm font-medium text-gray-600 mb-1">Add-on WhatsApp Business</p>
+            <p class="text-3xl font-bold text-gray-900 mb-1">+8€<span class="text-base font-normal text-gray-500">/mes</span></p>
+            <p class="text-xs text-gray-500 mb-4">Opcional, se añade al plan Restaurante</p>
+            <ul class="space-y-2 text-sm text-gray-700">
+              {[
+                'Reservas desde WhatsApp',
+                'Recordatorios por WhatsApp',
+                'Avisos de lista de espera',
+                'Confirmaciones automáticas',
+                'API oficial de Meta'
+              ].map(f => (
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+            <div>
+              <p class="text-sm font-medium text-gray-600 mb-1">Total máximo para restaurante</p>
+              <p class="text-3xl font-bold text-gray-900 mb-1">32€<span class="text-base font-normal text-gray-500">/mes</span></p>
+              <p class="text-xs text-gray-500 mb-4">Plan completo con WhatsApp</p>
+              <p class="text-sm text-gray-600">Sin comisiones por comensal. Sin límite de reservas ni de mesas. Sin permanencia.</p>
+            </div>
+            <p class="text-xs text-gray-500 mt-4">A 100 comensales/mes con TheFork (est. 1,75€/comensal), pagas ~175€. Con Agenda de Reservas pagas 24€. El ahorro anual supera los 1.800€.</p>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border-l-4 border-blue-600 rounded-r-xl p-5">
+          <p class="text-blue-900 font-medium text-sm">
+            Todos los planes incluyen 14 días de prueba gratuita sin tarjeta. Puedes configurar tus turnos, publicar el enlace de reserva y recibir tus primeras reservas antes de decidir si continúas.
+          </p>
+        </div>
+      </section>
+
+      <!-- Checklist de implementación -->
+      <section class="mb-16">
+        <div class="bg-gray-900 rounded-2xl p-8 text-white">
+          <h2 class="text-xl font-bold mb-6">Lista de comprobación: cómo implantar tu agenda propia en 7 pasos</h2>
+          <ul class="space-y-3">
+            {[
+              'Regístrate en Agenda de Reservas (prueba gratis 14 días, sin tarjeta)',
+              'Configura los turnos de comida y cena con sus aforos máximos',
+              'Define las franjas horarias de entrada dentro de cada turno',
+              'Activa la lista de espera digital para turnos que se llenen',
+              'Configura el depósito automático para grupos de 8 o más comensales',
+              'Publica el enlace de reserva en tu web, Instagram y Google Business',
+              'Activa los recordatorios automáticos por email (y WhatsApp si tienes el add-on)'
+            ].map((step, i) => (
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 border-2 border-blue-400 rounded mt-0.5" aria-hidden="true"></span>
+                <span class="text-gray-200 leading-snug">
+                  <span class="text-blue-400 font-semibold mr-1">{i + 1}.</span>
+                  {step}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
+          Preguntas frecuentes sobre la gestión de turnos en restaurantes
+        </h2>
+
+        <div class="space-y-4">
+          {[
+            {
+              q: '¿Puedo tener turnos de comida y cena con aforos distintos?',
+              a: 'Sí. En el plan Restaurante de Agenda de Reservas cada turno tiene su propio aforo independiente. El turno de comida puede tener 60 comensales y el de cena 80, por ejemplo, sin que un turno afecte al otro. También puedes tener aforos distintos para días entre semana y fin de semana.'
+            },
+            {
+              q: '¿Cómo aviso a los comensales con recordatorio automático?',
+              a: 'El sistema envía recordatorios por email automáticamente sin configuración adicional. Con el add-on de WhatsApp Business API (+8€/mes), los recordatorios se envían también por WhatsApp, que tiene tasas de apertura superiores al 90%. Puedes elegir el momento del envío: 24 horas antes, 2 horas antes o ambos. El comensal puede confirmar o cancelar directamente desde el mensaje de WhatsApp.'
+            },
+            {
+              q: '¿Puedo cobrar depósito solo para grupos grandes?',
+              a: 'Sí, es una de las configuraciones más habituales. Defines el umbral de comensales a partir del cual se activa el depósito, por ejemplo 8 personas, y el importe (fijo por reserva o por comensal). Para reservas por debajo de ese umbral no se aplica ningún cargo. El comensal abona el depósito con tarjeta al confirmar la reserva online.'
+            },
+            {
+              q: '¿El sistema funciona para terrazas con aforo separado?',
+              a: 'Sí. Puedes crear zonas diferenciadas como sala interior, terraza o privado, cada una con su propio aforo. Dentro de cada turno, el sistema gestiona el cupo por zona de forma independiente. El comensal puede elegir zona al reservar si así lo configuras, o puedes dejar la asignación de mesa a criterio del restaurante.'
+            }
+          ].map((faq) => (
+            <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden">
+              <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer font-semibold text-gray-900 list-none hover:bg-gray-50 transition-colors">
+                <span>{faq.q}</span>
+                <svg class="w-5 h-5 text-gray-500 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-gray-700 leading-relaxed border-t border-gray-100 pt-4">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Recursos relacionados -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Recursos relacionados para restaurantes</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a href="/restaurantes" class="group block bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all">
+            <p class="text-xs text-blue-600 font-medium mb-1 uppercase tracking-wide">Página de sector</p>
+            <p class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">Software de reservas para restaurantes sin comisiones</p>
+            <p class="text-sm text-gray-600 mt-1">Todo lo que incluye el plan Restaurante: mesas, turnos, aforos y más.</p>
+          </a>
+          <a href="/vs/thefork" class="group block bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all">
+            <p class="text-xs text-blue-600 font-medium mb-1 uppercase tracking-wide">Comparativa</p>
+            <p class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">Comparativa TheFork vs Agenda de Reservas</p>
+            <p class="text-sm text-gray-600 mt-1">Análisis detallado de funciones, costes y control de datos.</p>
+          </a>
+          <a href="/vs/restoo" class="group block bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all">
+            <p class="text-xs text-blue-600 font-medium mb-1 uppercase tracking-wide">Comparativa</p>
+            <p class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">Comparativa con Restoo</p>
+            <p class="text-sm text-gray-600 mt-1">Dos sistemas especializados en hostelería, comparados función a función.</p>
+          </a>
+          <a href="/guias/reducir-ausencias" class="group block bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all">
+            <p class="text-xs text-blue-600 font-medium mb-1 uppercase tracking-wide">Guía</p>
+            <p class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">Guía para reducir ausencias y no-shows</p>
+            <p class="text-sm text-gray-600 mt-1">Estrategias probadas para minimizar las mesas vacías por cancelaciones tardías.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- CTA final -->
+      <section class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-8 md:p-12 text-white text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">
+          Tu restaurante con reservas directas desde hoy
+        </h2>
+        <p class="text-blue-100 mb-8 max-w-xl mx-auto leading-relaxed">
+          14 días de prueba gratuita. Sin tarjeta de crédito. Turnos, aforos y lista de espera configurados en menos de una hora con soporte en español incluido.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="https://app.agendadereservas.com"
+            class="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-xl hover:bg-blue-50 transition-colors shadow-sm"
+          >
+            Empieza gratis — 14 días sin tarjeta
+          </a>
+          <a
+            href="/precios"
+            class="inline-block bg-white/10 text-white font-medium px-8 py-4 rounded-xl border border-white/30 hover:bg-white/20 transition-colors"
+          >
+            Ver plan Restaurante
+          </a>
+        </div>
+        <p class="text-blue-200 text-sm mt-6">
+          Plan Restaurante 24€/mes · Sin comisiones · Soporte en español · RGPD europeo
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
