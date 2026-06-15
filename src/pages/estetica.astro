@@ -11,6 +11,7 @@ import CTA from '../components/CTA.astro';
 
 import content from '../content/sectors/estetica.json';
 import DynamicPricing from '../components/DynamicPricing.astro';
+import DashboardMockup from '../components/DashboardMockup.astro';
 
 const { pageTitle, pageDescription, aiDescription, heroTitle, heroSubtitle, features, testimonials, faqs } = content;
 
@@ -48,7 +49,20 @@ const schema = {
       secondaryCtaHref="#producto"
     />
 
-    <Features 
+    <!-- Vista previa del panel real (datos de ejemplo) -->
+    <section class="section-padding bg-white border-b border-gray-100">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3">Así gestionas tu centro de estética</h2>
+          <p class="text-gray-600">Cabinas, bonos y recordatorios de tratamientos en un solo panel. Datos de ejemplo.</p>
+        </div>
+        <div class="max-w-3xl mx-auto">
+          <DashboardMockup sector="estetica" />
+        </div>
+      </div>
+    </section>
+
+    <Features
       title="¿Qué conseguirás con Agenda de Reservas?"
       subtitle="Funcionalidades diseñadas específicamente para centros de estética, spas y bienestar."
       features={features}
@@ -128,8 +142,8 @@ const schema = {
     />
 
     <!-- Recursos para estética — hub-and-spoke -->
-    <section class="section-apple bg-gray-50 border-t border-gray-100">
-      <div class="container-apple">
+    <section class="section-padding bg-gray-50 border-t border-gray-100">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-2 text-center">Recursos para centros de estética y spas</h2>
         <p class="text-center text-gray-500 mb-10">Guías y comparativas para gestionar mejor tu centro.</p>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
