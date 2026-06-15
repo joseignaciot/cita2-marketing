@@ -30,9 +30,7 @@ const {
 const siteUrl = 'https://agendadereservas.com';
 const fullCanonical = canonicalUrl || `${siteUrl}${Astro.url.pathname}`;
 
-// Analytics config from environment
-const GA_ID = import.meta.env.PUBLIC_GA_ID || 'GA_MEASUREMENT_ID';
-const PLAUSIBLE_DOMAIN = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN || '';
+// Analytics: GA4 se gestiona desde GTM (GTM-NPTDPRTF)
 
 // Default WebSite schema
 const websiteSchema = {
@@ -103,35 +101,7 @@ const finalSchema = schema ? [websiteSchema, schema] : websiteSchema;
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify(finalSchema)} />
   
-  <!-- Google Analytics 4 with Partytown -->
-  {GA_ID && GA_ID !== 'GA_MEASUREMENT_ID' && (
-    <>
-      <script type="text/partytown" src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
-      <script type="text/partytown" define:vars={{ GA_ID }}>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', GA_ID, {
-          'send_page_view': true,
-          'anonymize_ip': true,
-          'allow_google_signals': false,
-          'allow_ad_personalization_signals': false
-        });
-      </script>
-    </>
-  )}
-  
-  <!-- Plausible Analytics (privacy-friendly alternative) -->
-  {PLAUSIBLE_DOMAIN && (
-    <script 
-      type="text/partytown" 
-      defer 
-      data-domain={PLAUSIBLE_DOMAIN} 
-      src="https://plausible.io/js/script.js"
-    ></script>
-  )}
-  <!-- Meta Pixel: desactivado hasta configurar un Pixel ID real en GTM -->
-  <!-- Para activar: configurar NEXT_PUBLIC_FB_PIXEL_ID en variables de entorno -->
+  <!-- Meta Pixel: configurar en GTM cuando se tenga Pixel ID -->
 
     <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
