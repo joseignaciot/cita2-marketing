@@ -69,7 +69,7 @@
       "id": "comunicaciones",
       "icon": "💬",
       "name": "Comunicaciones Avanzadas",
-      "price": 39,
+      "price": 8,
       "description": "WhatsApp Business API, SMS, hub de mensajes, recordatorios automáticos, encuestas post-cita e informes diarios.",
       "highlights": [
         "WhatsApp Business API",
@@ -84,7 +84,7 @@
       "id": "pagos",
       "icon": "💳",
       "name": "Cobro Online",
-      "price": 12,
+      "price": 8,
       "description": "Stripe integrado, depósitos y cobros parciales, enlace de pago, historial de transacciones y gestión de métodos de pago.",
       "highlights": [
         "Pagos con Stripe",

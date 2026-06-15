@@ -96,13 +96,6 @@ const schema = {
         priceValidUntil: '2026-12-31',
         availability: 'https://schema.org/InStock'
       },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.8',
-        ratingCount: '523',
-        bestRating: '5',
-        worstRating: '1'
-      },
       review: home.testimonials.map(t => ({
         '@type': 'Review',
         author: { '@type': 'Person', name: t.author },
@@ -157,8 +150,7 @@ const schema = {
   <AdvancedSEO type="service" data={{
     name: 'Agenda de Reservas - Software de Gestión de Citas',
     description: description,
-    url: '/',
-    rating: { value: 4.9, count: 523 }
+    url: '/'
   }} />
   
   <Header />
