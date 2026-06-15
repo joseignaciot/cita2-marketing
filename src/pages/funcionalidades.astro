@@ -4,6 +4,8 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import DynamicPricing from '../components/DynamicPricing.astro';
 
+const canonicalUrl = 'https://agendadereservas.com/funcionalidades/';
+
 const pageTitle = 'Funcionalidades - Agenda de Reservas | Todo lo que incluye';
 const pageDescription = 'Descubre todas las funcionalidades de Agenda de Reservas: reservas online, recordatorios automáticos, CRM, pagos online, WhatsApp Business, estadísticas y mucho más.';
 
@@ -91,7 +93,7 @@ const featureCategories = [
 ];
 ---
 
-<Layout title={pageTitle} description={pageDescription} schema={schema}>
+<Layout title={pageTitle} description={pageDescription} schema={schema} canonicalUrl={canonicalUrl}>
   <Header />
   
   <main class="pt-24">

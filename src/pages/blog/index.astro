@@ -10,12 +10,15 @@ const featuredPost = publishedPosts.find(p => p.data.featured);
 const regularPosts = publishedPosts.filter(p => p !== featuredPost);
 
 const categories = [...new Set(posts.map(p => p.data.category))];
+
+const canonicalUrl = 'https://agendadereservas.com/blog/';
 ---
 
-<Layout 
+<Layout
   title="Blog - Agenda de Reservas | Recursos para Negocios de Servicios"
   description="Artículos, guías y recursos para gestionar tu peluquería, restaurante o negocio de servicios más eficientemente."
   ogImage="/og-blog.jpg"
+  canonicalUrl={canonicalUrl}
 >
   <Header />
   

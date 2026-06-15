@@ -16,24 +16,36 @@ const canonicalUrl = 'https://agendadereservas.com/peluquerias/';
 
 const schema = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'Agenda de Reservas para Peluquerías',
-  applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web',
-  offers: {
-    '@type': 'Offer',
-    price: '19',
-    priceCurrency: 'EUR',
-    priceValidUntil: '2026-12-31',
-    description: '19€/mes, todo incluido. Sin comisiones ni límites.',
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    ratingCount: '200',
-  },
-  description: pageDescription,
-  featureList: features.map((f: any) => f.title),
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Agenda de Reservas para Peluquerías',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      offers: {
+        '@type': 'Offer',
+        price: '19',
+        priceCurrency: 'EUR',
+        priceValidUntil: '2026-12-31',
+        description: '19€/mes, todo incluido. Sin comisiones ni límites.',
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.8',
+        ratingCount: '200',
+      },
+      description: pageDescription,
+      featureList: features.map((f: any) => f.title),
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq: { question: string; answer: string }) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer }
+      }))
+    }
+  ]
 };
 ---
 

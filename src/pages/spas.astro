@@ -13,27 +13,41 @@ import content from '../content/sectors/spas.json';
 
 const { pageTitle, pageDescription, aiDescription, heroTitle, heroSubtitle, features, testimonials, faqs } = content;
 
+const canonicalUrl = 'https://agendadereservas.com/spas/';
+
 const schema = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'Agenda de Reservas - Software para Spas',
-  applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web',
-  offers: {
-    '@type': 'Offer',
-    price: '19',
-    priceCurrency: 'EUR',
-    priceValidUntil: '2026-12-31'
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '60'
-  }
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Agenda de Reservas - Software para Spas',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      offers: {
+        '@type': 'Offer',
+        price: '19',
+        priceCurrency: 'EUR',
+        priceValidUntil: '2026-12-31'
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '60'
+      }
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq: { question: string; answer: string }) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer }
+      }))
+    }
+  ]
 };
 ---
 
-<Layout title={pageTitle} description={pageDescription} aiDescription={aiDescription} schema={schema}>
+<Layout title={pageTitle} description={pageDescription} aiDescription={aiDescription} canonicalUrl={canonicalUrl} schema={schema}>
   <Header />
   
   <main>

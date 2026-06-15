@@ -14,13 +14,14 @@ const saving3 = agendaProPerSeat * 3 - svcPrice;
 const saving5 = agendaProPerSeat * 5 - svcPrice;
 const savingAnnual3 = saving3 * 12;
 
-const pageTitle = 'Agenda de Reservas vs AgendaPro: Comparativa Detallada 2025';
-const pageDescription = 'Análisis completo y honesto entre Agenda de Reservas y AgendaPro. Precios reales, funcionalidades comparadas, ventajas y desventajas. Elige el mejor software para tu negocio.';
+const pageTitle = 'AgendaPro vs Agenda de Reservas (2026) | Sin pago por puesto';
+const pageDescription = 'AgendaPro cobra desde 49€/puesto. Agenda de Reservas: 19€/mes para todo el equipo, con WhatsApp incluido. Comparativa con precios y funciones reales 2026.';
+const canonicalUrl = 'https://agendadereservas.com/vs/agendapro/';
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
-  headline: 'Agenda de Reservas vs AgendaPro: Comparativa Detallada 2025',
+  headline: 'AgendaPro vs Agenda de Reservas (2026) | Sin pago por puesto',
   description: 'Análisis completo y honesto entre Agenda de Reservas y AgendaPro',
   author: {
     '@type': 'Organization',
@@ -34,8 +35,8 @@ const schema = {
       url: 'https://agendadereservas.com/logo.png'
     }
   },
-  datePublished: '2025-03-20',
-  dateModified: '2025-03-20'
+  datePublished: '2026-01-01',
+  dateModified: '2026-06-15'
 };
 
 const comparisonData = [
@@ -100,9 +101,10 @@ comparisonData.forEach(cat => {
 });
 ---
 
-<Layout 
+<Layout
   title={pageTitle}
   description={pageDescription}
+  canonicalUrl={canonicalUrl}
   schema={schema}
 >
   <Header />

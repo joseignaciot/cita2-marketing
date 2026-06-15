@@ -4,8 +4,19 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import DynamicPricing from '../../components/DynamicPricing.astro';
 
-const pageTitle = 'Agenda de Reservas vs Bókun 2026 — Comparativa real para empresas de turismo en España';
-const pageDescription = 'Comparativa Bókun vs Agenda de Reservas para tours y actividades turísticas. Bókun cobra 49 USD/mes + 1,5% por reserva. Nosotros: 29€ fijo, sin comisiones. Soporte en español.';
+const pageTitle = 'Bókun vs Agenda de Reservas (2026) | Turismo sin comisión';
+const pageDescription = 'Bókun cobra 49 USD/mes + 1,5% por reserva. Agenda de Reservas: 29€/mes fijo, 0 comisiones, en euros. Soporte en español para tours y actividades.';
+
+const canonicalUrl = 'https://agendadereservas.com/vs/bokun/';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: pageTitle,
+  datePublished: '2026-01-01',
+  dateModified: '2026-06-15',
+  author: { '@type': 'Organization', name: 'Agenda de Reservas', url: 'https://agendadereservas.com' },
+  publisher: { '@type': 'Organization', name: 'Agenda de Reservas', logo: { '@type': 'ImageObject', url: 'https://agendadereservas.com/favicon.svg' } },
+};
 
 const features = [
   { category: 'Precios', rows: [
@@ -48,7 +59,7 @@ const wins = { ours: 0, theirs: 0, tie: 0 };
 features.forEach(c => c.rows.forEach(r => wins[r.winner as keyof typeof wins]++));
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
   <Header />
   <main class="pt-24 bg-white">
 

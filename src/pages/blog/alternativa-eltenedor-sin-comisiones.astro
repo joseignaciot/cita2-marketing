@@ -17,7 +17,9 @@ try {
   }
 } catch { /* fallback */ }
 
-const pageTitle = 'Alternativa a TheFork/ElTenedor: Reservas directas sin intermediarios';
+const canonicalUrl = 'https://agendadereservas.com/blog/alternativa-eltenedor-sin-comisiones/';
+
+const pageTitle = 'Alternativa a TheFork/ElTenedor: Reservas sin comisiones (2026)';
 const pageDescription = 'TheFork cobra ~1€ por comensal en cada reserva. Con un sistema propio pagas una cuota fija mensual y los datos de tus clientes son tuyos. Cómo hacer la transición.';
 
 const breadcrumbItems = [
@@ -76,7 +78,7 @@ const faqs = [
 ];
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} ogType="article">
   <AdvancedSEO type="article" data={articleData} />
   <Header />
   

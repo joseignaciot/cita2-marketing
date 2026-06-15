@@ -23,6 +23,8 @@ try {
   }
 } catch { /* fallback */ }
 
+const canonicalUrl = 'https://agendadereservas.com/blog/software-agenda-estetica-comparativa/';
+
 const pageTitle = 'Software de Agenda para Estética: Comparativa 2026 + Precios';
 const pageDescription = 'Análisis completo de los mejores software de agenda para centros de estética. Comparamos funciones, precios y valoraciones. Agenda de Reservas, AgendaPro, Treatwell y más.';
 
@@ -98,7 +100,7 @@ const faqs = [
 ];
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} ogType="article">
   <AdvancedSEO type="article" data={articleData} />
   <Header />
   

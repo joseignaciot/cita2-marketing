@@ -5,16 +5,31 @@ import Footer from '../../components/Footer.astro';
 
 const pageTitle = 'Guía Gratis: Cómo Reducir Ausencias en tu Negocio';
 const pageDescription = 'Descarga gratis nuestra guía con 7 estrategias probadas para reducir las citas perdidas hasta un 70%. PDF gratuito, sin spam.';
+const canonicalUrl = 'https://agendadereservas.com/guias/reducir-ausencias/';
 
 const schema = {
   '@context': 'https://schema.org',
-  '@type': 'DigitalDocument',
-  name: 'Guía: Cómo Reducir Ausencias en tu Negocio',
-  description: '7 estrategias probadas para reducir citas perdidas hasta un 70%'
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://agendadereservas.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Guías', item: 'https://agendadereservas.com/guias/' },
+        { '@type': 'ListItem', position: 3, name: 'Reducir ausencias', item: canonicalUrl },
+      ],
+    },
+    {
+      '@type': 'Article',
+      headline: 'Cómo reducir ausencias hasta un 70%',
+      datePublished: '2026-01-01',
+      dateModified: '2026-06-15',
+      author: { '@type': 'Organization', name: 'Agenda de Reservas', url: 'https://agendadereservas.com' },
+    },
+  ],
 };
 ---
 
-<Layout title={pageTitle} description={pageDescription} schema={schema}>
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
   <Header />
   
   <main class="pt-24">

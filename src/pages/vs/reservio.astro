@@ -11,17 +11,19 @@ const svcPrice = svcPlan?.monthly ?? 19;
 const reservioProPrice = 63; // competidor — verificado reservio.com/es abril 2026
 const savingAnnual = (reservioProPrice - svcPrice) * 12;
 
-const pageTitle = 'Agenda de Reservas vs Reservio: Comparativa Detallada 2025';
-const pageDescription = 'Análisis completo entre Agenda de Reservas y Reservio. Precios, funcionalidades, soporte en español y más. Descubre cuál es mejor para tu negocio.';
+const pageTitle = 'Reservio vs Agenda de Reservas (2026) | Soporte local en español';
+const pageDescription = 'Reservio (alemán) vs Agenda de Reservas (española). WhatsApp integrado, soporte en español nativo y 19€/mes para todo tu equipo. Precios reales 2026.';
+const canonicalUrl = 'https://agendadereservas.com/vs/reservio/';
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
-  headline: 'Agenda de Reservas vs Reservio: Comparativa Detallada 2025',
+  headline: 'Reservio vs Agenda de Reservas (2026) | Soporte local en español',
   description: 'Análisis completo entre Agenda de Reservas y Reservio',
   author: { '@type': 'Organization', name: 'Agenda de Reservas' },
   publisher: { '@type': 'Organization', name: 'Agenda de Reservas' },
-  datePublished: '2025-03-20'
+  datePublished: '2026-01-01',
+  dateModified: '2026-06-15'
 };
 
 const comparisonRows = [
@@ -42,7 +44,7 @@ const comparisonRows = [
 ];
 ---
 
-<Layout title={pageTitle} description={pageDescription} schema={schema}>
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
   <Header />
   
   <main class="pt-24">

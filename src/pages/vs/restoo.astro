@@ -7,6 +7,17 @@ import DynamicPricing from '../../components/DynamicPricing.astro';
 const pageTitle = 'Agenda de Reservas vs Restoo 2026 — Comparativa para restaurantes en España';
 const pageDescription = 'Comparativa Restoo vs Agenda de Reservas. Ambos sin comisiones, pero Agenda incluye WhatsApp, turismo y multivertical desde el mismo precio. ¿Cuál elegir?';
 
+const canonicalUrl = 'https://agendadereservas.com/vs/restoo/';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: pageTitle,
+  datePublished: '2026-01-01',
+  dateModified: '2026-06-15',
+  author: { '@type': 'Organization', name: 'Agenda de Reservas', url: 'https://agendadereservas.com' },
+  publisher: { '@type': 'Organization', name: 'Agenda de Reservas', logo: { '@type': 'ImageObject', url: 'https://agendadereservas.com/favicon.svg' } },
+};
+
 const features = [
   { category: 'Precios', rows: [
     { name: 'Plan básico mensual',          ours: '24€/mes',                    theirs: '39€/mes (Mini)',       winner: 'ours'   },
@@ -44,7 +55,7 @@ const wins = { ours: 0, theirs: 0, tie: 0 };
 features.forEach(c => c.rows.forEach(r => wins[r.winner as keyof typeof wins]++));
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
   <Header />
   <main class="pt-24 bg-white">
 

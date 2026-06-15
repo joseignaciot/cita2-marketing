@@ -13,16 +13,18 @@ export interface Props {
   canonicalUrl?: string;
   noindex?: boolean;
   schema?: Record<string, any>;
+  ogType?: string;
 }
 
-const { 
-  title, 
-  description, 
+const {
+  title,
+  description,
   aiDescription,
   ogImage = '/og-image.jpg',
   canonicalUrl,
   noindex = false,
-  schema
+  schema,
+  ogType = 'website'
 } = Astro.props;
 
 const siteUrl = 'https://agendadereservas.com';
@@ -36,14 +38,10 @@ const PLAUSIBLE_DOMAIN = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN || '';
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': 'https://agendadereservas.com/#website',
   name: 'Agenda de Reservas',
   url: siteUrl,
   description: 'Software de gestión de citas y reservas para peluquerías, estética, restaurantes y turismo. Sin comisiones, setup en 2 minutos.',
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: `${siteUrl}/search?q={search_term_string}`,
-    'query-input': 'required name=search_term_string'
-  }
 };
 
 const finalSchema = schema ? [websiteSchema, schema] : websiteSchema;
@@ -74,7 +72,7 @@ const finalSchema = schema ? [websiteSchema, schema] : websiteSchema;
   )}
   
   <!-- Open Graph -->
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={ogType} />
   <meta property="og:site_name" content="Agenda de Reservas" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />

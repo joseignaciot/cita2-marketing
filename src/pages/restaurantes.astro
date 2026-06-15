@@ -15,6 +15,8 @@ import '../styles/apple-design.css';
 import content from '../content/sectors/restaurantes.json';
 const { pageTitle, pageDescription, aiDescription, heroTitle, heroSubtitle, features: restaurantFeatures, testimonials: restaurantTestimonials, faqs: restaurantFAQs } = content;
 
+const canonicalUrl = 'https://agendadereservas.com/restaurantes/';
+
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -76,10 +78,11 @@ const schema = {
 };
 ---
 
-<Layout 
+<Layout
   title={pageTitle}
   description={pageDescription}
   aiDescription={aiDescription}
+  canonicalUrl={canonicalUrl}
   schema={schema}
 >
   <Header />

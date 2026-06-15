@@ -15,31 +15,46 @@ import '../styles/apple-design.css';
 import content from '../content/sectors/turismo.json';
 const { pageTitle, pageDescription, aiDescription, heroTitle, heroSubtitle, features: tourismFeatures, testimonials: tourismTestimonials, faqs: tourismFAQs } = content;
 
+const canonicalUrl = 'https://agendadereservas.com/turismo/';
+
 const schema = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'Agenda de Reservas - Software para Turismo',
-  applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web',
-  offers: {
-    '@type': 'Offer',
-    price: '29',
-    priceCurrency: 'EUR',
-    priceValidUntil: '2026-12-31'
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '85'
-  }
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Agenda de Reservas - Software para Turismo',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      offers: {
+        '@type': 'Offer',
+        price: '29',
+        priceCurrency: 'EUR',
+        priceValidUntil: '2026-12-31'
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '85'
+      }
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: tourismFAQs.map((faq: { question: string; answer: string }) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer }
+      }))
+    }
+  ]
 };
 
 ---
 
-<Layout 
+<Layout
   title={pageTitle}
   description={pageDescription}
   aiDescription={aiDescription}
+  canonicalUrl={canonicalUrl}
   schema={schema}
 >
   <Header />

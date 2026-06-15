@@ -6,6 +6,8 @@ import AdvancedSEO from '../../components/AdvancedSEO.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import DynamicPricing from '../../components/DynamicPricing.astro';
 
+const canonicalUrl = 'https://agendadereservas.com/blog/como-aumentar-reservas-restaurante/';
+
 const pageTitle = 'Cómo Aumentar Reservas en Restaurante: 8 Estrategias Comprobadas';
 const pageDescription = 'Guía práctica para aumentar reservas en tu restaurante sin depender de ElTenedor. Estrategias de marketing digital, fidelización y optimización que funcionan en 2026.';
 
@@ -122,7 +124,7 @@ const faqs = [
 ];
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} ogType="article">
   <AdvancedSEO type="article" data={articleData} />
   <Header />
   

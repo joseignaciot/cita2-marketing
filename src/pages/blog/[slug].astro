@@ -19,12 +19,30 @@ const allPosts = await getCollection('posts');
 const relatedPosts = allPosts
   .filter(p => p.id !== post.id && p.data.category === post.data.category)
   .slice(0, 2);
+
+const canonicalUrl = `https://agendadereservas.com/blog/${post.id}/`;
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  datePublished: post.data.pubDate?.toISOString() ?? '2026-01-01',
+  dateModified: (post.data.updatedDate ?? post.data.pubDate)?.toISOString() ?? '2026-06-15',
+  author: { '@type': 'Organization', name: 'Agenda de Reservas', url: 'https://agendadereservas.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Agenda de Reservas',
+    logo: { '@type': 'ImageObject', url: 'https://agendadereservas.com/favicon.svg' }
+  },
+};
 ---
 
-<Layout 
+<Layout
   title={`${post.data.title} - Agenda de Reservas Blog`}
   description={post.data.description}
   ogImage={post.data.image || "/og-blog.jpg"}
+  canonicalUrl={canonicalUrl}
+  schema={articleSchema}
+  ogType="article"
 >
   <Header />
   
