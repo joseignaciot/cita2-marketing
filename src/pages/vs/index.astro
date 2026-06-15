@@ -1,0 +1,183 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import '../../styles/apple-design.css';
+
+const pageTitle = 'Comparativas de software de reservas | Agenda de Reservas vs alternativas';
+const pageDescription = 'Comparativas honestas de Agenda de Reservas frente a Booksy, Treatwell, TheFork, Fresha, AgendaPro, Calendly y más. Sin comisiones ocultas: precio real, funciones reales.';
+const canonicalUrl = 'https://agendadereservas.com/vs/';
+
+const categorias = [
+  {
+    nombre: 'Marketplaces (cobran comisión por reserva)',
+    descripcion: 'Plataformas que actúan de intermediario: tus clientes pasan a ser suyos y pagas por cada reserva o comensal.',
+    items: [
+      { nombre: 'Treatwell', href: '/vs/treatwell', desc: 'Cobra comisión por cada reserva. Tus clientes, en su base de datos.' },
+      { nombre: 'Fresha', href: '/vs/fresha', desc: 'Dice ser gratis pero cobra hasta un 20% por cliente nuevo del marketplace.' },
+      { nombre: 'TheFork', href: '/vs/thefork', desc: '1-2€ por comensal en restaurantes. Hasta 300-500€/mes en comisiones.' },
+      { nombre: 'Booksy', href: '/vs/booksy', desc: 'Precio por empleado: 20-35€ por profesional cada mes.' },
+      { nombre: 'Restoo', href: '/vs/restoo', desc: 'Alternativa sin comisiones para restaurantes, comparamos funciones y precio.' },
+    ],
+  },
+  {
+    nombre: 'Software de gestión (competidores directos)',
+    descripcion: 'Herramientas SaaS de pago mensual fijo, como Agenda de Reservas. Comparamos precio, soporte en español y funciones clave.',
+    items: [
+      { nombre: 'AgendaPro', href: '/vs/agendapro', desc: 'Desde 49€/mes. Sin WhatsApp nativo ni preset sectorial rápido.' },
+      { nombre: 'Reservio', href: '/vs/reservio', desc: 'Desde 31€/mes. Soporte limitado en español y sin integración WhatsApp.' },
+      { nombre: 'Koibox', href: '/vs/koibox', desc: 'Desde 25€/mes para peluquerías. Sin prueba gratuita real.' },
+    ],
+  },
+  {
+    nombre: 'Herramientas B2B e internacionales',
+    descripcion: 'Diseñadas para el mercado anglosajón o para reuniones corporativas. Analizamos qué les falta para negocios de servicios en España.',
+    items: [
+      { nombre: 'Calendly', href: '/vs/calendly', desc: 'Diseñado para reuniones B2B, no para peluquerías ni clínicas.' },
+      { nombre: 'SimplyBook', href: '/vs/simplybook', desc: 'Sin soporte nativo en español ni RGPD simplificado para España.' },
+      { nombre: 'Acuity Scheduling', href: '/vs/acuity', desc: 'Datos en EE.UU. y sin soporte en español.' },
+      { nombre: 'Bókun', href: '/vs/bokun', desc: '49 USD/mes + 1,5% por reserva. Para turismo activo y tours.' },
+    ],
+  },
+];
+
+const totalItems = categorias.reduce((acc, c) => acc + c.items.length, 0);
+
+let position = 0;
+const itemListElement = categorias.flatMap(cat =>
+  cat.items.map(item => {
+    position += 1;
+    return {
+      '@type': 'ListItem',
+      position,
+      url: `https://agendadereservas.com${item.href}`,
+      name: `Agenda de Reservas vs ${item.nombre}`,
+    };
+  })
+);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://agendadereservas.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Comparativas', item: canonicalUrl },
+      ],
+    },
+    {
+      '@type': 'ItemList',
+      name: 'Comparativas de software de reservas',
+      description: pageDescription,
+      numberOfItems: totalItems,
+      itemListElement,
+    },
+  ],
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
+  <Header />
+
+  <main>
+    <!-- Breadcrumb -->
+    <nav aria-label="Ruta de navegación" class="bg-gray-50 border-b border-gray-100">
+      <div class="container-apple py-3">
+        <ol class="flex items-center gap-2 text-sm text-gray-500">
+          <li><a href="/" class="hover:text-blue-600">Inicio</a></li>
+          <li class="text-gray-300">/</li>
+          <li class="text-gray-700 font-medium">Comparativas</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple text-center max-w-3xl mx-auto">
+        <h1 class="text-headline text-gray-900 mb-4">
+          Comparativas honestas de software de reservas
+        </h1>
+        <p class="text-body text-lg text-gray-600">
+          Analizamos cada alternativa con el mismo criterio: precio real (con comisiones incluidas), soporte en español y si tus clientes siguen siendo tuyos. Agenda de Reservas cobra una cuota mensual fija desde 19&nbsp;€/mes, sin comisión por reserva.
+        </p>
+      </div>
+    </section>
+
+    <!-- Comparativas por categoría -->
+    <section class="section-apple bg-gray-50">
+      <div class="container-apple max-w-4xl mx-auto">
+        <div class="space-y-14">
+          {categorias.map(cat => (
+            <div>
+              <h2 class="text-xl font-bold text-gray-900 mb-2 pb-3 border-b border-gray-200">
+                {cat.nombre}
+              </h2>
+              <p class="text-sm text-gray-500 mb-6">{cat.descripcion}</p>
+              <div class="grid sm:grid-cols-2 gap-4">
+                {cat.items.map(item => (
+                  <a
+                    href={item.href}
+                    class="group block bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all"
+                  >
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors leading-snug mb-2">
+                      Agenda de Reservas vs {item.nombre}
+                    </h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">{item.desc}</p>
+                    <p class="text-sm text-blue-600 font-medium group-hover:underline">Leer comparativa &rarr;</p>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Criterios de comparación -->
+    <section class="section-apple bg-white border-t border-gray-100">
+      <div class="container-apple max-w-3xl mx-auto">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 text-center">
+          ¿Cómo hacemos las comparativas?
+        </h2>
+        <p class="text-body text-gray-600 mb-6 text-center">
+          Revisamos precios publicados, condiciones de uso y reseñas verificadas. Cuando el coste depende del volumen (comisiones, precio por empleado), calculamos el coste mensual real para un negocio mediano.
+        </p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+            <p class="font-semibold text-gray-900 mb-1">Precio total real</p>
+            <p class="text-gray-500">Cuota base + comisiones + add-ons obligatorios. Sin letra pequeña.</p>
+          </div>
+          <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+            <p class="font-semibold text-gray-900 mb-1">Soporte en español</p>
+            <p class="text-gray-500">Idioma del panel, ayuda y soporte técnico disponible desde España.</p>
+          </div>
+          <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+            <p class="font-semibold text-gray-900 mb-1">Propiedad de los datos</p>
+            <p class="text-gray-500">Si tus clientes son tuyos o quedan en la base de datos del marketplace.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-apple bg-gray-900">
+      <div class="container-apple text-center">
+        <h2 class="text-headline text-white mb-4">
+          Prueba Agenda de Reservas 14 dias gratis
+        </h2>
+        <p class="text-gray-400 mb-8">
+          Sin tarjeta. Sin comisiones. Desde 19&nbsp;€/mes con soporte en español incluido.
+        </p>
+        <a
+          href="https://app.agendadereservas.com"
+          class="inline-block bg-white text-gray-900 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors"
+        >
+          Empezar gratis ahora
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
