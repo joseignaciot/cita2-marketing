@@ -2,8 +2,54 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /admin/index.html
-
-# No indexar recursos internos de Netlify CMS / Decap CMS
 Disallow: /.netlify/
+
+# ── Bots de búsqueda y citación IA — PERMITIDOS (así aparecemos citados) ──
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ── Bots de entrenamiento IA — PERMITIDOS (aumenta conocimiento de marca) ──
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# ── Bloqueados — scraper abusivo (también bloquear en Cloudflare/WAF) ──
+User-agent: Bytespider
+Disallow: /
 
 Sitemap: https://agendadereservas.com/sitemap-index.xml

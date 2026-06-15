@@ -1,0 +1,610 @@
+
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import DynamicPricing from '../../components/DynamicPricing.astro';
+import '../../styles/apple-design.css';
+import pricingData from '../../content/pricing.json';
+
+// Precios de build-time desde pricing.json — fuente de verdad
+const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
+const svcPrice = svcPlan?.monthly ?? 19;
+const commsAddon = pricingData.addons.find(a => a.id === 'comunicaciones');
+const commsPrice = commsAddon?.price ?? 39;
+const pagosAddon = pricingData.addons.find(a => a.id === 'pagos');
+const pagosPrice = pagosAddon?.price ?? 12;
+
+const pageTitle = 'Alternativa a Fresha sin comisiones | Agenda de Reservas';
+const pageDescription = 'Fresha dice ser gratis pero cobra hasta un 20% por clientes nuevos del marketplace. Con Agenda de Reservas pagas 19€/mes fijo, sin comisiones nunca.';
+const canonicalUrl = 'https://agendadereservas.com/vs/fresha/';
+
+// Tabla de escenarios de coste real de Fresha según % de clientes por marketplace.
+// Fresha publica su software como gratuito para negocios. La comisión (~20%) solo se
+// aplica sobre reservas que llegan a través del marketplace Fresha.com (clientes nuevos).
+// Ticket medio estimado: 35€. 100 reservas/mes. Estas cifras son estimaciones orientativas.
+// Verifica siempre en fresha.com.
+const ticketMedio = 35; // €
+const comisionMarketplace = 0.20; // ~20% sobre reservas del marketplace
+
+// Escenarios: porcentaje de reservas que llegan via Fresha.com
+const escenariosPct = [
+  { label: '0 % vía Fresha.com',  pct: 0,    reservasMkt: 0,   costeFresha: 0 },
+  { label: '25 % vía Fresha.com', pct: 0.25,  reservasMkt: 25,  costeFresha: Math.round(100 * 0.25 * ticketMedio * comisionMarketplace) },
+  { label: '50 % vía Fresha.com', pct: 0.50,  reservasMkt: 50,  costeFresha: Math.round(100 * 0.50 * ticketMedio * comisionMarketplace) },
+];
+
+// Ahorro mensual frente a Agenda de Reservas (solo relevante cuando Fresha > svcPrice)
+const ahorroEscenarios = escenariosPct.map(e => e.costeFresha - svcPrice);
+
+const comparativa = [
+  { feature: 'Precio mensual base',             fresha: 'Gratis (software)',                              agenda: `${svcPrice}€/mes fijo`,                   winner: 'fresha' },
+  { feature: 'Comisión clientes nuevos (marketplace)', fresha: '~20% por reserva vía Fresha.com',         agenda: '0€ — ninguna comisión jamás',             winner: 'agenda' },
+  { feature: 'Coste real con 25 % de reservas vía marketplace', fresha: `~${escenariosPct[1].costeFresha}€/mes estimado`, agenda: `${svcPrice}€/mes fijo`, winner: 'agenda' },
+  { feature: 'Control de datos del cliente',    fresha: '⚠️ Compartidos con la plataforma Fresha',       agenda: '✅ 100% tuyos, exportables CSV',           winner: 'agenda' },
+  { feature: 'Soporte en español',              fresha: '⚠️ Email/chat, principalmente en inglés',       agenda: '✅ Humano, <2h en español',                winner: 'agenda' },
+  { feature: 'RGPD / alojamiento UE',           fresha: '⚠️ Empresa con sede en UK (post-Brexit)',       agenda: '✅ Servidores UE, RGPD conforme',           winner: 'agenda' },
+  { feature: 'WhatsApp Business API',           fresha: '❌ No integrado de forma nativa',               agenda: `✅ Disponible (+${commsPrice}€/mes)`,       winner: 'agenda' },
+  { feature: 'Reservas en tu web propia',       fresha: '⚠️ Widget básico; prioridad al marketplace',   agenda: '✅ Widget en tu web + enlace directo',     winner: 'agenda' },
+  { feature: 'Prueba gratuita',                 fresha: '✅ Gratis sin límite de tiempo (sin marketplace)', agenda: '✅ 14 días sin tarjeta',                 winner: 'empate' },
+  { feature: 'Marketplace de captación',        fresha: '✅ Sí — visibilidad en Fresha.com',             agenda: '❌ No (reservas directas)',                winner: 'fresha' },
+  { feature: 'Gestión de personal/agenda',      fresha: '✅ Completa',                                    agenda: '✅ Completa (multi-staff)',               winner: 'empate' },
+  { feature: 'Pagos online',                    fresha: '✅ Integrado (comisión en marketplace)',         agenda: `✅ Stripe (+${pagosPrice}€/mes)`,         winner: 'empate' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Fresha cobra comisión a las peluquerías?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Fresha no cobra cuota mensual, pero sí aplica una comisión de aproximadamente el 20 % sobre las reservas que llegan a través de su marketplace (Fresha.com). Si todos tus clientes ya te conocen y reservan directamente, el coste es cero. Si dependes del marketplace para conseguir clientes nuevos, esa comisión puede superar con creces los 19 €/mes de Agenda de Reservas. Verifica las condiciones actuales en fresha.com.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Puedo usar Fresha sin el marketplace y sin pagar comisión?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Fresha permite usar su software de gestión de citas de forma gratuita sin activar el marketplace. En ese caso no pagas ninguna comisión. El inconveniente es que tampoco apareces en Fresha.com para captar clientes nuevos. Si ya tienes tu propia base de clientes, Fresha gratuito (sin marketplace) o Agenda de Reservas (19 €/mes fijo, con más funciones y soporte en español) son las alternativas más económicas.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Qué pasa con mis clientes si dejo Fresha?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Los clientes que te llegan a través del marketplace de Fresha.com son usuarios de la plataforma. Al desactivar el marketplace o darte de baja, perderás visibilidad en Fresha.com. Tienes derecho a solicitar la exportación de tus datos de clientes bajo el RGPD. Con Agenda de Reservas, todos los datos son siempre tuyos desde el primer día y puedes exportarlos en formato CSV en cualquier momento.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Agenda de Reservas tiene las mismas funciones que Fresha?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Agenda de Reservas incluye calendario multi-staff, CRM de clientes, página de reservas personalizada bajo tu marca, recordatorios automáticos, estadísticas y pagos online opcionales (Stripe). La diferencia clave es que Agenda de Reservas no es un marketplace: tus clientes reservan directamente contigo, sin comisiones, y con soporte humano en español con respuesta en menos de 2 horas.'
+          }
+        }
+      ]
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: 'https://agendadereservas.com/'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Comparativas',
+          item: 'https://agendadereservas.com/vs/'
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Fresha vs Agenda de Reservas',
+          item: 'https://agendadereservas.com/vs/fresha/'
+        }
+      ]
+    },
+    {
+      '@type': 'Article',
+      headline: pageTitle,
+      description: pageDescription,
+      datePublished: '2026-06-14',
+      dateModified: '2026-06-14',
+      author: {
+        '@type': 'Organization',
+        name: 'Agenda de Reservas',
+        url: 'https://agendadereservas.com'
+      }
+    }
+  ]
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
+  <Header />
+
+  <main>
+
+    <!-- Breadcrumb visible -->
+    <nav aria-label="Ruta de navegación" class="bg-gray-50 border-b border-gray-100">
+      <div class="container-apple py-3">
+        <ol class="flex items-center gap-2 text-sm text-gray-500">
+          <li><a href="/" class="hover:text-blue-600">Inicio</a></li>
+          <li class="text-gray-300">/</li>
+          <li><a href="/vs/" class="hover:text-blue-600">Comparativas</a></li>
+          <li class="text-gray-300">/</li>
+          <li class="text-gray-700 font-medium">Fresha vs Agenda de Reservas</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Hero comparativa -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple">
+        <div class="text-center max-w-3xl mx-auto">
+          <span class="feature-bubble mb-4 inline-block">Comparativa verificada · Junio 2026</span>
+          <h1 class="text-headline text-gray-900 mb-6">
+            Alternativa a Fresha:<br/>
+            <span class="text-blue-600">el coste real cuando el "gratis" incluye comisión</span>
+          </h1>
+          <p class="text-body text-lg mb-6">
+            Fresha promociona su software como <strong>"gratis para siempre"</strong> — y lo es, si el 100 % de tus clientes ya te conocen.
+            El problema aparece cuando activas su marketplace para conseguir clientes nuevos:
+            Fresha cobra entonces una <strong class="text-red-600">comisión de aproximadamente el 20 %</strong> sobre cada reserva que entra por Fresha.com.
+          </p>
+          <p class="text-body text-lg mb-8">
+            Con Agenda de Reservas pagas <strong class="text-green-600"><span data-price-key="service_business.monthly">{svcPrice}</span>€/mes fijo</strong>
+            — sin marketplace, sin comisiones, con todos los datos de tus clientes en tu poder y soporte en español.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://app.agendadereservas.com" class="btn-apple-primary px-8 py-4">
+              Probar gratis 14 dias — sin tarjeta
+            </a>
+            <a href="#comparativa" class="btn-apple-secondary px-8 py-4">
+              Ver comparativa completa ↓
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 1: ¿Fresha es realmente gratis para peluquerías? -->
+    <section class="section-apple bg-amber-50 border-b border-amber-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Fresha es realmente gratis para peluquerías?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          En parte, sí. El software de gestión de Fresha (agenda, CRM, ficha de servicios) es gratuito sin límite de tiempo.
+          La trampa está en el modelo de negocio: <strong>Fresha gana dinero cuando activas el marketplace</strong>,
+          es decir, cuando permites que clientes nuevos te encuentren a través de Fresha.com.
+          Sobre esas reservas aplica una comisión que, según su modelo publicado, ronda el <strong class="text-red-600">20 %</strong> del valor del servicio.
+        </p>
+        <div class="bg-white rounded-2xl p-6 border border-amber-200 mb-6">
+          <p class="font-semibold text-gray-900 mb-3">La regla de oro para entender el coste de Fresha:</p>
+          <ul class="space-y-3 text-sm text-gray-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 font-bold mt-0.5 flex-shrink-0">✓</span>
+              <span><strong>Fresha es gratis</strong> si el 100 % de tus clientes ya te conocen y reservan directamente (por tu web, Instagram o teléfono).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
+              <span><strong>Fresha no es gratis</strong> en cuanto activas el marketplace para captar clientes nuevos. Cada reserva nueva que llega por Fresha.com tiene un coste real del ~20 % del ticket.</span>
+            </li>
+          </ul>
+        </div>
+        <p class="text-sm text-gray-500">
+          Verifica siempre las condiciones vigentes en
+          <a href="https://www.fresha.com" class="text-blue-600 underline" rel="noopener noreferrer" target="_blank">fresha.com</a>
+          — los términos del marketplace pueden variar por país y contrato.
+        </p>
+      </div>
+    </section>
+
+    <!-- H2 2: ¿Cuánto cobra Fresha de comisión por cliente nuevo? -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Cuánto cobra Fresha de comisión por cliente nuevo?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          La comisión de Fresha se aplica sobre el precio del servicio reservado a través de Fresha.com.
+          Según su modelo de marketplace publicado, esa comisión es de aproximadamente <strong class="text-red-600">el 20 % del valor del servicio</strong>.
+          Sobre un corte de cabello de 35€, Fresha se queda con ~7€. Sobre un tinte o tratamiento de 60€, la comisión sube a ~12€ por reserva.
+        </p>
+        <div class="bg-amber-50 rounded-2xl p-5 border border-amber-200 mb-4">
+          <p class="text-sm text-amber-900 font-medium">
+            Importante: la comisión solo aplica a reservas que llegan desde el marketplace de Fresha.com.
+            Las reservas que gestionas directamente (por tu enlace propio, tu web o teléfono) son gratuitas.
+            La pregunta clave para tu negocio es: <em>¿qué porcentaje de mis reservas depende del marketplace?</em>
+          </p>
+        </div>
+        <p class="text-xs text-gray-400">
+          Estimaciones basadas en el modelo publicado de Fresha. Verifica en fresha.com. Junio 2026.
+        </p>
+      </div>
+    </section>
+
+    <!-- H2 3: ¿Cuál es el coste real de Fresha con 100 reservas al mes? -->
+    <section class="section-apple bg-red-50 border-b border-red-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Cuál es el coste real de Fresha con 100 reservas al mes?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          Con 100 reservas mensuales y un ticket medio de 35€, el coste de Fresha depende directamente de cuántas de esas reservas llegan a través de su marketplace.
+          La siguiente tabla muestra los tres escenarios más habituales.
+        </p>
+        <p class="text-sm text-gray-500 mb-4">
+          Estimacion orientativa. Base: 100 reservas/mes, ticket medio 35€, comisión marketplace ~20 %.
+          <strong>Verifica las tarifas actuales en fresha.com.</strong>
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm bg-white rounded-2xl overflow-hidden shadow-sm">
+            <thead>
+              <tr class="bg-red-100 text-red-900">
+                <th class="text-left py-4 px-5 font-semibold">Escenario</th>
+                <th class="text-center py-4 px-5 font-semibold">Reservas via Fresha.com</th>
+                <th class="text-center py-4 px-5 font-semibold">Coste mensual estimado Fresha</th>
+                <th class="text-center py-4 px-5 font-semibold bg-blue-50 text-blue-900">Agenda de Reservas</th>
+                <th class="text-center py-4 px-5 font-semibold bg-blue-50 text-blue-900">Diferencia</th>
+              </tr>
+            </thead>
+            <tbody>
+              {escenariosPct.map(({ label, pct, reservasMkt, costeFresha }, i) => {
+                const diff = ahorroEscenarios[i];
+                const diffLabel = diff > 0
+                  ? `Fresha +${diff}€ más caro`
+                  : diff < 0
+                    ? `Fresha ${Math.abs(diff)}€ más barato`
+                    : 'Igual';
+                const diffClass = diff > 0
+                  ? 'bg-red-100 text-red-800'
+                  : diff < 0
+                    ? 'bg-green-100 text-green-800'
+                    : 'bg-gray-100 text-gray-700';
+                return (
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="py-3 px-5 font-medium text-gray-800">{label}</td>
+                    <td class="py-3 px-5 text-center text-gray-600">{reservasMkt} reservas</td>
+                    <td class="py-3 px-5 text-center font-semibold text-red-700">{costeFresha}€/mes</td>
+                    <td class="py-3 px-5 text-center bg-blue-50 text-green-700 font-bold">
+                      <span data-price-key="service_business.monthly">{svcPrice}</span>€/mes
+                    </td>
+                    <td class="py-3 px-5 text-center bg-blue-50">
+                      <span class={`text-xs font-semibold px-2 py-1 rounded-full ${diffClass}`}>
+                        {diffLabel}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Estimacion orientativa (verifica en fresha.com). Ticket medio 35€, comision marketplace ~20 %. Junio 2026.
+          No incluye el valor de captacion del marketplace de Fresha ni el coste de adquisicion de clientes propios.
+        </p>
+        <div class="mt-6 bg-white rounded-2xl p-5 border border-gray-200">
+          <p class="text-sm text-gray-700">
+            <strong>Conclusion:</strong> Si el 0 % de tus reservas viene del marketplace de Fresha, el software es efectivamente gratuito y Agenda de Reservas resulta mas cara.
+            A partir de un 25 % de reservas por marketplace, el coste de Fresha ya supera los 19€/mes de Agenda de Reservas.
+            Con un 50 % vía marketplace, el coste se multiplica hasta los {escenariosPct[2].costeFresha}€/mes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 4: ¿Qué pierdes al depender del marketplace de Fresha? -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Que pierdes al depender del marketplace de Fresha?
+        </h2>
+        <p class="text-gray-700 mb-8 text-lg">
+          Depender del marketplace de Fresha para conseguir clientes tiene un coste economico (la comision), pero tambien consecuencias estrategicas que afectan a la salud a largo plazo de tu negocio.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-red-50 rounded-2xl p-7 border border-red-100">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Riesgos del modelo marketplace</h3>
+            <ul class="space-y-3 text-sm text-gray-700">
+              {[
+                'Dependencia: si Fresha sube la comision, tu margen baja sin que puedas negociar.',
+                'Los datos de los clientes nuevos pertenecen a la plataforma, no solo a ti.',
+                'Compites con otras peluquerias del marketplace por precio y posicion en el listado.',
+                'Si dejas Fresha, pierdes la visibilidad y el canal de captacion de golpe.',
+                'El cliente aprende a buscar en Fresha.com, no en tu web o Instagram propio.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-blue-50 rounded-2xl p-7 border-2 border-blue-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Con agenda propia (Agenda de Reservas)</h3>
+            <ul class="space-y-3 text-sm text-gray-800">
+              {[
+                'Cuota fija: el coste no cambia aunque tengas 500 reservas al mes.',
+                'Todos los datos de clientes son 100% tuyos y exportables en cualquier momento.',
+                'El cliente reserva en tu web, bajo tu marca, sin ver a la competencia.',
+                'Cambias de software cuando quieras; te llevas tu historial completo.',
+                'Fidelizas directamente via WhatsApp Business, sin intermediarios.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p class="text-sm text-gray-600 mt-6 bg-amber-50 border border-amber-200 rounded-xl p-4">
+          <strong>Nota equilibrada:</strong> El marketplace de Fresha si tiene valor real, especialmente al abrir un negocio nuevo o en zonas con mucha competencia. El problema no es usarlo; el problema es <em>depender</em> de el. La estrategia optima es usar Fresha para captar, y Agenda de Reservas para retener y gestionar, migrando gradualmente a reservas directas.
+        </p>
+      </div>
+    </section>
+
+    <!-- H2 5: ¿Puedo tener todas las funciones de Fresha pagando una cuota fija? -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Puedo tener todas las funciones de Fresha pagando una cuota fija?
+        </h2>
+        <p class="text-gray-700 mb-8 text-lg">
+          Si. Agenda de Reservas incluye las mismas funciones de gestion que Fresha — sin marketplace y sin comisiones — por <strong>{svcPrice}€/mes fijo</strong>.
+          Donde Fresha destaca es en la captacion de clientes nuevos via su listado; Agenda de Reservas no es un marketplace, pero ofrece herramientas para que construyas tu propio canal directo.
+        </p>
+        <div class="grid md:grid-cols-3 gap-5">
+          {[
+            {
+              titulo: 'Calendario y agenda multi-staff',
+              desc: 'Gestion de citas para uno o varios profesionales, con vistas de dia, semana y mes. Sin limites de usuarios ni de reservas.',
+              icono: 'Agenda',
+            },
+            {
+              titulo: 'CRM de clientes completo',
+              desc: 'Historial de visitas, servicios, notas internas y datos de contacto. Exportable en CSV en cualquier momento. Tus clientes, siempre tuyos.',
+              icono: 'CRM',
+            },
+            {
+              titulo: 'Pagina de reservas bajo tu marca',
+              desc: 'Tu pagina personalizada con tu logo y colores. Widget embebible en tu web. Enlace directo para Instagram y Google Business.',
+              icono: 'Web',
+            },
+            {
+              titulo: 'Recordatorios automaticos',
+              desc: 'Reduccion de ausencias con recordatorios por email y, con el modulo de comunicaciones, por WhatsApp Business API.',
+              icono: 'Recordatorios',
+            },
+            {
+              titulo: 'Estadisticas y dashboard',
+              desc: 'Ocupacion, ingresos, clientes nuevos vs recurrentes. Todos los datos visibles en tiempo real desde el panel.',
+              icono: 'Estadisticas',
+            },
+            {
+              titulo: 'Soporte en espanol <2h',
+              desc: 'Equipo humano en espanol. Respuesta media de menos de 2 horas en horario laboral. Sin bots ni respuestas automatizadas para problemas reales.',
+              icono: 'Soporte',
+            },
+          ].map(({ titulo, desc, icono }) => (
+            <div class="bg-white rounded-2xl p-6 border border-gray-100">
+              <span class="inline-block text-xs font-semibold text-blue-600 bg-blue-50 rounded-full px-3 py-1 mb-3">{icono}</span>
+              <h3 class="font-bold text-gray-900 mb-2">{titulo}</h3>
+              <p class="text-sm text-gray-600">{desc}</p>
+            </div>
+          ))}
+        </div>
+        <p class="text-sm text-gray-600 mt-6">
+          Consulta la lista completa en nuestra pagina de
+          <a href="/precios" class="text-blue-600 underline">ver todos los planes de Agenda de Reservas</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- H2 6 + Tabla comparativa completa -->
+    <section id="comparativa" class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple">
+        <h2 class="text-headline text-gray-900 text-center mb-4">
+          Fresha vs Agenda de Reservas: ¿cual es mejor para mi peluqueria?
+        </h2>
+        <p class="text-center text-gray-600 max-w-2xl mx-auto mb-6">
+          Depende de en que momento esta tu negocio. Si estas empezando y no tienes base de clientes propia, el marketplace de Fresha puede acelerar la captacion. Si ya tienes clientela y las comisiones empiezan a doler, Agenda de Reservas es la alternativa mas economica y predecible.
+        </p>
+        <p class="text-center text-gray-400 text-sm mb-10">
+          Actualizado: junio 2026 · Fuentes: webs oficiales de Fresha y Agenda de Reservas. Comision Fresha: estimacion basada en modelo publicado.
+        </p>
+        <div class="max-w-4xl mx-auto overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-gray-200">
+                <th class="text-left py-4 px-4 text-gray-700 font-semibold">Caracteristica</th>
+                <th class="text-center py-4 px-4 text-gray-600 font-semibold">Fresha</th>
+                <th class="text-center py-4 px-4 text-blue-700 font-semibold bg-blue-50 rounded-t-lg">Agenda de Reservas</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparativa.map(({ feature, fresha, agenda, winner }) => (
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="py-3 px-4 font-medium text-gray-800">{feature}</td>
+                  <td class={`py-3 px-4 text-center ${winner === 'fresha' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-red-600' : 'text-gray-600'}`}>
+                    {fresha}
+                  </td>
+                  <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'fresha' ? 'text-gray-500' : 'text-gray-600'}`}>
+                    {agenda}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="text-xs text-gray-400 mt-3 text-right">
+            Comision Fresha: estimacion orientativa basada en modelo marketplace publicado. Verifica en fresha.com.
+          </p>
+        </div>
+
+        <!-- Elige segun tu situacion -->
+        <div class="max-w-4xl mx-auto mt-10 grid md:grid-cols-2 gap-6">
+          <div class="bg-gray-50 rounded-2xl p-7 border border-gray-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Elige Fresha si...</h3>
+            <ul class="space-y-3 text-sm text-gray-700">
+              {[
+                'Acabas de abrir y no tienes clientes propios todavia.',
+                'Quieres visibilidad inmediata en el marketplace de Fresha.com.',
+                'El 100 % de tus reservas viene de clientes que ya te conocen (gratis, sin comision).',
+                'Tu prioridad a corto plazo es la captacion, no la gestion.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-0.5 flex-shrink-0">→</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-blue-50 rounded-2xl p-7 border-2 border-blue-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Elige Agenda de Reservas si...</h3>
+            <ul class="space-y-3 text-sm text-gray-800">
+              {[
+                'Tienes clientela recurrente y la comision del marketplace ya te duele.',
+                'Quieres un coste fijo y predecible: 19€/mes, siempre.',
+                'Necesitas soporte real en espanol con respuesta rapida.',
+                'Quieres que los datos de tus clientes sean siempre tuyos.',
+                'Buscas WhatsApp Business para recordatorios automaticos y fidelizacion.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-3xl mx-auto">
+        <h2 class="text-headline text-gray-900 text-center mb-12">Preguntas frecuentes</h2>
+        <div class="space-y-4">
+          {[
+            {
+              q: '¿Fresha cobra comision a las peluquerias?',
+              a: 'Fresha no cobra cuota mensual, pero si aplica una comision de aproximadamente el 20 % sobre las reservas que llegan a traves de su marketplace (Fresha.com). Si todos tus clientes ya te conocen y reservan directamente, el coste es cero. Si dependes del marketplace para conseguir clientes nuevos, esa comision puede superar con creces los 19€/mes de Agenda de Reservas. Verifica las condiciones actuales en fresha.com.'
+            },
+            {
+              q: '¿Puedo usar Fresha sin el marketplace y sin pagar comision?',
+              a: 'Si. Fresha permite usar su software de gestion de citas de forma gratuita sin activar el marketplace. En ese caso no pagas ninguna comision. El inconveniente es que tampoco apareces en Fresha.com para captar clientes nuevos. Si ya tienes tu propia base de clientes, Fresha gratuito (sin marketplace) o Agenda de Reservas (19€/mes fijo, con soporte en espanol) son las alternativas mas economicas.'
+            },
+            {
+              q: '¿Que pasa con mis clientes si dejo Fresha?',
+              a: 'Los clientes que te llegan a traves del marketplace de Fresha.com son usuarios de la plataforma. Al desactivar el marketplace o darte de baja, perderás visibilidad en Fresha.com. Tienes derecho a solicitar la exportacion de tus datos de clientes bajo el RGPD. Con Agenda de Reservas, todos los datos son siempre tuyos desde el primer dia y puedes exportarlos en formato CSV en cualquier momento.'
+            },
+            {
+              q: '¿Agenda de Reservas tiene las mismas funciones que Fresha?',
+              a: 'Agenda de Reservas incluye calendario multi-staff, CRM de clientes, pagina de reservas personalizada bajo tu marca, recordatorios automaticos, estadisticas y pagos online opcionales (Stripe). La diferencia clave es que Agenda de Reservas no es un marketplace: tus clientes reservan directamente contigo, sin comisiones, y con soporte humano en espanol con respuesta en menos de 2 horas.'
+            }
+          ].map(({ q, a }) => (
+            <div class="border border-gray-200 rounded-xl overflow-hidden">
+              <details class="group">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                  {q}
+                  <span class="text-gray-400 group-open:rotate-180 transition-transform">▾</span>
+                </summary>
+                <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{a}</div>
+              </details>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Enlazado interno saliente -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-3xl mx-auto">
+        <h2 class="text-xl font-bold text-gray-900 mb-6 text-center">Recursos relacionados</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {[
+            {
+              href: '/peluquerias',
+              label: 'software de gestion para peluquerias sin comisiones',
+              desc: 'Funcionalidades especificas para peluquerias y barberias en Espana.',
+            },
+            {
+              href: '/estetica',
+              label: 'agenda online para centros de estetica',
+              desc: 'Gestion de cabinas, tratamientos y servicios de belleza sin comisiones.',
+            },
+            {
+              href: '/vs/treatwell',
+              label: 'tambien comparamos con Treatwell',
+              desc: 'Treatwell cobra comision por cada reserva. Descubre cuanto supone.',
+            },
+            {
+              href: '/vs/booksy',
+              label: 'tambien comparamos con Booksy',
+              desc: 'Booksy cobra por empleado. Compara con Agenda de Reservas.',
+            },
+            {
+              href: '/precios',
+              label: 'ver todos los planes de Agenda de Reservas',
+              desc: 'Planes desde 19€/mes. Prueba 14 dias sin tarjeta.',
+            },
+          ].map(({ href, label, desc }) => (
+            <a
+              href={href}
+              class="flex flex-col gap-1 bg-gray-50 rounded-2xl px-5 py-4 border border-gray-200 hover:border-blue-300 hover:shadow-sm transition-all"
+            >
+              <span class="text-blue-600 font-semibold text-sm underline">{label}</span>
+              <span class="text-gray-500 text-xs">{desc}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="section-apple bg-gray-900">
+      <div class="container-apple text-center">
+        <h2 class="text-headline text-white mb-4">
+          El "gratis" de Fresha tiene un precio.<br/>
+          <span class="text-blue-400">
+            Con Agenda de Reservas, <span data-price-key="service_business.monthly">{svcPrice}</span>€/mes fijo y sin sorpresas.
+          </span>
+        </h2>
+        <p class="text-gray-400 mb-2">Sin comisiones · Sin marketplace · Soporte humano en espanol</p>
+        <p class="text-gray-500 text-sm mb-8">Prueba gratis 14 dias — sin tarjeta de credito</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="https://app.agendadereservas.com"
+            class="inline-block bg-white text-gray-900 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors"
+          >
+            Empezar gratis ahora
+          </a>
+          <a
+            href="/precios"
+            class="inline-block border border-gray-600 text-gray-300 font-semibold px-10 py-4 rounded-2xl hover:border-gray-400 hover:text-white transition-colors"
+          >
+            Ver todos los planes
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+  <DynamicPricing />
+</Layout>

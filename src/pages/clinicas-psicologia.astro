@@ -6,6 +6,7 @@ import HeroV2 from '../components/HeroV2.astro';
 import Features from '../components/Features.astro';
 import Testimonials from '../components/Testimonials.astro';
 import FAQ from '../components/FAQ.astro';
+import DashboardMockup from '../components/DashboardMockup.astro';
 import '../styles/apple-design.css';
 
 // Contenido editable desde el CMS → public/admin → Páginas de Sector → Psicología
@@ -106,6 +107,19 @@ const schema = {
       ctaHref="https://app.agendadereservas.com"
       secondaryCta={{ text: 'Ver funcionalidades', href: '#funcionalidades' }}
     />
+
+    <!-- Vista previa del panel real (datos de ejemplo) -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Así gestionas tu consulta</h2>
+          <p class="text-gray-600">Sesiones, salas y recordatorios automáticos en un panel claro. Datos de ejemplo.</p>
+        </div>
+        <div class="max-w-3xl mx-auto">
+          <DashboardMockup sector="clinicas" />
+        </div>
+      </div>
+    </section>
 
     <!-- El problema específico del psicólogo -->
     <section class="section-apple bg-gray-50">

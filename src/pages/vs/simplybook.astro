@@ -1,0 +1,684 @@
+
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import DynamicPricing from '../../components/DynamicPricing.astro';
+import '../../styles/apple-design.css';
+import pricingData from '../../content/pricing.json';
+
+// Precios de build-time desde pricing.json — fuente de verdad
+const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
+const svcPrice = svcPlan?.monthly ?? 19;
+const commsAddon = pricingData.addons.find(a => a.id === 'comunicaciones');
+const commsPrice = commsAddon?.price ?? 39;
+const pagosAddon = pricingData.addons.find(a => a.id === 'pagos');
+const pagosPrice = pagosAddon?.price ?? 12;
+
+const pageTitle = 'Alternativa a SimplyBook para negocios en España | Agenda de Reservas';
+const pageDescription = 'SimplyBook.me es una herramienta global sin soporte nativo en español. Agenda de Reservas: soporte en español <2h, RGPD, WhatsApp y precios en EUR desde 19€/mes.';
+const canonicalUrl = 'https://agendadereservas.com/vs/simplybook/';
+
+// Tabla comparativa de funciones
+const comparativa = [
+  {
+    feature: 'Precio mensual (plan entrada)',
+    simplybook: 'Desde ~9,9€/mes plan básico (verifica en simplybook.me)',
+    agenda: `${svcPrice}€/mes — sin comisiones`,
+    winner: 'empate',
+  },
+  {
+    feature: 'Moneda base',
+    simplybook: 'USD (conversión aproximada a EUR)',
+    agenda: 'EUR — precios fijos en euros',
+    winner: 'agenda',
+  },
+  {
+    feature: 'Soporte en español',
+    simplybook: '⚠️ Principalmente en inglés; soporte ES limitado',
+    agenda: '✅ Humano, <2h en español (horario laboral)',
+    winner: 'agenda',
+  },
+  {
+    feature: 'Idioma de la interfaz',
+    simplybook: '⚠️ Inglés por defecto; traducciones parciales',
+    agenda: '✅ 100% español de España',
+    winner: 'agenda',
+  },
+  {
+    feature: 'RGPD / alojamiento en la UE',
+    simplybook: '⚠️ Servidores en varios países; revisar DPA',
+    agenda: '✅ Servidores UE, conforme al RGPD',
+    winner: 'agenda',
+  },
+  {
+    feature: 'WhatsApp Business API nativo',
+    simplybook: '❌ No integrado de forma nativa',
+    agenda: `✅ Disponible (+${commsPrice}€/mes)`,
+    winner: 'agenda',
+  },
+  {
+    feature: 'Facturación en español',
+    simplybook: '⚠️ Facturas en inglés / moneda USD',
+    agenda: '✅ Facturación en euros, empresa española',
+    winner: 'agenda',
+  },
+  {
+    feature: 'Plan gratuito',
+    simplybook: '✅ Plan Free (hasta 50 reservas/mes, funciones limitadas)',
+    agenda: '✅ Prueba 14 días completa, sin tarjeta',
+    winner: 'empate',
+  },
+  {
+    feature: 'Comisión por reserva',
+    simplybook: '❌ No cobra comisión (cuota mensual)',
+    agenda: '✅ Sin comisión por reserva',
+    winner: 'empate',
+  },
+  {
+    feature: 'Reservas ilimitadas desde plan de pago',
+    simplybook: '⚠️ Reservas limitadas según plan',
+    agenda: '✅ Ilimitadas en todos los planes de pago',
+    winner: 'agenda',
+  },
+  {
+    feature: 'Usuarios/staff ilimitados',
+    simplybook: '⚠️ Número de proveedores limitado por plan',
+    agenda: '✅ Usuarios ilimitados en todos los planes',
+    winner: 'agenda',
+  },
+  {
+    feature: 'CRM de clientes exportable',
+    simplybook: '✅ Disponible',
+    agenda: '✅ Completo, exportable en CSV',
+    winner: 'empate',
+  },
+  {
+    feature: 'Empresa y soporte legal en España',
+    simplybook: '❌ Empresa no española (Islandia/global)',
+    agenda: '✅ Tecelia Solutions S.L. — Santiago de Compostela',
+    winner: 'agenda',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿SimplyBook.me tiene interfaz en español?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'SimplyBook.me dispone de traducciones parciales al español, pero su interfaz de administración y su soporte están principalmente en inglés. Los negocios en España que necesitan operar completamente en español pueden encontrar esta limitación relevante en el día a día. Agenda de Reservas está diseñado desde el origen íntegramente en español de España.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿SimplyBook cumple con el RGPD europeo?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'SimplyBook.me, con sede en Islandia, declara cumplimiento con el RGPD, pero el alojamiento de los datos puede distribuirse en servidores fuera de la UE según el plan contratado. Es recomendable revisar su Acuerdo de Procesamiento de Datos (DPA) antes de contratar. Agenda de Reservas aloja todos los datos en servidores dentro de la UE y es operado por una empresa española (Tecelia Solutions S.L.), lo que simplifica el cumplimiento normativo para negocios en España.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Puedo usar SimplyBook para una peluquería en España?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí, SimplyBook.me funciona para peluquerías. Sin embargo, para negocios en España el principal inconveniente es la barrera del idioma en la interfaz de administración y el soporte en inglés, junto con la facturación en USD. Agenda de Reservas ofrece las mismas funcionalidades de gestión de citas para peluquerías con soporte humano en español en menos de 2 horas, precios fijos en euros y plena adaptación al mercado español.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Agenda de Reservas tiene las mismas funciones que SimplyBook?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Para la mayoría de negocios de servicios en España, sí. Agenda de Reservas cubre las funciones esenciales: reservas online 24/7, calendario multi-staff, CRM de clientes, recordatorios automáticos, página de reservas personalizada y widget para web propia. SimplyBook.me tiene un catálogo de funciones más extenso (más de 60 "features" adicionales de pago), pensado para cubrir casos de uso muy variados a nivel global. Agenda de Reservas está enfocado en lo que necesitan peluquerías, clínicas, centros de estética y negocios similares en España, con soporte en español.',
+          },
+        },
+      ],
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: 'https://agendadereservas.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Comparativas',
+          item: 'https://agendadereservas.com/vs/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'SimplyBook vs Agenda de Reservas',
+          item: 'https://agendadereservas.com/vs/simplybook/',
+        },
+      ],
+    },
+    {
+      '@type': 'Article',
+      headline: pageTitle,
+      description: pageDescription,
+      datePublished: '2026-06-14',
+      dateModified: '2026-06-14',
+      author: {
+        '@type': 'Organization',
+        name: 'Agenda de Reservas',
+        url: 'https://agendadereservas.com',
+      },
+    },
+  ],
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
+  <Header />
+
+  <main>
+
+    <!-- Breadcrumb visible -->
+    <nav aria-label="Ruta de navegación" class="bg-gray-50 border-b border-gray-100">
+      <div class="container-apple py-3">
+        <ol class="flex items-center gap-2 text-sm text-gray-500">
+          <li><a href="/" class="hover:text-blue-600">Inicio</a></li>
+          <li class="text-gray-300">/</li>
+          <li><a href="/vs/" class="hover:text-blue-600">Comparativas</a></li>
+          <li class="text-gray-300">/</li>
+          <li class="text-gray-700 font-medium">SimplyBook vs Agenda de Reservas</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Hero comparativa -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple">
+        <div class="text-center max-w-3xl mx-auto">
+          <span class="feature-bubble mb-4 inline-block">Comparativa verificada · Junio 2026</span>
+          <h1 class="text-headline text-gray-900 mb-6">
+            Alternativa a SimplyBook para España:<br/>
+            <span class="text-blue-600">mismo software, en español y con soporte humano en &lt;2h</span>
+          </h1>
+          <p class="text-body text-lg mb-8">
+            SimplyBook.me es una herramienta potente pensada para el mercado global. Si tienes un negocio en España
+            y necesitas <strong>soporte real en español</strong>, <strong>precios fijos en euros</strong>,
+            <strong>RGPD sin letra pequeña</strong> y <strong>WhatsApp integrado</strong>,
+            Agenda de Reservas está construido exactamente para eso:
+            desde <strong class="text-blue-600"><span data-price-key="service_business.monthly">{svcPrice}</span>€/mes</strong>,
+            sin comisiones y con empresa española detrás.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://app.agendadereservas.com" class="btn-apple-primary px-8 py-4">
+              Probar gratis 14 días — sin tarjeta
+            </a>
+            <a href="#comparativa" class="btn-apple-secondary px-8 py-4">
+              Ver comparativa completa ↓
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 1: ¿Qué es SimplyBook.me y para qué tipo de negocio está pensado? -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Qué es SimplyBook.me y para qué tipo de negocio está pensado?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          SimplyBook.me es un software de reservas online de origen islandés con presencia global. Está pensado
+          para cualquier negocio que necesite gestionar citas —desde peluquerías hasta clínicas— y destaca por
+          su catálogo extenso de funciones adicionales (más de 60 "custom features" activables por módulo).
+          Su punto fuerte es la flexibilidad; su punto débil para negocios en España es la orientación al
+          mercado anglosajón: interfaz y soporte principalmente en inglés, precios en USD y adaptación
+          limitada a la normativa española.
+        </p>
+        <div class="grid md:grid-cols-3 gap-5 mb-6">
+          {[
+            {
+              titulo: 'Fundada en Islandia, mercado global',
+              desc: 'SimplyBook.me opera desde Reikiavik con clientes en más de 100 países. Su infraestructura y soporte están dimensionados para el mercado internacional, no específicamente para España.',
+            },
+            {
+              titulo: 'Modelo freemium con módulos de pago',
+              desc: 'Ofrece un plan gratuito limitado (hasta 50 reservas/mes) y planes de pago con funciones adicionales que se activan individualmente. Muchas funciones avanzadas suponen coste adicional.',
+            },
+            {
+              titulo: 'Más de 60 funciones adicionales',
+              desc: 'Su sistema de "custom features" permite configurar recordatorios SMS, pagos, membresías, clases grupales y más. La curva de aprendizaje es mayor que la de herramientas focalizadas.',
+            },
+          ].map(({ titulo, desc }) => (
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+              <h3 class="font-bold text-gray-900 mb-2 text-base">{titulo}</h3>
+              <p class="text-sm text-gray-600">{desc}</p>
+            </div>
+          ))}
+        </div>
+        <p class="text-sm text-gray-600 bg-amber-50 border border-amber-200 rounded-xl p-4">
+          <strong>Nota:</strong> Los datos sobre SimplyBook.me de esta página son orientativos y se basan en
+          información pública disponible en junio de 2026. Verifica precios y funciones actuales en
+          <a href="https://simplybook.me" class="text-blue-600 underline" rel="noopener noreferrer" target="_blank">simplybook.me</a>
+          antes de tomar una decisión.
+        </p>
+      </div>
+    </section>
+
+    <!-- H2 2: ¿Cuánto cuesta SimplyBook y qué incluye su plan gratuito? -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Cuánto cuesta SimplyBook y qué incluye su plan gratuito?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          SimplyBook.me ofrece un plan gratuito permanente con hasta 50 reservas al mes y funciones básicas.
+          Los planes de pago parten desde aproximadamente 9,9€/mes en su equivalencia en EUR
+          (los precios oficiales se publican en USD; verifica la conversión actual en simplybook.me).
+          A medida que aumentan las reservas o se activan funciones adicionales, el precio escala.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+            <h3 class="font-bold text-gray-900 text-base mb-4">SimplyBook.me — plan gratuito</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              {[
+                'Hasta 50 reservas al mes',
+                'Un proveedor/profesional',
+                'Página de reservas básica',
+                'Recordatorios de email limitados',
+                'Sin funciones personalizadas activas',
+                'Marca de SimplyBook.me visible',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-amber-500 mt-0.5 flex-shrink-0">—</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p class="text-xs text-gray-400 mt-4">Fuente: simplybook.me (junio 2026). Verifica en su web.</p>
+          </div>
+          <div class="bg-blue-50 rounded-2xl p-6 border-2 border-blue-200">
+            <h3 class="font-bold text-gray-900 text-base mb-4">Agenda de Reservas — prueba gratuita</h3>
+            <ul class="space-y-2 text-sm text-gray-800">
+              {[
+                '14 días con acceso completo sin tarjeta',
+                'Reservas ilimitadas durante la prueba',
+                'Staff/usuarios ilimitados',
+                'CRM de clientes completo',
+                'Soporte en español durante la prueba',
+                'Sin marca de terceros en tu página',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p class="text-sm text-blue-700 mt-4 font-semibold">
+              Desde <span data-price-key="service_business.monthly">{svcPrice}</span>€/mes al activar la suscripción.
+            </p>
+          </div>
+        </div>
+        <p class="text-sm text-gray-600">
+          La principal diferencia en el modelo de prueba: SimplyBook.me tiene un plan gratuito permanente
+          pero limitado (50 reservas/mes), mientras que Agenda de Reservas ofrece 14 días con acceso
+          total para que evalúes la herramienta con tu negocio real, sin restricciones de volumen.
+        </p>
+      </div>
+    </section>
+
+    <!-- H2 3: ¿SimplyBook tiene soporte en español y adaptación al RGPD? -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿SimplyBook tiene soporte en español y adaptación al RGPD?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          El soporte de SimplyBook.me es principalmente en inglés. Su centro de ayuda, documentación y
+          atención al cliente operan en inglés como lengua principal, lo que puede suponer una barrera
+          real para equipos que no dominan el idioma. En cuanto al RGPD, SimplyBook.me declara
+          cumplimiento, pero al ser una empresa islandesa con infraestructura global, es necesario
+          revisar su Acuerdo de Procesamiento de Datos (DPA) para confirmar dónde se alojan
+          físicamente los datos de tus clientes.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div class="bg-red-50 rounded-2xl p-6 border border-red-100">
+            <h3 class="font-bold text-gray-900 text-base mb-4">SimplyBook.me — idioma y normativa</h3>
+            <ul class="space-y-3 text-sm text-gray-700">
+              {[
+                'Interfaz de administración principalmente en inglés',
+                'Soporte técnico en inglés (chat/email)',
+                'Centro de ayuda y tutoriales en inglés',
+                'Empresa en Islandia; revisar DPA para datos en UE',
+                'Facturación en USD (conversión a EUR variable)',
+                'Sin equipo local en España',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-blue-50 rounded-2xl p-6 border-2 border-blue-200">
+            <h3 class="font-bold text-gray-900 text-base mb-4">Agenda de Reservas — idioma y normativa</h3>
+            <ul class="space-y-3 text-sm text-gray-800">
+              {[
+                'Interfaz 100% en español de España',
+                'Soporte humano en español, respuesta <2h en horario laboral',
+                'Toda la documentación en español',
+                'Datos alojados en servidores UE, conforme al RGPD',
+                'Precios fijos en euros, sin variaciones por tipo de cambio',
+                'Empresa española: Tecelia Solutions S.L. (Santiago de Compostela)',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p class="text-sm text-gray-600 bg-blue-50 border border-blue-100 rounded-xl p-4">
+          Para negocios en España que procesan datos personales de clientes (nombre, email, teléfono,
+          historial de citas), elegir un proveedor con alojamiento confirmado en la UE y empresa
+          española simplifica el cumplimiento de la <strong>Ley Orgánica de Protección de Datos (LOPD)</strong>
+          y el RGPD, evitando tener que negociar cláusulas contractuales adicionales con un proveedor extranjero.
+        </p>
+      </div>
+    </section>
+
+    <!-- H2 4: Tabla comparativa -->
+    <section id="comparativa" class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple">
+        <h2 class="text-headline text-gray-900 text-center mb-4">
+          SimplyBook vs Agenda de Reservas: tabla de funciones
+        </h2>
+        <p class="text-center text-gray-500 text-sm mb-10">
+          Actualizado: junio 2026 · Fuentes: webs oficiales de SimplyBook.me y Agenda de Reservas.
+          Precios de SimplyBook expresados en EUR orientativo; verifica en simplybook.me.
+        </p>
+        <div class="max-w-4xl mx-auto overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-gray-200">
+                <th class="text-left py-4 px-4 text-gray-700 font-semibold">Característica</th>
+                <th class="text-center py-4 px-4 text-gray-600 font-semibold">SimplyBook.me</th>
+                <th class="text-center py-4 px-4 text-blue-700 font-semibold bg-blue-50 rounded-t-lg">Agenda de Reservas</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparativa.map(({ feature, simplybook, agenda, winner }) => (
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="py-3 px-4 font-medium text-gray-800">{feature}</td>
+                  <td class={`py-3 px-4 text-center ${winner === 'simplybook' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-red-600' : 'text-gray-600'}`}>
+                    {simplybook}
+                  </td>
+                  <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'simplybook' ? 'text-gray-500' : 'text-gray-600'}`}>
+                    {agenda}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="text-xs text-gray-400 mt-3 text-right">
+            Precios SimplyBook.me: estimación en EUR basada en precios USD publicados. Verifica en simplybook.me.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 5: ¿Cuál es la diferencia real entre un software global y uno pensado para España? -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Cuál es la diferencia real entre un software global y uno pensado para España?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          Un software global como SimplyBook.me cubre muchos mercados a la vez, lo que le obliga a
+          ser genérico: interfaz en inglés, soporte en inglés, precios en USD y normativa pensada
+          para el caso "promedio" del planeta. Un software pensado para España resuelve desde el
+          primer día los problemas reales de un negocio español: factura en euros, habla tu idioma
+          y conoce el marco legal que te aplica.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div class="bg-white rounded-2xl p-7 border border-gray-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Software global (SimplyBook.me)</h3>
+            <ul class="space-y-3 text-sm text-gray-700">
+              {[
+                'Interfaz y soporte en inglés como lengua base.',
+                'Precios en USD: el coste real varía con el tipo de cambio EUR/USD.',
+                'Documentación de ayuda principalmente en inglés.',
+                'RGPD declarado, pero alojamiento de datos a verificar caso a caso.',
+                'Funciones muy amplias, pero no todas adaptadas al mercado español.',
+                'WhatsApp no integrado de forma nativa (requiere integraciones externas).',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-amber-500 mt-0.5 flex-shrink-0">—</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-blue-50 rounded-2xl p-7 border-2 border-blue-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Software para España (Agenda de Reservas)</h3>
+            <ul class="space-y-3 text-sm text-gray-800">
+              {[
+                'Interfaz y soporte 100% en español de España.',
+                'Precio fijo en euros: sabes exactamente cuánto pagas cada mes.',
+                'Toda la documentación, contratos y facturas en español.',
+                'Servidores UE + empresa española = RGPD/LOPD sin gestiones extra.',
+                'Funciones elegidas según lo que necesitan los negocios españoles.',
+                'WhatsApp Business API disponible como add-on nativo.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-gray-200 p-6">
+          <h3 class="font-semibold text-gray-900 mb-3 text-base">El problema del soporte en inglés en el día a día</h3>
+          <p class="text-sm text-gray-600 mb-3">
+            Cuando falla una integración, no se procesa una reserva o tienes una duda de configuración,
+            necesitas ayuda rápida en tu idioma. Con un software global, el proceso habitual es:
+            abrir un ticket en inglés, esperar respuesta (a menudo más de 24h por diferencia horaria)
+            y traducir la solución. Con Agenda de Reservas, el equipo responde en español en menos
+            de 2 horas en horario laboral, sin intermediarios.
+          </p>
+          <p class="text-sm text-gray-500 italic">
+            "El soporte en español fue determinante para nosotros. Antes con una herramienta en inglés
+            perdíamos tiempo en cada incidencia." — Testimonio orientativo de cliente de Agenda de Reservas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 6: ¿Es Agenda de Reservas una buena alternativa a SimplyBook para negocios en España? -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Es Agenda de Reservas una buena alternativa a SimplyBook para negocios en España?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          Sí, especialmente si tu prioridad es operar en español, tener soporte local y cumplir con
+          el RGPD sin complicaciones. Agenda de Reservas no intenta competir con SimplyBook en número
+          de funciones globales: se centra en lo que necesita un negocio de servicios en España —
+          peluquería, clínica, centro de estética, fisioterapia — y lo resuelve bien, en tu idioma
+          y con empresa española detrás.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-gray-50 rounded-2xl p-7 border border-gray-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Elige SimplyBook.me si...</h3>
+            <ul class="space-y-3 text-sm text-gray-700">
+              {[
+                'Tu equipo se maneja bien en inglés sin problema.',
+                'Necesitas funciones muy específicas de su catálogo de 60+ módulos.',
+                'El plan gratuito de 50 reservas/mes cubre tu volumen actual.',
+                'Operas en varios países y necesitas una herramienta multiidioma.',
+                'Valoras tener una comunidad global grande de usuarios.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-0.5 flex-shrink-0">→</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-blue-50 rounded-2xl p-7 border-2 border-blue-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Elige Agenda de Reservas si...</h3>
+            <ul class="space-y-3 text-sm text-gray-800">
+              {[
+                'Necesitas soporte en español con respuesta en menos de 2 horas.',
+                'Quieres un precio fijo en euros sin sorpresas por tipo de cambio.',
+                'El RGPD y el alojamiento en la UE son requisito para tu negocio.',
+                'Quieres WhatsApp Business integrado de forma nativa.',
+                'Gestionas una peluquería, clínica, centro de estética o fisioterapia en España.',
+                'Prefieres una herramienta simple y directa, sin configurar 60 módulos.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p class="text-sm text-gray-600 mb-4">
+          Si gestionas una peluquería, consulta el
+          <a href="/peluquerias" class="text-blue-600 underline">software para peluquerías en España</a>
+          con todas las funciones específicas para ese sector. Para clínicas, tenemos información detallada
+          sobre la <a href="/clinicas-psicologia" class="text-blue-600 underline">agenda para clínicas de psicología</a>
+          y el <a href="/fisioterapia" class="text-blue-600 underline">software de citas para fisioterapia</a>.
+          También puedes comparar con otros competidores en la
+          <a href="/vs/booksy" class="text-blue-600 underline">comparativa con Booksy</a>
+          o consultar directamente los
+          <a href="/precios" class="text-blue-600 underline">ver planes de Agenda de Reservas</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-3xl mx-auto">
+        <h2 class="text-headline text-gray-900 text-center mb-12">Preguntas frecuentes</h2>
+        <div class="space-y-4">
+          {[
+            {
+              q: '¿SimplyBook.me tiene interfaz en español?',
+              a: 'SimplyBook.me dispone de traducciones parciales al español, pero su interfaz de administración y su soporte están principalmente en inglés. Los negocios en España que necesitan operar completamente en español pueden encontrar esta limitación relevante en el día a día. Agenda de Reservas está diseñado desde el origen íntegramente en español de España.',
+            },
+            {
+              q: '¿SimplyBook cumple con el RGPD europeo?',
+              a: 'SimplyBook.me, con sede en Islandia, declara cumplimiento con el RGPD, pero el alojamiento de los datos puede distribuirse en servidores fuera de la UE según el plan contratado. Es recomendable revisar su Acuerdo de Procesamiento de Datos (DPA) antes de contratar. Agenda de Reservas aloja todos los datos en servidores dentro de la UE y es operado por una empresa española (Tecelia Solutions S.L.), lo que simplifica el cumplimiento normativo para negocios en España.',
+            },
+            {
+              q: '¿Puedo usar SimplyBook para una peluquería en España?',
+              a: 'Sí, SimplyBook.me funciona para peluquerías. Sin embargo, para negocios en España el principal inconveniente es la barrera del idioma en la interfaz de administración y el soporte en inglés, junto con la facturación en USD. Agenda de Reservas ofrece las mismas funcionalidades de gestión de citas para peluquerías con soporte humano en español en menos de 2 horas, precios fijos en euros y plena adaptación al mercado español.',
+            },
+            {
+              q: '¿Agenda de Reservas tiene las mismas funciones que SimplyBook?',
+              a: 'Para la mayoría de negocios de servicios en España, sí. Agenda de Reservas cubre reservas online 24/7, calendario multi-staff, CRM de clientes, recordatorios automáticos, página de reservas personalizada y widget para web propia. SimplyBook.me tiene un catálogo más extenso de módulos adicionales pensado para casos de uso muy variados a nivel global. Agenda de Reservas está enfocado en lo que necesitan peluquerías, clínicas, centros de estética y negocios similares en España, con soporte en español.',
+            },
+          ].map(({ q, a }) => (
+            <div class="border border-gray-200 rounded-xl overflow-hidden bg-white">
+              <details class="group">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                  {q}
+                  <span class="text-gray-400 group-open:rotate-180 transition-transform">▾</span>
+                </summary>
+                <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{a}</div>
+              </details>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Enlazado interno saliente -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-3xl mx-auto">
+        <h2 class="text-xl font-bold text-gray-900 mb-6 text-center">Recursos relacionados</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {[
+            {
+              href: '/peluquerias',
+              label: 'software para peluquerías en España',
+              desc: 'Funciones específicas para peluquerías y barberías: multi-staff, recordatorios y reservas 24/7.',
+            },
+            {
+              href: '/clinicas-psicologia',
+              label: 'agenda para clínicas de psicología',
+              desc: 'Gestión de citas para psicólogos con privacidad, RGPD y recordatorios automáticos.',
+            },
+            {
+              href: '/fisioterapia',
+              label: 'software de citas para fisioterapia',
+              desc: 'Agenda online para fisioterapeutas: sesiones, personal y gestión de pacientes.',
+            },
+            {
+              href: '/vs/booksy',
+              label: 'comparativa con Booksy',
+              desc: 'Booksy cobra por empleado. Descubre cómo se compara con Agenda de Reservas.',
+            },
+            {
+              href: '/precios',
+              label: 'ver planes de Agenda de Reservas',
+              desc: 'Planes desde 19€/mes. Prueba 14 días completa sin tarjeta de crédito.',
+            },
+          ].map(({ href, label, desc }) => (
+            <a
+              href={href}
+              class="flex flex-col gap-1 bg-gray-50 rounded-2xl px-5 py-4 border border-gray-200 hover:border-blue-300 hover:shadow-sm transition-all"
+            >
+              <span class="text-blue-600 font-semibold text-sm underline">{label}</span>
+              <span class="text-gray-500 text-xs">{desc}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="section-apple bg-gray-900">
+      <div class="container-apple text-center">
+        <h2 class="text-headline text-white mb-4">
+          Software de reservas hecho para España.<br/>
+          <span class="text-blue-400">
+            En español, en euros y con soporte humano en &lt;2h.
+          </span>
+        </h2>
+        <p class="text-gray-400 mb-2">Sin comisiones · Sin permanencia · Empresa española</p>
+        <p class="text-gray-500 text-sm mb-8">
+          Prueba gratis 14 días completos — sin tarjeta de crédito · desde <span data-price-key="service_business.monthly">{svcPrice}</span>€/mes
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="https://app.agendadereservas.com"
+            class="inline-block bg-white text-gray-900 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors"
+          >
+            Empezar gratis ahora
+          </a>
+          <a
+            href="/precios"
+            class="inline-block border border-gray-600 text-gray-300 font-semibold px-10 py-4 rounded-2xl hover:border-gray-400 hover:text-white transition-colors"
+          >
+            Ver todos los planes
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+  <DynamicPricing />
+</Layout>

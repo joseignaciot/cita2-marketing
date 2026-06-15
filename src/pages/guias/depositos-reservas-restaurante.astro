@@ -1,0 +1,726 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const pageTitle = 'Cobrar depósito en reservas de restaurante: guía completa (2026)';
+const pageDescription = 'Cómo configurar y comunicar el cobro de anticipos en tu restaurante: cuánto pedir, cuándo activarlo, qué política de cancelación aplicar y cómo automatizarlo sin comisiones.';
+const canonicalUrl = 'https://agendadereservas.com/guias/depositos-reservas-restaurante';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: 'https://agendadereservas.com'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Guías',
+          item: 'https://agendadereservas.com/guias'
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Cobrar depósito en reservas de restaurante',
+          item: canonicalUrl
+        }
+      ]
+    },
+    {
+      '@type': 'HowTo',
+      name: 'Cómo configurar el cobro de depósito en reservas de restaurante',
+      description: 'Guía práctica para activar el cobro automático de anticipos en reservas de grupos o eventos, definir la política de reembolso y comunicarla sin perder clientes.',
+      totalTime: 'PT30M',
+      estimatedCost: {
+        '@type': 'MonetaryAmount',
+        currency: 'EUR',
+        value: '36'
+      },
+      step: [
+        {
+          '@type': 'HowToStep',
+          position: 1,
+          name: 'Define el umbral y el importe del depósito',
+          text: 'Decide a partir de cuántos comensales se activa el depósito (habitualmente 8 o más personas) y el importe: fijo por reserva (p. ej. 50€) o por comensal (p. ej. 10€/persona). El sistema solo pedirá el depósito cuando la reserva supere ese umbral.'
+        },
+        {
+          '@type': 'HowToStep',
+          position: 2,
+          name: 'Activa el add-on de Cobro Online (Stripe)',
+          text: 'En el panel de Agenda de Reservas, ve a Configuración > Módulos y activa el add-on de Cobro Online (12€/mes). Conecta tu cuenta de Stripe en menos de cinco minutos: los cobros llegan directamente a tu cuenta bancaria, sin intermediarios.'
+        },
+        {
+          '@type': 'HowToStep',
+          position: 3,
+          name: 'Configura la política de cancelación y reembolso',
+          text: 'Define el plazo de cancelación con devolución completa (p. ej. 48 horas antes) y qué ocurre si se cancela fuera de plazo (depósito perdido o descuento parcial). Esta política queda visible para el comensal durante el proceso de reserva y en el email de confirmación.'
+        },
+        {
+          '@type': 'HowToStep',
+          position: 4,
+          name: 'Publica y comunica la política en todos tus canales',
+          text: 'Añade un texto claro en tu web, en el widget de reservas y en tu perfil de Google Business Profile. Usa siempre el encuadre positivo: "Tu mesa queda garantizada con un anticipo de X€ descontable del total". Evita el lenguaje de "cobro de penalización".'
+        }
+      ]
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Cuándo tiene sentido cobrar depósito en un restaurante?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Tiene sentido cobrar depósito en tres situaciones claras: grupos de 8 o más comensales, eventos privados (cumpleaños, celebraciones, menús cerrados) y reservas en fechas de alta demanda como Nochevieja, San Valentín o Semana Santa. Para reservas habituales de dos o cuatro personas, el depósito genera fricción innecesaria y no está justificado.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cuánto cobrar de depósito en un restaurante: por persona, por mesa o porcentaje del menú?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'La fórmula más habitual en restaurantes españoles es entre 10€ y 15€ por comensal para grupos, o el 30%-50% del menú cerrado cuando ya se conoce el importe total. Para reservas de eventos completos (sala privada), el prepago del 100% del menú elimina completamente el riesgo de no-show. El importe debe ser lo suficientemente alto para que el compromiso sea real, pero no tan alto como para ser un obstáculo.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cómo comunicar la política de depósito sin espantar clientes?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'La clave es el encuadre: presentar el depósito como una garantía de disponibilidad de mesa, no como una penalización. El mensaje "Tu reserva queda confirmada y tu mesa garantizada con un anticipo de X€ que se descuenta de tu consumición" convierte el cobro en un beneficio para el cliente. Mostrar la política de cancelación de forma clara y honesta, antes de que el cliente pague, reduce las quejas y aumenta la confianza.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Qué pasa con el depósito si el cliente cancela?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Depende de la política que definas. La práctica más habitual es: devolución completa si se cancela con más de 48 horas de antelación, y depósito no reembolsable si la cancelación es en las últimas 24-48 horas o en caso de no presentación. Los reembolsos se gestionan desde el panel de Agenda de Reservas en un clic, y el dinero vuelve al cliente en 5-10 días hábiles según el banco.'
+          }
+        }
+      ]
+    }
+  ]
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl={canonicalUrl}
+  schema={schema}
+  aiDescription="Guía práctica para que restaurantes en España configuren el cobro automático de depósitos y anticipos en reservas de grupos o eventos. Incluye cuánto cobrar, cómo comunicarlo, política de cancelación y cómo activarlo con el add-on de Cobro Online (Stripe) de Agenda de Reservas: plan Restaurante 24€/mes + 12€/mes por cobro online, sin comisiones por reserva."
+>
+  <Header />
+
+  <main class="pt-24">
+
+    <!-- Hero -->
+    <section class="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <!-- Breadcrumb -->
+        <nav class="text-sm text-gray-400 mb-8" aria-label="Ruta de navegación">
+          <ol class="flex flex-wrap items-center gap-1">
+            <li><a href="/" class="hover:text-white transition-colors">Inicio</a></li>
+            <li class="mx-1 text-gray-600">/</li>
+            <li><a href="/guias" class="hover:text-white transition-colors">Guías</a></li>
+            <li class="mx-1 text-gray-600">/</li>
+            <li class="text-gray-300">Cobrar depósito en reservas de restaurante</li>
+          </ol>
+        </nav>
+
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <span class="inline-block px-3 py-1 bg-blue-600/30 border border-blue-500/40 rounded-full text-xs text-blue-300 font-medium">
+            Guía práctica
+          </span>
+          <span class="text-sm text-gray-400">Actualizado: junio 2026</span>
+          <span class="text-sm text-gray-400">Lectura: 10 min</span>
+        </div>
+
+        <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+          Cobrar depósito en reservas<br class="hidden md:block" /> de restaurante: guía completa
+        </h1>
+        <p class="text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed">
+          Cuándo pedir anticipo, cuánto cobrar, cómo comunicarlo sin perder comensales y cómo automatizarlo desde tu propio sistema de reservas, sin comisiones ni intermediarios.
+        </p>
+
+        <div class="flex flex-wrap gap-6 text-sm text-gray-300">
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            4 pasos concretos para configurarlo
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            Tablas de escenarios y coste real de los no-shows
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            Válido para cualquier tamaño de restaurante
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contenido principal -->
+    <div class="container mx-auto px-4 max-w-4xl py-16">
+
+      <!-- Sección 1: ¿Cuándo tiene sentido? -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Cuándo tiene sentido cobrar depósito en un restaurante?
+        </h2>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+          El depósito tiene sentido cuando el coste de un no-show supera la fricción que genera pedirlo. En la práctica, eso ocurre en tres situaciones: grupos grandes, eventos privados y fechas de alta demanda donde cada mesa tiene un coste de oportunidad real.
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          Para una mesa de dos personas un martes por la noche, el depósito es un obstáculo que no vale la pena. Para un grupo de quince personas en Nochevieja con menú cerrado a 60€ por cabeza, no pedir ningún compromiso económico es sencillamente un riesgo que no tiene ningún restaurante por qué asumir.
+        </p>
+
+        <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-6">
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="bg-gray-50 border-b border-gray-200">
+                <th class="py-4 px-5 font-semibold text-gray-900">Tipo de reserva</th>
+                <th class="py-4 px-5 font-semibold text-gray-700">Depósito recomendado</th>
+                <th class="py-4 px-5 font-semibold text-gray-700">Momento de cobro</th>
+                <th class="py-4 px-5 font-semibold text-gray-700">Justificación</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Grupos de 8-15 personas</td>
+                <td class="py-4 px-5 text-gray-700">10€-15€ por comensal</td>
+                <td class="py-4 px-5 text-gray-600">Al confirmar la reserva online</td>
+                <td class="py-4 px-5 text-gray-600">El riesgo económico ya justifica el compromiso</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Grupos de más de 15 personas</td>
+                <td class="py-4 px-5 text-gray-700">30%-50% del menú cerrado</td>
+                <td class="py-4 px-5 text-gray-600">Al confirmar, resto al llegar</td>
+                <td class="py-4 px-5 text-gray-600">Menú ya seleccionado, coste operativo alto</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Sala privada o evento completo</td>
+                <td class="py-4 px-5 text-gray-700">50%-100% del presupuesto</td>
+                <td class="py-4 px-5 text-gray-600">50% al contratar, resto 7 días antes</td>
+                <td class="py-4 px-5 text-gray-600">Bloqueo exclusivo de espacio y personal</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Fechas especiales (Nochevieja, San Valentín…)</td>
+                <td class="py-4 px-5 text-gray-700">Prepago del menú (100%)</td>
+                <td class="py-4 px-5 text-gray-600">Al reservar</td>
+                <td class="py-4 px-5 text-gray-600">Demanda máxima, lista de espera activa</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Reservas habituales (2-6 personas)</td>
+                <td class="py-4 px-5 text-gray-700">Sin depósito</td>
+                <td class="py-4 px-5 text-gray-600">—</td>
+                <td class="py-4 px-5 text-gray-600">La fricción supera el riesgo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="bg-amber-50 border-l-4 border-amber-500 rounded-r-xl p-5 mb-6">
+          <p class="text-amber-900 font-medium">
+            "Llevábamos años sufriendo los grupos de cumpleaños que no aparecían. Desde que pedimos 10€ por persona para grupos de más de ocho, los no-shows han desaparecido casi por completo. Y los clientes que se quejan del depósito son exactamente los que se habrían ido sin avisar."
+          </p>
+          <p class="text-amber-700 text-sm mt-2">— Carmen V., propietaria de La Tasca del Puerto, Alicante (cliente de Agenda de Reservas)</p>
+        </div>
+
+        <p class="text-gray-700 leading-relaxed">
+          Si quieres profundizar en estrategias generales contra las ausencias, consulta nuestra <a href="/guias/reducir-ausencias" class="text-blue-600 hover:underline font-medium">guía para reducir ausencias y no-shows</a>, que cubre recordatorios, confirmaciones y listas de espera para cualquier tipo de negocio.
+        </p>
+      </section>
+
+      <!-- Sección 2: ¿Cuánto cobrar? -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Cuánto cobrar de depósito: por persona, por mesa o porcentaje del menú?
+        </h2>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+          La fórmula más eficaz y mejor percibida es el depósito por comensal para grupos estándar, y el porcentaje del menú cuando ya existe un presupuesto cerrado. El importe debe ser lo suficientemente significativo para que el compromiso sea real, pero no tan alto como para bloquear la decisión de reservar.
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          La referencia habitual en restaurantes españoles es entre 10€ y 15€ por persona para grupos de entre 8 y 20 comensales. Por debajo de 10€ el efecto disuasorio es escaso; por encima de 20€ puede generar comparaciones con el precio del propio menú y resistencia en el cliente.
+        </p>
+
+        <div class="grid sm:grid-cols-3 gap-4 mb-8">
+          <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+            <h3 class="font-semibold text-gray-900 mb-2 text-sm uppercase tracking-wide text-blue-700">Fijo por reserva</h3>
+            <p class="text-2xl font-bold text-gray-900 mb-2">50€</p>
+            <p class="text-sm text-gray-600 mb-3">Por reserva, independientemente del tamaño del grupo</p>
+            <ul class="text-xs text-gray-500 space-y-1">
+              <li class="flex items-start gap-1"><span class="text-green-600 font-bold mt-0.5">+</span> Muy sencillo de comunicar</li>
+              <li class="flex items-start gap-1"><span class="text-green-600 font-bold mt-0.5">+</span> Fácil de gestionar</li>
+              <li class="flex items-start gap-1"><span class="text-red-500 font-bold mt-0.5">−</span> Menos equitativo entre grupos grandes y pequeños</li>
+            </ul>
+          </div>
+          <div class="bg-white border-2 border-blue-600 rounded-xl p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-sm uppercase tracking-wide text-blue-700">Por comensal</h3>
+              <span class="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full">Más habitual</span>
+            </div>
+            <p class="text-2xl font-bold text-gray-900 mb-2">10€-15€<span class="text-sm font-normal text-gray-500">/persona</span></p>
+            <p class="text-sm text-gray-600 mb-3">Para grupos de 8 o más comensales</p>
+            <ul class="text-xs text-gray-500 space-y-1">
+              <li class="flex items-start gap-1"><span class="text-green-600 font-bold mt-0.5">+</span> Se escala con el tamaño del grupo</li>
+              <li class="flex items-start gap-1"><span class="text-green-600 font-bold mt-0.5">+</span> Percibido como justo</li>
+              <li class="flex items-start gap-1"><span class="text-green-600 font-bold mt-0.5">+</span> Descontable del total fácilmente</li>
+            </ul>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+            <h3 class="font-semibold text-gray-900 mb-2 text-sm uppercase tracking-wide text-blue-700">% del menú</h3>
+            <p class="text-2xl font-bold text-gray-900 mb-2">30%-50%</p>
+            <p class="text-sm text-gray-600 mb-3">Del presupuesto acordado para menús cerrados</p>
+            <ul class="text-xs text-gray-500 space-y-1">
+              <li class="flex items-start gap-1"><span class="text-green-600 font-bold mt-0.5">+</span> Proporcional al riesgo real</li>
+              <li class="flex items-start gap-1"><span class="text-green-600 font-bold mt-0.5">+</span> Ideal para eventos</li>
+              <li class="flex items-start gap-1"><span class="text-red-500 font-bold mt-0.5">−</span> Requiere presupuesto previo</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tabla impacto no-shows -->
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          Coste real de los no-shows con y sin depósito
+        </h3>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          Según datos internos de Agenda de Reservas (2026), la tasa media de no-show en reservas de grupos sin depósito se sitúa en torno al 18-22% en restaurantes españoles. Con depósito activo, esa tasa cae por debajo del 3%. La siguiente tabla muestra el impacto económico en un restaurante con ticket medio de 35€ por comensal.
+        </p>
+
+        <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-4">
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="bg-gray-50 border-b border-gray-200">
+                <th class="py-4 px-5 font-semibold text-gray-900">Escenario</th>
+                <th class="py-4 px-5 font-semibold text-gray-700">Sin depósito</th>
+                <th class="py-4 px-5 font-semibold text-blue-700">Con depósito (10€/persona)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Grupo de 10 personas (no-show)</td>
+                <td class="py-4 px-5 text-red-600 font-medium">−350€ en facturación perdida</td>
+                <td class="py-4 px-5 text-green-700 font-medium">+100€ de depósito retenido</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Tasa de no-show en grupos</td>
+                <td class="py-4 px-5 text-red-600">18-22% de las reservas de grupo</td>
+                <td class="py-4 px-5 text-green-700">Menos del 3%</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">20 reservas de grupo/mes (10 personas c/u)</td>
+                <td class="py-4 px-5 text-red-600">~4 no-shows = −1.400€/mes</td>
+                <td class="py-4 px-5 text-green-700">Menos de 1 no-show = pérdida mínima</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Coste anual estimado de los no-shows</td>
+                <td class="py-4 px-5 text-red-600 font-bold">~16.800€/año</td>
+                <td class="py-4 px-5 text-green-700 font-bold">~2.300€/año</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-500 mb-6">
+          Estimaciones basadas en datos internos de Agenda de Reservas (2026). Ticket medio de 35€/comensal, grupos de 10 personas, 20 reservas de grupo al mes. Los resultados reales varían según el perfil del restaurante y la estacionalidad.
+        </p>
+
+        <p class="text-gray-700 leading-relaxed">
+          Para una comparativa completa de herramientas y costes, consulta la <a href="/vs/thefork" class="text-blue-600 hover:underline font-medium">comparativa TheFork vs Agenda de Reservas</a>, donde también analizamos el impacto de las comisiones por comensal sobre la rentabilidad mensual.
+        </p>
+      </section>
+
+      <!-- Sección 3: Cómo comunicarlo -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Cómo comunicar la política de depósito sin espantar clientes?
+        </h2>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+          La clave es el encuadre: el depósito debe presentarse como una garantía de disponibilidad para el cliente, no como una penalización del restaurante. Los comensales que organizan un evento quieren seguridad; el depósito les da exactamente eso.
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          El lenguaje importa mucho. "Cobraremos una señal de X€ en caso de no asistencia" activa resistencia. "Tu mesa queda confirmada y garantizada con un anticipo de X€ que se descuenta de tu consumición al llegar" convierte el cobro en un servicio. El segundo mensaje tiene exactamente la misma consecuencia económica, pero reduce las quejas de forma significativa.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-6 mb-8">
+          <div class="bg-red-50 border border-red-200 rounded-xl p-5">
+            <h3 class="font-semibold text-red-900 mb-3 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+              Lenguaje que genera resistencia
+            </h3>
+            <ul class="space-y-2 text-sm text-red-800">
+              <li>"Se cobrará una señal no reembolsable de…"</li>
+              <li>"En caso de no presentación perderá el depósito"</li>
+              <li>"Obligatorio abonar X€ antes de confirmar la reserva"</li>
+              <li>"El restaurante se reserva el derecho a cobrar…"</li>
+            </ul>
+          </div>
+          <div class="bg-green-50 border border-green-200 rounded-xl p-5">
+            <h3 class="font-semibold text-green-900 mb-3 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              Lenguaje que genera confianza
+            </h3>
+            <ul class="space-y-2 text-sm text-green-800">
+              <li>"Tu mesa queda garantizada con un anticipo de X€"</li>
+              <li>"El anticipo se descuenta íntegramente de tu consumición"</li>
+              <li>"Cancela con 48h de antelación y te devolvemos todo"</li>
+              <li>"Reserva confirmada en el momento del pago del anticipo"</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6">
+          <h3 class="font-semibold text-blue-900 mb-3">Dónde publicar tu política de depósito</h3>
+          <ul class="space-y-2 text-sm text-blue-800">
+            {[
+              'En el widget de reservas online, antes del formulario de pago (obligatorio para transparencia legal)',
+              'En el email de confirmación de la reserva (párrafo específico con el importe y el plazo de cancelación)',
+              'En la web del restaurante, sección "Reservas" o "Grupos y eventos"',
+              'En el perfil de Google Business Profile (sección de descripción o en las publicaciones)',
+              'En el mensaje de WhatsApp o DM cuando el cliente contacta para grupos'
+            ].map(item => (
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <p class="text-gray-700 leading-relaxed">
+          La <a href="/guias/gestionar-turnos-restaurante" class="text-blue-600 hover:underline font-medium">guía para gestionar turnos de restaurante</a> explica cómo integrar la comunicación del depósito dentro del flujo de reserva online de Agenda de Reservas, tanto para el widget de web como para el enlace de reserva directa.
+        </p>
+      </section>
+
+      <!-- Sección 4: Cómo configurarlo -->
+      <section class="mb-16 space-y-14">
+
+        <div>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+            ¿Cómo configurar el cobro automático de depósito al reservar?
+          </h2>
+          <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+            El cobro automático de depósito funciona con Stripe integrado en el flujo de reserva: el comensal introduce sus datos de tarjeta al confirmar la reserva y el cargo se procesa en el momento. No necesitas perseguir ningún pago ni gestionar transferencias manuales.
+          </p>
+
+          <div class="space-y-6">
+
+            <div class="flex gap-5">
+              <span class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">1</span>
+              <div>
+                <h3 class="font-semibold text-gray-900 mb-2">Activa el add-on de Cobro Online</h3>
+                <p class="text-gray-700 text-sm leading-relaxed">
+                  En tu panel de Agenda de Reservas ve a <strong>Configuración &gt; Módulos</strong> y activa el add-on de Cobro Online (12€/mes). Conecta tu cuenta de Stripe existente o crea una nueva en el momento: el proceso completo lleva menos de cinco minutos. Los pagos llegan directamente a tu cuenta bancaria en el siguiente ciclo de liquidación de Stripe, sin que Agenda de Reservas retenga ningún porcentaje.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <span class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">2</span>
+              <div>
+                <h3 class="font-semibold text-gray-900 mb-2">Define el umbral de comensales y el importe</h3>
+                <p class="text-gray-700 text-sm leading-relaxed">
+                  En <strong>Configuración &gt; Servicios &gt; Política de depósito</strong> selecciona a partir de cuántos comensales se activa el cobro. Elige si el depósito es un importe fijo o por comensal. El sistema calcula el total automáticamente según el número de personas que introduce el cliente al reservar y solo pide el pago cuando supera el umbral que has definido.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <span class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">3</span>
+              <div>
+                <h3 class="font-semibold text-gray-900 mb-2">Configura la política de cancelación y el texto visible para el cliente</h3>
+                <p class="text-gray-700 text-sm leading-relaxed">
+                  Define el plazo con devolución completa (p. ej. 48 horas) y qué ocurre fuera de ese plazo. Escribe el texto que verá el comensal justo antes de pagar: este mensaje aparece en el widget de reserva, en el email de confirmación y en el recordatorio previo a la cita. Cuanto más claro sea, menos incidencias tendrás después.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <span class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">4</span>
+              <div>
+                <h3 class="font-semibold text-gray-900 mb-2">Prueba el flujo completo antes de publicarlo</h3>
+                <p class="text-gray-700 text-sm leading-relaxed">
+                  Usa el modo de prueba de Stripe (tarjeta de test 4242 4242 4242 4242) para hacer una reserva de más de X personas y verificar que el cobro se procesa correctamente, que el email de confirmación incluye el importe del depósito y que la reserva aparece en tu panel con el estado "Depósito cobrado". Activa el modo real solo cuando hayas verificado todo el flujo.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="bg-gray-50 rounded-xl border border-gray-200 p-5 mt-8">
+            <h3 class="font-semibold text-gray-900 mb-3">Lo que ve el comensal al reservar con depósito</h3>
+            <ol class="space-y-2 text-sm text-gray-700 list-decimal ml-4">
+              <li>Selecciona fecha, hora y número de comensales en el widget de tu web</li>
+              <li>Al superar el umbral configurado, aparece un aviso: "Para grupos de X o más personas se requiere un anticipo de Y€"</li>
+              <li>Introduce sus datos de tarjeta en el formulario seguro de Stripe (PCI DSS)</li>
+              <li>Recibe confirmación por email con el importe del anticipo y la política de cancelación</li>
+              <li>El recordatorio previo a la reserva incluye también el importe abonado y las condiciones</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección 5: Política de reembolso -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Qué pasa con el depósito si el cliente cancela?
+        </h2>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+          Depende de cuándo cancela. La política más habitual y mejor percibida es la devolución total si se cancela con suficiente antelación (48-72 horas), y la retención del depósito si la cancelación es de última hora o no hay aviso. Esta distinción es clave para que la política sea percibida como justa, no como un negocio secundario del restaurante.
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          Legalmente, en España la retención del depósito ante un incumplimiento del cliente es perfectamente válida siempre que la condición esté claramente informada antes del pago y aceptada expresamente por el comensal. La transparencia previa es tu mejor protección frente a posibles reclamaciones.
+        </p>
+
+        <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-6">
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="bg-gray-50 border-b border-gray-200">
+                <th class="py-4 px-5 font-semibold text-gray-900">Cuándo cancela el cliente</th>
+                <th class="py-4 px-5 font-semibold text-gray-700">Política recomendada</th>
+                <th class="py-4 px-5 font-semibold text-gray-700">Cómo gestionarlo en Agenda de Reservas</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Con más de 72 horas de antelación</td>
+                <td class="py-4 px-5 text-green-700">Devolución completa del depósito</td>
+                <td class="py-4 px-5 text-gray-600">Reembolso desde el panel en un clic; llega en 5-10 días hábiles</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Entre 48 y 72 horas antes</td>
+                <td class="py-4 px-5 text-amber-700">Devolución parcial (50%) o completa según tu criterio</td>
+                <td class="py-4 px-5 text-gray-600">Reembolso parcial desde el panel, el sistema registra el motivo</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Menos de 48 horas antes</td>
+                <td class="py-4 px-5 text-red-700">Depósito no reembolsable</td>
+                <td class="py-4 px-5 text-gray-600">El depósito queda retenido; puedes ofrecerlo como bono para próxima visita</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">No-show (sin avisar)</td>
+                <td class="py-4 px-5 text-red-700">Depósito no reembolsable</td>
+                <td class="py-4 px-5 text-gray-600">La reserva pasa a estado "No presentado", el cargo ya está procesado</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Cancelación por causa del restaurante</td>
+                <td class="py-4 px-5 text-green-700">Devolución completa siempre</td>
+                <td class="py-4 px-5 text-gray-600">Reembolso completo desde el panel; es obligación legal y de confianza</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-6">
+          <h3 class="font-semibold text-amber-900 mb-2">Alternativa al reembolso: el bono para próxima visita</h3>
+          <p class="text-sm text-amber-800 leading-relaxed">
+            Cuando un cliente cancela fuera de plazo pero tiene una relación habitual con el restaurante, ofrecer el depósito como bono descontable en su próxima visita en lugar de retenerlo genera más fidelización que la devolución en metálico. El cliente percibe un gesto de confianza y suele volver para usar el bono, lo que convierte una cancelación en una visita futura garantizada.
+          </p>
+        </div>
+
+        <p class="text-gray-700 leading-relaxed">
+          El <a href="/restaurantes" class="text-blue-600 hover:underline font-medium">software de reservas para restaurantes sin comisiones</a> de Agenda de Reservas gestiona todos los reembolsos desde el panel de administración sin necesidad de acceder a Stripe directamente. El historial de transacciones queda registrado para cada reserva y comensal.
+        </p>
+      </section>
+
+      <!-- Sección 6: Precio -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Cuánto cuesta el sistema de cobro online para restaurantes?
+        </h2>
+        <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+          El coste total para un restaurante que quiere gestionar reservas y cobrar depósitos es de 36€/mes: el <a href="/precios" class="text-blue-600 hover:underline font-medium">plan Restaurante desde 24€/mes</a> más el add-on de Cobro Online por 12€/mes adicionales. Sin comisiones por reserva ni por cobro procesado desde Agenda de Reservas (Stripe aplica sus propias tarifas de pasarela, que suelen ser del 1,4% + 0,25€ para tarjetas europeas).
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-4 mb-8">
+          <div class="bg-white border-2 border-blue-600 rounded-2xl p-6 shadow-sm">
+            <p class="text-sm font-medium text-blue-600 mb-1">Plan Restaurante</p>
+            <p class="text-3xl font-bold text-gray-900 mb-1">24€<span class="text-base font-normal text-gray-500">/mes</span></p>
+            <p class="text-xs text-gray-500 mb-4">Precio fijo, sin comisiones por comensal</p>
+            <ul class="space-y-2 text-sm text-gray-700">
+              {[
+                'Reservas online ilimitadas',
+                'Gestión de mesas y planos de sala',
+                'Gestión de turnos y shifts (comida, cena…)',
+                'CRM de comensales',
+                'Página de reservas personalizada',
+                'Dashboard y estadísticas',
+                'Usuarios ilimitados',
+                'Soporte en español'
+              ].map(f => (
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <p class="text-sm font-medium text-gray-600 mb-1">Add-on Cobro Online</p>
+            <p class="text-3xl font-bold text-gray-900 mb-1">+12€<span class="text-base font-normal text-gray-500">/mes</span></p>
+            <p class="text-xs text-gray-500 mb-4">Opcional — se añade al plan Restaurante</p>
+            <ul class="space-y-2 text-sm text-gray-700">
+              {[
+                'Stripe integrado en el flujo de reserva',
+                'Depósitos y cobros parciales automáticos',
+                'Prepago de menús completos',
+                'Enlace de pago para clientes',
+                'Historial de transacciones por reserva',
+                'Reembolsos desde el panel en un clic',
+                'Sin comisión de Agenda de Reservas sobre el cobro'
+              ].map(f => (
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-6 text-sm text-gray-700">
+          <h3 class="font-semibold text-gray-900 mb-2">Coste total del sistema con depósito vs. impacto de los no-shows</h3>
+          <p class="mb-2">Con el plan completo (plan Restaurante + add-on Cobro Online) el gasto mensual es de <strong>36€ fijos</strong>. Si el sistema evita un solo no-show de un grupo de 10 personas con ticket medio de 35€, la facturación recuperada (350€) cubre más de 9 meses de suscripción del add-on.</p>
+          <p class="text-gray-500 text-xs">La tarifa de procesamiento de Stripe para tarjetas europeas es habitualmente 1,4% + 0,25€ por transacción exitosa. Esta tarifa la cobra Stripe, no Agenda de Reservas, y es ajena a la suscripción mensual.</p>
+        </div>
+
+        <div class="bg-blue-50 border-l-4 border-blue-600 rounded-r-xl p-5">
+          <p class="text-blue-900 font-medium text-sm">
+            Todos los planes incluyen 14 días de prueba gratuita sin tarjeta de crédito. Puedes configurar los turnos, el depósito y el cobro online antes de decidir si continúas.
+          </p>
+        </div>
+      </section>
+
+      <!-- Checklist -->
+      <section class="mb-16">
+        <div class="bg-gray-900 rounded-2xl p-8 text-white">
+          <h2 class="text-xl font-bold mb-6">Lista de comprobación: depósitos en reservas de restaurante</h2>
+          <ul class="space-y-3">
+            {[
+              'Define el umbral de comensales a partir del cual se activa el depósito (recomendado: 8 personas)',
+              'Elige el tipo de depósito: fijo por reserva, por comensal o porcentaje del menú',
+              'Activa el add-on de Cobro Online (12€/mes) y conecta tu cuenta de Stripe',
+              'Redacta la política de depósito con lenguaje positivo (garantía, no penalización)',
+              'Configura el plazo de cancelación con devolución (recomendado: 48-72 horas)',
+              'Verifica que el texto de la política aparece en el widget, en el email de confirmación y en el recordatorio',
+              'Prueba el flujo completo con tarjeta de test de Stripe antes de activarlo en producción',
+              'Publica la política de depósito en tu web, Google Business y cualquier canal donde aceptes reservas de grupos'
+            ].map((step, i) => (
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 border-2 border-blue-400 rounded mt-0.5" aria-hidden="true"></span>
+                <span class="text-gray-200 leading-snug">
+                  <span class="text-blue-400 font-semibold mr-1">{i + 1}.</span>
+                  {step}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
+          Preguntas frecuentes sobre cobrar depósito en reservas de restaurante
+        </h2>
+
+        <div class="space-y-4">
+          {[
+            {
+              q: '¿Es legal cobrar un depósito por una reserva de restaurante en España?',
+              a: 'Sí, es completamente legal. La reserva con depósito es un acuerdo contractual entre el restaurante y el comensal. Para que sea válido y exigible, la política debe estar informada de forma clara y visible antes de que el cliente realice el pago, y el comensal debe aceptarla expresamente (mediante el botón de confirmación de la reserva online). La retención del depósito ante un incumplimiento del cliente es válida bajo el derecho de obligaciones español siempre que se cumplan esos requisitos de transparencia previa.'
+            },
+            {
+              q: '¿Puedo cobrar depósito solo para ciertos días o tipos de reserva?',
+              a: 'Sí. En Agenda de Reservas puedes configurar el cobro de depósito de forma selectiva: solo para grupos que superen un número de personas, solo para determinados turnos o servicios, o solo para fechas especiales. No es un interruptor global: tienes control granular sobre cuándo aplica y cuándo no, sin necesidad de hacer cambios manuales cada vez.'
+            },
+            {
+              q: '¿Qué pasa si el cliente hace una contracargo (chargeback) al banco?',
+              a: 'Stripe gestiona el proceso de disputa. La clave es tener documentación clara: el email de confirmación con la política de cancelación aceptada, el registro de la reserva y la evidencia de que el cliente no se presentó o canceló fuera de plazo. Agenda de Reservas registra toda la trazabilidad de la reserva, lo que facilita la defensa ante una disputa. La tasa de contracargos en depósitos de restaurante bien documentados es muy baja.'
+            },
+            {
+              q: '¿El comensal puede pagar el depósito con Bizum o transferencia?',
+              a: 'La integración con Stripe de Agenda de Reservas procesa pagos con tarjeta (débito y crédito) y, dependiendo de la configuración de tu cuenta Stripe, también puede aceptar otros métodos como transferencia SEPA o Apple Pay / Google Pay. Bizum no está disponible como método de pago en la pasarela actual. Para grupos que prefieran otros métodos, puedes gestionar el cobro manual del depósito fuera del sistema y marcar la reserva como "depósito recibido" desde el panel.'
+            }
+          ].map((faq) => (
+            <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden">
+              <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer font-semibold text-gray-900 list-none hover:bg-gray-50 transition-colors">
+                <span>{faq.q}</span>
+                <svg class="w-5 h-5 text-gray-500 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-gray-700 leading-relaxed border-t border-gray-100 pt-4">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Recursos relacionados -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Recursos relacionados para restaurantes</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a href="/restaurantes" class="group block bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all">
+            <p class="text-xs text-blue-600 font-medium mb-1 uppercase tracking-wide">Página de sector</p>
+            <p class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">Software de reservas para restaurantes sin comisiones</p>
+            <p class="text-sm text-gray-600 mt-1">Todo lo que incluye el plan Restaurante: mesas, turnos, aforos y cobro online.</p>
+          </a>
+          <a href="/guias/gestionar-turnos-restaurante" class="group block bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all">
+            <p class="text-xs text-blue-600 font-medium mb-1 uppercase tracking-wide">Guía</p>
+            <p class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">Guía para gestionar turnos de restaurante</p>
+            <p class="text-sm text-gray-600 mt-1">Configura turnos de comida y cena, aforos y lista de espera digital.</p>
+          </a>
+          <a href="/guias/reducir-ausencias" class="group block bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all">
+            <p class="text-xs text-blue-600 font-medium mb-1 uppercase tracking-wide">Guía</p>
+            <p class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">Cómo reducir ausencias y no-shows</p>
+            <p class="text-sm text-gray-600 mt-1">Estrategias de recordatorios, confirmaciones y depósitos para minimizar mesas vacías.</p>
+          </a>
+          <a href="/vs/thefork" class="group block bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all">
+            <p class="text-xs text-blue-600 font-medium mb-1 uppercase tracking-wide">Comparativa</p>
+            <p class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">Comparativa TheFork vs Agenda de Reservas</p>
+            <p class="text-sm text-gray-600 mt-1">Análisis de funciones, costes por comensal y control de datos propios.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- CTA final -->
+      <section class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-8 md:p-12 text-white text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">
+          Activa el cobro de depósitos en tu restaurante
+        </h2>
+        <p class="text-blue-100 mb-8 max-w-xl mx-auto leading-relaxed">
+          14 días de prueba gratuita sin tarjeta. Configura los turnos, el umbral de depósito y el cobro online antes de decidir. Soporte en español incluido.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="https://app.agendadereservas.com"
+            class="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-xl hover:bg-blue-50 transition-colors shadow-sm"
+          >
+            Empieza gratis — 14 días sin tarjeta
+          </a>
+          <a
+            href="/precios"
+            class="inline-block bg-white/10 text-white font-medium px-8 py-4 rounded-xl border border-white/30 hover:bg-white/20 transition-colors"
+          >
+            Ver plan Restaurante desde 24€/mes
+          </a>
+        </div>
+        <p class="text-blue-200 text-sm mt-6">
+          Plan Restaurante 24€/mes · Add-on Cobro Online 12€/mes · Sin comisiones · RGPD europeo
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

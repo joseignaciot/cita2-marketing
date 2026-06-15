@@ -8,6 +8,7 @@ import Testimonials from '../components/Testimonials.astro';
 import Pricing from '../components/Pricing.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
+import DashboardMockup from '../components/DashboardMockup.astro';
 
 import content from '../content/sectors/fisioterapia.json';
 
@@ -47,7 +48,20 @@ const schema = {
       secondaryCtaHref="#producto"
     />
 
-    <Features 
+    <!-- Vista previa del panel real (datos de ejemplo) -->
+    <section class="section-padding bg-white border-b border-gray-100">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3">Así gestionas tu centro de fisioterapia</h2>
+          <p class="text-gray-600">Boxes, sesiones e historial de pacientes en un panel claro. Datos de ejemplo.</p>
+        </div>
+        <div class="max-w-3xl mx-auto">
+          <DashboardMockup sector="fisioterapia" />
+        </div>
+      </div>
+    </section>
+
+    <Features
       title="¿Qué conseguirás con Agenda de Reservas?"
       subtitle="Funcionalidades específicas para fisioterapeutas."
       features={features}

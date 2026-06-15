@@ -1,0 +1,622 @@
+
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import DynamicPricing from '../../components/DynamicPricing.astro';
+import '../../styles/apple-design.css';
+import pricingData from '../../content/pricing.json';
+
+// Precios de build-time desde pricing.json — fuente de verdad
+const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
+const svcPrice = svcPlan?.monthly ?? 19;
+const commsAddon = pricingData.addons.find(a => a.id === 'comunicaciones');
+const commsPrice = commsAddon?.price ?? 39;
+
+const pageTitle = 'Alternativa a Koibox para peluquerías | Agenda de Reservas';
+const pageDescription = `Koibox desde 25€/mes para peluquerías. Agenda de Reservas ofrece las mismas funciones desde ${svcPrice}€/mes, con soporte en español y sin permanencia.`;
+const canonicalUrl = 'https://agendadereservas.com/vs/koibox/';
+
+// Tabla comparativa Koibox vs Agenda de Reservas
+// Precios de Koibox: "desde ~25€/mes según plan" — verificar siempre en koibox.com
+const comparativa = [
+  {
+    feature: 'Precio mensual',
+    koibox: 'Desde ~25€/mes según plan (verifica en koibox.com)',
+    agenda: `${svcPrice}€/mes fijo`,
+    winner: 'agenda',
+  },
+  {
+    feature: 'Comisión por reserva',
+    koibox: '❌ No aplica (cuota fija)',
+    agenda: '❌ No aplica (cuota fija)',
+    winner: 'empate',
+  },
+  {
+    feature: 'Soporte en español',
+    koibox: '✅ Sí (equipo español)',
+    agenda: '✅ Humano, <2h en horario laboral',
+    winner: 'empate',
+  },
+  {
+    feature: 'WhatsApp nativo',
+    koibox: '⚠️ Integración disponible según plan',
+    agenda: `✅ WhatsApp Business API (+${commsPrice}€/mes)`,
+    winner: 'empate',
+  },
+  {
+    feature: 'RGPD / alojamiento UE',
+    koibox: '✅ Empresa española, servidores UE',
+    agenda: '✅ Servidores UE, RGPD conforme',
+    winner: 'empate',
+  },
+  {
+    feature: 'App móvil para el negocio',
+    koibox: '✅ App iOS y Android',
+    agenda: '✅ PWA + panel web responsivo',
+    winner: 'empate',
+  },
+  {
+    feature: 'Prueba gratuita',
+    koibox: '⚠️ Consultar en koibox.com',
+    agenda: '✅ 14 días sin tarjeta',
+    winner: 'agenda',
+  },
+  {
+    feature: 'Permanencia',
+    koibox: '⚠️ Posible contrato según canal/Kit Digital',
+    agenda: '✅ Sin permanencia, cancela cuando quieras',
+    winner: 'agenda',
+  },
+  {
+    feature: 'Compatible Kit Digital',
+    koibox: '✅ Agente digitalizador acreditado',
+    agenda: '⚠️ No es agente digitalizador oficial',
+    winner: 'koibox',
+  },
+  {
+    feature: 'Reservas en tu web propia',
+    koibox: '✅ Widget de reservas',
+    agenda: '✅ Widget + enlace directo personalizado',
+    winner: 'empate',
+  },
+  {
+    feature: 'CRM de clientes exportable',
+    koibox: '✅ Historial de clientes',
+    agenda: '✅ Exportación CSV ilimitada',
+    winner: 'empate',
+  },
+  {
+    feature: 'Usuarios/empleados ilimitados',
+    koibox: '⚠️ Puede variar según plan',
+    agenda: '✅ Usuarios ilimitados en todos los planes',
+    winner: 'agenda',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Koibox y Agenda de Reservas tienen las mismas funciones para peluquerías?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ambos cubren las funciones esenciales: reservas online, agenda de empleados, CRM de clientes, recordatorios automáticos y estadísticas. Koibox está muy orientado al sector de la belleza y tiene integraciones específicas para ello. Agenda de Reservas añade la flexibilidad de sectores múltiples, usuarios ilimitados en todos los planes y una prueba gratuita de 14 días sin tarjeta. La principal diferencia práctica para muchos negocios es el precio mensual y la ausencia de permanencia forzada en Agenda de Reservas.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Puedo exportar mis datos de Koibox para cambiarme?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Bajo el Reglamento General de Protección de Datos (RGPD), tienes derecho a la portabilidad de tus datos: puedes solicitar a Koibox la exportación de tu base de clientes, historial de citas y demás información en un formato legible. Una vez tengas el fichero, puedes importarlo en Agenda de Reservas desde el panel de administración. El proceso no requiere conocimientos técnicos y el equipo de soporte de Agenda de Reservas puede guiarte paso a paso.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Qué pasa si tengo contrato de permanencia con Koibox?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Algunos negocios accedieron a Koibox a través del programa Kit Digital, donde el agente digitalizador puede imponer un periodo de mantenimiento obligatorio (habitualmente 12 meses desde la justificación del bono). Revisa tu contrato con el agente digitalizador para conocer las condiciones exactas. Una vez termine ese periodo, eres completamente libre de cambiar de software. Agenda de Reservas no tiene permanencia: cancelas cuando quieras desde tu panel.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Agenda de Reservas está adaptada al mercado español?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. Agenda de Reservas es un producto de Tecelia Solutions S.L., empresa con sede en Santiago de Compostela. Todo el producto, el soporte y la documentación están en español. El alojamiento está en servidores dentro de la Unión Europea, cumpliendo plenamente el RGPD. El equipo de soporte responde en menos de 2 horas en horario laboral (lunes a viernes), en español.'
+          }
+        }
+      ]
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: 'https://agendadereservas.com/'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Comparativas',
+          item: 'https://agendadereservas.com/vs/'
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Koibox vs Agenda de Reservas',
+          item: 'https://agendadereservas.com/vs/koibox/'
+        }
+      ]
+    },
+    {
+      '@type': 'Article',
+      headline: pageTitle,
+      description: pageDescription,
+      datePublished: '2026-06-14',
+      dateModified: '2026-06-14',
+      author: {
+        '@type': 'Organization',
+        name: 'Agenda de Reservas',
+        url: 'https://agendadereservas.com'
+      }
+    }
+  ]
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
+  <Header />
+
+  <main>
+
+    <!-- Breadcrumb visible -->
+    <nav aria-label="Ruta de navegación" class="bg-gray-50 border-b border-gray-100">
+      <div class="container-apple py-3">
+        <ol class="flex items-center gap-2 text-sm text-gray-500">
+          <li><a href="/" class="hover:text-blue-600">Inicio</a></li>
+          <li class="text-gray-300">/</li>
+          <li><a href="/vs/" class="hover:text-blue-600">Comparativas</a></li>
+          <li class="text-gray-300">/</li>
+          <li class="text-gray-700 font-medium">Koibox vs Agenda de Reservas</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Hero comparativa -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple">
+        <div class="text-center max-w-3xl mx-auto">
+          <span class="feature-bubble mb-4 inline-block">Comparativa verificada · Junio 2026</span>
+          <h1 class="text-headline text-gray-900 mb-6">
+            Alternativa a Koibox:<br/>
+            <span class="text-blue-600">desde {svcPrice}€/mes, sin permanencia y con prueba gratuita</span>
+          </h1>
+          <p class="text-body text-lg mb-8">
+            Koibox es el software de referencia en el sector de la belleza en España, especialmente conocido por el programa <strong>Kit Digital</strong>. Si tu subvención ha terminado o simplemente buscas una opción más económica y sin ataduras, Agenda de Reservas ofrece las mismas funciones esenciales desde <strong class="text-blue-600"><span data-price-key="service_business.monthly">{svcPrice}</span>€/mes</strong>, sin permanencia y con <strong class="text-green-600">14 días de prueba gratuita sin tarjeta</strong>.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://app.agendadereservas.com" class="btn-apple-primary px-8 py-4">
+              Probar gratis 14 dias — sin tarjeta
+            </a>
+            <a href="#comparativa" class="btn-apple-secondary px-8 py-4">
+              Ver comparativa completa
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 1: ¿Qué es Koibox y para qué tipo de negocio está pensado? -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Qué es Koibox y para qué tipo de negocio está pensado?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          Koibox es un software de gestión de citas y reservas online creado en España, especialmente orientado a <strong>peluquerías, centros de estética, spas y negocios del sector de la belleza</strong>. Es uno de los programas con mayor implantación en este segmento gracias, en parte, a su participación como agente digitalizador acreditado en el programa <strong>Kit Digital</strong> del Gobierno de España.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-2xl p-7 border border-gray-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Koibox destaca en...</h3>
+            <ul class="space-y-3 text-sm text-gray-700">
+              {[
+                'Peluquerías y salones de belleza con múltiples empleados.',
+                'Centros de estética con agenda por cabina y tipo de tratamiento.',
+                'Negocios que accedieron al programa Kit Digital.',
+                'Equipos que necesitan app móvil nativa iOS/Android.',
+                'Sectores de la belleza que buscan integración con TPV físico.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-0.5 flex-shrink-0">+</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-blue-50 rounded-2xl p-7 border border-blue-100">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Agenda de Reservas encaja mejor en...</h3>
+            <ul class="space-y-3 text-sm text-gray-800">
+              {[
+                'Negocios que buscan precio desde 19€/mes sin permanencia.',
+                'Profesionales que quieren probar 14 dias gratis sin tarjeta.',
+                'Cualquier sector de servicios: peluquerías, clínicas, fisioterapia, turismo...',
+                'Negocios que necesitan soporte humano con respuesta en menos de 2h.',
+                'Equipos que priorizan la simplicidad de configuración inicial.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p class="text-sm text-gray-600 mt-6 bg-amber-50 border border-amber-200 rounded-xl p-4">
+          <strong>Nota de honestidad:</strong> Koibox es un producto maduro y bien valorado en el sector. Si tu negocio ya lo tiene configurado y funcionando, cambiar tiene un coste de transicion que debes valorar. Esta comparativa te ayuda a decidir si ese cambio merece la pena en tu caso concreto.
+        </p>
+      </div>
+    </section>
+
+    <!-- H2 2: ¿Cuánto cuesta Koibox al mes para una peluquería? -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Cuánto cuesta Koibox al mes para una peluquería?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          Koibox ofrece varios planes con precio variable según las funcionalidades incluidas. El precio de entrada se sitúa <strong>desde aproximadamente 25€/mes</strong>, aunque los planes con funciones avanzadas (multi-empleado, WhatsApp, estadísticas completas) pueden superar esa cifra. Consulta siempre los precios actualizados en
+          <a href="https://www.koibox.com" class="text-blue-600 underline" rel="noopener noreferrer" target="_blank">koibox.com</a>
+          antes de tomar una decision, ya que las tarifas pueden haber cambiado.
+        </p>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+            <thead>
+              <tr class="bg-gray-100 text-gray-800">
+                <th class="text-left py-4 px-5 font-semibold">Software</th>
+                <th class="text-center py-4 px-5 font-semibold">Precio de entrada</th>
+                <th class="text-center py-4 px-5 font-semibold">Permanencia</th>
+                <th class="text-center py-4 px-5 font-semibold">Prueba gratuita</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-100 hover:bg-gray-50">
+                <td class="py-3 px-5 font-medium text-gray-800">Koibox</td>
+                <td class="py-3 px-5 text-center text-gray-700">Desde ~25€/mes (verifica en koibox.com)</td>
+                <td class="py-3 px-5 text-center text-amber-600">Posible (ver contrato)</td>
+                <td class="py-3 px-5 text-center text-gray-500">Consultar</td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-blue-50 bg-blue-50">
+                <td class="py-3 px-5 font-bold text-blue-700">Agenda de Reservas</td>
+                <td class="py-3 px-5 text-center text-green-700 font-bold">
+                  <span data-price-key="service_business.monthly">{svcPrice}</span>€/mes
+                </td>
+                <td class="py-3 px-5 text-center text-green-700 font-semibold">Sin permanencia</td>
+                <td class="py-3 px-5 text-center text-green-700 font-semibold">14 dias sin tarjeta</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Precios de Koibox orientativos. Verifica en koibox.com. Precios de Agenda de Reservas: vigentes junio 2026.
+        </p>
+      </div>
+    </section>
+
+    <!-- H2 3: Koibox vs Agenda de Reservas: tabla de funciones y precio -->
+    <section id="comparativa" class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple">
+        <h2 class="text-headline text-gray-900 text-center mb-4">
+          Koibox vs Agenda de Reservas: tabla de funciones y precio
+        </h2>
+        <p class="text-center text-gray-500 text-sm mb-10">
+          Actualizado: junio 2026 · Fuentes: webs oficiales de Koibox y Agenda de Reservas.
+        </p>
+        <div class="max-w-4xl mx-auto overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-gray-200">
+                <th class="text-left py-4 px-4 text-gray-700 font-semibold">Característica</th>
+                <th class="text-center py-4 px-4 text-gray-600 font-semibold">Koibox</th>
+                <th class="text-center py-4 px-4 text-blue-700 font-semibold bg-blue-50 rounded-t-lg">Agenda de Reservas</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparativa.map(({ feature, koibox, agenda, winner }) => (
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="py-3 px-4 font-medium text-gray-800">{feature}</td>
+                  <td class={`py-3 px-4 text-center ${winner === 'koibox' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-amber-600' : 'text-gray-600'}`}>
+                    {koibox}
+                  </td>
+                  <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'koibox' ? 'text-gray-500' : 'text-gray-600'}`}>
+                    {agenda}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="text-xs text-gray-400 mt-3 text-right">
+            Precios de Koibox orientativos: verifica en koibox.com. Funciones pueden variar segun plan contratado. Junio 2026.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 4: ¿Qué pasa con el Kit Digital cuando termina la subvención? -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Qué pasa con el Kit Digital cuando termina la subvención?
+        </h2>
+        <p class="text-gray-700 mb-6 text-lg">
+          El programa Kit Digital subvencionó hasta 2.000€ para la digitalizacion de pequeñas empresas y autónomos. Muchas peluquerías y centros de estética usaron ese bono para contratar Koibox a través de un agente digitalizador acreditado. <strong>La subvención cubre un periodo determinado</strong> (habitualmente 12 meses de mantenimiento); al terminar, el negocio pasa a pagar el software de su bolsillo.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-5 mb-8">
+          {[
+            {
+              titulo: '¿Cuándo termina mi subvención?',
+              desc: 'La fecha exacta figura en tu expediente de la convocatoria y en el contrato con el agente digitalizador. El portal oficial del programa es acelera.pyme.es.',
+              color: 'bg-amber-50 border-amber-200',
+            },
+            {
+              titulo: '¿Estoy obligado a seguir con el mismo software?',
+              desc: 'No. Una vez finalizado el periodo subvencionado, puedes cambiar de software libremente. Solo debes asegurarte de haber cumplido los requisitos de justificación del bono antes de migrar.',
+              color: 'bg-blue-50 border-blue-100',
+            },
+            {
+              titulo: '¿Qué hago si tengo permanencia en el contrato?',
+              desc: 'Revisa el contrato firmado con tu agente digitalizador. Si hay permanencia adicional más allá del periodo subvencionado, negocia directamente con el agente. El RGPD te garantiza en todo caso el derecho a exportar tus datos.',
+              color: 'bg-green-50 border-green-200',
+            },
+          ].map(({ titulo, desc, color }) => (
+            <div class={`rounded-2xl p-6 border ${color}`}>
+              <h3 class="font-bold text-gray-900 mb-2 text-base">{titulo}</h3>
+              <p class="text-sm text-gray-600">{desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+          <p class="text-sm text-gray-700 mb-3">
+            <strong>Momento ideal para comparar opciones:</strong> el fin de la subvención es una oportunidad natural para revisar si el software que tienes sigue siendo el que mejor encaja con tu negocio ahora que pagas de tu bolsillo. No hay presion: toma la decision con calma.
+          </p>
+          <p class="text-sm text-gray-600">
+            Informacion oficial del programa Kit Digital en
+            <a href="https://acelera.pyme.es" class="text-blue-600 underline" rel="noopener noreferrer" target="_blank">acelera.pyme.es</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- H2 5: ¿Se puede migrar de Koibox a otro software sin perder datos? -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Se puede migrar de Koibox a otro software sin perder datos?
+        </h2>
+        <p class="text-gray-700 mb-8 text-lg">
+          Sí. El RGPD (Reglamento General de Proteccion de Datos) te garantiza el <strong>derecho a la portabilidad de tus datos</strong>: puedes solicitar a Koibox la exportacion de toda tu informacion en un formato reutilizable. La migracion tiene tres pasos y no requiere conocimientos técnicos.
+        </p>
+        <ol class="space-y-5 mb-8">
+          {[
+            {
+              paso: '1',
+              titulo: 'Solicita la exportacion de datos a Koibox',
+              desc: 'Contacta con el soporte de Koibox o con tu agente digitalizador y solicita la exportacion de tu base de clientes e historial de citas. Por RGPD, deben proporcionarla en un formato legible (CSV o similar). Tambien puedes exportar algunos datos directamente desde el panel de administracion.',
+            },
+            {
+              paso: '2',
+              titulo: 'Importa tus clientes en Agenda de Reservas',
+              desc: 'Accede a tu cuenta de Agenda de Reservas (puedes crearla gratis en 14 dias de prueba) y sube el fichero CSV desde la seccion de clientes. Los datos quedan disponibles de inmediato: nombres, telefonos, emails e historial.',
+            },
+            {
+              paso: '3',
+              titulo: 'Configura tu agenda y comparte tu nuevo enlace de reservas',
+              desc: 'Personaliza tu pagina de reservas con tu logo y colores en menos de 10 minutos. Actualiza el enlace en tu perfil de Google Business, Instagram y web. Tus clientes reservan directamente contigo desde ese momento.',
+            },
+          ].map(({ paso, titulo, desc }) => (
+            <li class="flex gap-5 items-start">
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold text-lg flex items-center justify-center">
+                {paso}
+              </span>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">{titulo}</h3>
+                <p class="text-sm text-gray-600">{desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <div class="bg-blue-50 rounded-2xl p-6 border border-blue-100">
+          <p class="text-sm text-gray-700">
+            <strong>Consejo practico:</strong> realiza la migracion en un momento de baja actividad (lunes por la manana, por ejemplo) y avisa a tus clientes habituales del nuevo enlace de reservas con un mensaje de WhatsApp. El equipo de soporte de Agenda de Reservas te ayuda con la importacion en menos de 2 horas en horario laboral.
+          </p>
+        </div>
+        <p class="text-sm text-gray-600 mt-5">
+          Si aun no has digitalizado tu agenda, lee nuestra
+          <a href="/guias/digitalizar-agenda-barberia" class="text-blue-600 underline">guia para digitalizar tu agenda</a>
+          paso a paso.
+        </p>
+      </div>
+    </section>
+
+    <!-- H2 6: ¿Es Agenda de Reservas una buena alternativa a Koibox? -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          ¿Es Agenda de Reservas una buena alternativa a Koibox?
+        </h2>
+        <p class="text-gray-700 mb-8 text-lg">
+          Depende de lo que valores mas. Agenda de Reservas es la mejor opcion si buscas precio mas bajo, sin permanencia y con prueba gratuita real. Koibox puede seguir siendo mejor opcion si necesitas integraciones muy especificas del sector belleza o si ya tienes todo configurado y el coste de cambio supera el ahorro.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-gray-50 rounded-2xl p-7 border border-gray-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Elige Koibox si...</h3>
+            <ul class="space-y-3 text-sm text-gray-700">
+              {[
+                'Tu bono Kit Digital sigue activo y quieres aprovechar la subvencion.',
+                'Usas integraciones muy especificas del sector belleza (TPV, stocks de productos).',
+                'Tu equipo ya esta entrenado en Koibox y el coste de cambio es alto.',
+                'Necesitas app nativa iOS/Android como requisito innegociable.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-0.5 flex-shrink-0">→</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-blue-50 rounded-2xl p-7 border-2 border-blue-200">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">Elige Agenda de Reservas si...</h3>
+            <ul class="space-y-3 text-sm text-gray-800">
+              {[
+                `La subvencion ha terminado y quieres pagar solo ${svcPrice}€/mes sin compromisos.`,
+                'Buscas 14 dias de prueba gratuita sin introducir tarjeta.',
+                'Necesitas soporte humano en español con respuesta garantizada en menos de 2h.',
+                'Quieres cancelar en cualquier momento sin clausulas de permanencia.',
+                'Gestionas mas de un sector o tipo de negocio desde la misma cuenta.',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p class="text-sm text-gray-600">
+          Conoce en detalle el
+          <a href="/peluquerias" class="text-blue-600 underline">software de gestion para peluquerias</a>
+          de Agenda de Reservas. Si evalutas varias opciones, tambien
+          <a href="/vs/booksy" class="text-blue-600 underline">comparamos con Booksy</a>
+          y
+          <a href="/vs/treatwell" class="text-blue-600 underline">comparamos con Treatwell</a>.
+          Para ver todos los planes y precios, visita la pagina de
+          <a href="/precios" class="text-blue-600 underline">ver precios de Agenda de Reservas</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-apple bg-gray-50 border-b border-gray-100">
+      <div class="container-apple max-w-3xl mx-auto">
+        <h2 class="text-headline text-gray-900 text-center mb-12">Preguntas frecuentes</h2>
+        <div class="space-y-4">
+          {[
+            {
+              q: '¿Koibox y Agenda de Reservas tienen las mismas funciones para peluquerias?',
+              a: `Ambos cubren las funciones esenciales: reservas online, agenda de empleados, CRM de clientes, recordatorios automaticos y estadisticas. Koibox está muy orientado al sector de la belleza y tiene integraciones especificas para ello. Agenda de Reservas añade flexibilidad de sectores multiples, usuarios ilimitados en todos los planes y una prueba gratuita de 14 dias sin tarjeta. La principal diferencia practica para muchos negocios es el precio mensual (desde ${svcPrice}€/mes en Agenda de Reservas frente a desde ~25€/mes en Koibox, segun plan) y la ausencia de permanencia forzada.`
+            },
+            {
+              q: '¿Puedo exportar mis datos de Koibox para cambiarme?',
+              a: 'Si. Bajo el Reglamento General de Proteccion de Datos (RGPD), tienes derecho a la portabilidad de tus datos: puedes solicitar a Koibox la exportacion de tu base de clientes, historial de citas y demas informacion en un formato legible. Una vez tengas el fichero, puedes importarlo en Agenda de Reservas desde el panel de administracion. El proceso no requiere conocimientos tecnicos y el equipo de soporte de Agenda de Reservas puede guiarte paso a paso.'
+            },
+            {
+              q: '¿Que pasa si tengo contrato de permanencia con Koibox?',
+              a: 'Algunos negocios accedieron a Koibox a traves del programa Kit Digital, donde el agente digitalizador puede imponer un periodo de mantenimiento obligatorio (habitualmente 12 meses desde la justificacion del bono). Revisa tu contrato con el agente digitalizador para conocer las condiciones exactas. Una vez termine ese periodo, eres completamente libre de cambiar de software. Agenda de Reservas no tiene permanencia: cancelas cuando quieras desde tu panel.'
+            },
+            {
+              q: '¿Agenda de Reservas esta adaptada al mercado español?',
+              a: 'Si. Agenda de Reservas es un producto de Tecelia Solutions S.L., empresa con sede en Santiago de Compostela (España). Todo el producto, el soporte y la documentacion estan en español. El alojamiento esta en servidores dentro de la Union Europea, cumpliendo plenamente el RGPD. El equipo de soporte responde en menos de 2 horas en horario laboral (lunes a viernes), siempre en español.'
+            }
+          ].map(({ q, a }) => (
+            <div class="border border-gray-200 rounded-xl overflow-hidden">
+              <details class="group">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                  {q}
+                  <span class="text-gray-400 group-open:rotate-180 transition-transform">▾</span>
+                </summary>
+                <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{a}</div>
+              </details>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Enlazado interno saliente -->
+    <section class="section-apple bg-white border-b border-gray-100">
+      <div class="container-apple max-w-3xl mx-auto">
+        <h2 class="text-xl font-bold text-gray-900 mb-6 text-center">Recursos relacionados</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {[
+            {
+              href: '/peluquerias',
+              label: 'software de gestion para peluquerias',
+              desc: 'Funcionalidades especificas para peluquerias y barberias.',
+            },
+            {
+              href: '/vs/booksy',
+              label: 'tambien comparamos con Booksy',
+              desc: 'Booksy cobra por empleado. Ve como se compara con Agenda de Reservas.',
+            },
+            {
+              href: '/vs/treatwell',
+              label: 'tambien comparamos con Treatwell',
+              desc: 'Treatwell cobra comision por reserva. Comparativa completa.',
+            },
+            {
+              href: '/guias/digitalizar-agenda-barberia',
+              label: 'guia para digitalizar tu agenda',
+              desc: 'Como pasar de papel o WhatsApp a un sistema de reservas online.',
+            },
+            {
+              href: '/precios',
+              label: 'ver precios de Agenda de Reservas',
+              desc: `Planes desde ${svcPrice}€/mes. Prueba 14 dias sin tarjeta.`,
+            },
+          ].map(({ href, label, desc }) => (
+            <a
+              href={href}
+              class="flex flex-col gap-1 bg-gray-50 rounded-2xl px-5 py-4 border border-gray-200 hover:border-blue-300 hover:shadow-sm transition-all"
+            >
+              <span class="text-blue-600 font-semibold text-sm underline">{label}</span>
+              <span class="text-gray-500 text-xs">{desc}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="section-apple bg-gray-900">
+      <div class="container-apple text-center">
+        <h2 class="text-headline text-white mb-4">
+          ¿Ha terminado tu subvencion Kit Digital?<br/>
+          <span class="text-blue-400">
+            Cambia a <span data-price-key="service_business.monthly">{svcPrice}</span>€/mes, sin permanencia y sin sorpresas.
+          </span>
+        </h2>
+        <p class="text-gray-400 mb-2">Sin comisiones · Sin permanencia · Soporte humano en español en menos de 2h</p>
+        <p class="text-gray-500 text-sm mb-8">Prueba gratis 14 dias — sin tarjeta de credito</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="https://app.agendadereservas.com"
+            class="inline-block bg-white text-gray-900 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 transition-colors"
+          >
+            Empezar gratis ahora
+          </a>
+          <a
+            href="/precios"
+            class="inline-block border border-gray-600 text-gray-300 font-semibold px-10 py-4 rounded-2xl hover:border-gray-400 hover:text-white transition-colors"
+          >
+            Ver todos los planes
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+  <DynamicPricing />
+</Layout>

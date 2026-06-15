@@ -1,0 +1,614 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const pageTitle = 'Cómo cobrar anticipo en reservas de peluquería (guía 2026)';
+const pageDescription = '¿Es legal cobrar una seña en tu peluquería? Cuánto pedir, cómo configurarlo y cómo comunicarlo sin que los clientes se molesten. Guía práctica.';
+const canonicalUrl = 'https://agendadereservas.com/guias/cobrar-anticipo-peluqueria/';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: 'https://agendadereservas.com'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Guías',
+          item: 'https://agendadereservas.com/guias'
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Cobrar anticipo en reservas de peluquería',
+          item: canonicalUrl
+        }
+      ]
+    },
+    {
+      '@type': 'HowTo',
+      name: 'Cómo configurar el cobro de anticipo en tu agenda de peluquería',
+      description: 'Pasos para activar el cobro de anticipo o seña en el sistema de reservas online de una peluquería, reduciendo los no-shows sin complicar la experiencia del cliente.',
+      totalTime: 'PT20M',
+      estimatedCost: {
+        '@type': 'MonetaryAmount',
+        currency: 'EUR',
+        value: '19'
+      },
+      step: [
+        {
+          '@type': 'HowToStep',
+          position: 1,
+          name: 'Decide qué servicios requieren anticipo',
+          text: 'Aplica el anticipo solo a los servicios de mayor duración o precio (coloraciones, mechas, alisados, tratamientos de más de 45 minutos). Para cortes rápidos de 20-30 minutos el anticipo puede frenar reservas sin aportar suficiente valor.'
+        },
+        {
+          '@type': 'HowToStep',
+          position: 2,
+          name: 'Fija el importe: entre el 20% y el 30% del precio del servicio',
+          text: 'Un anticipo del 20-30% es suficiente para generar compromiso real sin parecer excesivo. Para una coloración de 80€, eso son entre 16€ y 24€. Importes menores al 10% no generan el mismo efecto disuasorio sobre los no-shows.'
+        },
+        {
+          '@type': 'HowToStep',
+          position: 3,
+          name: 'Activa la opción de anticipo en tu software de citas',
+          text: 'En Agenda de Reservas, entra en el panel de Servicios, selecciona el servicio, activa "Cobrar anticipo al reservar" y fija el importe o el porcentaje. El cobro se procesa automáticamente con tarjeta cuando el cliente confirma la reserva online.'
+        },
+        {
+          '@type': 'HowToStep',
+          position: 4,
+          name: 'Redacta tu política de cancelación y publícala',
+          text: 'Define con claridad cuánto tiempo antes puede cancelar el cliente sin perder la seña (recomendamos 24-48 horas), qué ocurre si cancela fuera de ese plazo y cómo se aplica el anticipo al precio final del servicio.'
+        },
+        {
+          '@type': 'HowToStep',
+          position: 5,
+          name: 'Comunica el cambio a tus clientes habituales',
+          text: 'Avisa con al menos dos semanas de antelación por WhatsApp o email. Enmarca el anticipo como una "reserva garantizada" que asegura su hueco preferido. Los clientes que ya han vivido un no-show ajeno lo entienden perfectamente.'
+        }
+      ]
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Pueden los clientes reclamar el anticipo si cancelan?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Depende de tu política de cancelación. Si el cliente cancela dentro del plazo establecido (por ejemplo, con más de 24 horas de antelación), lo habitual es devolver el anticipo íntegro. Si cancela fuera de ese plazo sin causa justificada, tienes derecho a retenerlo como compensación por el hueco perdido, siempre que la política estuviera claramente comunicada antes de la reserva. Esta guía es informativa y no constituye asesoría legal; para dudas sobre tu caso concreto, consulta con un profesional.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cuánto tiempo antes debo permitir cancelar sin perder el anticipo?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'La práctica más habitual en peluquerías españolas es entre 24 y 48 horas antes de la cita. 48 horas te da margen para reofertar el hueco; 24 horas es lo mínimo razonable para el cliente. Para servicios de alta demanda o larga duración (alisados, coloraciones completas) puede justificarse ampliar el plazo a 72 horas.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cómo cobro el anticipo online de forma segura?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'A través de un software de reservas con pasarela de pago integrada, como Agenda de Reservas. El cliente introduce sus datos de tarjeta en el momento de confirmar la reserva; el pago se procesa de forma segura (PCI-DSS) y el importe queda retenido o cobrado según tu configuración. Nunca debería ser necesario pedir el número de tarjeta por teléfono ni por WhatsApp.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Funciona el cobro de anticipo también para barberías?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí, y especialmente para servicios largos como degradados, tratamientos de barba o coloraciones. La lógica es la misma: un cliente que ha pagado aunque sea 5-10€ por adelantado tiene un compromiso real con su cita. Muchas barberías aplican el anticipo solo a los servicios de más de 45 minutos para no frenar las reservas de cortes rápidos.'
+          }
+        }
+      ]
+    }
+  ]
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl={canonicalUrl}
+  schema={schema}
+  aiDescription="Guía práctica para peluquerías y barberías en España sobre cómo cobrar un anticipo o seña en las reservas online: legalidad (Código Civil), cuánto cobrar, cómo configurarlo en un software de citas, política de cancelación y cómo comunicarlo a los clientes para reducir los no-shows sin perder clientela."
+>
+  <Header />
+
+  <main class="pt-24">
+
+    <!-- Hero -->
+    <section class="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      <div class="container mx-auto px-4 max-w-4xl">
+
+        <!-- Breadcrumb -->
+        <nav class="text-sm text-gray-400 mb-8" aria-label="Ruta de navegación">
+          <ol class="flex flex-wrap items-center gap-1">
+            <li><a href="/" class="hover:text-white transition-colors">Inicio</a></li>
+            <li class="mx-1 text-gray-600">/</li>
+            <li><a href="/guias" class="hover:text-white transition-colors">Guías</a></li>
+            <li class="mx-1 text-gray-600">/</li>
+            <li class="text-gray-300">Cobrar anticipo en reservas de peluquería</li>
+          </ol>
+        </nav>
+
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <span class="inline-block px-3 py-1 bg-blue-600/30 border border-blue-500/40 rounded-full text-xs text-blue-300 font-medium">
+            Guía práctica
+          </span>
+          <span class="text-sm text-gray-400">Actualizado: junio 2026</span>
+          <span class="text-sm text-gray-400">Lectura: 10 min</span>
+        </div>
+
+        <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+          Cómo cobrar anticipo en reservas<br class="hidden md:block" /> de peluquería
+        </h1>
+        <p class="text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed">
+          ¿Es legal pedir una seña? ¿Cuánto cobrar? ¿Cómo configurarlo sin complicar la experiencia del cliente? Respuestas directas, sin rodeos.
+        </p>
+
+        <div class="flex flex-wrap gap-6 text-sm text-gray-300">
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            Marco legal incluido
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            Tabla de no-shows por sector
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            Checklist de política de cancelación
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contenido principal -->
+    <div class="container mx-auto px-4 max-w-4xl py-16">
+
+      <!-- Sección 1: Legalidad -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Es legal cobrar un anticipo para reservar cita en una peluquería en España?
+        </h2>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+          Sí, es completamente legal. El cobro de un anticipo o seña para garantizar una reserva está amparado por el Código Civil español, que regula las arras o señas en contratos de prestación de servicios (artículos 1.124 y 1.454 del Código Civil). No existe ninguna norma sectorial que lo prohíba en peluquerías, barberías o centros de estética.
+        </p>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          La clave es la transparencia: el cliente debe conocer la política de anticipo <strong>antes</strong> de confirmar la reserva, incluyendo qué pasa si cancela. Si eso se cumple, el negocio tiene pleno respaldo legal para retener la seña en caso de cancelación tardía o no presentación.
+        </p>
+
+        <!-- Bloque legal -->
+        <div class="bg-amber-50 border border-amber-300 rounded-2xl p-6 mb-6">
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.492-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            <div>
+              <p class="font-semibold text-amber-900 mb-1">Aviso legal</p>
+              <p class="text-amber-800 text-sm leading-relaxed">
+                Esta guía tiene carácter informativo y no constituye asesoría legal. El Código Civil español regula las arras de forma general, pero cada caso concreto puede tener particularidades. Para cualquier duda sobre tu situación específica, consulta con un abogado o asesor jurídico.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border-l-4 border-blue-600 rounded-r-xl p-5">
+          <p class="text-blue-900 font-medium">
+            "Tuve miedo de que los clientes se molestaran cuando empecé a pedir la seña para coloraciones. Solo dos de más de cien lo cuestionaron. El resto lo entendió al vuelo, sobre todo cuando les expliqué que así su cita quedaba garantizada."
+          </p>
+          <p class="text-blue-700 text-sm mt-2">— Marta G., propietaria de peluquería en Valencia (cliente de Agenda de Reservas)</p>
+        </div>
+      </section>
+
+      <!-- Sección 2: Cuánto cobrar -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Cuánto anticipo es razonable pedir en una peluquería?
+        </h2>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+          La horquilla habitual en el sector de la belleza en España es entre el 20% y el 30% del precio del servicio. Por debajo del 10% el efecto sobre los no-shows es escaso; por encima del 50% puede frenar reservas de clientes nuevos.
+        </p>
+
+        <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-6">
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="bg-gray-50 border-b border-gray-200">
+                <th class="py-4 px-5 font-semibold text-gray-900">Tipo de servicio</th>
+                <th class="py-4 px-5 font-semibold text-gray-900">Precio medio orientativo</th>
+                <th class="py-4 px-5 font-semibold text-blue-700">Anticipo recomendado (20-30%)</th>
+                <th class="py-4 px-5 font-semibold text-gray-600">¿Aplicar anticipo?</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Corte de cabello (30 min)</td>
+                <td class="py-4 px-5 text-gray-600">15-25 €</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">3-8 €</td>
+                <td class="py-4 px-5 text-gray-600">Opcional — bajo impacto</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Tinte raíz (60-75 min)</td>
+                <td class="py-4 px-5 text-gray-600">40-65 €</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">10-20 €</td>
+                <td class="py-4 px-5 text-gray-600">Recomendado</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Coloración completa / mechas (2-3 h)</td>
+                <td class="py-4 px-5 text-gray-600">80-150 €</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">20-45 €</td>
+                <td class="py-4 px-5 text-gray-600">Muy recomendado</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Alisado / keratina (3-4 h)</td>
+                <td class="py-4 px-5 text-gray-600">120-250 €</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">30-75 €</td>
+                <td class="py-4 px-5 text-gray-600">Imprescindible</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Degradado / fade barbería (45 min)</td>
+                <td class="py-4 px-5 text-gray-600">20-35 €</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">5-10 €</td>
+                <td class="py-4 px-5 text-gray-600">Recomendado para franjas de alta demanda</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Tratamiento de estética (60-90 min)</td>
+                <td class="py-4 px-5 text-gray-600">50-100 €</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">15-30 €</td>
+                <td class="py-4 px-5 text-gray-600">Muy recomendado</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-500 mb-6">
+          Precios orientativos del sector de la belleza en España (2026). Los precios reales varían según ubicación y posicionamiento del negocio.
+        </p>
+
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 text-sm text-gray-700">
+          <strong class="text-gray-900">Regla práctica:</strong> si un no-show te hace perder más de 30 minutos de agenda o más de 25 €, aplica anticipo. Si el hueco queda vacío y puedes rellenarlo con facilidad, el anticipo aporta menos valor y puede frenar la conversión en clientes nuevos.
+        </div>
+      </section>
+
+      <!-- Sección 3: Cómo configurarlo -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Cómo configurar el cobro de anticipo en tu agenda online?
+        </h2>
+        <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+          Con un <a href="/peluquerias" class="text-blue-600 hover:underline font-medium">software para peluquerías con cobro de anticipo integrado</a>, el proceso se reduce a cuatro pasos que no requieren conocimientos técnicos.
+        </p>
+
+        <div class="space-y-6">
+          {[
+            {
+              num: '1',
+              title: 'Decide qué servicios requieren anticipo',
+              body: 'Entra en tu catálogo de servicios y marca los que tienen mayor duración o precio. No es necesario aplicarlo a todo: empieza por coloraciones, mechas, alisados y cualquier servicio que supere los 45 minutos o los 40 €.'
+            },
+            {
+              num: '2',
+              title: 'Fija el importe o el porcentaje',
+              body: 'En Agenda de Reservas puedes definir el anticipo como un importe fijo (p.ej. 15 €) o como un porcentaje del precio (p.ej. 25%). El sistema calcula y cobra automáticamente la cantidad correcta según el servicio elegido por el cliente.'
+            },
+            {
+              num: '3',
+              title: 'Activa la pasarela de pago',
+              body: 'El cliente introduce sus datos de tarjeta al confirmar la reserva, en un entorno seguro (PCI-DSS). No necesitas terminal físico ni gestionar cobros manualmente. El anticipo se descuenta del total al finalizar el servicio.'
+            },
+            {
+              num: '4',
+              title: 'Publica tu política de cancelación',
+              body: 'El sistema muestra la política al cliente antes de que pague. Define el plazo de cancelación sin penalización (recomendamos 48 horas) y qué ocurre si cancela fuera de ese plazo. Esto es imprescindible tanto para la legalidad como para evitar malentendidos.'
+            },
+            {
+              num: '5',
+              title: 'Comunica el cambio con dos semanas de antelación',
+              body: 'Envía un mensaje por WhatsApp o email a tu base de clientes antes de activar el anticipo. Un aviso previo reduce la fricción casi por completo. El texto recomendado está en la sección de comunicación más abajo en esta guía.'
+            }
+          ].map((step) => (
+            <div class="flex items-start gap-5">
+              <span class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">{step.num}</span>
+              <div>
+                <h3 class="font-semibold text-gray-900 mb-2 text-lg">{step.title}</h3>
+                <p class="text-gray-700 leading-relaxed">{step.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-8 bg-blue-50 border border-blue-200 rounded-xl p-5 text-sm">
+          <p class="text-blue-900">
+            Consulta todos los detalles sobre pasarelas de pago, retenciones y devoluciones en la <a href="/funcionalidades" class="text-blue-700 font-semibold hover:underline">funcionalidad de pagos y anticipos de Agenda de Reservas</a>.
+          </p>
+        </div>
+      </section>
+
+      <!-- Sección 4: Cancelaciones -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Qué pasa si el cliente cancela después de pagar el anticipo?
+        </h2>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+          Depende del plazo en que cancele y de lo que diga tu política. La norma general del sector es: cancelación con más de 48 horas de antelación, devolución íntegra; cancelación tardía o no presentación, retención del anticipo.
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          Hay dos situaciones que conviene tratar con flexibilidad aunque no estés obligado a ello: causa de fuerza mayor documentable (urgencia médica, por ejemplo) y clientes habituales de larga trayectoria. Una política rígida aplicada sin criterio puede costar más en fidelización de lo que ahorra en no-shows.
+        </p>
+
+        <div class="grid sm:grid-cols-3 gap-4 mb-6">
+          <div class="bg-green-50 border border-green-200 rounded-xl p-5 text-center">
+            <p class="text-3xl font-bold text-green-700 mb-2">+48 h</p>
+            <p class="text-sm font-semibold text-green-900 mb-1">Cancelación con tiempo</p>
+            <p class="text-sm text-green-800">Devolución íntegra del anticipo. El cliente no pierde nada.</p>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 text-center">
+            <p class="text-3xl font-bold text-amber-700 mb-2">24-48 h</p>
+            <p class="text-sm font-semibold text-amber-900 mb-1">Cancelación justa</p>
+            <p class="text-sm text-amber-800">Zona gris: evalúa según tus posibilidades de rellenar el hueco.</p>
+          </div>
+          <div class="bg-red-50 border border-red-200 rounded-xl p-5 text-center">
+            <p class="text-3xl font-bold text-red-700 mb-2">&lt; 24 h</p>
+            <p class="text-sm font-semibold text-red-900 mb-1">Cancelación tardía / no-show</p>
+            <p class="text-sm text-red-800">Retención del anticipo como compensación por el hueco perdido.</p>
+          </div>
+        </div>
+
+        <p class="text-gray-700 leading-relaxed">
+          Recuerda que el software gestiona las devoluciones automáticamente según las reglas que configures, sin que tengas que hacer nada manualmente. Si el cliente cancela dentro del plazo, el sistema procesa la devolución a la tarjeta original en el plazo habitual de la pasarela (3-5 días hábiles).
+        </p>
+      </section>
+
+      <!-- Sección 5: Comunicación -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Cómo comunicar la política de anticipo sin que los clientes se molesten?
+        </h2>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+          El tono lo es todo. Un anticipo presentado como "medida de seguridad para el negocio" genera rechazo; el mismo anticipo presentado como "garantía de tu reserva" genera comprensión. La clave está en enfocar el mensaje en el beneficio para el cliente, no en tu protección.
+        </p>
+
+        <div class="bg-white border border-gray-200 rounded-2xl p-6 mb-6 shadow-sm">
+          <h3 class="font-semibold text-gray-900 mb-4">Modelo de mensaje para avisar a tus clientes</h3>
+          <div class="bg-gray-50 rounded-xl p-5 text-sm text-gray-700 leading-relaxed font-mono border border-gray-200">
+            <p class="mb-2">Hola [nombre],</p>
+            <p class="mb-2">A partir del [fecha], los servicios de coloración y tratamientos de más de 45 minutos requerirán una pequeña seña para confirmar la cita.</p>
+            <p class="mb-2">Esto nos permite garantizar que tu hora queda reservada solo para ti, sin riesgo de que haya cambios de última hora.</p>
+            <p class="mb-2">La seña se descuenta del total el día de tu cita. Si necesitas cancelar, puedes hacerlo sin coste hasta 48 horas antes.</p>
+            <p>Gracias por entenderlo. Cualquier pregunta, aquí estamos.</p>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="bg-red-50 border border-red-200 rounded-xl p-5">
+            <p class="font-semibold text-red-900 mb-3">Frases que generan rechazo</p>
+            <ul class="space-y-2 text-sm text-red-800">
+              {[
+                '"Debido a los abusos de algunos clientes..."',
+                '"Para protegernos de los no-shows..."',
+                '"Es una norma que aplicamos a todo el mundo"',
+                '"Si cancelas perderás el dinero"'
+              ].map(f => (
+                <li class="flex items-start gap-2">
+                  <span class="text-red-500 font-bold flex-shrink-0">✗</span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-green-50 border border-green-200 rounded-xl p-5">
+            <p class="font-semibold text-green-900 mb-3">Frases que generan comprensión</p>
+            <ul class="space-y-2 text-sm text-green-800">
+              {[
+                '"Para garantizar que tu cita es solo tuya"',
+                '"Así reservamos el tiempo necesario para tu servicio"',
+                '"La seña se descuenta del total el día de la cita"',
+                '"Puedes cancelar sin coste hasta 48 horas antes"'
+              ].map(f => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-600 font-bold flex-shrink-0">✓</span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Checklist política de cancelación -->
+      <section class="mb-16">
+        <div class="bg-gray-900 rounded-2xl p-8 text-white">
+          <h2 class="text-xl font-bold mb-2">Política de cancelación para peluquerías: qué debe incluir</h2>
+          <p class="text-gray-400 text-sm mb-6">Una política clara protege al negocio y al cliente. Incluye estos 7 puntos antes de activar el anticipo.</p>
+          <ul class="space-y-3">
+            {[
+              'A qué servicios se aplica el anticipo (listado claro, no "algunos servicios")',
+              'El importe o porcentaje exacto del anticipo',
+              'Plazo máximo para cancelar sin penalización (p.ej. 48 horas antes)',
+              'Qué ocurre si el cliente cancela fuera del plazo (retención del anticipo)',
+              'Qué ocurre si el negocio cancela o modifica la cita (devolución íntegra)',
+              'Procedimiento de devolución: cómo y en cuántos días se procesa',
+              'Excepciones admitidas (fuerza mayor documentable, a criterio del negocio)',
+              'Dónde puede consultarse la política completa (enlace visible antes de pagar)'
+            ].map((item, i) => (
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 border-2 border-blue-400 rounded mt-0.5" aria-hidden="true"></span>
+                <span class="text-gray-200 leading-snug">
+                  <span class="text-blue-400 font-semibold mr-1">{i + 1}.</span>
+                  {item}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <!-- Sección 6: ¿Funciona de verdad? -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          ¿Reduce de verdad el cobro de anticipo los no-shows?
+        </h2>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+          Sí, de forma significativa. La combinación de anticipo y recordatorio automático es la estrategia más efectiva para reducir ausencias en el sector de la belleza. El anticipo actúa como compromiso económico; el recordatorio elimina los olvidos.
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          Los datos del sector de la belleza en Europa son consistentes: la tasa de no-show sin ninguna medida se sitúa entre el 15% y el 25%. Con recordatorios automáticos baja al 5-8%. Al añadir anticipo, desciende por debajo del 3% en la mayoría de negocios.
+        </p>
+
+        <!-- Tabla no-shows -->
+        <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-4">
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="bg-gray-50 border-b border-gray-200">
+                <th class="py-4 px-5 font-semibold text-gray-900">Tipo de negocio</th>
+                <th class="py-4 px-5 font-semibold text-red-700">Sin anticipo (tasa no-show)</th>
+                <th class="py-4 px-5 font-semibold text-green-700">Con anticipo (tasa no-show)</th>
+                <th class="py-4 px-5 font-semibold text-gray-600">Reducción estimada</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Peluquería</td>
+                <td class="py-4 px-5 text-red-700 font-medium">15-22%</td>
+                <td class="py-4 px-5 text-green-700 font-medium">2-4%</td>
+                <td class="py-4 px-5 text-gray-600">-80% aprox.</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Barbería</td>
+                <td class="py-4 px-5 text-red-700 font-medium">18-25%</td>
+                <td class="py-4 px-5 text-green-700 font-medium">3-5%</td>
+                <td class="py-4 px-5 text-gray-600">-78% aprox.</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="py-4 px-5 font-medium text-gray-900">Centro de estética</td>
+                <td class="py-4 px-5 text-red-700 font-medium">20-30%</td>
+                <td class="py-4 px-5 text-green-700 font-medium">2-5%</td>
+                <td class="py-4 px-5 text-gray-600">-85% aprox.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-500 mb-6">
+          Estimaciones orientativas basadas en datos del sector de la belleza en Europa (fuentes: informes de gestión de citas en belleza, estudios de no-show en servicios de salud y bienestar 2023-2025). Los resultados individuales varían según tipo de clientela, canal de comunicación y configuración del negocio.
+        </p>
+
+        <div class="bg-blue-50 border-l-4 border-blue-600 rounded-r-xl p-5 mb-6">
+          <p class="text-blue-900 font-medium">
+            "El primer mes con anticipo activado para mechas y coloraciones pasamos de 8-10 no-shows semanales a menos de 2. El impacto económico fue inmediato: recuperamos más de 400€ mensuales en huecos que antes se quedaban vacíos."
+          </p>
+          <p class="text-blue-700 text-sm mt-2">— Lucía P., directora de peluquería, Madrid (cliente de Agenda de Reservas)</p>
+        </div>
+
+        <p class="text-gray-700 leading-relaxed">
+          Si quieres combinar el anticipo con otras tácticas, consulta nuestra guía sobre <a href="/guias/reducir-ausencias" class="text-blue-600 hover:underline font-medium">otras estrategias para reducir ausencias</a> en tu negocio, donde también abordamos recordatorios, listas de espera y confirmaciones activas.
+        </p>
+      </section>
+
+      <!-- FAQ -->
+      <section class="mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
+          Preguntas frecuentes sobre el cobro de anticipo en peluquerías
+        </h2>
+
+        <div class="space-y-4">
+          {[
+            {
+              q: '¿Pueden los clientes reclamar el anticipo si cancelan?',
+              a: 'Sí pueden reclamarlo si cancelas dentro del plazo establecido en tu política. Si la política dice "cancelación sin coste hasta 48 horas antes" y el cliente cancela con 72 horas, tiene derecho a la devolución íntegra. Si cancela a menos de 24 horas o no se presenta, y eso estaba claramente indicado antes de pagar, puedes retener el anticipo. La clave es que la política sea clara, visible y aceptada antes de que el cliente complete el pago.'
+            },
+            {
+              q: '¿Cuánto tiempo antes debo permitir cancelar sin perder el anticipo?',
+              a: 'El plazo más habitual en peluquerías y centros de estética en España es 48 horas antes de la cita. 24 horas es el mínimo razonable; para servicios muy largos (alisados, tratamientos que ocupan media jornada) puede justificarse extenderlo a 72 horas. Por debajo de 24 horas sin posibilidad de cancelar sin penalización, algunos clientes lo percibirán como abusivo, especialmente si son clientes nuevos.'
+            },
+            {
+              q: '¿Cómo cobro el anticipo online de forma segura?',
+              a: 'A través de un software de reservas con pasarela de pago integrada y certificada (PCI-DSS). El cliente introduce sus datos de tarjeta directamente en el formulario de reserva, en un entorno encriptado. Nunca debería ser necesario pedir el número de tarjeta por teléfono ni por WhatsApp, ya que no estarías cumpliendo los estándares de seguridad de pago. Agenda de Reservas incluye esta pasarela en todos los planes, sin comisión adicional por reserva.'
+            },
+            {
+              q: '¿Funciona el cobro de anticipo también para barberías?',
+              a: 'Sí. Barberías que ofrecen degradados, fades, tratamientos de barba o servicios de más de 45 minutos son las que más beneficio obtienen. La recomendación es aplicarlo a los servicios que más daño te hace perder: aquellos de alta duración, en las franjas horarias más solicitadas (tardes de jueves y viernes, sábados por la mañana). Para cortes básicos de 20-25 minutos, el anticipo puede frenar la conversión sin aportar el mismo valor.'
+            }
+          ].map((faq) => (
+            <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden">
+              <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer font-semibold text-gray-900 list-none hover:bg-gray-50 transition-colors">
+                <span>{faq.q}</span>
+                <svg class="w-5 h-5 text-gray-500 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-gray-700 leading-relaxed border-t border-gray-100 pt-4">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Bloque de enlaces internos -->
+      <section class="mb-16">
+        <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-gray-900 mb-4">Recursos relacionados</h2>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+              <a href="/peluquerias" class="text-blue-600 hover:underline font-medium">Software para peluquerías con cobro de anticipo integrado</a>
+              <span class="text-gray-500 text-sm">— Funcionalidades específicas para el sector</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+              <a href="/guias/reducir-ausencias" class="text-blue-600 hover:underline font-medium">Otras estrategias para reducir ausencias</a>
+              <span class="text-gray-500 text-sm">— Recordatorios, confirmaciones y listas de espera</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+              <a href="/funcionalidades" class="text-blue-600 hover:underline font-medium">Funcionalidad de pagos y anticipos de Agenda de Reservas</a>
+              <span class="text-gray-500 text-sm">— Pasarela, devoluciones y configuración técnica</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+              <a href="/precios" class="text-blue-600 hover:underline font-medium">Planes desde 19€/mes sin comisiones</a>
+              <span class="text-gray-500 text-sm">— Comparativa de planes y funcionalidades incluidas</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CTA final -->
+      <section class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-8 md:p-12 text-white text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">
+          Activa el cobro de anticipo en tu peluquería hoy
+        </h2>
+        <p class="text-blue-100 mb-8 max-w-xl mx-auto leading-relaxed">
+          14 días de prueba gratuita. Sin tarjeta de crédito. Configuración del anticipo en menos de 5 minutos con soporte en español incluido.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="https://app.agendadereservas.com"
+            class="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-xl hover:bg-blue-50 transition-colors shadow-sm"
+          >
+            Empieza gratis — 14 días sin tarjeta
+          </a>
+          <a
+            href="/precios"
+            class="inline-block bg-white/10 text-white font-medium px-8 py-4 rounded-xl border border-white/30 hover:bg-white/20 transition-colors"
+          >
+            Ver planes y precios
+          </a>
+        </div>
+        <p class="text-blue-200 text-sm mt-6">
+          Desde 19€/mes · Sin comisiones · Soporte en español · RGPD europeo
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
