@@ -1,69 +1,47 @@
 #!/bin/bash
-# deploy.sh — Marketing Site Deploy
-# Sube el dist/ ya construido al servidor de producción
-# Uso: ./deploy.sh
-# Requiere: dist/ generado con npm run build
+# deploy.sh — Marketing Site (agendadereservas.com)
+#
+# Este script NO despliega nada ni se conecta a ningún servidor.
+# agendadereservas.com está en Netlify y se publica automáticamente
+# al hacer push a la rama `main`.
+#
+# Uso:
+#   ./deploy.sh           Muestra cómo se despliega y hace un build local de comprobación
+#   ./deploy.sh --no-build Solo muestra el mensaje, sin build
+#
+# Cualquier otro argumento termina con error: el antiguo deploy por
+# rsync/SSH al VPS se eliminó porque podía borrar sitios de otros clientes.
 
-set -e
+set -euo pipefail
 
-GREEN='\033[0;32m'; YELLOW='\033[1;33m'; RED='\033[0;31m'; NC='\033[0m'
+YELLOW='\033[1;33m'; GREEN='\033[0;32m'; RED='\033[0;31m'; NC='\033[0m'
+
+RUN_BUILD=1
+if [ "$#" -gt 0 ]; then
+  if [ "$#" -eq 1 ] && [ "$1" = "--no-build" ]; then
+    RUN_BUILD=0
+  else
+    echo -e "${RED}✗ deploy.sh ya no acepta argumentos (recibido: $*).${NC}" >&2
+    echo "  El deploy por SSH/rsync al VPS se eliminó. El sitio se publica en Netlify al hacer push a main." >&2
+    echo "  Uso: ./deploy.sh [--no-build]" >&2
+    exit 2
+  fi
+fi
 
 echo -e "${YELLOW}========================================"
-echo "   Deploy Marketing Site → Producción"
+echo "   Deploy Marketing Site"
 echo -e "========================================${NC}"
+echo ""
+echo "agendadereservas.com se sirve desde Netlify y se publica"
+echo "automáticamente al hacer push a la rama main:"
+echo ""
+echo "    git push origin main"
+echo ""
+echo "Este script no se conecta a ningún servidor."
 
-SSH_HOST="75.119.150.113"
-SSH_PORT="1968"
-SSH_USER="root"
-SSH_KEY="$HOME/.ssh/id_ed25519"
-LOCAL_DIST="./dist"
-
-# Verifica que dist/ existe y tiene contenido
-if [ ! -f "${LOCAL_DIST}/index.html" ]; then
-  echo -e "${YELLOW}dist/ no existe o está vacío. Construyendo...${NC}"
+if [ "$RUN_BUILD" -eq 1 ]; then
+  echo ""
+  echo "Build local de comprobación..."
   ASTRO_TELEMETRY_DISABLED=1 npm run build
+  echo -e "${GREEN}✓ Build local correcto${NC}"
 fi
-
-echo ""
-echo "[1/3] Conectando al servidor..."
-if ! ssh -o ConnectTimeout=8 -o StrictHostKeyChecking=no -i "$SSH_KEY" -p "$SSH_PORT" "${SSH_USER}@${SSH_HOST}" "echo ok" &>/dev/null; then
-  echo -e "${RED}✗ No se pudo conectar a ${SSH_HOST}:${SSH_PORT}${NC}"
-  exit 1
-fi
-echo -e "${GREEN}✓ SSH OK${NC}"
-
-# Descubre el directorio raíz del marketing site en el servidor
-echo ""
-echo "[2/3] Localizando directorio en el servidor..."
-REMOTE_DIR=$(ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" -p "$SSH_PORT" "${SSH_USER}@${SSH_HOST}" "
-  ROOT=\$(grep -r 'root\|alias' /etc/nginx/sites-enabled/ 2>/dev/null | grep -v '#' | grep 'agendadereservas' | awk '{print \$2}' | tr -d ';' | head -1)
-  if [ -n \"\$ROOT\" ]; then echo \"\$ROOT\"; exit 0; fi
-  find /var/www /srv /home -name 'index.html' -not -path '*/node_modules/*' 2>/dev/null | head -1 | xargs dirname 2>/dev/null
-")
-
-if [ -z "$REMOTE_DIR" ]; then
-  REMOTE_DIR="/var/www/agendadereservas"
-  echo -e "${YELLOW}⚠ No detectado automáticamente. Usando: ${REMOTE_DIR}${NC}"
-else
-  echo -e "${GREEN}✓ Directorio: ${REMOTE_DIR}${NC}"
-fi
-
-# Sube el dist/
-echo ""
-echo "[3/3] Subiendo dist/ → ${SSH_HOST}:${REMOTE_DIR}..."
-rsync -avz --delete \
-  --exclude='.DS_Store' \
-  -e "ssh -i ${SSH_KEY} -p ${SSH_PORT} -o StrictHostKeyChecking=no" \
-  "${LOCAL_DIST}/" \
-  "${SSH_USER}@${SSH_HOST}:${REMOTE_DIR}/"
-
-echo -e "${GREEN}✓ Subida completada${NC}"
-
-echo ""
-echo -e "${GREEN}========================================"
-echo "   ✅ Deploy completado!"
-echo -e "========================================${NC}"
-echo ""
-echo -e "🌐 ${YELLOW}https://agendadereservas.com${NC}"
-echo -e "🍽️  ${YELLOW}https://agendadereservas.com/restaurantes${NC}"
-echo -e "🏔️  ${YELLOW}https://agendadereservas.com/turismo${NC}"

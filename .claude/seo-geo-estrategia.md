@@ -8,8 +8,8 @@ Plan vivo. Basado en investigación de junio 2026 (GEO, schema, crawlers IA, pat
 
 - **Un solo dominio, subdirectorios.** Todo en `agendadereservas.com` (`/guias`, `/comparativas` (=`/vs`), sectores…). NADA de dominios separados ni subdominios: la autoridad topical se acumula en un dominio y las páginas solo "se potencian entre sí" vía enlazado interno dentro del mismo sitio. Varios dominios = enlaces entre sitios propios (esquema de enlaces, penalizable) + cada dominio parte de cero.
 - **Sin dominios exact-match ni satélites.** Los EMD ya no dan ventaja (EMD update). No comprar dominios extra de momento.
-- **Hosting = el actual, ya óptimo.** Astro SSG → HTML estático → lo más rápido y accesible que existe. Servido desde el VPS; recomendado poner **Cloudflare gratis** delante (CDN + caché + SSL). No usar hosting "gratuito" tipo `*.netlify.app`/`*.vercel.app` (posicionan mal, no se controlan). Cero infra nueva.
-- **Gestión:** todo en este repo Astro; cada página es un `.astro`; los agentes las generan; git versiona; `deploy.sh` publica.
+- **Hosting = el actual, ya óptimo.** Astro SSG → HTML estático → lo más rápido y accesible que existe. Servido desde Netlify con el dominio propio (CDN + SSL incluidos). No usar hosting "gratuito" tipo `*.netlify.app`/`*.vercel.app` (posicionan mal, no se controlan). Cero infra nueva.
+- **Gestión:** todo en este repo Astro; cada página es un `.astro`; los agentes las generan; git versiona; Netlify publica automáticamente al hacer push a `main`.
 
 ---
 

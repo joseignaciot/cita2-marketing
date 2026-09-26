@@ -65,7 +65,7 @@ TheFork/ElTenedor · Booksy · AgendaPro · Bokun · Reservio · Restoo · Treat
 
 ## Convenciones técnicas (Astro SSG)
 
-- **Astro `output: 'static'`** — SSG puro. Deploy = `npm run build` → `dist/` → rsync al VPS (`bash deploy.sh`).
+- **Astro `output: 'static'`** — SSG puro. Deploy = push a `main` → Netlify construye y publica automáticamente. `./deploy.sh` solo recuerda esto y hace un build local de comprobación (no toca ningún servidor).
 - Páginas en `src/pages/**/*.astro`. Layout en `src/layouts/Layout.astro`.
 - **`Layout.astro` props:** `title`, `description`, `aiDescription?`, `ogImage?`, `canonicalUrl?`, `noindex?`, `schema?` (objeto JSON-LD; se fusiona con el `WebSite` por defecto).
 - Componentes compartidos: `Header.astro`, `Footer.astro`.
