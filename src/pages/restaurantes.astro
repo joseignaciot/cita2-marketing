@@ -6,7 +6,6 @@ import HeroV2 from '../components/HeroV2.astro';
 import Features from '../components/Features.astro';
 import Testimonials from '../components/Testimonials.astro';
 import PricingV2 from '../components/PricingV2.astro';
-import DynamicPricing from '../components/DynamicPricing.astro';
 import FAQ from '../components/FAQ.astro';
 import DashboardMockup from '../components/DashboardMockup.astro';
 import '../styles/apple-design.css';
@@ -251,7 +250,7 @@ const schema = {
     <FAQ 
       title="Preguntas frecuentes para restaurantes"
       subtitle="Respuestas a las dudas más comunes del sector restauración."
-      faqs={restaurantFAQs}
+      items={restaurantFAQs}
     />
 
     <!-- Recursos para restaurantes — hub-and-spoke -->
@@ -289,6 +288,5 @@ const schema = {
   </main>
   
   <Footer />
-  <DynamicPricing />
 </Layout>
 

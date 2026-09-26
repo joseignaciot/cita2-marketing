@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FAQ from '../components/FAQ.astro';
-import DynamicPricing from '../components/DynamicPricing.astro';
 import pricing from '../content/pricing.json';
 
 const { pageTitle, pageDescription, businessTypes, includedFree, addons, pricingFAQs } = pricing;
@@ -301,14 +300,14 @@ const canonicalUrl = 'https://agendadereservas.com/precios/';
               </tr>
               <tr class="border-b border-gray-100">
                 <td class="p-5 text-sm text-gray-700">WhatsApp Business</td>
-                <td class="p-5 text-center text-sm font-semibold text-green-700 bg-blue-50/30">✓ Add-on 28€</td>
+                <td class="p-5 text-center text-sm font-semibold text-green-700 bg-blue-50/30">✓ Add-on <span data-price-key="addon_whatsapp.monthly">28</span>€</td>
                 <td class="p-5 text-center text-sm text-gray-600">✗ No</td>
                 <td class="p-5 text-center text-sm text-gray-600">✗ No</td>
                 <td class="p-5 text-center text-sm text-gray-600">✗ No</td>
               </tr>
               <tr class="border-b border-gray-100 bg-gray-50/30">
                 <td class="p-5 text-sm text-gray-700">Turismo / Actividades</td>
-                <td class="p-5 text-center text-sm font-semibold text-green-700 bg-blue-50/30">✓ 29€/mes</td>
+                <td class="p-5 text-center text-sm font-semibold text-green-700 bg-blue-50/30">✓ <span data-price-key="tourism_activities.monthly">29</span>€/mes</td>
                 <td class="p-5 text-center text-sm text-gray-600">△ Básico</td>
                 <td class="p-5 text-center text-sm text-gray-600">△ Básico</td>
                 <td class="p-5 text-center text-sm text-gray-600">Solo restaurantes</td>
@@ -336,7 +335,7 @@ const canonicalUrl = 'https://agendadereservas.com/precios/';
       </div>
     </section>
 
-    <FAQ title="Preguntas sobre precios" subtitle="Todo lo que necesitas saber antes de suscribirte." faqs={pricingFAQs} />
+    <FAQ title="Preguntas sobre precios" subtitle="Todo lo que necesitas saber antes de suscribirte." items={pricingFAQs} />
 
     <!-- Final CTA -->
     <section class="py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white text-center">
@@ -359,7 +358,6 @@ const canonicalUrl = 'https://agendadereservas.com/precios/';
   </main>
   
   <Footer />
-  <DynamicPricing />
 </Layout>
 
 <script>

@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import DynamicPricing from '../components/DynamicPricing.astro';
 
 const canonicalUrl = 'https://agendadereservas.com/funcionalidades/';
 
@@ -47,8 +46,8 @@ const featureCategories = [
     icon: 'bell',
     features: [
       { name: 'Recordatorios email', desc: 'Emails automáticos 24h antes de la cita. Reducen ausencias un 40%. Incluido en el plan base.' },
-      { name: 'Recordatorios SMS', desc: 'SMS de última hora (2h antes) para maximizar asistencia. Módulo opcional, +15€/mes.' },
-      { name: 'WhatsApp Business', desc: 'Confirmaciones y recordatorios por WhatsApp. 90% tasa de apertura. Módulo opcional, +28€/mes.' },
+      { name: 'Recordatorios SMS', desc: 'SMS de última hora (2h antes) para maximizar asistencia. Módulo opcional, +<span data-price-key="addon_sms.monthly">15</span>€/mes.' },
+      { name: 'WhatsApp Business', desc: 'Confirmaciones y recordatorios por WhatsApp. 90% tasa de apertura. Módulo opcional, +<span data-price-key="addon_whatsapp.monthly">28</span>€/mes.' },
       { name: 'Confirmaciones automáticas', desc: 'El cliente recibe un email de confirmación inmediatamente al reservar.' },
       { name: 'Mensajes personalizables', desc: 'Adapta el tono y contenido de todos los mensajes a tu marca.' },
       { name: 'Follow-ups post-cita', desc: 'Envía agradecimientos y solicita reseñas automáticamente.' },
@@ -58,7 +57,7 @@ const featureCategories = [
     title: 'Pagos y Facturación',
     icon: 'credit',
     features: [
-      { name: 'Pagos online con Stripe y Redsys', desc: 'Cobra al reservar con tarjeta. Módulo opcional de Cobros Online, +18€/mes.' },
+      { name: 'Pagos online con Stripe y Redsys', desc: 'Cobra al reservar con tarjeta. Módulo opcional de Cobros Online, +<span data-price-key="addon_payments.monthly">18</span>€/mes.' },
       { name: 'Depósitos configurables', desc: 'Pide señal para reservas grandes o especiales. Requiere el módulo de Cobros Online.' },
       { name: 'Bonos y paquetes', desc: 'Vende sesiones múltiples. El sistema controla sesiones usadas/pendientes.' },
       { name: 'Gift cards', desc: 'Vende regalos digitales para tu negocio. Perfecto para Navidad.' },
@@ -129,7 +128,7 @@ const featureCategories = [
               {category.features.map(feature => (
                 <div class="bg-white p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
                   <h3 class="font-semibold text-gray-900 mb-2">{feature.name}</h3>
-                  <p class="text-sm text-gray-600">{feature.desc}</p>
+                  <p class="text-sm text-gray-600" set:html={feature.desc} />
                 </div>
               ))}
             </div>
@@ -220,5 +219,4 @@ const featureCategories = [
   </main>
   
   <Footer />
-  <DynamicPricing />
 </Layout>

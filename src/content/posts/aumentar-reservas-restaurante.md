@@ -85,7 +85,7 @@ Agenda de Reservas está pensado para ser tu canal de reservas directo, compleme
 - **Recordatorios automáticos**: reduce los no-shows sin llamar uno a uno
 - **Datos de tus clientes**: email y teléfono quedan en tu base de datos, no en la de la plataforma
 
-El coste del plan Restaurantes es de **24€/mes** (consulta la [página de precios](/precios) para la tarifa actualizada). Sin comisiones por reserva.
+El coste del plan Restaurantes es de **<span data-price-key="restaurant.monthly">24</span>€/mes** (consulta la [página de precios](/precios) para la tarifa actualizada). Sin comisiones por reserva.
 
 ## Una transición razonable
 

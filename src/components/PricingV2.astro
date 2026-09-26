@@ -142,12 +142,12 @@ const baseFeatures = [
           </div>
           <div class="mb-6">
             <div class="flex items-baseline gap-1">
-              <span class={plan.priceClass}>{plan.monthly}€</span>
+              <span class={plan.priceClass}><span data-price-key={`${plan.key}.monthly`}>{plan.monthly}</span>€</span>
               <span class="text-gray-400">/mes</span>
             </div>
             <p class="text-sm text-gray-500 mt-1">
-              O <strong class="text-gray-700">{plan.yearly}€/año</strong>
-              <span class="text-green-600 ml-1">(ahorras {plan.saving}€)</span>
+              O <strong class="text-gray-700"><span data-price-key={`${plan.key}.yearly`}>{plan.yearly}</span>€/año</strong>
+              <span class="text-green-600 ml-1">(ahorras <span data-price-yearly-saving={plan.key}>{plan.saving}</span>€)</span>
             </p>
           </div>
           <ul class="space-y-2 mb-8 flex-1">
@@ -187,7 +187,7 @@ const baseFeatures = [
                 <div>
                   <h4 class="font-bold text-gray-900">{addon.name}</h4>
                   <p class="text-sm text-gray-500">
-                    +{prices.monthly}€/mes · +{prices.yearly}€/año
+                    +<span data-price-key={`${addon.key}.monthly`}>{prices.monthly}</span>€/mes · +<span data-price-key={`${addon.key}.yearly`}>{prices.yearly}</span>€/año
                   </p>
                 </div>
               </div>
@@ -213,20 +213,20 @@ const baseFeatures = [
       <div class="space-y-2 text-sm">
         <div class="flex justify-between text-gray-300">
           <span>Plan Servicios</span>
-          <span>{pricing.service_business.monthly}€/mes</span>
+          <span><span data-price-key="service_business.monthly">{pricing.service_business.monthly}</span>€/mes</span>
         </div>
         <div class="flex justify-between text-gray-300">
           <span>+ WhatsApp (bandeja de conversaciones)</span>
-          <span>+{pricing.addon_whatsapp.monthly}€/mes</span>
+          <span>+<span data-price-key="addon_whatsapp.monthly">{pricing.addon_whatsapp.monthly}</span>€/mes</span>
         </div>
         <div class="flex justify-between text-gray-300">
           <span>+ Cobros Online (Stripe y Redsys)</span>
-          <span>+{pricing.addon_payments.monthly}€/mes</span>
+          <span>+<span data-price-key="addon_payments.monthly">{pricing.addon_payments.monthly}</span>€/mes</span>
         </div>
         <div class="border-t border-gray-700 pt-2 mt-2 flex justify-between font-bold text-lg">
           <span>Total mensual</span>
           <span class="text-green-400">
-            {pricing.service_business.monthly + pricing.addon_whatsapp.monthly + pricing.addon_payments.monthly}€/mes
+            <span data-price-calc="service_business.monthly+addon_whatsapp.monthly+addon_payments.monthly">{pricing.service_business.monthly + pricing.addon_whatsapp.monthly + pricing.addon_payments.monthly}</span>€/mes
           </span>
         </div>
         <p class="text-gray-500 text-xs pt-1">vs. más de 147€/mes en la competencia para 3 empleados</p>

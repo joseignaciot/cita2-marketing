@@ -16,13 +16,13 @@ Elegir software de gestión para tu peluquería es una decisión importante. Vam
 
 | Característica | Agenda de Reservas | AgendaPro |
 |---|---|---|
-| **Precio mensual (base)** | 19€ plan único | Desde 49€/usuario |
+| **Precio mensual (base)** | <span data-price-key="service_business.monthly">19</span>€ plan único | Desde 49€/usuario |
 | **Setup** | Rápido, presets por sector | Más configuración inicial |
-| **WhatsApp Business** | ✅ Módulo opcional +28€/mes | ❌ No disponible |
+| **WhatsApp Business** | ✅ Módulo opcional +<span data-price-key="addon_whatsapp.monthly">28</span>€/mes | ❌ No disponible |
 | **Comisiones** | ❌ Ninguna | ❌ Ninguna |
 | **Soporte español** | ✅ Chat en tiempo real | ✅ Email/teléfono |
 | **App móvil** | ✅ Web app responsive | ✅ Nativa iOS/Android |
-| **Pagos online** | ✅ Stripe/Redsys (módulo opcional +18€/mes) | ✅ Redsys/TPE |
+| **Pagos online** | ✅ Stripe/Redsys (módulo opcional +<span data-price-key="addon_payments.monthly">18</span>€/mes) | ✅ Redsys/TPE |
 
 ## Análisis detallado
 
@@ -30,14 +30,14 @@ Elegir software de gestión para tu peluquería es una decisión importante. Vam
 
 **AgendaPro** cobra por "puesto de trabajo". Si tienes 3 empleados, pagas 3 licencias. Con precios desde 49€/mes por puesto, una peluquería con 3 sillas paga **147€/mes**.
 
-**Agenda de Reservas** tiene un plan base de **19€/mes** para peluquerías, sin importar cuántos empleados tengas. Los módulos opcionales (WhatsApp +28€/mes, Cobros Online +18€/mes) se añaden solo si los necesitas.
+**Agenda de Reservas** tiene un plan base de **<span data-price-key="service_business.monthly">19</span>€/mes** para peluquerías, sin importar cuántos empleados tengas. Los módulos opcionales (WhatsApp +<span data-price-key="addon_whatsapp.monthly">28</span>€/mes, Cobros Online +<span data-price-key="addon_payments.monthly">18</span>€/mes) se añaden solo si los necesitas.
 
 **Ejemplo de coste total:**
-- Agenda de Reservas solo base (3 empleados): 19€/mes
-- Agenda de Reservas con WhatsApp: 47€/mes
+- Agenda de Reservas solo base (3 empleados): <span data-price-key="service_business.monthly">19</span>€/mes
+- Agenda de Reservas con WhatsApp: <span data-price-calc="service_business.monthly+addon_whatsapp.monthly">47</span>€/mes
 - AgendaPro (3 empleados): 147€/mes
 
-El ahorro en el escenario con WhatsApp incluido sigue siendo significativo (100€/mes).
+El ahorro en el escenario con WhatsApp incluido sigue siendo significativo (<span data-price-vs="service_business.monthly+addon_whatsapp.monthly:147">100</span>€/mes).
 
 ### Setup y curva de aprendizaje
 
@@ -47,11 +47,11 @@ Con Agenda de Reservas, al registrarte seleccionas el tipo de negocio y cargamos
 
 ### WhatsApp Business: El diferenciador
 
-Agenda de Reservas ofrece integración con WhatsApp Business API como módulo opcional (+28€/mes). Permite recordatorios automáticos con alta tasa de apertura, confirmaciones y mensajes personalizados.
+Agenda de Reservas ofrece integración con WhatsApp Business API como módulo opcional (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes). Permite recordatorios automáticos con alta tasa de apertura, confirmaciones y mensajes personalizados.
 
 AgendaPro no ofrece esta integración nativa.
 
-> **Nota:** El plan base de 19€ incluye recordatorios por email; el módulo de WhatsApp se contrata aparte.
+> **Nota:** El plan base de <span data-price-key="service_business.monthly">19</span>€ incluye recordatorios por email; el módulo de WhatsApp se contrata aparte.
 
 ### App nativa vs. Web app
 

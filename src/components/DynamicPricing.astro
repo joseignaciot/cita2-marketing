@@ -24,6 +24,12 @@
 
 <script>
 (async () => {
+  // Idempotencia: si el script se incluyera más de una vez en la página
+  // (o se re-ejecutara por HMR/navegación client-side), evita re-fetch y
+  // doble hidratación.
+  if ((window as any).__dynamicPricingHydrated) return;
+  (window as any).__dynamicPricingHydrated = true;
+
   const API = 'https://api.agendadereservas.com/pricing';
 
   // ── Fallbacks (idénticos al DEFAULT en server.js) ─────────────────────────

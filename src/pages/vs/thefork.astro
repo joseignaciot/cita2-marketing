@@ -2,7 +2,6 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import DynamicPricing from '../../components/DynamicPricing.astro';
 
 const pageTitle = 'Agenda de Reservas vs TheFork Manager 2026 — Comparativa real';
 const pageDescription = 'Comparativa honesta TheFork Manager vs Agenda de Reservas para restaurantes. Cuota real, comisiones por comensal, funcionalidades y ahorro anual calculado.';
@@ -22,9 +21,9 @@ const features = [
   {
     category: 'Modelo de precios',
     rows: [
-      { name: 'Precio base mensual',            ours: '24€/mes fijo',               theirs: '~175€/mes',              winner: 'ours' },
+      { name: 'Precio base mensual',            ours: '<span data-price-key="restaurant.monthly">24</span>€/mes fijo',               theirs: '~175€/mes',              winner: 'ours' },
       { name: 'Comisión por comensal',           ours: '0€ — nunca',                 theirs: '1,5–2€ por persona',     winner: 'ours' },
-      { name: 'Coste real (100 res. × 2p)',      ours: '24€',                        theirs: '~475€',                  winner: 'ours' },
+      { name: 'Coste real (100 res. × 2p)',      ours: '<span data-price-key="restaurant.monthly">24</span>€',                        theirs: '~475€',                  winner: 'ours' },
       { name: 'Moneda y estabilidad',            ours: '€ fijo',                     theirs: '€ variable por comisión',winner: 'ours' },
       { name: 'Transparencia de precio',         ours: 'Total conocido de antemano',  theirs: 'Sube con tu éxito',      winner: 'ours' },
     ]
@@ -45,7 +44,7 @@ const features = [
     rows: [
       { name: 'Confirmación automática email',   ours: '✅ Personalizable',           theirs: '✅ Estándar',            winner: 'tie'  },
       { name: 'Recordatorio automático',         ours: '✅ Email + WhatsApp',         theirs: '⚠️ Solo email',         winner: 'ours' },
-      { name: 'WhatsApp Business API',           ours: '✅ Nativo (+28€/mes)',         theirs: '❌ No disponible',       winner: 'ours' },
+      { name: 'WhatsApp Business API',           ours: '✅ Nativo (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)',         theirs: '❌ No disponible',       winner: 'ours' },
       { name: 'SMS recordatorio',                ours: '✅ Disponible',               theirs: '❌ No',                  winner: 'ours' },
       { name: 'Mensajes post-visita',            ours: '✅ Automatizados',            theirs: '⚠️ Limitado',           winner: 'ours' },
       { name: 'Encuesta de satisfacción',        ours: '✅ Configurable',             theirs: '✅ Plataforma propia',   winner: 'tie'  },
@@ -232,7 +231,7 @@ features.forEach(cat => cat.rows.forEach(r => wins[r.winner as keyof typeof wins
                     <tr class={`border-b border-gray-100 ${ri % 2 === 0 ? '' : 'bg-gray-50/50'}`}>
                       <td class="py-3 px-4 font-medium text-gray-700">{row.name}</td>
                       <td class={`py-3 px-4 text-center ${row.winner === 'ours' ? 'text-green-700 font-semibold bg-green-50' : 'text-gray-600'}`}>
-                        {row.ours}
+                        <span set:html={row.ours} />
                         {row.winner === 'ours' && <span class="ml-1.5">🏆</span>}
                       </td>
                       <td class={`py-3 px-4 text-center ${row.winner === 'theirs' ? 'text-green-700 font-semibold bg-green-50' : 'text-gray-600'}`}>
@@ -338,7 +337,6 @@ features.forEach(cat => cat.rows.forEach(r => wins[r.winner as keyof typeof wins
   </main>
 
   <Footer />
-  <DynamicPricing />
 </Layout>
 
 <script>

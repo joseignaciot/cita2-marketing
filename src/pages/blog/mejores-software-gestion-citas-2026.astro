@@ -4,7 +4,6 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import AdvancedSEO from '../../components/AdvancedSEO.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import DynamicPricing from '../../components/DynamicPricing.astro';
 
 const API_URL = 'https://api.agendadereservas.com';
 const FALLBACK_PRICING = {
@@ -49,7 +48,7 @@ const articleData = {
 const softwareList = [
   {
     name: 'Agenda de Reservas',
-    price: `${apiPricing.service_business.monthly}€/mes`,
+    price: `<span data-price-key="service_business.monthly">${apiPricing.service_business.monthly}</span>€/mes`,
     rating: 4.9,
     reviews: 523,
     pros: ['Precio fijo sin comisiones', 'WhatsApp Business como módulo opcional', 'Setup 2 minutos', 'Sin límites de usuarios'],
@@ -115,7 +114,7 @@ const howToData = {
 const faqs = [
   {
     question: '¿Cuál es el mejor software de gestión de citas para peluquerías?',
-    answer: 'Para peluquerías, Agenda de Reservas ofrece la mejor relación calidad-precio: precio plano por negocio (no por empleado), vs AgendaPro a 147€/mes para 3 peluqueros. El módulo de WhatsApp Business está disponible como módulo opcional (+28€/mes).'
+    answer: 'Para peluquerías, Agenda de Reservas ofrece la mejor relación calidad-precio: precio plano por negocio (no por empleado), vs AgendaPro a 147€/mes para 3 peluqueros. El módulo de WhatsApp Business está disponible como módulo opcional (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes).'
   },
   {
     question: '¿TheFork o software propio para restaurantes?',
@@ -127,7 +126,7 @@ const faqs = [
   },
   {
     question: '¿Qué software de citas incluye WhatsApp Business?',
-    answer: 'Agenda de Reservas ofrece integración con WhatsApp Business API como módulo opcional (+28€/mes). AgendaPro cobra extra por WhatsApp y Reservio no ofrece integración nativa.'
+    answer: 'Agenda de Reservas ofrece integración con WhatsApp Business API como módulo opcional (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes). AgendaPro cobra extra por WhatsApp y Reservio no ofrece integración nativa.'
   }
 ];
 ---
@@ -318,7 +317,7 @@ const faqs = [
                     </div>
                   </div>
                   <div class="lg:ml-auto text-center lg:text-right">
-                    <p class="text-3xl font-bold text-gray-900">{software.price}</p>
+                    <p class="text-3xl font-bold text-gray-900" set:html={software.price} />
                     {software.position === 1 && (
                       <span class="inline-block mt-2 px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
                         🏆 Mejor valorado
@@ -406,7 +405,7 @@ const faqs = [
                   </span>
                 </summary>
                 <div class="px-6 pb-6 text-gray-600">
-                  <p>{faq.answer}</p>
+                  <p set:html={faq.answer} />
                 </div>
               </details>
             ))}
@@ -417,7 +416,7 @@ const faqs = [
         <div class="text-center">
           <h2 class="text-title text-gray-900 mb-4">Nuestra recomendación 2026</h2>
           <p class="text-body text-lg mb-8 max-w-2xl mx-auto">
-          Tras analizar las opciones, <strong>Agenda de Reservas</strong> ofrece la mejor relación calidad-precio para la mayoría de negocios de servicios. Precio fijo por negocio, sin comisiones, y soporte en español. El módulo de WhatsApp Business está disponible como opcional (+28€/mes) si lo necesitas.
+          Tras analizar las opciones, <strong>Agenda de Reservas</strong> ofrece la mejor relación calidad-precio para la mayoría de negocios de servicios. Precio fijo por negocio, sin comisiones, y soporte en español. El módulo de WhatsApp Business está disponible como opcional (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes) si lo necesitas.
           </p>
           <a href="https://app.agendadereservas.com" class="btn-apple-primary text-lg px-12 py-5 inline-flex">
             Prueba Agenda de Reservas gratis 14 días
@@ -432,5 +431,4 @@ const faqs = [
   </main>
   
   <Footer />
-  <DynamicPricing />
 </Layout>

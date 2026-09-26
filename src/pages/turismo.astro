@@ -6,7 +6,6 @@ import HeroV2 from '../components/HeroV2.astro';
 import Features from '../components/Features.astro';
 import Testimonials from '../components/Testimonials.astro';
 import PricingV2 from '../components/PricingV2.astro';
-import DynamicPricing from '../components/DynamicPricing.astro';
 import FAQ from '../components/FAQ.astro';
 import DashboardMockup from '../components/DashboardMockup.astro';
 import '../styles/apple-design.css';
@@ -380,7 +379,7 @@ const schema = {
     <FAQ 
       title="Preguntas frecuentes para turismo"
       subtitle="Respuestas a las dudas más comunes del sector turístico."
-      faqs={tourismFAQs}
+      items={tourismFAQs}
     />
 
     <!-- Recursos para turismo activo — hub-and-spoke -->
@@ -416,5 +415,4 @@ const schema = {
   </main>
   
   <Footer />
-  <DynamicPricing />
 </Layout>

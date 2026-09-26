@@ -4,7 +4,6 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import AdvancedSEO from '../../components/AdvancedSEO.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import DynamicPricing from '../../components/DynamicPricing.astro';
 
 const API_URL = 'https://api.agendadereservas.com';
 const FALLBACK_PRICING = {
@@ -50,7 +49,7 @@ const articleData = {
 const comparison = [
   {
     feature: 'Precio (3 peluqueros)',
-    agendadereservas: { value: `${pricing.service_business.monthly}€/mes`, highlight: true },
+    agendadereservas: { value: `<span data-price-key="service_business.monthly">${pricing.service_business.monthly}</span>€/mes`, highlight: true },
     agendapro: { value: '147€/mes', highlight: false },
     phorest: { value: '120€/mes', highlight: false },
     reservio: { value: '63€/mes', highlight: false }
@@ -64,7 +63,7 @@ const comparison = [
   },
   {
     feature: 'Recordatorios WhatsApp',
-    agendadereservas: { value: `+${pricing.addon_whatsapp.monthly}€/mes (módulo opcional)`, highlight: false },
+    agendadereservas: { value: `+<span data-price-key="addon_whatsapp.monthly">${pricing.addon_whatsapp.monthly}</span>€/mes (módulo opcional)`, highlight: false },
     agendapro: { value: '+15€/mes', highlight: false },
     phorest: { value: '+10€/mes', highlight: false },
     reservio: { value: '✗', highlight: false }
@@ -201,7 +200,7 @@ const faqs = [
                     <td class="px-4 py-4 font-medium text-gray-900">{row.feature}</td>
                     <td class="px-4 py-4 text-center bg-blue-50/30">
                       <span class={row.agendadereservas.highlight ? 'font-semibold text-blue-700' : 'text-gray-700'}>
-                        {row.agendadereservas.value}
+                        <span set:html={row.agendadereservas.value} />
                       </span>
                     </td>
                     <td class="px-4 py-4 text-center text-gray-600">{row.agendapro.value}</td>
@@ -309,7 +308,7 @@ const faqs = [
                 </li>
                 <li class="flex justify-between">
                   <span class="text-gray-600">Ahorro vs AgendaPro (3 empleados)</span>
-                  <span class="font-medium text-green-600">+1.536€/año</span>
+                  <span class="font-medium text-green-600">+<span data-price-saving-annual="service_business.monthly:147">1.536</span>€/año</span>
                 </li>
                 <li class="flex justify-between">
                   <span class="text-gray-600">Ahorro en gestión (estimado)</span>
@@ -371,5 +370,4 @@ const faqs = [
   </main>
   
   <Footer />
-  <DynamicPricing />
 </Layout>

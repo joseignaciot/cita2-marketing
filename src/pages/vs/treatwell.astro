@@ -3,7 +3,6 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import DynamicPricing from '../../components/DynamicPricing.astro';
 import '../../styles/apple-design.css';
 import pricingData from '../../content/pricing.json';
 
@@ -42,17 +41,17 @@ const ahorro200min = (escenarios[2].twMin  - svcPrice) * 12;
 const ahorro200max = (escenarios[2].twMax  - svcPrice) * 12;
 
 const comparativa = [
-  { feature: 'Precio mensual',               treatwell: 'Comisión por reserva (sin cuota fija)', agenda: `${svcPrice}€/mes fijo`,           winner: 'agenda' },
+  { feature: 'Precio mensual',               treatwell: 'Comisión por reserva (sin cuota fija)', agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes fijo`,           winner: 'agenda' },
   { feature: 'Comisión por reserva',          treatwell: 'Sí — % sobre cada servicio vendido',   agenda: '0€ — ninguna comisión',            winner: 'agenda' },
   { feature: 'Control de base de clientes',  treatwell: 'Limitado (son clientes del marketplace)', agenda: '✅ 100% tuyos, exportables',      winner: 'agenda' },
   { feature: 'Soporte en español',           treatwell: '⚠️ Email/chat, no siempre en ES',       agenda: '✅ Humano, <2h en español',         winner: 'agenda' },
   { feature: 'RGPD / alojamiento UE',        treatwell: '⚠️ Treatwell Group (con sede en UK/UE)',agenda: '✅ Servidores UE, RGPD conforme',   winner: 'agenda' },
-  { feature: 'WhatsApp Business API',        treatwell: '❌ No integrado',                        agenda: `✅ Disponible (+${whatsappPrice}€/mes)`, winner: 'agenda' },
+  { feature: 'WhatsApp Business API',        treatwell: '❌ No integrado',                        agenda: `✅ Disponible (+<span data-price-key="addon_whatsapp.monthly">${whatsappPrice}</span>€/mes)`, winner: 'agenda' },
   { feature: 'Reservas 24/7 en tu web propia',treatwell:'⚠️ Solo en la plataforma Treatwell',    agenda: '✅ Widget en tu web + enlace directo', winner: 'agenda' },
   { feature: 'Prueba gratuita',              treatwell: '⚠️ No estándar (contactar ventas)',     agenda: '✅ 14 días sin tarjeta',            winner: 'agenda' },
   { feature: 'Marketplace de captación',     treatwell: '✅ Sí — visibilidad en Treatwell.com',  agenda: '❌ No (reservas directas)',          winner: 'treatwell' },
   { feature: 'Gestión de personal/agenda',   treatwell: '✅ Básica',                             agenda: '✅ Completa (multi-staff)',          winner: 'agenda' },
-  { feature: 'Pagos online',                 treatwell: '✅ Integrado en el marketplace',        agenda: `✅ Stripe (+${pagosPrice}€/mes)`,   winner: 'empate' },
+  { feature: 'Pagos online',                 treatwell: '✅ Integrado en el marketplace',        agenda: `✅ Stripe (+<span data-price-key="addon_payments.monthly">${pagosPrice}</span>€/mes)`,   winner: 'empate' },
 ];
 
 const schema = {
@@ -256,7 +255,7 @@ const schema = {
               ].map(item => (
                 <li class="flex items-start gap-2">
                   <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
-                  <span>{item}</span>
+                  <span set:html={item} />
                 </li>
               ))}
             </ul>
@@ -273,7 +272,7 @@ const schema = {
               ].map(item => (
                 <li class="flex items-start gap-2">
                   <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
-                  <span>{item}</span>
+                  <span set:html={item} />
                 </li>
               ))}
             </ul>
@@ -294,7 +293,7 @@ const schema = {
         <p class="text-gray-700 mb-6 text-lg">
           Con 100 reservas al mes a ticket medio de 35€, una peluquería paga a Treatwell
           entre <strong class="text-red-600">{escenarios[1].twMin}€ y {escenarios[1].twMax}€ al mes</strong> en comisiones.
-          Con Agenda de Reservas, el coste fijo es de <strong class="text-green-600">{svcPrice}€/mes</strong>.
+          Con Agenda de Reservas, el coste fijo es de <strong class="text-green-600"><span data-price-key="service_business.monthly">{svcPrice}</span>€/mes</strong>.
           Eso supone un ahorro de <strong>{escenarios[1].twMin - svcPrice}–{escenarios[1].twMax - svcPrice}€ al mes</strong>
           ({ahorro100min}–{ahorro100max}€ al año), estimación orientativa.
         </p>
@@ -349,14 +348,14 @@ const schema = {
             },
             {
               titulo: 'Recordatorios por WhatsApp',
-              desc: `Con el módulo de WhatsApp (+${whatsappPrice}€/mes) envías recordatorios automáticos por WhatsApp Business API. Tasa de apertura media del 90 % frente al 20-30 % del email.`,
+              desc: `Con el módulo de WhatsApp (+<span data-price-key="addon_whatsapp.monthly">${whatsappPrice}</span>€/mes) envías recordatorios automáticos por WhatsApp Business API. Tasa de apertura media del 90 % frente al 20-30 % del email.`,
               icon: '💬',
             },
           ].map(({ titulo, desc, icon }) => (
             <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
               <div class="text-3xl mb-3">{icon}</div>
               <h3 class="font-bold text-gray-900 mb-2">{titulo}</h3>
-              <p class="text-sm text-gray-600">{desc}</p>
+              <p class="text-sm text-gray-600" set:html={desc} />
             </div>
           ))}
         </div>
@@ -392,8 +391,7 @@ const schema = {
                   <td class={`py-3 px-4 text-center ${winner === 'treatwell' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-red-600' : 'text-gray-600'}`}>
                     {treatwell}
                   </td>
-                  <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'treatwell' ? 'text-gray-500' : 'text-gray-600'}`}>
-                    {agenda}
+                  <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'treatwell' ? 'text-gray-500' : 'text-gray-600'}`} set:html={agenda}>
                   </td>
                 </tr>
               ))}
@@ -469,12 +467,12 @@ const schema = {
               {[
                 'Acabas de abrir y no tienes clientes propios todavía.',
                 'Quieres visibilidad inmediata en el marketplace de Treatwell.',
-                'El volumen de reservas es bajo y la comisión no supera 19€/mes.',
+                'El volumen de reservas es bajo y la comisión no supera <span data-price-key="service_business.monthly">19</span>€/mes.',
                 'Tu prioridad es la captación de nuevos clientes, no la gestión.',
               ].map(item => (
                 <li class="flex items-start gap-2">
                   <span class="text-blue-500 mt-0.5 flex-shrink-0">→</span>
-                  <span>{item}</span>
+                  <span set:html={item} />
                 </li>
               ))}
             </ul>
@@ -483,7 +481,7 @@ const schema = {
             <h3 class="font-bold text-gray-900 text-lg mb-4">Elige Agenda de Reservas si...</h3>
             <ul class="space-y-3 text-sm text-gray-800">
               {[
-                'Tienes clientela recurrente y las comisiones ya superan 19€/mes.',
+                'Tienes clientela recurrente y las comisiones ya superan <span data-price-key="service_business.monthly">19</span>€/mes.',
                 'Quieres que los datos de tus clientes sean siempre tuyos.',
                 'Necesitas reservas 24/7 en tu propia web, bajo tu marca.',
                 'Quieres WhatsApp Business para recordatorios automáticos.',
@@ -491,7 +489,7 @@ const schema = {
               ].map(item => (
                 <li class="flex items-start gap-2">
                   <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
-                  <span>{item}</span>
+                  <span set:html={item} />
                 </li>
               ))}
             </ul>
@@ -516,7 +514,7 @@ const schema = {
           {[
             {
               q: '¿Treatwell cobra comisión por cada reserva?',
-              a: 'Sí. Treatwell funciona como marketplace: no cobra cuota mensual fija, sino una comisión por cada reserva gestionada en su plataforma. La comisión exacta depende del contrato individual; se estima entre el 20 % y el 25 % del valor del servicio. Verifica las condiciones actuales en treatwell.es. Agenda de Reservas, en cambio, cobra una cuota fija de 19€/mes sin ninguna comisión.'
+              a: 'Sí. Treatwell funciona como marketplace: no cobra cuota mensual fija, sino una comisión por cada reserva gestionada en su plataforma. La comisión exacta depende del contrato individual; se estima entre el 20 % y el 25 % del valor del servicio. Verifica las condiciones actuales en treatwell.es. Agenda de Reservas, en cambio, cobra una cuota fija de <span data-price-key="service_business.monthly">19</span>€/mes sin ninguna comisión.'
             },
             {
               q: '¿Qué pasa con mis clientes si dejo Treatwell?',
@@ -537,7 +535,7 @@ const schema = {
                   {q}
                   <span class="text-gray-400 group-open:rotate-180 transition-transform">▾</span>
                 </summary>
-                <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{a}</div>
+                <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed" set:html={a}></div>
               </details>
             </div>
           ))}
@@ -569,7 +567,7 @@ const schema = {
             {
               href: '/precios',
               label: 'ver todos los planes de Agenda de Reservas',
-              desc: 'Planes desde 19€/mes. Prueba 14 días sin tarjeta.',
+              desc: 'Planes desde <span data-price-key="service_business.monthly">19</span>€/mes. Prueba 14 días sin tarjeta.',
             },
             {
               href: '/guias/reducir-ausencias',
@@ -582,7 +580,7 @@ const schema = {
               class="flex flex-col gap-1 bg-white rounded-2xl px-5 py-4 border border-gray-200 hover:border-blue-300 hover:shadow-sm transition-all"
             >
               <span class="text-blue-600 font-semibold text-sm underline">{label}</span>
-              <span class="text-gray-500 text-xs">{desc}</span>
+              <span class="text-gray-500 text-xs" set:html={desc} />
             </a>
           ))}
         </div>
@@ -620,5 +618,4 @@ const schema = {
   </main>
 
   <Footer />
-  <DynamicPricing />
 </Layout>

@@ -3,7 +3,6 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import DynamicPricing from '../../components/DynamicPricing.astro';
 import '../../styles/apple-design.css';
 import pricingData from '../../content/pricing.json';
 
@@ -23,7 +22,7 @@ const comparativa = [
   {
     feature: 'Precio mensual',
     koibox: 'Desde ~25€/mes según plan (verifica en koibox.com)',
-    agenda: `${svcPrice}€/mes fijo`,
+    agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes fijo`,
     winner: 'agenda',
   },
   {
@@ -41,7 +40,7 @@ const comparativa = [
   {
     feature: 'WhatsApp nativo',
     koibox: '⚠️ Integración disponible según plan',
-    agenda: `✅ WhatsApp Business API (+${whatsappPrice}€/mes)`,
+    agenda: `✅ WhatsApp Business API (+<span data-price-key="addon_whatsapp.monthly">${whatsappPrice}</span>€/mes)`,
     winner: 'empate',
   },
   {
@@ -198,7 +197,7 @@ const schema = {
           <span class="feature-bubble mb-4 inline-block">Comparativa verificada · Junio 2026</span>
           <h1 class="text-headline text-gray-900 mb-6">
             Alternativa a Koibox:<br/>
-            <span class="text-blue-600">desde {svcPrice}€/mes, sin permanencia y con prueba gratuita</span>
+            <span class="text-blue-600">desde <span data-price-key="service_business.monthly">{svcPrice}</span>€/mes, sin permanencia y con prueba gratuita</span>
           </h1>
           <p class="text-body text-lg mb-8">
             Koibox es el software de referencia en el sector de la belleza en España, especialmente conocido por el programa <strong>Kit Digital</strong>. Si tu subvención ha terminado o simplemente buscas una opción más económica y sin ataduras, Agenda de Reservas ofrece las mismas funciones esenciales desde <strong class="text-blue-600"><span data-price-key="service_business.monthly">{svcPrice}</span>€/mes</strong>, sin permanencia y con <strong class="text-green-600">14 días de prueba gratuita sin tarjeta</strong>.
@@ -237,7 +236,7 @@ const schema = {
               ].map(item => (
                 <li class="flex items-start gap-2">
                   <span class="text-blue-500 mt-0.5 flex-shrink-0">+</span>
-                  <span>{item}</span>
+                  <span set:html={item} />
                 </li>
               ))}
             </ul>
@@ -246,7 +245,7 @@ const schema = {
             <h3 class="font-bold text-gray-900 text-lg mb-4">Agenda de Reservas encaja mejor en...</h3>
             <ul class="space-y-3 text-sm text-gray-800">
               {[
-                'Negocios que buscan precio desde 19€/mes sin permanencia.',
+                'Negocios que buscan precio desde <span data-price-key="service_business.monthly">19</span>€/mes sin permanencia.',
                 'Profesionales que quieren probar 14 dias gratis sin tarjeta.',
                 'Cualquier sector de servicios: peluquerías, clínicas, fisioterapia, turismo...',
                 'Negocios que necesitan soporte humano con respuesta en menos de 2h.',
@@ -254,7 +253,7 @@ const schema = {
               ].map(item => (
                 <li class="flex items-start gap-2">
                   <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
-                  <span>{item}</span>
+                  <span set:html={item} />
                 </li>
               ))}
             </ul>
@@ -337,8 +336,7 @@ const schema = {
                   <td class={`py-3 px-4 text-center ${winner === 'koibox' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-amber-600' : 'text-gray-600'}`}>
                     {koibox}
                   </td>
-                  <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'koibox' ? 'text-gray-500' : 'text-gray-600'}`}>
-                    {agenda}
+                  <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'koibox' ? 'text-gray-500' : 'text-gray-600'}`} set:html={agenda}>
                   </td>
                 </tr>
               ))}
@@ -470,7 +468,7 @@ const schema = {
               ].map(item => (
                 <li class="flex items-start gap-2">
                   <span class="text-blue-500 mt-0.5 flex-shrink-0">→</span>
-                  <span>{item}</span>
+                  <span set:html={item} />
                 </li>
               ))}
             </ul>
@@ -479,7 +477,7 @@ const schema = {
             <h3 class="font-bold text-gray-900 text-lg mb-4">Elige Agenda de Reservas si...</h3>
             <ul class="space-y-3 text-sm text-gray-800">
               {[
-                `La subvencion ha terminado y quieres pagar solo ${svcPrice}€/mes sin compromisos.`,
+                `La subvencion ha terminado y quieres pagar solo <span data-price-key="service_business.monthly">${svcPrice}</span>€/mes sin compromisos.`,
                 'Buscas 14 dias de prueba gratuita sin introducir tarjeta.',
                 'Necesitas soporte humano en español con respuesta garantizada en menos de 2h.',
                 'Quieres cancelar en cualquier momento sin clausulas de permanencia.',
@@ -487,7 +485,7 @@ const schema = {
               ].map(item => (
                 <li class="flex items-start gap-2">
                   <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
-                  <span>{item}</span>
+                  <span set:html={item} />
                 </li>
               ))}
             </ul>
@@ -514,7 +512,7 @@ const schema = {
           {[
             {
               q: '¿Koibox y Agenda de Reservas tienen las mismas funciones para peluquerias?',
-              a: `Ambos cubren las funciones esenciales: reservas online, agenda de empleados, CRM de clientes, recordatorios automaticos y estadisticas. Koibox está muy orientado al sector de la belleza y tiene integraciones especificas para ello. Agenda de Reservas añade flexibilidad de sectores multiples, usuarios ilimitados en todos los planes y una prueba gratuita de 14 dias sin tarjeta. La principal diferencia practica para muchos negocios es el precio mensual (desde ${svcPrice}€/mes en Agenda de Reservas frente a desde ~25€/mes en Koibox, segun plan) y la ausencia de permanencia forzada.`
+              a: `Ambos cubren las funciones esenciales: reservas online, agenda de empleados, CRM de clientes, recordatorios automaticos y estadisticas. Koibox está muy orientado al sector de la belleza y tiene integraciones especificas para ello. Agenda de Reservas añade flexibilidad de sectores multiples, usuarios ilimitados en todos los planes y una prueba gratuita de 14 dias sin tarjeta. La principal diferencia practica para muchos negocios es el precio mensual (desde <span data-price-key="service_business.monthly">${svcPrice}</span>€/mes en Agenda de Reservas frente a desde ~25€/mes en Koibox, segun plan) y la ausencia de permanencia forzada.`
             },
             {
               q: '¿Puedo exportar mis datos de Koibox para cambiarme?',
@@ -535,7 +533,7 @@ const schema = {
                   {q}
                   <span class="text-gray-400 group-open:rotate-180 transition-transform">▾</span>
                 </summary>
-                <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{a}</div>
+                <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed" set:html={a}></div>
               </details>
             </div>
           ))}
@@ -572,7 +570,7 @@ const schema = {
             {
               href: '/precios',
               label: 'ver precios de Agenda de Reservas',
-              desc: `Planes desde ${svcPrice}€/mes. Prueba 14 dias sin tarjeta.`,
+              desc: `Planes desde <span data-price-key="service_business.monthly">${svcPrice}</span>€/mes. Prueba 14 dias sin tarjeta.`,
             },
           ].map(({ href, label, desc }) => (
             <a
@@ -580,7 +578,7 @@ const schema = {
               class="flex flex-col gap-1 bg-gray-50 rounded-2xl px-5 py-4 border border-gray-200 hover:border-blue-300 hover:shadow-sm transition-all"
             >
               <span class="text-blue-600 font-semibold text-sm underline">{label}</span>
-              <span class="text-gray-500 text-xs">{desc}</span>
+              <span class="text-gray-500 text-xs" set:html={desc} />
             </a>
           ))}
         </div>
@@ -618,5 +616,4 @@ const schema = {
   </main>
 
   <Footer />
-  <DynamicPricing />
 </Layout>

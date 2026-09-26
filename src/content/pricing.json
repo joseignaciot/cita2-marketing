@@ -170,11 +170,11 @@
   "pricingFAQs": [
     {
       "question": "¿Por qué el precio varía según el tipo de negocio?",
-      "answer": "Cada sector tiene funcionalidades y complejidad diferente. Servicios (19€) accede a gestión básica de citas. Restaurantes (24€) incluye planos de sala y turnos. Turismo (29€) tiene reservas multidioma, composición de grupos y manifest de actividades. Pagas solo por lo que usas."
+      "answer": "Cada sector tiene funcionalidades y complejidad diferente. Servicios (<span data-price-key=\"service_business.monthly\">19</span>€) accede a gestión básica de citas. Restaurantes (<span data-price-key=\"restaurant.monthly\">24</span>€) incluye planos de sala y turnos. Turismo (<span data-price-key=\"tourism_activities.monthly\">29</span>€) tiene reservas multidioma, composición de grupos y manifest de actividades. Pagas solo por lo que usas."
     },
     {
       "question": "¿Los módulos add-on son obligatorios?",
-      "answer": "No. Los módulos de WhatsApp (+28€), SMS (+15€) y Cobros online (+18€) son completamente opcionales. Puedes empezar con el plan base y añadirlos cuando los necesites, sin cambiar de plan. Todo lo que usa IA, el Communication Hub, las encuestas y los informes ya vienen incluidos gratis en el plan base."
+      "answer": "No. Los módulos de WhatsApp (+<span data-price-key=\"addon_whatsapp.monthly\">28</span>€), SMS (+<span data-price-key=\"addon_sms.monthly\">15</span>€) y Cobros online (+<span data-price-key=\"addon_payments.monthly\">18</span>€) son completamente opcionales. Puedes empezar con el plan base y añadirlos cuando los necesites, sin cambiar de plan. Todo lo que usa IA, el Communication Hub, las encuestas y los informes ya vienen incluidos gratis en el plan base."
     },
     {
       "question": "¿Hay algún coste oculto?",
@@ -186,7 +186,7 @@
     },
     {
       "question": "¿Hay descuento por pago anual?",
-      "answer": "Sí. Al pagar anualmente obtienes el equivalente a 2 meses gratis. Servicios: 190€/año (≈15,83€/mes), Restaurantes: 240€/año (20€/mes), Turismo: 290€/año (≈24,17€/mes)."
+      "answer": "Sí. Al pagar anualmente obtienes el equivalente a 2 meses gratis. Servicios: <span data-price-key=\"service_business.yearly\">190</span>€/año (≈<span data-price-permonth-yearly=\"service_business.yearly\">15,83</span>€/mes), Restaurantes: <span data-price-key=\"restaurant.yearly\">240</span>€/año (<span data-price-permonth-yearly=\"restaurant.yearly\">20,00</span>€/mes), Turismo: <span data-price-key=\"tourism_activities.yearly\">290</span>€/año (≈<span data-price-permonth-yearly=\"tourism_activities.yearly\">24,17</span>€/mes)."
     },
     {
       "question": "¿Necesito tarjeta para la prueba?",

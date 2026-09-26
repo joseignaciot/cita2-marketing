@@ -10,7 +10,6 @@ import '../styles/apple-design.css';
 
 // Contenido editable desde el CMS → public/admin → Páginas de Sector → Veterinarias
 import content from '../content/sectors/veterinarias.json';
-import DynamicPricing from '../components/DynamicPricing.astro';
 const { pageTitle, pageDescription, features, testimonials, faqs, heroTitle, heroSubtitle } = content;
 const canonicalUrl = 'https://agendadereservas.com/veterinarias/';
 
@@ -161,7 +160,7 @@ const schema = {
     <FAQ
       title="Preguntas frecuentes para veterinarias"
       subtitle="Las dudas más habituales de los veterinarios antes de empezar."
-      faqs={faqs}
+      items={faqs}
     />
 
     <!-- CTA final -->
@@ -180,5 +179,4 @@ const schema = {
   </main>
 
   <Footer />
-  <DynamicPricing />
 </Layout>

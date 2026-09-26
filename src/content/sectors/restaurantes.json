@@ -55,7 +55,7 @@
   "faqs": [
     {
       "question": "¿Realmente ahorro dinero vs ElTenedor?",
-      "answer": "Sí. ElTenedor cobra 12-15% por reserva. Si facturas 10.000€/mes en reservas online, pagas 1.200-1.500€ de comisión. Con Agenda de Reservas pagas 24€ fijos. Ahorro mensual: hasta 1.476€."
+      "answer": "Sí. ElTenedor cobra 12-15% por reserva. Si facturas 10.000€/mes en reservas online, pagas 1.200-1.500€ de comisión. Con Agenda de Reservas pagas <span data-price-key=\"restaurant.monthly\">24</span>€ fijos. Ahorro mensual: hasta 1.476€."
     },
     {
       "question": "¿Puedo gestionar turnos de comida y cena?",
@@ -67,7 +67,7 @@
     },
     {
       "question": "¿Se pueden pedir depósitos?",
-      "answer": "Sí, es opcional y configurable. Puedes pedir depósito para grupos grandes, fines de semana o días especiales. El pago se procesa mediante Stripe o Redsys, con el módulo de Cobros online (desde 18€/mes)."
+      "answer": "Sí, es opcional y configurable. Puedes pedir depósito para grupos grandes, fines de semana o días especiales. El pago se procesa mediante Stripe o Redsys, con el módulo de Cobros online (desde <span data-price-key=\"addon_payments.monthly\">18</span>€/mes)."
     },
     {
       "question": "¿Funciona para restaurantes con terraza?",

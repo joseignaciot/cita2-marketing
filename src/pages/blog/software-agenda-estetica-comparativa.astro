@@ -4,7 +4,6 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import AdvancedSEO from '../../components/AdvancedSEO.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import DynamicPricing from '../../components/DynamicPricing.astro';
 
 const API_URL = 'https://api.agendadereservas.com';
 const FALLBACK_PRICING = { service_business: { monthly: 19, yearly: 190 } };
@@ -52,10 +51,10 @@ const features = [
   { name: 'Gestión cabinas', agendadereservas: true, agendapro: true, treatwell: true, reservio: true },
   { name: 'Bonos sesiones', agendadereservas: true, agendapro: true, treatwell: true, reservio: false },
   { name: 'Ficha cliente completa', agendadereservas: true, agendapro: true, treatwell: true, reservio: true },
-  { name: 'Recordatorios WhatsApp', agendadereservas: '+28€/mes (módulo opcional)', agendapro: false, treatwell: false, reservio: false },
+  { name: 'Recordatorios WhatsApp', agendadereservas: '+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes (módulo opcional)', agendapro: false, treatwell: false, reservio: false },
   { name: 'Marketing integrado', agendadereservas: true, agendapro: true, treatwell: true, reservio: false },
   { name: 'App nativa móvil', agendadereservas: false, agendapro: true, treatwell: true, reservio: true },
-  { name: 'Precio fijo', agendadereservas: `${apiPricing.service_business.monthly}€/mes`, agendapro: '49-147€', treatwell: 'Comisión', reservio: '31-84€' }
+  { name: 'Precio fijo', agendadereservas: `<span data-price-key="service_business.monthly">${apiPricing.service_business.monthly}</span>€/mes`, agendapro: '49-147€', treatwell: 'Comisión', reservio: '31-84€' }
 ];
 
 // Precios obtenidos de la BD → calculados dinámicamente
@@ -130,7 +129,7 @@ const faqs = [
               <ul class="space-y-2 text-blue-700 text-sm">
                 <li>✓ Precio fijo <span data-price-key="service_business.monthly">19</span>€/mes (no por empleado)</li>
                 <li>✓ Gestión de cabinas incluida</li>
-                <li>✓ WhatsApp Business disponible (módulo opcional +28€/mes)</li>
+                <li>✓ WhatsApp Business disponible (módulo opcional +<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)</li>
                 <li>✓ Bonos de sesiones</li>
               </ul>
             </div>
@@ -172,7 +171,7 @@ const faqs = [
                           <span class="text-gray-300">—</span>
                         )
                       ) : (
-                        <span class="font-semibold text-green-600">{feature.agendadereservas}</span>
+                        <span class="font-semibold text-green-600" set:html={feature.agendadereservas} />
                       )}
                     </td>
                     <td class="px-6 py-4 text-center">
@@ -240,13 +239,13 @@ const faqs = [
                   <tr>
                     <td class="px-6 py-4 font-medium text-gray-900">{row.esteticistas} esteticista{row.esteticistas > 1 ? 's' : ''}</td>
                     <td class="px-6 py-4 text-center">
-                      <span class="text-xl font-bold text-blue-600">{row.agendadereservas}€</span>
+                      <span class="text-xl font-bold text-blue-600"><span data-price-key="service_business.monthly">{row.agendadereservas}</span>€</span>
                       <span class="text-xs text-gray-700">/mes</span>
                     </td>
                     <td class="px-6 py-4 text-center text-gray-600">{row.agendapro}€/mes</td>
                     <td class="px-6 py-4 text-center text-gray-600">{row.reservio}€/mes</td>
                     <td class="px-6 py-4 text-center">
-                      <span class="text-lg font-bold text-green-600">{(row.agendapro - row.agendadereservas) * 12}€/año</span>
+                      <span class="text-lg font-bold text-green-600"><span data-price-saving-annual={`service_business.monthly:${row.agendapro}`}>{(row.agendapro - row.agendadereservas) * 12}</span>€/año</span>
                     </td>
                   </tr>
                 ))}
@@ -362,5 +361,4 @@ const faqs = [
   </main>
   
   <Footer />
-  <DynamicPricing />
 </Layout>

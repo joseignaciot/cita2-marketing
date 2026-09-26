@@ -55,7 +55,7 @@
   "faqs": [
     {
       "question": "¿Puedo cobrar señal al reservar?",
-      "answer": "Sí, puedes configurar depósitos obligatorios para reservar cita. Reduce no-shows drásticamente. El pago se procesa online mediante Stripe o Redsys, con el módulo de Cobros online (desde 18€/mes)."
+      "answer": "Sí, puedes configurar depósitos obligatorios para reservar cita. Reduce no-shows drásticamente. El pago se procesa online mediante Stripe o Redsys, con el módulo de Cobros online (desde <span data-price-key=\"addon_payments.monthly\">18</span>€/mes)."
     },
     {
       "question": "¿Funciona para tatuajes que necesitan varias sesiones?",

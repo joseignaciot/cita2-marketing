@@ -2,7 +2,6 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import DynamicPricing from '../../components/DynamicPricing.astro';
 import pricingData from '../../content/pricing.json';
 
 // Precios de build-time leídos desde pricing.json
@@ -43,9 +42,9 @@ const comparisonData = [
   {
     category: 'Precios',
     features: [
-      { name: 'Coste mensual base', cita2: `${svcPrice}€ plan único`, agendapro: `Desde ${agendaProPerSeat}€/puesto`, winner: 'cita2' },
-      { name: 'Coste 3 empleados', cita2: `${svcPrice}€`, agendapro: `${agendaProPerSeat * 3}€`, winner: 'cita2' },
-      { name: 'Coste 5 empleados', cita2: `${svcPrice}€`, agendapro: `${agendaProPerSeat * 5}€`, winner: 'cita2' },
+      { name: 'Coste mensual base', cita2: `<span data-price-key="service_business.monthly">${svcPrice}</span>€ plan único`, agendapro: `Desde ${agendaProPerSeat}€/puesto`, winner: 'cita2' },
+      { name: 'Coste 3 empleados', cita2: `<span data-price-key="service_business.monthly">${svcPrice}</span>€`, agendapro: `${agendaProPerSeat * 3}€`, winner: 'cita2' },
+      { name: 'Coste 5 empleados', cita2: `<span data-price-key="service_business.monthly">${svcPrice}</span>€`, agendapro: `${agendaProPerSeat * 5}€`, winner: 'cita2' },
       { name: 'Comisiones por reserva', cita2: '0%', agendapro: '0%', winner: 'tie' },
       { name: 'Setup inicial', cita2: 'Gratis', agendapro: 'Gratis', winner: 'tie' },
     ]
@@ -56,8 +55,8 @@ const comparisonData = [
       { name: 'Calendario y agenda', cita2: '✅ Avanzado', agendapro: '✅ Avanzado', winner: 'tie' },
       { name: 'Reservas online', cita2: '✅ Incluido', agendapro: '✅ Incluido', winner: 'tie' },
       { name: 'Recordatorios email', cita2: '✅ Incluido', agendapro: '✅ Incluido', winner: 'tie' },
-      { name: 'Recordatorios SMS', cita2: '✅ Disponible (+15€/mes)', agendapro: '⚠️ Pago aparte', winner: 'cita2' },
-      { name: 'WhatsApp Business', cita2: '✅ Disponible (+28€/mes)', agendapro: '❌ No', winner: 'cita2' },
+      { name: 'Recordatorios SMS', cita2: '✅ Disponible (+<span data-price-key="addon_sms.monthly">15</span>€/mes)', agendapro: '⚠️ Pago aparte', winner: 'cita2' },
+      { name: 'WhatsApp Business', cita2: '✅ Disponible (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)', agendapro: '❌ No', winner: 'cita2' },
       { name: 'Ficha de clientes', cita2: '✅ Completa', agendapro: '✅ Completa', winner: 'tie' },
       { name: 'Historial de servicios', cita2: '✅ Detallado', agendapro: '✅ Básico', winner: 'cita2' },
       { name: 'Estadísticas y KPIs', cita2: '✅ Dashboard', agendapro: '✅ Reportes', winner: 'tie' },
@@ -184,8 +183,7 @@ comparisonData.forEach(cat => {
                     <tr class={`border-b ${fidx % 2 === 0 ? 'bg-gray-50' : ''}`}>
                       <td class="py-3 px-4 font-medium">{feature.name}</td>
                       <td class="py-3 px-4 text-center">
-                        <span class={feature.winner === 'cita2' ? 'font-semibold text-green-600' : ''}>
-                          {feature.cita2}
+                        <span class={feature.winner === 'cita2' ? 'font-semibold text-green-600' : ''} set:html={feature.cita2}>
                         </span>
                         {feature.winner === 'cita2' && <span class="ml-2">🏆</span>}
                       </td>
@@ -214,32 +212,32 @@ comparisonData.forEach(cat => {
           <div class="bg-white p-6 rounded-xl text-center">
             <h3 class="font-semibold text-gray-600 mb-2">1 empleado</h3>
             <div class="space-y-2">
-              <p class="text-sm">Agenda de Reservas: <span class="font-bold text-blue-600" data-price-key="service_business.monthly">{svcPrice}€</span></p>
+              <p class="text-sm">Agenda de Reservas: <span class="font-bold text-blue-600"><span data-price-key="service_business.monthly">{svcPrice}</span>€</span></p>
               <p class="text-sm">AgendaPro: <span class="font-bold">{agendaProPerSeat}€</span></p>
-              <p class="text-sm text-green-600">Ahorro: {saving1}€/mes</p>
+              <p class="text-sm text-green-600">Ahorro: <span data-price-vs={`service_business.monthly:${agendaProPerSeat}`}>{saving1}</span>€/mes</p>
             </div>
           </div>
           <div class="bg-white p-6 rounded-xl text-center border-2 border-blue-500">
             <h3 class="font-semibold text-gray-600 mb-2">3 empleados</h3>
             <div class="space-y-2">
-              <p class="text-sm">Agenda de Reservas: <span class="font-bold text-blue-600" data-price-key="service_business.monthly">{svcPrice}€</span></p>
+              <p class="text-sm">Agenda de Reservas: <span class="font-bold text-blue-600"><span data-price-key="service_business.monthly">{svcPrice}</span>€</span></p>
               <p class="text-sm">AgendaPro: <span class="font-bold">{agendaProPerSeat * 3}€</span></p>
-              <p class="text-sm text-green-600 font-semibold">Ahorro: {saving3}€/mes</p>
+              <p class="text-sm text-green-600 font-semibold">Ahorro: <span data-price-vs={`service_business.monthly:${agendaProPerSeat * 3}`}>{saving3}</span>€/mes</p>
             </div>
           </div>
           <div class="bg-white p-6 rounded-xl text-center">
             <h3 class="font-semibold text-gray-600 mb-2">5 empleados</h3>
             <div class="space-y-2">
-              <p class="text-sm">Agenda de Reservas: <span class="font-bold text-blue-600" data-price-key="service_business.monthly">{svcPrice}€</span></p>
+              <p class="text-sm">Agenda de Reservas: <span class="font-bold text-blue-600"><span data-price-key="service_business.monthly">{svcPrice}</span>€</span></p>
               <p class="text-sm">AgendaPro: <span class="font-bold">{agendaProPerSeat * 5}€</span></p>
-              <p class="text-sm text-green-600">Ahorro: {saving5}€/mes</p>
+              <p class="text-sm text-green-600">Ahorro: <span data-price-vs={`service_business.monthly:${agendaProPerSeat * 5}`}>{saving5}</span>€/mes</p>
             </div>
           </div>
         </div>
 
         <div class="bg-blue-600 text-white p-8 rounded-xl text-center">
           <p class="text-lg mb-2">Ahorro anual con 3 empleados:</p>
-          <p class="text-4xl font-bold">{savingAnnual3.toLocaleString('es-ES')}€</p>
+          <p class="text-4xl font-bold"><span data-price-saving-annual={`service_business.monthly:${agendaProPerSeat * 3}`}>{savingAnnual3.toLocaleString('es-ES')}</span>€</p>
           <p class="text-blue-200 mt-2">Suficiente para unas buenas vacaciones 💙</p>
         </div>
       </div>
@@ -268,5 +266,4 @@ comparisonData.forEach(cat => {
   </main>
   
   <Footer />
-  <DynamicPricing />
 </Layout>

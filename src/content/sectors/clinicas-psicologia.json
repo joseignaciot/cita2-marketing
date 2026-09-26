@@ -67,7 +67,7 @@
     },
     {
       "question": "¿Funciona para un solo psicólogo o para una clínica?",
-      "answer": "Para ambos. Un psicólogo autónomo paga 19€/mes con agenda completa. Una clínica puede añadir todos los terapeutas sin coste adicional por usuario."
+      "answer": "Para ambos. Un psicólogo autónomo paga <span data-price-key=\"service_business.monthly\">19</span>€/mes con agenda completa. Una clínica puede añadir todos los terapeutas sin coste adicional por usuario."
     }
   ]
 }

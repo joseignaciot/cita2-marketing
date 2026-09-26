@@ -2,7 +2,6 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import DynamicPricing from '../../components/DynamicPricing.astro';
 import pricingData from '../../content/pricing.json';
 
 // Precios leídos de pricing.json en build-time
@@ -27,15 +26,15 @@ const schema = {
 };
 
 const comparisonRows = [
-  { feature: 'Precio plan básico', agendadereservas: `${svcPrice}€/mes (IA, comunicaciones e informes incluidos)`, reservio: '0€ (limitado) / 31€ (pro)', winner: 'agendadereservas' },
-  { feature: 'Precio plan premium', agendadereservas: `${svcPrice}€ (\u00fanico plan)`, reservio: `${reservioProPrice}€/mes (max 5 staff)`, winner: 'agendadereservas' },
+  { feature: 'Precio plan básico', agendadereservas: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes (IA, comunicaciones e informes incluidos)`, reservio: '0€ (limitado) / 31€ (pro)', winner: 'agendadereservas' },
+  { feature: 'Precio plan premium', agendadereservas: `<span data-price-key="service_business.monthly">${svcPrice}</span>€ (\u00fanico plan)`, reservio: `${reservioProPrice}€/mes (max 5 staff)`, winner: 'agendadereservas' },
   { feature: 'Usuarios/staff', agendadereservas: 'Ilimitados', reservio: 'Limitado por plan', winner: 'agendadereservas' },
   { feature: 'Reservas mensuales', agendadereservas: 'Ilimitadas', reservio: 'Limitadas en plan gratis', winner: 'agendadereservas' },
   { feature: 'Soporte en español', agendadereservas: '✅ Nativo (chat/email)', reservio: '⚠️ Inglés/Alemán principal', winner: 'agendadereservas' },
-  { feature: 'WhatsApp Business', agendadereservas: '✅ Disponible (+28€/mes)', reservio: '❌ No disponible', winner: 'agendadereservas' },
-  { feature: 'Recordatorios SMS', agendadereservas: '✅ Disponible (+15€/mes)', reservio: '⚠️ Pago aparte', winner: 'agendadereservas' },
+  { feature: 'WhatsApp Business', agendadereservas: '✅ Disponible (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)', reservio: '❌ No disponible', winner: 'agendadereservas' },
+  { feature: 'Recordatorios SMS', agendadereservas: '✅ Disponible (+<span data-price-key="addon_sms.monthly">15</span>€/mes)', reservio: '⚠️ Pago aparte', winner: 'agendadereservas' },
   { feature: 'Presets por sector', agendadereservas: '✅ Peluquería, estética, turismo', reservio: '⚠️ Genérico', winner: 'agendadereservas' },
-  { feature: 'Pagos online', agendadereservas: '✅ Stripe (+18€/mes)', reservio: '✅ Stripe/PayPal', winner: 'tie' },
+  { feature: 'Pagos online', agendadereservas: '✅ Stripe (+<span data-price-key="addon_payments.monthly">18</span>€/mes)', reservio: '✅ Stripe/PayPal', winner: 'tie' },
   { feature: 'Calendario Google', agendadereservas: '✅ Sync bidireccional', reservio: '✅ Sync bidireccional', winner: 'tie' },
   { feature: 'Interfaz en español', agendadereservas: '✅ 100% traducida', reservio: '⚠️ Algunas partes en inglés', winner: 'agendadereservas' },
   { feature: 'App móvil nativa', agendadereservas: '❌ Web app responsive', reservio: '✅ App nativa', winner: 'reservio' },
@@ -73,7 +72,7 @@ const comparisonRows = [
                 <tr class={`border-t ${i % 2 === 1 ? 'bg-gray-50' : ''}`}>
                   <td class="p-4 font-medium">{row.feature}</td>
                   <td class={`p-4 text-center ${row.winner === 'agendadereservas' ? 'font-semibold text-green-600' : ''}`}>
-                    {row.cita2} {row.winner === 'agendadereservas' && '🏆'}
+                    <span set:html={row.agendadereservas} /> {row.winner === 'agendadereservas' && '🏆'}
                   </td>
                   <td class={`p-4 text-center ${row.winner === 'reservio' ? 'font-semibold text-green-600' : ''}`}>
                     {row.reservio} {row.winner === 'reservio' && '🏆'}
@@ -143,5 +142,4 @@ const comparisonRows = [
   </main>
   
   <Footer />
-  <DynamicPricing />
 </Layout>

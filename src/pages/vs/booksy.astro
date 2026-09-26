@@ -3,7 +3,6 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import DynamicPricing from '../../components/DynamicPricing.astro';
 import '../../styles/apple-design.css';
 import pricingData from '../../content/pricing.json';
 
@@ -75,13 +74,13 @@ const pagosAddon = pricingData.addons.find(a => a.id === 'pagos');
 const pagosPrice = pagosAddon?.price ?? 18;
 
 const comparativa = [
-  { feature: 'Precio base', booksy: '20-35€/empleado/mes', agenda: `${svcPrice}€/mes fijo total`, winner: 'agenda' },
-  { feature: '3 empleados', booksy: '60-105€/mes', agenda: `${svcPrice}€/mes`, winner: 'agenda' },
-  { feature: '5 empleados', booksy: '100-175€/mes', agenda: `${svcPrice}€/mes`, winner: 'agenda' },
-  { feature: 'WhatsApp Business API', booksy: '❌ No', agenda: `✅ Disponible (+${whatsappPrice}€/mes)`, winner: 'agenda' },
+  { feature: 'Precio base', booksy: '20-35€/empleado/mes', agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes fijo total`, winner: 'agenda' },
+  { feature: '3 empleados', booksy: '60-105€/mes', agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes`, winner: 'agenda' },
+  { feature: '5 empleados', booksy: '100-175€/mes', agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes`, winner: 'agenda' },
+  { feature: 'WhatsApp Business API', booksy: '❌ No', agenda: `✅ Disponible (+<span data-price-key="addon_whatsapp.monthly">${whatsappPrice}</span>€/mes)`, winner: 'agenda' },
   { feature: 'Soporte en español', booksy: '⚠️ Limitado', agenda: '✅ Humano, <2h', winner: 'agenda' },
   { feature: 'RGPD / datos en Europa', booksy: '⚠️ USA (Booksy Inc.)', agenda: '✅ Servidores EU', winner: 'agenda' },
-  { feature: 'Pagos online con Stripe', booksy: '✅ Sí', agenda: `✅ Sí (+${pagosPrice}€/mes)`, winner: 'empate' },
+  { feature: 'Pagos online con Stripe', booksy: '✅ Sí', agenda: `✅ Sí (+<span data-price-key="addon_payments.monthly">${pagosPrice}</span>€/mes)`, winner: 'empate' },
   { feature: 'App para clientes', booksy: '✅ App propia (Booksy)', agenda: '✅ Página web responsive', winner: 'empate' },
   { feature: 'Marketplace de clientes', booksy: '✅ Sí (Booksy App)', agenda: '❌ No', winner: 'booksy' },
   { feature: 'Multi-sector', booksy: '⚠️ Solo belleza', agenda: '✅ Servicios, restaurantes, turismo', winner: 'agenda' },
@@ -176,8 +175,7 @@ const savings = [
                   <td class={`py-3 px-4 text-center ${winner === 'booksy' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-red-600' : 'text-gray-600'}`}>
                     {booksy}
                   </td>
-                  <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'booksy' ? 'text-red-600' : 'text-gray-600'}`}>
-                    {agenda}
+                  <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'booksy' ? 'text-red-600' : 'text-gray-600'}`} set:html={agenda}>
                   </td>
                 </tr>
               ))}
@@ -203,7 +201,7 @@ const savings = [
               ].map(item => (
                 <li class="flex items-start gap-2">
                   <span class="text-blue-500 mt-0.5 flex-shrink-0">→</span>
-                  <span>{item}</span>
+                  <span set:html={item} />
                 </li>
               ))}
             </ul>
@@ -221,7 +219,7 @@ const savings = [
               ].map(item => (
                 <li class="flex items-start gap-2">
                   <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
-                  <span>{item}</span>
+                  <span set:html={item} />
                 </li>
               ))}
             </ul>
@@ -238,15 +236,15 @@ const savings = [
           {[
             {
               q: '¿Booksy cobra por empleado?',
-              a: 'Sí. Booksy cobra entre 20€ y 35€ por empleado al mes según el plan. Una peluquería con 3 empleados paga entre 60€ y 105€/mes. Agenda de Reservas cobra 19€/mes para todo tu equipo sin importar cuántos sois.'
+              a: 'Sí. Booksy cobra entre 20€ y 35€ por empleado al mes según el plan. Una peluquería con 3 empleados paga entre 60€ y 105€/mes. Agenda de Reservas cobra <span data-price-key="service_business.monthly">19</span>€/mes para todo tu equipo sin importar cuántos sois.'
             },
             {
               q: '¿Booksy tiene WhatsApp Business integrado?',
-              a: 'No. Booksy solo envía notificaciones push de su app y emails. No integra WhatsApp Business API. Agenda de Reservas tiene WhatsApp Business API oficial disponible como módulo por +28€/mes, con mensajes de 90% de tasa de apertura.'
+              a: 'No. Booksy solo envía notificaciones push de su app y emails. No integra WhatsApp Business API. Agenda de Reservas tiene WhatsApp Business API oficial disponible como módulo por +<span data-price-key="addon_whatsapp.monthly">28</span>€/mes, con mensajes de 90% de tasa de apertura.'
             },
             {
               q: '¿Cuál es más barato para una peluquería con 3 empleados?',
-              a: 'Agenda de Reservas: 19€/mes fijo. Booksy: 60-105€/mes (3 empleados × 20-35€). El ahorro anual es de 492€ a 1.032€.'
+              a: 'Agenda de Reservas: <span data-price-key="service_business.monthly">19</span>€/mes fijo. Booksy: 60-105€/mes (3 empleados × 20-35€). El ahorro anual es de 492€ a 1.032€.'
             },
             {
               q: '¿Puedo migrar de Booksy a Agenda de Reservas sin perder datos?',
@@ -263,7 +261,7 @@ const savings = [
                   {q}
                   <span class="text-gray-400 group-open:rotate-180 transition-transform">▾</span>
                 </summary>
-                <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{a}</div>
+                <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed" set:html={a}></div>
               </details>
             </div>
           ))}
@@ -288,5 +286,4 @@ const savings = [
   </main>
 
   <Footer />
-  <DynamicPricing />
 </Layout>

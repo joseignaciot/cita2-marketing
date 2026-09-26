@@ -405,7 +405,7 @@ const schema = {
           <div class="grid sm:grid-cols-3 gap-4 mb-6">
             <div class="bg-white border-2 border-blue-600 rounded-2xl p-6 shadow-sm">
               <p class="text-sm font-medium text-blue-600 mb-1">Plan Servicios</p>
-              <p class="text-3xl font-bold text-gray-900 mb-1">19€<span class="text-base font-normal text-gray-500">/mes</span></p>
+              <p class="text-3xl font-bold text-gray-900 mb-1"><span data-price-key="service_business.monthly">19</span>€<span class="text-base font-normal text-gray-500">/mes</span></p>
               <p class="text-xs text-gray-500 mb-4">Cuota fija, sin comisiones por reserva</p>
               <ul class="space-y-2 text-sm text-gray-700">
                 {[
@@ -426,7 +426,7 @@ const schema = {
 
             <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
               <p class="text-sm font-medium text-gray-600 mb-1">Módulo WhatsApp Business</p>
-              <p class="text-3xl font-bold text-gray-900 mb-1">+28€<span class="text-base font-normal text-gray-500">/mes</span></p>
+              <p class="text-3xl font-bold text-gray-900 mb-1">+<span data-price-key="addon_whatsapp.monthly">28</span>€<span class="text-base font-normal text-gray-500">/mes</span></p>
               <p class="text-xs text-gray-500 mb-4">Opcional, se añade al plan base</p>
               <ul class="space-y-2 text-sm text-gray-700">
                 {[
@@ -446,7 +446,7 @@ const schema = {
             <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
               <div>
                 <p class="text-sm font-medium text-gray-600 mb-1">Total máximo con WhatsApp</p>
-                <p class="text-3xl font-bold text-gray-900 mb-1">47€<span class="text-base font-normal text-gray-500">/mes</span></p>
+                <p class="text-3xl font-bold text-gray-900 mb-1"><span data-price-calc="service_business.monthly+addon_whatsapp.monthly">47</span>€<span class="text-base font-normal text-gray-500">/mes</span></p>
                 <p class="text-xs text-gray-500 mb-4">Plan completo, sin comisiones</p>
                 <p class="text-sm text-gray-600">Sin límite de citas, terapeutas ni cabinas. Sin permanencia. Conforme al RGPD europeo.</p>
               </div>
@@ -466,7 +466,7 @@ const schema = {
               <tbody class="divide-y divide-gray-100">
                 <tr class="hover:bg-gray-50 transition-colors bg-blue-50">
                   <td class="py-3 px-5 font-semibold text-blue-700">Agenda de Reservas</td>
-                  <td class="py-3 px-5 text-blue-700 font-medium">19€</td>
+                  <td class="py-3 px-5 text-blue-700 font-medium"><span data-price-key="service_business.monthly">19</span>€</td>
                   <td class="py-3 px-5 text-blue-700 font-medium">Ninguna</td>
                   <td class="py-3 px-5 text-blue-700 font-medium">Sí, nativo</td>
                 </tr>
@@ -496,7 +496,7 @@ const schema = {
           </p>
 
           <p class="text-gray-700">
-            Consulta todos los detalles en nuestra página de <a href="/precios" class="text-blue-600 hover:underline font-medium">planes desde 19€/mes</a> sin comisiones ni permanencia.
+            Consulta todos los detalles en nuestra página de <a href="/precios" class="text-blue-600 hover:underline font-medium">planes desde <span data-price-key="service_business.monthly">19</span>€/mes</a> sin comisiones ni permanencia.
           </p>
         </div>
 
@@ -539,7 +539,7 @@ const schema = {
                 <h3 class="font-semibold text-gray-900">Agenda de Reservas</h3>
                 <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full font-medium flex-shrink-0">Sin comisiones</span>
               </div>
-              <p class="text-sm text-gray-600">Cuota fija de 19€/mes, sin comisión por reserva, soporte en español y alojado en la UE. La mejor opción para centros que ya tienen su base de clientes y quieren maximizar el margen sin depender de un marketplace.</p>
+              <p class="text-sm text-gray-600">Cuota fija de <span data-price-key="service_business.monthly">19</span>€/mes, sin comisión por reserva, soporte en español y alojado en la UE. La mejor opción para centros que ya tienen su base de clientes y quieren maximizar el margen sin depender de un marketplace.</p>
             </div>
           </div>
 
@@ -642,7 +642,7 @@ const schema = {
           </a>
         </div>
         <p class="text-blue-200 text-sm mt-6">
-          Desde 19€/mes · Sin comisiones · Soporte en español · RGPD europeo · Alojado en la UE
+          Desde <span data-price-key="service_business.monthly">19</span>€/mes · Sin comisiones · Soporte en español · RGPD europeo · Alojado en la UE
         </p>
       </section>
 

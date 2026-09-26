@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import DarkModeToggle from '../components/DarkModeToggle.astro';
+import DynamicPricing from '../components/DynamicPricing.astro';
 import ExitPopup from '../components/ExitPopup.astro';
 import LiveChat from '../components/LiveChat.astro';
 import StickyCTA from '../components/StickyCTA.astro';
@@ -119,6 +120,7 @@ const finalSchema = schema ? [websiteSchema, schema] : websiteSchema;
   <!-- End Google Tag Manager (noscript) -->
   <DarkModeToggle />
   <slot />
+  <DynamicPricing />
   <ExitPopup />
   <LiveChat />
   <StickyCTA />

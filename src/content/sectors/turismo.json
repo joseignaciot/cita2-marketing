@@ -55,7 +55,7 @@
   "faqs": [
     {
       "question": "¿Cuánto ahorro vs Bókun o FareHarbor?",
-      "answer": "Con 100 reservas mensuales de 80€ de media: Bókun cobra 49$/mes + 120€ en comisiones = ~165€/mes. FareHarbor: 6% × 8.000€ = 480€/mes. Nosotros: 29€/mes fijo. Ahorro anual: hasta 5.412€."
+      "answer": "Con 100 reservas mensuales de 80€ de media: Bókun cobra 49$/mes + 120€ en comisiones = ~165€/mes. FareHarbor: 6% × 8.000€ = 480€/mes. Nosotros: <span data-price-key=\"tourism_activities.monthly\">29</span>€/mes fijo. Ahorro anual: hasta <span data-price-saving-annual=\"tourism_activities.monthly:480\">5.412</span>€."
     },
     {
       "question": "¿Puedo gestionar varias actividades con horarios distintos?",
@@ -63,7 +63,7 @@
     },
     {
       "question": "¿Funciona el pago online en euros desde España?",
-      "answer": "Sí, con el módulo de Cobros online (desde 18€/mes). Stripe y Redsys en euros, sin conversión de divisa. A diferencia de Bókun (en USD), tus precios y pagos son siempre en euros."
+      "answer": "Sí, con el módulo de Cobros online (desde <span data-price-key=\"addon_payments.monthly\">18</span>€/mes). Stripe y Redsys en euros, sin conversión de divisa. A diferencia de Bókun (en USD), tus precios y pagos son siempre en euros."
     },
     {
       "question": "¿Puedo imprimir el manifest del día?",

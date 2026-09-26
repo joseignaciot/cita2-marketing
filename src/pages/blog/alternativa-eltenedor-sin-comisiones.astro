@@ -4,7 +4,6 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import AdvancedSEO from '../../components/AdvancedSEO.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import DynamicPricing from '../../components/DynamicPricing.astro';
 
 const API_URL = 'https://api.agendadereservas.com';
 const FALLBACK_PRICING = { restaurant: { monthly: 24, yearly: 240 } };
@@ -43,7 +42,7 @@ const articleData = {
 };
 
 const comparisonTable = [
-  { metric: 'Coste mensual (100 reservas, 4 pax)', eltenedor: '~400€ (1€/comensal)*', agendadereservas: `${apiPricing.restaurant.monthly}€ (plan fijo)` },
+  { metric: 'Coste mensual (100 reservas, 4 pax)', eltenedor: '~400€ (1€/comensal)*', agendadereservas: `<span data-price-key="restaurant.monthly">${apiPricing.restaurant.monthly}</span>€ (plan fijo)` },
   { metric: 'Propiedad de datos clientes', eltenedor: '❌ No son tuyos', agendadereservas: '✅ Tuyos 100%' },
   { metric: 'Reservas directas', eltenedor: 'Dependencia de plataforma', agendadereservas: 'Canal propio' },
   { metric: 'Visibilidad a clientes nuevos', eltenedor: '✅ Marketplace activo', agendadereservas: '— (SEO + Google Business)' },
@@ -53,7 +52,7 @@ const comparisonTable = [
 const hypotheticalExample = {
   description: "Ejemplo orientativo (restaurante con 120 reservas/mes, 4 pax de media):",
   theforkCost: "~480€/mes en fees de TheFork",
-  agendaCost: `${apiPricing.restaurant.monthly}€/mes con Agenda de Reservas`,
+  agendaCost: `<span data-price-key="restaurant.monthly">${apiPricing.restaurant.monthly}</span>€/mes con Agenda de Reservas`,
   saving: "~456€/mes · ~5.500€/año",
   note: "* Basado en tarifa estándar ~1€/comensal. Tu coste real depende de tu contrato y plan con TheFork."
 };
@@ -120,7 +119,7 @@ const faqs = [
             <p class="font-semibold text-gray-900">{hypotheticalExample.description}</p>
             <p class="text-gray-600 mt-2">
               TheFork: <span class="text-red-600 font-bold">{hypotheticalExample.theforkCost}</span>.&nbsp;
-              Agenda de Reservas: <span class="text-green-600 font-bold">{hypotheticalExample.agendaCost}</span>.&nbsp;
+              Agenda de Reservas: <span class="text-green-600 font-bold" set:html={hypotheticalExample.agendaCost} />.&nbsp;
               <span class="text-green-700 font-bold">Ahorro estimado: {hypotheticalExample.saving}</span>.
             </p>
             <p class="text-xs text-gray-500 mt-2">{hypotheticalExample.note}</p>
@@ -146,7 +145,7 @@ const faqs = [
                   <tr class={index % 2 === 1 ? 'bg-gray-50/50' : ''}>
                     <td class="px-6 py-4 font-medium text-gray-900">{row.metric}</td>
                     <td class="px-6 py-4 text-center text-gray-600">{row.eltenedor}</td>
-                    <td class="px-6 py-4 text-center text-green-700 font-medium">{row.agendadereservas}</td>
+                    <td class="px-6 py-4 text-center text-green-700 font-medium" set:html={row.agendadereservas}></td>
                   </tr>
                 ))}
                 <tr class="bg-green-50">
@@ -281,5 +280,4 @@ const faqs = [
   </main>
   
   <Footer />
-  <DynamicPricing />
 </Layout>

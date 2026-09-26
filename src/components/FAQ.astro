@@ -25,7 +25,7 @@ const defaultFAQs: FAQItem[] = [
   },
   {
     question: '¿Qué pasa si supero el límite de citas?',
-    answer: 'No hay límite de citas. Todas las reservas que quieras están incluidas en los 19€/mes. Sin sorpresas.'
+    answer: 'No hay límite de citas. Todas las reservas que quieras están incluidas en los <span data-price-key="service_business.monthly">19</span>€/mes. Sin sorpresas.'
   },
   {
     question: '¿Funciona en móvil?',
@@ -52,7 +52,9 @@ const faqSchema = {
     name: item.question,
     acceptedAnswer: {
       '@type': 'Answer',
-      text: item.answer,
+      // Sin las etiquetas <span data-price-key> usadas para hidratar precios en el HTML visible —
+      // el JSON-LD debe llevar el texto plano.
+      text: item.answer.replace(/<[^>]+>/g, ''),
     },
   })),
 };

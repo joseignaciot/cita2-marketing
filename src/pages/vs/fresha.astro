@@ -3,7 +3,6 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import DynamicPricing from '../../components/DynamicPricing.astro';
 import '../../styles/apple-design.css';
 import pricingData from '../../content/pricing.json';
 
@@ -38,18 +37,18 @@ const escenariosPct = [
 const ahorroEscenarios = escenariosPct.map(e => e.costeFresha - svcPrice);
 
 const comparativa = [
-  { feature: 'Precio mensual base',             fresha: 'Gratis (software)',                              agenda: `${svcPrice}€/mes fijo`,                   winner: 'fresha' },
+  { feature: 'Precio mensual base',             fresha: 'Gratis (software)',                              agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes fijo`,                   winner: 'fresha' },
   { feature: 'Comisión clientes nuevos (marketplace)', fresha: '~20% por reserva vía Fresha.com',         agenda: '0€ — ninguna comisión jamás',             winner: 'agenda' },
-  { feature: 'Coste real con 25 % de reservas vía marketplace', fresha: `~${escenariosPct[1].costeFresha}€/mes estimado`, agenda: `${svcPrice}€/mes fijo`, winner: 'agenda' },
+  { feature: 'Coste real con 25 % de reservas vía marketplace', fresha: `~${escenariosPct[1].costeFresha}€/mes estimado`, agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes fijo`, winner: 'agenda' },
   { feature: 'Control de datos del cliente',    fresha: '⚠️ Compartidos con la plataforma Fresha',       agenda: '✅ 100% tuyos, exportables CSV',           winner: 'agenda' },
   { feature: 'Soporte en español',              fresha: '⚠️ Email/chat, principalmente en inglés',       agenda: '✅ Humano, <2h en español',                winner: 'agenda' },
   { feature: 'RGPD / alojamiento UE',           fresha: '⚠️ Empresa con sede en UK (post-Brexit)',       agenda: '✅ Servidores UE, RGPD conforme',           winner: 'agenda' },
-  { feature: 'WhatsApp Business API',           fresha: '❌ No integrado de forma nativa',               agenda: `✅ Disponible (+${whatsappPrice}€/mes)`,       winner: 'agenda' },
+  { feature: 'WhatsApp Business API',           fresha: '❌ No integrado de forma nativa',               agenda: `✅ Disponible (+<span data-price-key="addon_whatsapp.monthly">${whatsappPrice}</span>€/mes)`,       winner: 'agenda' },
   { feature: 'Reservas en tu web propia',       fresha: '⚠️ Widget básico; prioridad al marketplace',   agenda: '✅ Widget en tu web + enlace directo',     winner: 'agenda' },
   { feature: 'Prueba gratuita',                 fresha: '✅ Gratis sin límite de tiempo (sin marketplace)', agenda: '✅ 14 días sin tarjeta',                 winner: 'empate' },
   { feature: 'Marketplace de captación',        fresha: '✅ Sí — visibilidad en Fresha.com',             agenda: '❌ No (reservas directas)',                winner: 'fresha' },
   { feature: 'Gestión de personal/agenda',      fresha: '✅ Completa',                                    agenda: '✅ Completa (multi-staff)',               winner: 'empate' },
-  { feature: 'Pagos online',                    fresha: '✅ Integrado (comisión en marketplace)',         agenda: `✅ Stripe (+${pagosPrice}€/mes)`,         winner: 'empate' },
+  { feature: 'Pagos online',                    fresha: '✅ Integrado (comisión en marketplace)',         agenda: `✅ Stripe (+<span data-price-key="addon_payments.monthly">${pagosPrice}</span>€/mes)`,         winner: 'empate' },
 ];
 
 const schema = {
@@ -300,7 +299,7 @@ const schema = {
         <div class="mt-6 bg-white rounded-2xl p-5 border border-gray-200">
           <p class="text-sm text-gray-700">
             <strong>Conclusion:</strong> Si el 0 % de tus reservas viene del marketplace de Fresha, el software es efectivamente gratuito y Agenda de Reservas resulta mas cara.
-            A partir de un 25 % de reservas por marketplace, el coste de Fresha ya supera los 19€/mes de Agenda de Reservas.
+            A partir de un 25 % de reservas por marketplace, el coste de Fresha ya supera los <span data-price-key="service_business.monthly">19</span>€/mes de Agenda de Reservas.
             Con un 50 % vía marketplace, el coste se multiplica hasta los {escenariosPct[2].costeFresha}€/mes.
           </p>
         </div>
@@ -329,7 +328,7 @@ const schema = {
               ].map(item => (
                 <li class="flex items-start gap-2">
                   <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
-                  <span>{item}</span>
+                  <span set:html={item} />
                 </li>
               ))}
             </ul>
@@ -346,7 +345,7 @@ const schema = {
               ].map(item => (
                 <li class="flex items-start gap-2">
                   <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
-                  <span>{item}</span>
+                  <span set:html={item} />
                 </li>
               ))}
             </ul>
@@ -365,7 +364,7 @@ const schema = {
           ¿Puedo tener todas las funciones de Fresha pagando una cuota fija?
         </h2>
         <p class="text-gray-700 mb-8 text-lg">
-          Si. Agenda de Reservas incluye las mismas funciones de gestion que Fresha — sin marketplace y sin comisiones — por <strong>{svcPrice}€/mes fijo</strong>.
+          Si. Agenda de Reservas incluye las mismas funciones de gestion que Fresha — sin marketplace y sin comisiones — por <strong><span data-price-key="service_business.monthly">{svcPrice}</span>€/mes fijo</strong>.
           Donde Fresha destaca es en la captacion de clientes nuevos via su listado; Agenda de Reservas no es un marketplace, pero ofrece herramientas para que construyas tu propio canal directo.
         </p>
         <div class="grid md:grid-cols-3 gap-5">
@@ -443,8 +442,7 @@ const schema = {
                   <td class={`py-3 px-4 text-center ${winner === 'fresha' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-red-600' : 'text-gray-600'}`}>
                     {fresha}
                   </td>
-                  <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'fresha' ? 'text-gray-500' : 'text-gray-600'}`}>
-                    {agenda}
+                  <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'fresha' ? 'text-gray-500' : 'text-gray-600'}`} set:html={agenda}>
                   </td>
                 </tr>
               ))}
@@ -468,7 +466,7 @@ const schema = {
               ].map(item => (
                 <li class="flex items-start gap-2">
                   <span class="text-blue-500 mt-0.5 flex-shrink-0">→</span>
-                  <span>{item}</span>
+                  <span set:html={item} />
                 </li>
               ))}
             </ul>
@@ -478,14 +476,14 @@ const schema = {
             <ul class="space-y-3 text-sm text-gray-800">
               {[
                 'Tienes clientela recurrente y la comision del marketplace ya te duele.',
-                'Quieres un coste fijo y predecible: 19€/mes, siempre.',
+                'Quieres un coste fijo y predecible: <span data-price-key="service_business.monthly">19</span>€/mes, siempre.',
                 'Necesitas soporte real en espanol con respuesta rapida.',
                 'Quieres que los datos de tus clientes sean siempre tuyos.',
                 'Buscas WhatsApp Business para recordatorios automaticos y fidelizacion.',
               ].map(item => (
                 <li class="flex items-start gap-2">
                   <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
-                  <span>{item}</span>
+                  <span set:html={item} />
                 </li>
               ))}
             </ul>
@@ -502,11 +500,11 @@ const schema = {
           {[
             {
               q: '¿Fresha cobra comision a las peluquerias?',
-              a: 'Fresha no cobra cuota mensual, pero si aplica una comision de aproximadamente el 20 % sobre las reservas que llegan a traves de su marketplace (Fresha.com). Si todos tus clientes ya te conocen y reservan directamente, el coste es cero. Si dependes del marketplace para conseguir clientes nuevos, esa comision puede superar con creces los 19€/mes de Agenda de Reservas. Verifica las condiciones actuales en fresha.com.'
+              a: 'Fresha no cobra cuota mensual, pero si aplica una comision de aproximadamente el 20 % sobre las reservas que llegan a traves de su marketplace (Fresha.com). Si todos tus clientes ya te conocen y reservan directamente, el coste es cero. Si dependes del marketplace para conseguir clientes nuevos, esa comision puede superar con creces los <span data-price-key="service_business.monthly">19</span>€/mes de Agenda de Reservas. Verifica las condiciones actuales en fresha.com.'
             },
             {
               q: '¿Puedo usar Fresha sin el marketplace y sin pagar comision?',
-              a: 'Si. Fresha permite usar su software de gestion de citas de forma gratuita sin activar el marketplace. En ese caso no pagas ninguna comision. El inconveniente es que tampoco apareces en Fresha.com para captar clientes nuevos. Si ya tienes tu propia base de clientes, Fresha gratuito (sin marketplace) o Agenda de Reservas (19€/mes fijo, con soporte en espanol) son las alternativas mas economicas.'
+              a: 'Si. Fresha permite usar su software de gestion de citas de forma gratuita sin activar el marketplace. En ese caso no pagas ninguna comision. El inconveniente es que tampoco apareces en Fresha.com para captar clientes nuevos. Si ya tienes tu propia base de clientes, Fresha gratuito (sin marketplace) o Agenda de Reservas (<span data-price-key="service_business.monthly">19</span>€/mes fijo, con soporte en espanol) son las alternativas mas economicas.'
             },
             {
               q: '¿Que pasa con mis clientes si dejo Fresha?',
@@ -523,7 +521,7 @@ const schema = {
                   {q}
                   <span class="text-gray-400 group-open:rotate-180 transition-transform">▾</span>
                 </summary>
-                <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{a}</div>
+                <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed" set:html={a}></div>
               </details>
             </div>
           ))}
@@ -560,7 +558,7 @@ const schema = {
             {
               href: '/precios',
               label: 'ver todos los planes de Agenda de Reservas',
-              desc: 'Planes desde 19€/mes. Prueba 14 dias sin tarjeta.',
+              desc: 'Planes desde <span data-price-key="service_business.monthly">19</span>€/mes. Prueba 14 dias sin tarjeta.',
             },
           ].map(({ href, label, desc }) => (
             <a
@@ -568,7 +566,7 @@ const schema = {
               class="flex flex-col gap-1 bg-gray-50 rounded-2xl px-5 py-4 border border-gray-200 hover:border-blue-300 hover:shadow-sm transition-all"
             >
               <span class="text-blue-600 font-semibold text-sm underline">{label}</span>
-              <span class="text-gray-500 text-xs">{desc}</span>
+              <span class="text-gray-500 text-xs" set:html={desc} />
             </a>
           ))}
         </div>
@@ -606,5 +604,4 @@ const schema = {
   </main>
 
   <Footer />
-  <DynamicPricing />
 </Layout>

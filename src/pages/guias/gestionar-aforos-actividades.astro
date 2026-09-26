@@ -192,7 +192,7 @@ const schema = {
         </div>
 
         <p class="text-gray-700 leading-relaxed">
-          El <a href="/turismo" class="text-blue-600 hover:underline font-medium">software de reservas para turismo activo</a> de Agenda de Reservas incluye estas funcionalidades en el plan Turismo (29€/mes), sin comisión por reserva. WhatsApp Business está disponible como módulo opcional adicional si lo necesitas.
+          El <a href="/turismo" class="text-blue-600 hover:underline font-medium">software de reservas para turismo activo</a> de Agenda de Reservas incluye estas funcionalidades en el plan Turismo (<span data-price-key="tourism_activities.monthly">29</span>€/mes), sin comisión por reserva. WhatsApp Business está disponible como módulo opcional adicional si lo necesitas.
         </p>
       </section>
 
@@ -303,7 +303,7 @@ const schema = {
           ¿Cuánto cobra Bokun de comisión y cuándo deja de compensar?
         </h2>
         <p class="text-gray-700 mb-6 leading-relaxed">
-          Bokun cobra 49 USD al mes (aproximadamente 46€ al cambio actual) más una comisión del 1,5% sobre cada reserva procesada a través de su sistema. Para un operador con 100 reservas al mes a un precio medio de 50€, eso supone unos 121 USD mensuales —más del doble que los 29€ fijos del plan Turismo de Agenda de Reservas. La comisión deja de compensar desde la primera reserva: cuantas más reserves, más te cuesta Bokun.
+          Bokun cobra 49 USD al mes (aproximadamente 46€ al cambio actual) más una comisión del 1,5% sobre cada reserva procesada a través de su sistema. Para un operador con 100 reservas al mes a un precio medio de 50€, eso supone unos 121 USD mensuales —más del doble que los <span data-price-key="tourism_activities.monthly">29</span>€ fijos del plan Turismo de Agenda de Reservas. La comisión deja de compensar desde la primera reserva: cuantas más reserves, más te cuesta Bokun.
         </p>
 
         <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-4">
@@ -319,7 +319,7 @@ const schema = {
               <tr class="hover:bg-gray-50 transition-colors">
                 <td class="py-4 px-5 font-medium text-gray-900">Precio mensual</td>
                 <td class="py-4 px-5 text-gray-600">49 USD/mes (~46€)</td>
-                <td class="py-4 px-5 text-blue-700 font-medium">29€/mes fijo</td>
+                <td class="py-4 px-5 text-blue-700 font-medium"><span data-price-key="tourism_activities.monthly">29</span>€/mes fijo</td>
               </tr>
               <tr class="hover:bg-gray-50 transition-colors">
                 <td class="py-4 px-5 font-medium text-gray-900">Comisión por reserva online</td>
@@ -329,7 +329,7 @@ const schema = {
               <tr class="hover:bg-gray-50 transition-colors">
                 <td class="py-4 px-5 font-medium text-gray-900">Coste real (100 reservas × 50€)</td>
                 <td class="py-4 px-5 text-gray-600">~121 USD (~113€)</td>
-                <td class="py-4 px-5 text-blue-700 font-medium">29€ — siempre igual</td>
+                <td class="py-4 px-5 text-blue-700 font-medium"><span data-price-key="tourism_activities.monthly">29</span>€ — siempre igual</td>
               </tr>
               <tr class="hover:bg-gray-50 transition-colors">
                 <td class="py-4 px-5 font-medium text-gray-900">Aforos configurables por actividad</td>
@@ -369,7 +369,7 @@ const schema = {
               <tr class="hover:bg-gray-50 transition-colors">
                 <td class="py-4 px-5 font-medium text-gray-900">WhatsApp recordatorios</td>
                 <td class="py-4 px-5 text-gray-600">No</td>
-                <td class="py-4 px-5 text-blue-700 font-medium">Sí (módulo opcional +28€/mes)</td>
+                <td class="py-4 px-5 text-blue-700 font-medium">Sí (módulo opcional +<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)</td>
               </tr>
             </tbody>
           </table>
@@ -451,13 +451,13 @@ const schema = {
           ¿Cuánto cuesta tener un sistema de reservas propio para turismo activo?
         </h2>
         <p class="text-gray-700 mb-6 leading-relaxed">
-          El <a href="/precios" class="text-blue-600 hover:underline font-medium">plan Turismo desde 29€/mes</a> de Agenda de Reservas incluye todas las funcionalidades específicas para turismo activo: aforos por actividad, guías asignados, variantes de idioma, cobro anticipado y recordatorios automáticos. Sin límite de actividades ni de guías. Sin comisión por reserva.
+          El <a href="/precios" class="text-blue-600 hover:underline font-medium">plan Turismo desde <span data-price-key="tourism_activities.monthly">29</span>€/mes</a> de Agenda de Reservas incluye todas las funcionalidades específicas para turismo activo: aforos por actividad, guías asignados, variantes de idioma, cobro anticipado y recordatorios automáticos. Sin límite de actividades ni de guías. Sin comisión por reserva.
         </p>
 
         <div class="grid sm:grid-cols-3 gap-4 mb-6">
           <div class="bg-white border-2 border-blue-600 rounded-2xl p-6 shadow-sm">
             <p class="text-sm font-medium text-blue-600 mb-1">Plan Turismo</p>
-            <p class="text-3xl font-bold text-gray-900 mb-1">29€<span class="text-base font-normal text-gray-500">/mes</span></p>
+            <p class="text-3xl font-bold text-gray-900 mb-1"><span data-price-key="tourism_activities.monthly">29</span>€<span class="text-base font-normal text-gray-500">/mes</span></p>
             <p class="text-xs text-gray-500 mb-4">Precio único, sin comisiones</p>
             <ul class="space-y-2 text-sm text-gray-700">
               {[
@@ -479,7 +479,7 @@ const schema = {
 
           <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
             <p class="text-sm font-medium text-gray-600 mb-1">Módulo WhatsApp Business</p>
-            <p class="text-3xl font-bold text-gray-900 mb-1">+28€<span class="text-base font-normal text-gray-500">/mes</span></p>
+            <p class="text-3xl font-bold text-gray-900 mb-1">+<span data-price-key="addon_whatsapp.monthly">28</span>€<span class="text-base font-normal text-gray-500">/mes</span></p>
             <p class="text-xs text-gray-500 mb-4">Opcional, se añade al plan Turismo</p>
             <ul class="space-y-2 text-sm text-gray-700">
               {[
@@ -499,7 +499,7 @@ const schema = {
           <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
             <div>
               <p class="text-sm font-medium text-gray-600 mb-1">Total máximo con WhatsApp</p>
-              <p class="text-3xl font-bold text-gray-900 mb-1">57€<span class="text-base font-normal text-gray-500">/mes</span></p>
+              <p class="text-3xl font-bold text-gray-900 mb-1"><span data-price-calc="tourism_activities.monthly+addon_whatsapp.monthly">57</span>€<span class="text-base font-normal text-gray-500">/mes</span></p>
               <p class="text-xs text-gray-500 mb-4">Plan Turismo completo</p>
               <p class="text-sm text-gray-600">Sin comisiones por reserva. Sin límite de actividades ni de guías. Sin permanencia. Comparado con Bokun a 100 reservas/mes de 50€, el ahorro supera los 1.000€ anuales.</p>
             </div>
@@ -597,7 +597,7 @@ const schema = {
           </a>
         </div>
         <p class="text-blue-200 text-sm mt-6">
-          Plan Turismo 29€/mes · Sin comisiones · Soporte en español · RGPD europeo
+          Plan Turismo <span data-price-key="tourism_activities.monthly">29</span>€/mes · Sin comisiones · Soporte en español · RGPD europeo
         </p>
       </section>
 

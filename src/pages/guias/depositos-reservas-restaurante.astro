@@ -418,7 +418,7 @@ const schema = {
               <div>
                 <h3 class="font-semibold text-gray-900 mb-2">Activa el módulo de Cobros Online</h3>
                 <p class="text-gray-700 text-sm leading-relaxed">
-                  En tu panel de Agenda de Reservas ve a <strong>Configuración &gt; Módulos</strong> y activa el módulo de Cobros Online (18€/mes). Conecta tu cuenta de Stripe existente o crea una nueva en el momento: el proceso completo lleva menos de cinco minutos. Los pagos llegan directamente a tu cuenta bancaria en el siguiente ciclo de liquidación de Stripe, sin que Agenda de Reservas retenga ningún porcentaje.
+                  En tu panel de Agenda de Reservas ve a <strong>Configuración &gt; Módulos</strong> y activa el módulo de Cobros Online (<span data-price-key="addon_payments.monthly">18</span>€/mes). Conecta tu cuenta de Stripe existente o crea una nueva en el momento: el proceso completo lleva menos de cinco minutos. Los pagos llegan directamente a tu cuenta bancaria en el siguiente ciclo de liquidación de Stripe, sin que Agenda de Reservas retenga ningún porcentaje.
                 </p>
               </div>
             </div>
@@ -537,13 +537,13 @@ const schema = {
           ¿Cuánto cuesta el sistema de cobro online para restaurantes?
         </h2>
         <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-          El coste total para un restaurante que quiere gestionar reservas y cobrar depósitos es de 42€/mes: el <a href="/precios" class="text-blue-600 hover:underline font-medium">plan Restaurante desde 24€/mes</a> más el módulo de Cobros Online por 18€/mes adicionales. Sin comisiones por reserva ni por cobro procesado desde Agenda de Reservas (Stripe aplica sus propias tarifas de pasarela, que suelen ser del 1,4% + 0,25€ para tarjetas europeas).
+          El coste total para un restaurante que quiere gestionar reservas y cobrar depósitos es de <span data-price-calc="restaurant.monthly+addon_payments.monthly">42</span>€/mes: el <a href="/precios" class="text-blue-600 hover:underline font-medium">plan Restaurante desde <span data-price-key="restaurant.monthly">24</span>€/mes</a> más el módulo de Cobros Online por <span data-price-key="addon_payments.monthly">18</span>€/mes adicionales. Sin comisiones por reserva ni por cobro procesado desde Agenda de Reservas (Stripe aplica sus propias tarifas de pasarela, que suelen ser del 1,4% + 0,25€ para tarjetas europeas).
         </p>
 
         <div class="grid sm:grid-cols-2 gap-4 mb-8">
           <div class="bg-white border-2 border-blue-600 rounded-2xl p-6 shadow-sm">
             <p class="text-sm font-medium text-blue-600 mb-1">Plan Restaurante</p>
-            <p class="text-3xl font-bold text-gray-900 mb-1">24€<span class="text-base font-normal text-gray-500">/mes</span></p>
+            <p class="text-3xl font-bold text-gray-900 mb-1"><span data-price-key="restaurant.monthly">24</span>€<span class="text-base font-normal text-gray-500">/mes</span></p>
             <p class="text-xs text-gray-500 mb-4">Precio fijo, sin comisiones por comensal</p>
             <ul class="space-y-2 text-sm text-gray-700">
               {[
@@ -566,7 +566,7 @@ const schema = {
 
           <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
             <p class="text-sm font-medium text-gray-600 mb-1">Módulo Cobros Online</p>
-            <p class="text-3xl font-bold text-gray-900 mb-1">+18€<span class="text-base font-normal text-gray-500">/mes</span></p>
+            <p class="text-3xl font-bold text-gray-900 mb-1">+<span data-price-key="addon_payments.monthly">18</span>€<span class="text-base font-normal text-gray-500">/mes</span></p>
             <p class="text-xs text-gray-500 mb-4">Opcional — se añade al plan Restaurante</p>
             <ul class="space-y-2 text-sm text-gray-700">
               {[
@@ -589,7 +589,7 @@ const schema = {
 
         <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-6 text-sm text-gray-700">
           <h3 class="font-semibold text-gray-900 mb-2">Coste total del sistema con depósito vs. impacto de los no-shows</h3>
-          <p class="mb-2">Con el plan completo (plan Restaurante + módulo Cobros Online) el gasto mensual es de <strong>42€ fijos</strong>. Si el sistema evita un solo no-show de un grupo de 10 personas con ticket medio de 35€, la facturación recuperada (350€) cubre más de 8 meses de suscripción del plan completo.</p>
+          <p class="mb-2">Con el plan completo (plan Restaurante + módulo Cobros Online) el gasto mensual es de <strong><span data-price-calc="restaurant.monthly+addon_payments.monthly">42</span>€ fijos</strong>. Si el sistema evita un solo no-show de un grupo de 10 personas con ticket medio de 35€, la facturación recuperada (350€) cubre más de 8 meses de suscripción del plan completo.</p>
           <p class="text-gray-500 text-xs">La tarifa de procesamiento de Stripe para tarjetas europeas es habitualmente 1,4% + 0,25€ por transacción exitosa. Esta tarifa la cobra Stripe, no Agenda de Reservas, y es ajena a la suscripción mensual.</p>
         </div>
 
@@ -711,11 +711,11 @@ const schema = {
             href="/precios"
             class="inline-block bg-white/10 text-white font-medium px-8 py-4 rounded-xl border border-white/30 hover:bg-white/20 transition-colors"
           >
-            Ver plan Restaurante desde 24€/mes
+            Ver plan Restaurante desde <span data-price-key="restaurant.monthly">24</span>€/mes
           </a>
         </div>
         <p class="text-blue-200 text-sm mt-6">
-          Plan Restaurante 24€/mes · Módulo Cobros Online 18€/mes · Sin comisiones · RGPD europeo
+          Plan Restaurante <span data-price-key="restaurant.monthly">24</span>€/mes · Módulo Cobros Online <span data-price-key="addon_payments.monthly">18</span>€/mes · Sin comisiones · RGPD europeo
         </p>
       </section>
 
