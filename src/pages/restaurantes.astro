@@ -12,6 +12,8 @@ import '../styles/apple-design.css';
 
 // Contenido editable desde el CMS → public/admin → Páginas de Sector → Restaurantes
 import content from '../content/sectors/restaurantes.json';
+import Icon from '../components/Icon.astro';
+import { Check, X, UtensilsCrossed, ClipboardList, CalendarDays } from '@lucide/astro';
 const { pageTitle, pageDescription, aiDescription, heroTitle, heroSubtitle, features: restaurantFeatures, testimonials: restaurantTestimonials, faqs: restaurantFAQs } = content;
 
 const canonicalUrl = 'https://agendadereservas.com/restaurantes/';
@@ -123,7 +125,7 @@ const schema = {
           <!-- TheFork -->
           <div class="bg-white rounded-2xl border-2 border-red-200 p-6">
             <div class="flex items-center gap-2 mb-4">
-              <span class="text-2xl">🍴</span>
+              <Icon icon={UtensilsCrossed} size={24} class="text-red-500" />
               <div>
                 <h3 class="font-bold text-red-600">TheFork Manager</h3>
                 <p class="text-xs text-gray-400">ElTenedor en España</p>
@@ -148,9 +150,9 @@ const schema = {
               </div>
             </div>
             <ul class="text-xs text-gray-400 space-y-1">
-              <li>❌ Sin WhatsApp</li>
-              <li>❌ Datos de clientes son de TheFork</li>
-              <li>❌ Cuota crece con éxito del negocio</li>
+              <li><Icon icon={X} size={16} /> Sin WhatsApp</li>
+              <li><Icon icon={X} size={16} /> Datos de clientes son de TheFork</li>
+              <li><Icon icon={X} size={16} /> Cuota crece con éxito del negocio</li>
             </ul>
             <p class="text-xs text-gray-300 mt-3">
               Fuente: <a data-competitor-source-url="thefork" href="https://www.thefork.es" target="_blank" rel="nofollow noopener noreferrer" class="underline hover:text-white"><span data-competitor-source="thefork">thefork.es · verificado</span></a>
@@ -161,7 +163,7 @@ const schema = {
           <!-- Restoo -->
           <div class="bg-white rounded-2xl border-2 border-orange-200 p-6">
             <div class="flex items-center gap-2 mb-4">
-              <span class="text-2xl">📋</span>
+              <Icon icon={ClipboardList} size={24} class="text-orange-500" />
               <div>
                 <h3 class="font-bold text-orange-600">Restoo</h3>
                 <p class="text-xs text-gray-400">Competidor español directo</p>
@@ -182,9 +184,9 @@ const schema = {
               </div>
             </div>
             <ul class="text-xs text-gray-400 space-y-1">
-              <li>❌ Sin WhatsApp</li>
-              <li>❌ Sin turismo ni servicios</li>
-              <li>✓ Empresa española</li>
+              <li><Icon icon={X} size={16} /> Sin WhatsApp</li>
+              <li><Icon icon={X} size={16} /> Sin turismo ni servicios</li>
+              <li><Icon icon={Check} size={16} /> Empresa española</li>
             </ul>
             <p class="text-xs text-gray-300 mt-3">
               Fuente: <a data-competitor-source-url="restoo" href="https://www.restoo.es/precios" target="_blank" rel="nofollow noopener noreferrer" class="underline hover:text-white"><span data-competitor-source="restoo">restoo.es · verificado</span></a>
@@ -195,10 +197,10 @@ const schema = {
           <!-- Agenda de Reservas -->
           <div class="bg-white rounded-2xl border-2 border-green-400 p-6 shadow-lg relative">
             <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-              Mejor precio ✓
+              Mejor precio <Icon icon={Check} size={16} />
             </div>
             <div class="flex items-center gap-2 mb-4">
-              <span class="text-2xl">🗓️</span>
+              <Icon icon={CalendarDays} size={24} class="text-green-600" />
               <div>
                 <h3 class="font-bold text-green-600">Agenda de Reservas</h3>
                 <p class="text-xs text-gray-400">Plan Restaurante</p>
@@ -223,9 +225,9 @@ const schema = {
               </div>
             </div>
             <ul class="text-xs text-gray-600 space-y-1">
-              <li>✅ WhatsApp Business API nativo (módulo opcional)</li>
-              <li>✅ CRM — tus datos, siempre</li>
-              <li>✅ Turismo y servicios en un plan</li>
+              <li><Icon icon={Check} size={16} /> WhatsApp Business API nativo (módulo opcional)</li>
+              <li><Icon icon={Check} size={16} /> CRM — tus datos, siempre</li>
+              <li><Icon icon={Check} size={16} /> Turismo y servicios en un plan</li>
             </ul>
           </div>
         </div>

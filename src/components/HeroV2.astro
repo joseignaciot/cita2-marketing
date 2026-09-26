@@ -17,16 +17,19 @@ const {
 } = Astro.props;
 
 // Problem/Solution data for visual impact
+import { Phone, X, ClipboardList, Check } from '@lucide/astro';
+import Icon from './Icon.astro';
+
 const problems = [
-  { icon: "📞", text: "Llamadas constantes a deshoras" },
-  { icon: "❌", text: "25% de ausencias que te cuestan dinero" },
-  { icon: "📋", text: "Agenda en papel caótica" }
+  { icon: Phone, text: "Llamadas constantes a deshoras" },
+  { icon: X, text: "25% de ausencias que te cuestan dinero" },
+  { icon: ClipboardList, text: "Agenda en papel caótica" }
 ];
 
 const solutions = [
-  { icon: "✓", text: "Reservas automáticas 24/7" },
-  { icon: "✓", text: "70% menos ausencias con recordatorios" },
-  { icon: "✓", text: "Todo digital y organizado" }
+  { icon: Check, text: "Reservas automáticas 24/7" },
+  { icon: Check, text: "70% menos ausencias con recordatorios" },
+  { icon: Check, text: "Todo digital y organizado" }
 ];
 ---
 
@@ -180,9 +183,7 @@ const solutions = [
           <div class="absolute -top-4 -left-4 bg-white rounded-xl shadow-lg p-3 border border-gray-100 animate-fade-in delay-600">
             <div class="flex items-center gap-2">
               <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
+                <Icon icon={Check} size={16} class="text-white" />
               </div>
               <div class="text-sm">
                 <p class="font-medium text-gray-900">Nueva reserva</p>

@@ -4,6 +4,24 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FAQ from '../components/FAQ.astro';
 import pricing from '../content/pricing.json';
+import Icon from '../components/Icon.astro';
+import { Check, X, Scissors, UtensilsCrossed, Compass, Bot, MessageCircle, Star, ChartColumn, Bell, Phone, Globe, Mail, CreditCard, ShieldCheck } from '@lucide/astro';
+
+// pricing.json "icon" fields are string keys (not emoji) — mapped to Lucide icons here.
+const contentIcons: Record<string, any> = {
+  scissors: Scissors,
+  utensils: UtensilsCrossed,
+  compass: Compass,
+  bot: Bot,
+  chat: MessageCircle,
+  star: Star,
+  chart: ChartColumn,
+  bell: Bell,
+  phone: Phone,
+  globe: Globe,
+  mail: Mail,
+  card: CreditCard,
+};
 
 const { pageTitle, pageDescription, businessTypes, includedFree, addons, pricingFAQs } = pricing;
 // pricing.json addon ids → /pricing API keys (live prices via DynamicPricing)
@@ -112,7 +130,7 @@ const canonicalUrl = 'https://agendadereservas.com/precios/';
               <div class="p-8">
                 <div class="flex items-start justify-between mb-4">
                   <div>
-                    <div class="text-3xl mb-2">{bt.icon}</div>
+                    <div class="mb-2 text-gray-700"><Icon icon={contentIcons[bt.icon]} size={32} /></div>
                     <h2 class="text-xl font-bold text-gray-900">{bt.label}</h2>
                     <p class="text-sm text-gray-500 mt-0.5">{bt.examples}</p>
                   </div>
@@ -182,7 +200,7 @@ const canonicalUrl = 'https://agendadereservas.com/precios/';
         <div class="grid md:grid-cols-3 gap-6">
           {includedFree.map((item) => (
             <div class="bg-emerald-50/60 border border-emerald-100 rounded-2xl p-6">
-              <span class="text-3xl">{item.icon}</span>
+              <span class="text-gray-700"><Icon icon={contentIcons[item.icon]} size={28} /></span>
               <h3 class="text-lg font-bold text-gray-900 mt-3">{item.name}</h3>
               <p class="text-sm text-gray-600 mt-1.5">{item.description}</p>
             </div>
@@ -204,7 +222,7 @@ const canonicalUrl = 'https://agendadereservas.com/precios/';
             <div class="bg-gradient-to-br from-purple-50 to-white border border-purple-100 rounded-3xl p-8 hover:shadow-lg transition-all">
               <div class="flex items-start justify-between mb-5">
                 <div>
-                  <span class="text-3xl">{addon.icon}</span>
+                  <span class="text-gray-700"><Icon icon={contentIcons[addon.icon]} size={28} /></span>
                   <h3 class="text-xl font-bold text-gray-900 mt-2">{addon.name}</h3>
                 </div>
                 <div class="text-right">
@@ -232,17 +250,17 @@ const canonicalUrl = 'https://agendadereservas.com/precios/';
             <div class="bg-white/5 rounded-2xl p-5">
               <p class="text-sm text-gray-400 mb-1">Solo base</p>
               <p class="text-3xl font-extrabold"><span data-price-key="service_business.monthly">19</span>€<span class="text-base font-normal text-gray-400">/mes</span></p>
-              <p class="text-sm text-gray-500 mt-1">✂️ Peluquería o servicio</p>
+              <p class="text-sm text-gray-500 mt-1 flex items-center gap-1"><Icon icon={Scissors} size={14} /> Peluquería o servicio</p>
             </div>
             <div class="bg-white/5 rounded-2xl p-5">
               <p class="text-sm text-gray-400 mb-1">Base + WhatsApp</p>
               <p class="text-3xl font-extrabold"><span data-price-calc="restaurant.monthly+addon_whatsapp.monthly">52</span>€<span class="text-base font-normal text-gray-400">/mes</span></p>
-              <p class="text-sm text-gray-500 mt-1">🍽️ Restaurante + WhatsApp</p>
+              <p class="text-sm text-gray-500 mt-1 flex items-center gap-1"><Icon icon={UtensilsCrossed} size={14} /> Restaurante + WhatsApp</p>
             </div>
             <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
               <p class="text-sm text-gray-400 mb-1">Base + WhatsApp + Cobros</p>
               <p class="text-3xl font-extrabold text-purple-300"><span data-price-calc="tourism_activities.monthly+addon_whatsapp.monthly+addon_payments.monthly">75</span>€<span class="text-base font-normal text-gray-400">/mes</span></p>
-              <p class="text-sm text-gray-500 mt-1">🧭 Turismo + WhatsApp + Cobros online</p>
+              <p class="text-sm text-gray-500 mt-1 flex items-center gap-1"><Icon icon={Compass} size={14} /> Turismo + WhatsApp + Cobros online</p>
             </div>
           </div>
           <p class="text-xs text-gray-500 mt-6 text-center">
@@ -256,7 +274,7 @@ const canonicalUrl = 'https://agendadereservas.com/precios/';
     <section class="py-16 bg-gray-50">
       <div class="container mx-auto px-4 max-w-3xl text-center">
         <div class="bg-green-50 border border-green-200 rounded-3xl p-10">
-          <div class="text-5xl mb-4">🛡️</div>
+          <div class="mb-4 flex justify-center text-green-600"><Icon icon={ShieldCheck} size={48} /></div>
           <h2 class="text-2xl font-bold text-green-800 mb-4">Garantía de satisfacción 30 días</h2>
           <p class="text-green-700 mb-4">
             Si en los primeros 30 días decides que Agenda de Reservas no es para ti, te devolvemos el 100% del dinero. Sin preguntas.
@@ -300,14 +318,14 @@ const canonicalUrl = 'https://agendadereservas.com/precios/';
               </tr>
               <tr class="border-b border-gray-100">
                 <td class="p-5 text-sm text-gray-700">WhatsApp Business</td>
-                <td class="p-5 text-center text-sm font-semibold text-green-700 bg-blue-50/30">✓ Add-on <span data-price-key="addon_whatsapp.monthly">28</span>€</td>
-                <td class="p-5 text-center text-sm text-gray-600">✗ No</td>
-                <td class="p-5 text-center text-sm text-gray-600">✗ No</td>
-                <td class="p-5 text-center text-sm text-gray-600">✗ No</td>
+                <td class="p-5 text-center text-sm font-semibold text-green-700 bg-blue-50/30"><Icon icon={Check} size={16} /> Add-on <span data-price-key="addon_whatsapp.monthly">28</span>€</td>
+                <td class="p-5 text-center text-sm text-gray-600"><Icon icon={X} size={16} /> No</td>
+                <td class="p-5 text-center text-sm text-gray-600"><Icon icon={X} size={16} /> No</td>
+                <td class="p-5 text-center text-sm text-gray-600"><Icon icon={X} size={16} /> No</td>
               </tr>
               <tr class="border-b border-gray-100 bg-gray-50/30">
                 <td class="p-5 text-sm text-gray-700">Turismo / Actividades</td>
-                <td class="p-5 text-center text-sm font-semibold text-green-700 bg-blue-50/30">✓ <span data-price-key="tourism_activities.monthly">29</span>€/mes</td>
+                <td class="p-5 text-center text-sm font-semibold text-green-700 bg-blue-50/30"><Icon icon={Check} size={16} /> <span data-price-key="tourism_activities.monthly">29</span>€/mes</td>
                 <td class="p-5 text-center text-sm text-gray-600">△ Básico</td>
                 <td class="p-5 text-center text-sm text-gray-600">△ Básico</td>
                 <td class="p-5 text-center text-sm text-gray-600">Solo restaurantes</td>

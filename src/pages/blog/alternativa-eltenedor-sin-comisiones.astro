@@ -4,6 +4,9 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import AdvancedSEO from '../../components/AdvancedSEO.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import { tableIcon } from '../../lib/tableIcon';
+import { Check } from '@lucide/astro';
+import Icon from '../../components/Icon.astro';
 
 const API_URL = 'https://api.agendadereservas.com';
 const FALLBACK_PRICING = { restaurant: { monthly: 24, yearly: 240 } };
@@ -43,9 +46,9 @@ const articleData = {
 
 const comparisonTable = [
   { metric: 'Coste mensual (100 reservas, 4 pax)', eltenedor: '~400€ (1€/comensal)*', agendadereservas: `<span data-price-key="restaurant.monthly">${apiPricing.restaurant.monthly}</span>€ (plan fijo)` },
-  { metric: 'Propiedad de datos clientes', eltenedor: '❌ No son tuyos', agendadereservas: '✅ Tuyos 100%' },
+  { metric: 'Propiedad de datos clientes', eltenedor: `${tableIcon('x','text-red-500')} No son tuyos`, agendadereservas: `${tableIcon('check','text-green-600')} Tuyos 100%` },
   { metric: 'Reservas directas', eltenedor: 'Dependencia de plataforma', agendadereservas: 'Canal propio' },
-  { metric: 'Visibilidad a clientes nuevos', eltenedor: '✅ Marketplace activo', agendadereservas: '— (SEO + Google Business)' },
+  { metric: 'Visibilidad a clientes nuevos', eltenedor: `${tableIcon('check','text-green-600')} Marketplace activo`, agendadereservas: '— (SEO + Google Business)' },
   { metric: 'Soporte', eltenedor: 'Genérico', agendadereservas: 'Especializado restaurantes' }
 ];
 
@@ -144,7 +147,7 @@ const faqs = [
                 {comparisonTable.map((row, index) => (
                   <tr class={index % 2 === 1 ? 'bg-gray-50/50' : ''}>
                     <td class="px-6 py-4 font-medium text-gray-900">{row.metric}</td>
-                    <td class="px-6 py-4 text-center text-gray-600">{row.eltenedor}</td>
+                    <td class="px-6 py-4 text-center text-gray-600" set:html={row.eltenedor}></td>
                     <td class="px-6 py-4 text-center text-green-700 font-medium" set:html={row.agendadereservas}></td>
                   </tr>
                 ))}
@@ -194,9 +197,7 @@ const faqs = [
           <div class="grid md:grid-cols-2 gap-6">
             <div class="flex items-start gap-3">
               <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
+                <Icon icon={Check} size={16} class="text-white" />
               </div>
               <div>
                 <h3 class="font-semibold text-gray-900">Datos 100% tuyos</h3>
@@ -205,9 +206,7 @@ const faqs = [
             </div>
             <div class="flex items-start gap-3">
               <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
+                <Icon icon={Check} size={16} class="text-white" />
               </div>
               <div>
                 <h3 class="font-semibold text-gray-900">Sin competencia en tu página</h3>
@@ -216,9 +215,7 @@ const faqs = [
             </div>
             <div class="flex items-start gap-3">
               <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
+                <Icon icon={Check} size={16} class="text-white" />
               </div>
               <div>
                 <h3 class="font-semibold text-gray-900">Recordatorios automáticos</h3>
@@ -227,9 +224,7 @@ const faqs = [
             </div>
             <div class="flex items-start gap-3">
               <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
+                <Icon icon={Check} size={16} class="text-white" />
               </div>
               <div>
                 <h3 class="font-semibold text-gray-900">Independencia total</h3>

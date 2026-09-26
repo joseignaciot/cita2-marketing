@@ -1,4 +1,7 @@
 ---
+import Icon from './Icon.astro';
+import { ArrowRight } from '@lucide/astro';
+
 interface Props {
   title: string;
   subtitle: string;
@@ -29,9 +32,7 @@ const {
         class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold bg-white text-primary-600 rounded-lg hover:bg-primary-50 transition-colors shadow-lg"
       >
         {ctaText}
-        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
+        <Icon icon={ArrowRight} size={20} class="ml-2" />
       </a>
     </div>
     

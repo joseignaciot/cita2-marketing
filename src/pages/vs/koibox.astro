@@ -5,6 +5,9 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import '../../styles/apple-design.css';
 import pricingData from '../../content/pricing.json';
+import { tableIcon } from '../../lib/tableIcon';
+import Icon from '../../components/Icon.astro';
+import { Check } from '@lucide/astro';
 
 // Precios de build-time desde pricing.json — fuente de verdad
 const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
@@ -27,68 +30,68 @@ const comparativa = [
   },
   {
     feature: 'Comisión por reserva',
-    koibox: '❌ No aplica (cuota fija)',
-    agenda: '❌ No aplica (cuota fija)',
+    koibox: `${tableIcon('x','text-red-500')} No aplica (cuota fija)`,
+    agenda: `${tableIcon('x','text-red-500')} No aplica (cuota fija)`,
     winner: 'empate',
   },
   {
     feature: 'Soporte en español',
-    koibox: '✅ Sí (equipo español)',
-    agenda: '✅ Humano, <2h en horario laboral',
+    koibox: `${tableIcon('check','text-green-600')} Sí (equipo español)`,
+    agenda: `${tableIcon('check','text-green-600')} Humano, <2h en horario laboral`,
     winner: 'empate',
   },
   {
     feature: 'WhatsApp nativo',
-    koibox: '⚠️ Integración disponible según plan',
-    agenda: `✅ WhatsApp Business API (+<span data-price-key="addon_whatsapp.monthly">${whatsappPrice}</span>€/mes)`,
+    koibox: `${tableIcon('warn','text-amber-500')} Integración disponible según plan`,
+    agenda: `${tableIcon('check','text-green-600')} WhatsApp Business API (+<span data-price-key="addon_whatsapp.monthly">${whatsappPrice}</span>€/mes)`,
     winner: 'empate',
   },
   {
     feature: 'RGPD / alojamiento UE',
-    koibox: '✅ Empresa española, servidores UE',
-    agenda: '✅ Servidores UE, RGPD conforme',
+    koibox: `${tableIcon('check','text-green-600')} Empresa española, servidores UE`,
+    agenda: `${tableIcon('check','text-green-600')} Servidores UE, RGPD conforme`,
     winner: 'empate',
   },
   {
     feature: 'App móvil para el negocio',
-    koibox: '✅ App iOS y Android',
-    agenda: '✅ PWA + panel web responsivo',
+    koibox: `${tableIcon('check','text-green-600')} App iOS y Android`,
+    agenda: `${tableIcon('check','text-green-600')} PWA + panel web responsivo`,
     winner: 'empate',
   },
   {
     feature: 'Prueba gratuita',
-    koibox: '⚠️ Consultar en koibox.com',
-    agenda: '✅ 14 días sin tarjeta',
+    koibox: `${tableIcon('warn','text-amber-500')} Consultar en koibox.com`,
+    agenda: `${tableIcon('check','text-green-600')} 14 días sin tarjeta`,
     winner: 'agenda',
   },
   {
     feature: 'Permanencia',
-    koibox: '⚠️ Posible contrato según canal/Kit Digital',
-    agenda: '✅ Sin permanencia, cancela cuando quieras',
+    koibox: `${tableIcon('warn','text-amber-500')} Posible contrato según canal/Kit Digital`,
+    agenda: `${tableIcon('check','text-green-600')} Sin permanencia, cancela cuando quieras`,
     winner: 'agenda',
   },
   {
     feature: 'Compatible Kit Digital',
-    koibox: '✅ Agente digitalizador acreditado',
-    agenda: '⚠️ No es agente digitalizador oficial',
+    koibox: `${tableIcon('check','text-green-600')} Agente digitalizador acreditado`,
+    agenda: `${tableIcon('warn','text-amber-500')} No es agente digitalizador oficial`,
     winner: 'koibox',
   },
   {
     feature: 'Reservas en tu web propia',
-    koibox: '✅ Widget de reservas',
-    agenda: '✅ Widget + enlace directo personalizado',
+    koibox: `${tableIcon('check','text-green-600')} Widget de reservas`,
+    agenda: `${tableIcon('check','text-green-600')} Widget + enlace directo personalizado`,
     winner: 'empate',
   },
   {
     feature: 'CRM de clientes exportable',
-    koibox: '✅ Historial de clientes',
-    agenda: '✅ Exportación CSV ilimitada',
+    koibox: `${tableIcon('check','text-green-600')} Historial de clientes`,
+    agenda: `${tableIcon('check','text-green-600')} Exportación CSV ilimitada`,
     winner: 'empate',
   },
   {
     feature: 'Usuarios/empleados ilimitados',
-    koibox: '⚠️ Puede variar según plan',
-    agenda: '✅ Usuarios ilimitados en todos los planes',
+    koibox: `${tableIcon('warn','text-amber-500')} Puede variar según plan`,
+    agenda: `${tableIcon('check','text-green-600')} Usuarios ilimitados en todos los planes`,
     winner: 'agenda',
   },
 ];
@@ -252,7 +255,7 @@ const schema = {
                 'Equipos que priorizan la simplicidad de configuración inicial.',
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold"><Icon icon={Check} size={16} /></span>
                   <span set:html={item} />
                 </li>
               ))}
@@ -333,8 +336,8 @@ const schema = {
               {comparativa.map(({ feature, koibox, agenda, winner }) => (
                 <tr class="border-b border-gray-100 hover:bg-gray-50">
                   <td class="py-3 px-4 font-medium text-gray-800">{feature}</td>
-                  <td class={`py-3 px-4 text-center ${winner === 'koibox' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-amber-600' : 'text-gray-600'}`}>
-                    {koibox}
+                  <td class={`py-3 px-4 text-center ${winner === 'koibox' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-amber-600' : 'text-gray-600'}`} set:html={koibox}>
+
                   </td>
                   <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'koibox' ? 'text-gray-500' : 'text-gray-600'}`} set:html={agenda}>
                   </td>
@@ -484,7 +487,7 @@ const schema = {
                 'Gestionas mas de un sector o tipo de negocio desde la misma cuenta.',
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold"><Icon icon={Check} size={16} /></span>
                   <span set:html={item} />
                 </li>
               ))}

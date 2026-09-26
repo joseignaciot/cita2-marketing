@@ -108,8 +108,12 @@
     @apply text-gray-700;
   }
 
-  /* Force AAA on all metadata/helper text */
-  .text-xs, .text-sm {
+  /* Force AAA on light-gray metadata/helper text only. A bare
+     `.text-xs, .text-sm { color: inherit }` also overrode every explicit
+     colour on small text (white CTA labels on blue/dark buttons, green/red
+     status text), making them invisible. */
+  .text-xs.text-gray-400, .text-xs.text-gray-500,
+  .text-sm.text-gray-400, .text-sm.text-gray-500 {
     color: inherit;
   }
 }

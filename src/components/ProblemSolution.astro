@@ -1,23 +1,33 @@
 ---
 // ProblemSolution — Sección Antes/Después con datos verificados por vertical
 // Datos reales: TheFork 150-200€/mes + 1,5-2€/comensal | Booksy ~35€+20€/empleado | Bókun 49$/mes+1,5%
+import Icon from './Icon.astro';
+import {
+  Scissors, UtensilsCrossed, Mountain,
+  Smartphone, X, Users, Ban,
+  HandCoins, ChartColumn, Lock, TrendingUp,
+  Banknote, TrendingDown, Moon, Globe,
+  Bot, Infinity as InfinityIcon, MessageCircle,
+  Tag, ClipboardList, User, Target,
+  Frown, Smile,
+} from '@lucide/astro';
 
 const verticals = [
   {
     id: "servicios",
     label: "Servicios",
-    emoji: "✂️",
+    icon: Scissors,
     problems: [
-      { icon: "📱", title: "Llamadas sin parar", stat: "15+ llamadas/día", desc: "Reservas, cancelaciones y cambios de cita a cualquier hora interrumpen tu trabajo." },
-      { icon: "❌", title: "No-shows que duelen", stat: "1 de cada 4 citas", desc: "Sin recordatorio automático, el 25% de tus clientes simplemente no aparecen." },
-      { icon: "👥", title: "Precio por empleado", stat: "20€ extra/empleado", desc: "Booksy cobra ~35€ base + 20€ por cada empleado adicional. 3 empleados = 75€/mes." },
-      { icon: "🚫", title: "Sin WhatsApp real", stat: "Solo email básico", desc: "Fresha, Booksy y similares no integran WhatsApp Business API. Tus mensajes no llegan." }
+      { icon: Smartphone, title: "Llamadas sin parar", stat: "15+ llamadas/día", desc: "Reservas, cancelaciones y cambios de cita a cualquier hora interrumpen tu trabajo." },
+      { icon: X, title: "No-shows que duelen", stat: "1 de cada 4 citas", desc: "Sin recordatorio automático, el 25% de tus clientes simplemente no aparecen." },
+      { icon: Users, title: "Precio por empleado", stat: "20€ extra/empleado", desc: "Booksy cobra ~35€ base + 20€ por cada empleado adicional. 3 empleados = 75€/mes." },
+      { icon: Ban, title: "Sin WhatsApp real", stat: "Solo email básico", desc: "Fresha, Booksy y similares no integran WhatsApp Business API. Tus mensajes no llegan." }
     ],
     solutions: [
-      { icon: "🌙", benefit: "0 llamadas de reserva", highlight: "Reservas automáticas 24/7 — incluso a las 3am" },
-      { icon: "🤖", benefit: "−70% ausencias", highlight: "WhatsApp + email + SMS automáticos antes de cada cita" },
-      { icon: "∞", benefit: "Usuarios ilimitados", highlight: "1 precio fijo para todo tu equipo, sin sorpresas" },
-      { icon: "💬", benefitPrefix: "WhatsApp (+", addonKey: "addon_whatsapp.monthly", addonPrice: 28, benefitSuffix: "€/mes)", highlight: "API Business oficial, tasa de apertura del 90%" }
+      { icon: Moon, benefit: "0 llamadas de reserva", highlight: "Reservas automáticas 24/7 — incluso a las 3am" },
+      { icon: Bot, benefit: "−70% ausencias", highlight: "WhatsApp + email + SMS automáticos antes de cada cita" },
+      { icon: InfinityIcon, benefit: "Usuarios ilimitados", highlight: "1 precio fijo para todo tu equipo, sin sorpresas" },
+      { icon: MessageCircle, benefitPrefix: "WhatsApp (+", addonKey: "addon_whatsapp.monthly", addonPrice: 28, benefitSuffix: "€/mes)", highlight: "API Business oficial, tasa de apertura del 90%" }
     ],
     saving: "vs 75-135€/mes de Booksy para 3 empleados",
     planKey: "service_business.monthly",
@@ -26,18 +36,18 @@ const verticals = [
   {
     id: "restaurantes",
     label: "Restaurantes",
-    emoji: "🍽️",
+    icon: UtensilsCrossed,
     problems: [
-      { icon: "💸", title: "Cuota fija + comisión", stat: "150-200€/mes", desc: "TheFork Manager cuesta ~175€/mes solo en cuota, antes de añadir la comisión por comensal." },
-      { icon: "📊", title: "Comisión por comensal", stat: "1,5-2€ por persona", desc: "Cada comensal captado por TheFork tiene un coste adicional que crece con tu éxito." },
-      { icon: "🔒", title: "Clientes son de TheFork", stat: "Sin acceso a datos", desc: "Los comensales que llegan vía TheFork son de TheFork. No puedes contactarlos directamente." },
-      { icon: "📈", title: "El éxito te cuesta más", stat: "Coste variable ∞", desc: "Cuanto más llenas el restaurante, más pagas en comisiones. El modelo no tiene límite." }
+      { icon: HandCoins, title: "Cuota fija + comisión", stat: "150-200€/mes", desc: "TheFork Manager cuesta ~175€/mes solo en cuota, antes de añadir la comisión por comensal." },
+      { icon: ChartColumn, title: "Comisión por comensal", stat: "1,5-2€ por persona", desc: "Cada comensal captado por TheFork tiene un coste adicional que crece con tu éxito." },
+      { icon: Lock, title: "Clientes son de TheFork", stat: "Sin acceso a datos", desc: "Los comensales que llegan vía TheFork son de TheFork. No puedes contactarlos directamente." },
+      { icon: TrendingUp, title: "El éxito te cuesta más", stat: "Coste variable ilimitado", desc: "Cuanto más llenas el restaurante, más pagas en comisiones. El modelo no tiene límite." }
     ],
     solutions: [
-      { icon: "🏷️", benefit: "0€ comisión", highlight: "Sin porcentaje por comensal. Nunca." },
-      { icon: "📋", benefitPrefix: "", addonKey: "restaurant.monthly", addonPrice: 24, benefitSuffix: "€/mes fijo", highlight: "El mismo precio si tienes 10 o 500 reservas al mes" },
-      { icon: "👤", benefit: "Tus clientes", highlight: "CRM completo con todos sus datos, tuyo para siempre" },
-      { icon: "💬", benefitPrefix: "WhatsApp (+", addonKey: "addon_whatsapp.monthly", addonPrice: 28, benefitSuffix: "€/mes)", highlight: "Recordatorios automáticos que ningún software de restaurantes ofrece" }
+      { icon: Tag, benefit: "0€ comisión", highlight: "Sin porcentaje por comensal. Nunca." },
+      { icon: ClipboardList, benefitPrefix: "", addonKey: "restaurant.monthly", addonPrice: 24, benefitSuffix: "€/mes fijo", highlight: "El mismo precio si tienes 10 o 500 reservas al mes" },
+      { icon: User, benefit: "Tus clientes", highlight: "CRM completo con todos sus datos, tuyo para siempre" },
+      { icon: MessageCircle, benefitPrefix: "WhatsApp (+", addonKey: "addon_whatsapp.monthly", addonPrice: 28, benefitSuffix: "€/mes)", highlight: "Recordatorios automáticos que ningún software de restaurantes ofrece" }
     ],
     saving: "vs 300-500€/mes real en TheFork (cuota + comisiones)",
     planKey: "restaurant.monthly",
@@ -46,18 +56,18 @@ const verticals = [
   {
     id: "turismo",
     label: "Turismo",
-    emoji: "🏔️",
+    icon: Mountain,
     problems: [
-      { icon: "💵", title: "Precio en dólares", stat: "49-499 USD/mes", desc: "Bókun (TripAdvisor) cobra en USD con fluctuación de tipo de cambio. Sin soporte en español." },
-      { icon: "📉", title: "Comisión por reserva", stat: "+1,5% por reserva", desc: "Bókun cobra 1,5% sobre cada reserva online además de la cuota mensual." },
-      { icon: "🌙", title: "Pierdes reservas de noche", stat: "60% consultas no atendidas", desc: "Cuando un turista visita tu web a las 11pm y tiene dudas, no hay nadie. Se va con la competencia." },
-      { icon: "🌍", title: "Sin WhatsApp", stat: "Solo email", desc: "Ningún competidor de turismo integra WhatsApp para confirmaciones y recordatorios." }
+      { icon: Banknote, title: "Precio en dólares", stat: "49-499 USD/mes", desc: "Bókun (TripAdvisor) cobra en USD con fluctuación de tipo de cambio. Sin soporte en español." },
+      { icon: TrendingDown, title: "Comisión por reserva", stat: "+1,5% por reserva", desc: "Bókun cobra 1,5% sobre cada reserva online además de la cuota mensual." },
+      { icon: Moon, title: "Pierdes reservas de noche", stat: "60% consultas no atendidas", desc: "Cuando un turista visita tu web a las 11pm y tiene dudas, no hay nadie. Se va con la competencia." },
+      { icon: Globe, title: "Sin WhatsApp", stat: "Solo email", desc: "Ningún competidor de turismo integra WhatsApp para confirmaciones y recordatorios." }
     ],
     solutions: [
-      { icon: "🎯", benefitPrefix: "", addonKey: "tourism_activities.monthly", addonPrice: 29, benefitSuffix: "€/mes fijo", highlight: "En euros, sin fluctuación, sin comisión por reserva" },
-      { icon: "📊", benefit: "0% comisión", highlight: "100 reservas o 1.000, el precio no cambia" },
-      { icon: "🤖", benefit: "IA reserva 24/7", highlight: "El único software de turismo con asistente IA en tu web — reserva mientras duermes" },
-      { icon: "💬", benefitPrefix: "WhatsApp (+", addonKey: "addon_whatsapp.monthly", addonPrice: 28, benefitSuffix: "€/mes)", highlight: "El único software de turismo en España con WA Business API" }
+      { icon: Target, benefitPrefix: "", addonKey: "tourism_activities.monthly", addonPrice: 29, benefitSuffix: "€/mes fijo", highlight: "En euros, sin fluctuación, sin comisión por reserva" },
+      { icon: ChartColumn, benefit: "0% comisión", highlight: "100 reservas o 1.000, el precio no cambia" },
+      { icon: Bot, benefit: "IA reserva 24/7", highlight: "El único software de turismo con asistente IA en tu web — reserva mientras duermes" },
+      { icon: MessageCircle, benefitPrefix: "WhatsApp (+", addonKey: "addon_whatsapp.monthly", addonPrice: 28, benefitSuffix: "€/mes)", highlight: "El único software de turismo en España con WA Business API" }
     ],
     saving: "vs 107€/mes real en Bókun (49$ cuota + 1,5% en 100 reservas de 50€)",
     planKey: "tourism_activities.monthly",
@@ -92,7 +102,7 @@ const verticals = [
               : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400'
           }`}
         >
-          {v.emoji} {v.label}
+          <Icon icon={v.icon} size={16} /> {v.label}
         </button>
       ))}
     </div>
@@ -108,7 +118,7 @@ const verticals = [
           <!-- BEFORE: Problems -->
           <div class="space-y-4">
             <div class="flex items-center gap-3 mb-6">
-              <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-xl">😤</div>
+              <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-red-500"><Icon icon={Frown} size={20} /></div>
               <div>
                 <h3 class="font-bold text-gray-900">Sin Agenda de Reservas</h3>
                 <p class="text-sm text-gray-500">Lo que está pasando ahora mismo</p>
@@ -117,7 +127,7 @@ const verticals = [
             {v.problems.map((p) => (
               <div class="problem-card hover-lift scroll-animate">
                 <div class="flex items-start gap-3">
-                  <span class="text-2xl flex-shrink-0">{p.icon}</span>
+                  <span class="flex-shrink-0 text-red-500"><Icon icon={p.icon} size={24} /></span>
                   <div class="flex-1 min-w-0">
                     <div class="flex items-center justify-between gap-2 mb-1">
                       <h4 class="font-semibold text-gray-900 text-sm">{p.title}</h4>
@@ -133,7 +143,7 @@ const verticals = [
           <!-- AFTER: Solutions -->
           <div class="space-y-4">
             <div class="flex items-center gap-3 mb-6">
-              <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-xl">😌</div>
+              <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600"><Icon icon={Smile} size={20} /></div>
               <div>
                 <h3 class="font-bold text-gray-900">Con Agenda de Reservas</h3>
                 <p class="text-sm text-gray-500">Desde <span data-price-key={v.planKey}>{v.priceMonthly}</span>€/mes · Sin comisiones</p>
@@ -142,7 +152,7 @@ const verticals = [
             {v.solutions.map((s, i) => (
               <div class="solution-card hover-lift scroll-animate" style={`transition-delay: ${i * 80}ms`}>
                 <div class="flex items-center gap-3">
-                  <span class="text-2xl flex-shrink-0">{s.icon}</span>
+                  <span class="flex-shrink-0 text-green-600"><Icon icon={s.icon} size={24} /></span>
                   <div class="flex-1 min-w-0">
                     <div class="flex items-center justify-between gap-2 mb-1">
                       <p class="text-xs text-green-700 font-bold">{s.highlight}</p>

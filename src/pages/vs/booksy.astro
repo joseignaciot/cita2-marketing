@@ -5,6 +5,9 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import '../../styles/apple-design.css';
 import pricingData from '../../content/pricing.json';
+import { tableIcon } from '../../lib/tableIcon';
+import Icon from '../../components/Icon.astro';
+import { Check } from '@lucide/astro';
 
 // Precio de build-time: leer de pricing.json para coherencia con el resto del sitio
 const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
@@ -77,15 +80,15 @@ const comparativa = [
   { feature: 'Precio base', booksy: '20-35€/empleado/mes', agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes fijo total`, winner: 'agenda' },
   { feature: '3 empleados', booksy: '60-105€/mes', agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes`, winner: 'agenda' },
   { feature: '5 empleados', booksy: '100-175€/mes', agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes`, winner: 'agenda' },
-  { feature: 'WhatsApp Business API', booksy: '❌ No', agenda: `✅ Disponible (+<span data-price-key="addon_whatsapp.monthly">${whatsappPrice}</span>€/mes)`, winner: 'agenda' },
-  { feature: 'Soporte en español', booksy: '⚠️ Limitado', agenda: '✅ Humano, <2h', winner: 'agenda' },
-  { feature: 'RGPD / datos en Europa', booksy: '⚠️ USA (Booksy Inc.)', agenda: '✅ Servidores EU', winner: 'agenda' },
-  { feature: 'Pagos online con Stripe', booksy: '✅ Sí', agenda: `✅ Sí (+<span data-price-key="addon_payments.monthly">${pagosPrice}</span>€/mes)`, winner: 'empate' },
-  { feature: 'App para clientes', booksy: '✅ App propia (Booksy)', agenda: '✅ Página web responsive', winner: 'empate' },
-  { feature: 'Marketplace de clientes', booksy: '✅ Sí (Booksy App)', agenda: '❌ No', winner: 'booksy' },
-  { feature: 'Multi-sector', booksy: '⚠️ Solo belleza', agenda: '✅ Servicios, restaurantes, turismo', winner: 'agenda' },
-  { feature: 'API / Integraciones', booksy: '⚠️ Limitado', agenda: '✅ Webhook + Zapier', winner: 'agenda' },
-  { feature: 'Precio en euros', booksy: '⚠️ Variable (USD base)', agenda: '✅ Euros fijos', winner: 'agenda' },
+  { feature: 'WhatsApp Business API', booksy: `${tableIcon('x','text-red-500')} No`, agenda: `${tableIcon('check','text-green-600')} Disponible (+<span data-price-key="addon_whatsapp.monthly">${whatsappPrice}</span>€/mes)`, winner: 'agenda' },
+  { feature: 'Soporte en español', booksy: `${tableIcon('warn','text-amber-500')} Limitado`, agenda: `${tableIcon('check','text-green-600')} Humano, <2h`, winner: 'agenda' },
+  { feature: 'RGPD / datos en Europa', booksy: `${tableIcon('warn','text-amber-500')} USA (Booksy Inc.)`, agenda: `${tableIcon('check','text-green-600')} Servidores EU`, winner: 'agenda' },
+  { feature: 'Pagos online con Stripe', booksy: `${tableIcon('check','text-green-600')} Sí`, agenda: `${tableIcon('check','text-green-600')} Sí (+<span data-price-key="addon_payments.monthly">${pagosPrice}</span>€/mes)`, winner: 'empate' },
+  { feature: 'App para clientes', booksy: `${tableIcon('check','text-green-600')} App propia (Booksy)`, agenda: `${tableIcon('check','text-green-600')} Página web responsive`, winner: 'empate' },
+  { feature: 'Marketplace de clientes', booksy: `${tableIcon('check','text-green-600')} Sí (Booksy App)`, agenda: `${tableIcon('x','text-red-500')} No`, winner: 'booksy' },
+  { feature: 'Multi-sector', booksy: `${tableIcon('warn','text-amber-500')} Solo belleza`, agenda: `${tableIcon('check','text-green-600')} Servicios, restaurantes, turismo`, winner: 'agenda' },
+  { feature: 'API / Integraciones', booksy: `${tableIcon('warn','text-amber-500')} Limitado`, agenda: `${tableIcon('check','text-green-600')} Webhook + Zapier`, winner: 'agenda' },
+  { feature: 'Precio en euros', booksy: `${tableIcon('warn','text-amber-500')} Variable (USD base)`, agenda: `${tableIcon('check','text-green-600')} Euros fijos`, winner: 'agenda' },
 ];
 
 // Cálculos pre-computados (evitar expresiones aritméticas en template literals del frontmatter)
@@ -172,8 +175,7 @@ const savings = [
               {comparativa.map(({ feature, booksy, agenda, winner }) => (
                 <tr class="border-b border-gray-100 hover:bg-gray-50">
                   <td class="py-3 px-4 font-medium text-gray-800">{feature}</td>
-                  <td class={`py-3 px-4 text-center ${winner === 'booksy' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-red-600' : 'text-gray-600'}`}>
-                    {booksy}
+                  <td class={`py-3 px-4 text-center ${winner === 'booksy' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-red-600' : 'text-gray-600'}`} set:html={booksy}>
                   </td>
                   <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'booksy' ? 'text-red-600' : 'text-gray-600'}`} set:html={agenda}>
                   </td>
@@ -218,7 +220,7 @@ const savings = [
                 'Quieres tus datos en servidores europeos (RGPD)'
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold"><Icon icon={Check} size={16} /></span>
                   <span set:html={item} />
                 </li>
               ))}

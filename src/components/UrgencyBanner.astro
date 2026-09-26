@@ -1,6 +1,8 @@
 ---
 // UrgencyBanner - FOMO component for pricing section
 // Creates urgency and scarcity to drive conversions
+import Icon from './Icon.astro';
+import { Flame, Zap, Clock, Users } from '@lucide/astro';
 
 interface Props {
   type?: 'limited-spots' | 'discount' | 'deadline' | 'social-proof';
@@ -18,13 +20,21 @@ const {
 
 // Dynamic messages based on type
 const messages = {
-  'limited-spots': `🔥 Solo ${spotsLeft} plazas disponibles con precio de lanzamiento`,
-  'discount': '⚡ Oferta especial: 2 meses gratis con código AGENDASTART',
-  'deadline': '⏰ Precio de lanzamiento termina este domingo',
-  'social-proof': '👥 47 personas están viendo esta oferta ahora'
+  'limited-spots': `Solo ${spotsLeft} plazas disponibles con precio de lanzamiento`,
+  'discount': 'Oferta especial: 2 meses gratis con código AGENDASTART',
+  'deadline': 'Precio de lanzamiento termina este domingo',
+  'social-proof': '47 personas están viendo esta oferta ahora'
+};
+
+const icons = {
+  'limited-spots': Flame,
+  'discount': Zap,
+  'deadline': Clock,
+  'social-proof': Users,
 };
 
 const displayMessage = message || messages[type];
+const displayIcon = icons[type];
 ---
 
 <div class="urgency-banner animate-pulse-soft" data-type={type}>
@@ -33,6 +43,7 @@ const displayMessage = message || messages[type];
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
       <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
     </span>
+    <Icon icon={displayIcon} size={16} />
     {displayMessage}
   </div>
   

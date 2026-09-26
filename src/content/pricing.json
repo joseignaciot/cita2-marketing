@@ -8,7 +8,7 @@
       "yearly": 190,
       "monthly": 19,
       "label": "Servicios",
-      "icon": "✂️",
+      "icon": "scissors",
       "saving": 38,
       "id": "servicios",
       "features": [
@@ -28,7 +28,7 @@
       "yearly": 240,
       "monthly": 24,
       "label": "Restaurantes",
-      "icon": "🍽️",
+      "icon": "utensils",
       "saving": 48,
       "id": "restaurantes",
       "features": [
@@ -49,7 +49,7 @@
       "yearly": 290,
       "monthly": 29,
       "label": "Turismo & Actividades",
-      "icon": "🧭",
+      "icon": "compass",
       "saving": 58,
       "id": "turismo",
       "features": [
@@ -67,7 +67,7 @@
   "includedFree": [
     {
       "id": "ia",
-      "icon": "🤖",
+      "icon": "bot",
       "name": "Todo lo que usa IA",
       "description": "Chat widget con IA en tu web, traducción automática, importar carta con IA y asistente del panel.",
       "highlights": [
@@ -79,7 +79,7 @@
     },
     {
       "id": "hub",
-      "icon": "💬",
+      "icon": "chat",
       "name": "Communication Hub",
       "description": "Historial de mensajes, informes programados, plantillas y notificaciones, todo centralizado.",
       "highlights": [
@@ -91,31 +91,31 @@
     },
     {
       "id": "encuestas",
-      "icon": "⭐",
+      "icon": "star",
       "name": "Encuestas de satisfacción",
       "description": "Encuestas automáticas post-cita para medir la satisfacción de tus clientes."
     },
     {
       "id": "informes",
-      "icon": "📊",
+      "icon": "chart",
       "name": "Informe diario por email",
       "description": "Resumen diario de tu actividad directo a tu correo."
     },
     {
       "id": "recordatorios",
-      "icon": "🔔",
+      "icon": "bell",
       "name": "Recordatorios por email",
       "description": "Recordatorios automáticos por email para reducir ausencias."
     },
     {
       "id": "asistente-voz",
-      "icon": "📞",
+      "icon": "phone",
       "name": "Asistente de voz",
       "description": "Reservas por teléfono con IA (Retell). Incluido / gratis por ahora."
     },
     {
       "id": "widget-reservas",
-      "icon": "🌐",
+      "icon": "globe",
       "name": "Widget de reservas embebido",
       "description": "Widget de reservas para insertar en tu propia web. Incluido / gratis por ahora."
     }
@@ -123,7 +123,7 @@
   "addons": [
     {
       "id": "whatsapp",
-      "icon": "💬",
+      "icon": "chat",
       "name": "WhatsApp",
       "priceKey": "addon_whatsapp.monthly",
       "priceYearlyKey": "addon_whatsapp.yearly",
@@ -138,7 +138,7 @@
     },
     {
       "id": "sms",
-      "icon": "✉️",
+      "icon": "mail",
       "name": "SMS",
       "priceKey": "addon_sms.monthly",
       "priceYearlyKey": "addon_sms.yearly",
@@ -152,7 +152,7 @@
     },
     {
       "id": "pagos",
-      "icon": "💳",
+      "icon": "card",
       "name": "Cobros online",
       "priceKey": "addon_payments.monthly",
       "priceYearlyKey": "addon_payments.yearly",

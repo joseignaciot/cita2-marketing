@@ -3,6 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import pricingData from '../../content/pricing.json';
+import { tableIcon } from '../../lib/tableIcon';
+import Icon from '../../components/Icon.astro';
+import { Check, TriangleAlert, Trophy } from '@lucide/astro';
 
 // Precios leídos de pricing.json en build-time
 const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
@@ -30,16 +33,16 @@ const comparisonRows = [
   { feature: 'Precio plan premium', agendadereservas: `<span data-price-key="service_business.monthly">${svcPrice}</span>€ (\u00fanico plan)`, reservio: `${reservioProPrice}€/mes (max 5 staff)`, winner: 'agendadereservas' },
   { feature: 'Usuarios/staff', agendadereservas: 'Ilimitados', reservio: 'Limitado por plan', winner: 'agendadereservas' },
   { feature: 'Reservas mensuales', agendadereservas: 'Ilimitadas', reservio: 'Limitadas en plan gratis', winner: 'agendadereservas' },
-  { feature: 'Soporte en español', agendadereservas: '✅ Nativo (chat/email)', reservio: '⚠️ Inglés/Alemán principal', winner: 'agendadereservas' },
-  { feature: 'WhatsApp Business', agendadereservas: '✅ Disponible (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)', reservio: '❌ No disponible', winner: 'agendadereservas' },
-  { feature: 'Recordatorios SMS', agendadereservas: '✅ Disponible (+<span data-price-key="addon_sms.monthly">15</span>€/mes)', reservio: '⚠️ Pago aparte', winner: 'agendadereservas' },
-  { feature: 'Presets por sector', agendadereservas: '✅ Peluquería, estética, turismo', reservio: '⚠️ Genérico', winner: 'agendadereservas' },
-  { feature: 'Pagos online', agendadereservas: '✅ Stripe (+<span data-price-key="addon_payments.monthly">18</span>€/mes)', reservio: '✅ Stripe/PayPal', winner: 'tie' },
-  { feature: 'Calendario Google', agendadereservas: '✅ Sync bidireccional', reservio: '✅ Sync bidireccional', winner: 'tie' },
-  { feature: 'Interfaz en español', agendadereservas: '✅ 100% traducida', reservio: '⚠️ Algunas partes en inglés', winner: 'agendadereservas' },
-  { feature: 'App móvil nativa', agendadereservas: '❌ Web app responsive', reservio: '✅ App nativa', winner: 'reservio' },
-  { feature: 'Integraciones', agendadereservas: '⚠️ Básicas (Zapier)', reservio: '✅ Muchas integraciones', winner: 'reservio' },
-  { feature: 'Personalización marca', agendadereservas: '✅ Completa', reservio: '✅ Completa', winner: 'tie' },
+  { feature: 'Soporte en español', agendadereservas: `${tableIcon('check','text-green-600')} Nativo (chat/email)`, reservio: `${tableIcon('warn','text-amber-500')} Inglés/Alemán principal`, winner: 'agendadereservas' },
+  { feature: 'WhatsApp Business', agendadereservas: `${tableIcon('check','text-green-600')} Disponible (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)`, reservio: `${tableIcon('x','text-red-500')} No disponible`, winner: 'agendadereservas' },
+  { feature: 'Recordatorios SMS', agendadereservas: `${tableIcon('check','text-green-600')} Disponible (+<span data-price-key="addon_sms.monthly">15</span>€/mes)`, reservio: `${tableIcon('warn','text-amber-500')} Pago aparte`, winner: 'agendadereservas' },
+  { feature: 'Presets por sector', agendadereservas: `${tableIcon('check','text-green-600')} Peluquería, estética, turismo`, reservio: `${tableIcon('warn','text-amber-500')} Genérico`, winner: 'agendadereservas' },
+  { feature: 'Pagos online', agendadereservas: `${tableIcon('check','text-green-600')} Stripe (+<span data-price-key="addon_payments.monthly">18</span>€/mes)`, reservio: `${tableIcon('check','text-green-600')} Stripe/PayPal`, winner: 'tie' },
+  { feature: 'Calendario Google', agendadereservas: `${tableIcon('check','text-green-600')} Sync bidireccional`, reservio: `${tableIcon('check','text-green-600')} Sync bidireccional`, winner: 'tie' },
+  { feature: 'Interfaz en español', agendadereservas: `${tableIcon('check','text-green-600')} 100% traducida`, reservio: `${tableIcon('warn','text-amber-500')} Algunas partes en inglés`, winner: 'agendadereservas' },
+  { feature: 'App móvil nativa', agendadereservas: `${tableIcon('x','text-red-500')} Web app responsive`, reservio: `${tableIcon('check','text-green-600')} App nativa`, winner: 'reservio' },
+  { feature: 'Integraciones', agendadereservas: `${tableIcon('warn','text-amber-500')} Básicas (Zapier)`, reservio: `${tableIcon('check','text-green-600')} Muchas integraciones`, winner: 'reservio' },
+  { feature: 'Personalización marca', agendadereservas: `${tableIcon('check','text-green-600')} Completa`, reservio: `${tableIcon('check','text-green-600')} Completa`, winner: 'tie' },
 ];
 ---
 
@@ -72,10 +75,10 @@ const comparisonRows = [
                 <tr class={`border-t ${i % 2 === 1 ? 'bg-gray-50' : ''}`}>
                   <td class="p-4 font-medium">{row.feature}</td>
                   <td class={`p-4 text-center ${row.winner === 'agendadereservas' ? 'font-semibold text-green-600' : ''}`}>
-                    <span set:html={row.agendadereservas} /> {row.winner === 'agendadereservas' && '🏆'}
+                    <span set:html={row.agendadereservas} /> {row.winner === 'agendadereservas' && <Icon icon={Trophy} size={16} />}
                   </td>
                   <td class={`p-4 text-center ${row.winner === 'reservio' ? 'font-semibold text-green-600' : ''}`}>
-                    {row.reservio} {row.winner === 'reservio' && '🏆'}
+                    <span set:html={row.reservio} /> {row.winner === 'reservio' && <Icon icon={Trophy} size={16} />}
                   </td>
                 </tr>
               ))}
@@ -92,21 +95,21 @@ const comparisonRows = [
           <div class="bg-white p-6 rounded-xl">
             <h3 class="font-bold text-lg mb-4 text-blue-600">🇪🇸 Agenda de Reservas</h3>
             <ul class="space-y-2 text-sm">
-              <li>✅ Equipo en España</li>
-              <li>✅ Soporte en español nativo</li>
-              <li>✅ Horario español (9-18h)</li>
-              <li>✅ Entiende tu negocio local</li>
-              <li>✅ Presets para sectores españoles</li>
+              <li><Icon icon={Check} size={16} /> Equipo en España</li>
+              <li><Icon icon={Check} size={16} /> Soporte en español nativo</li>
+              <li><Icon icon={Check} size={16} /> Horario español (9-18h)</li>
+              <li><Icon icon={Check} size={16} /> Entiende tu negocio local</li>
+              <li><Icon icon={Check} size={16} /> Presets para sectores españoles</li>
             </ul>
           </div>
           <div class="bg-white p-6 rounded-xl">
             <h3 class="font-bold text-lg mb-4 text-purple-600">🇩🇪 Reservio</h3>
             <ul class="space-y-2 text-sm">
-              <li>⚠️ Empresa alemana</li>
-              <li>⚠️ Soporte principal en inglés/alemán</li>
-              <li>⚠️ Horario europeo central</li>
-              <li>⚠️ Mercado enfocado en Europa Central</li>
-              <li>⚠️ Menos adaptado a España</li>
+              <li><Icon icon={TriangleAlert} size={16} /> Empresa alemana</li>
+              <li><Icon icon={TriangleAlert} size={16} /> Soporte principal en inglés/alemán</li>
+              <li><Icon icon={TriangleAlert} size={16} /> Horario europeo central</li>
+              <li><Icon icon={TriangleAlert} size={16} /> Mercado enfocado en Europa Central</li>
+              <li><Icon icon={TriangleAlert} size={16} /> Menos adaptado a España</li>
             </ul>
           </div>
         </div>

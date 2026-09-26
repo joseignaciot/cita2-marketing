@@ -11,6 +11,8 @@ import CTA from '../components/CTA.astro';
 
 import content from '../content/sectors/estetica.json';
 import DashboardMockup from '../components/DashboardMockup.astro';
+import Icon from '../components/Icon.astro';
+import { Check, TriangleAlert, X } from '@lucide/astro';
 
 const { pageTitle, pageDescription, aiDescription, heroTitle, heroSubtitle, features, testimonials, faqs } = content;
 
@@ -98,27 +100,27 @@ const schema = {
               </tr>
               <tr class="border-t bg-gray-50">
                 <td class="p-4">Comisiones</td>
-                <td class="p-4 text-center text-green-600">✅ Ninguna</td>
-                <td class="p-4 text-center text-green-600">✅ Ninguna</td>
-                <td class="p-4 text-center text-green-600">✅ Ninguna</td>
+                <td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /> Ninguna</td>
+                <td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /> Ninguna</td>
+                <td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /> Ninguna</td>
               </tr>
               <tr class="border-t">
                 <td class="p-4">Bonos y paquetes</td>
-                <td class="p-4 text-center text-green-600">✅ Incluido</td>
-                <td class="p-4 text-center text-red-500">❌ No</td>
-                <td class="p-4 text-center text-yellow-500">⚠️ Básico</td>
+                <td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /> Incluido</td>
+                <td class="p-4 text-center text-red-500"><Icon icon={X} size={16} /> No</td>
+                <td class="p-4 text-center text-yellow-500"><Icon icon={TriangleAlert} size={16} /> Básico</td>
               </tr>
               <tr class="border-t bg-gray-50">
                 <td class="p-4">Ficha de tratamientos</td>
-                <td class="p-4 text-center text-green-600">✅ Completa</td>
-                <td class="p-4 text-center text-yellow-500">⚠️ Básica</td>
-                <td class="p-4 text-center text-red-500">❌ No</td>
+                <td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /> Completa</td>
+                <td class="p-4 text-center text-yellow-500"><Icon icon={TriangleAlert} size={16} /> Básica</td>
+                <td class="p-4 text-center text-red-500"><Icon icon={X} size={16} /> No</td>
               </tr>
               <tr class="border-t">
                 <td class="p-4">WhatsApp Business</td>
-                <td class="p-4 text-center text-green-600">✅ Módulo opcional (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)</td>
-                <td class="p-4 text-center text-red-500">❌ No</td>
-                <td class="p-4 text-center text-red-500">❌ No</td>
+                <td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /> Módulo opcional (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)</td>
+                <td class="p-4 text-center text-red-500"><Icon icon={X} size={16} /> No</td>
+                <td class="p-4 text-center text-red-500"><Icon icon={X} size={16} /> No</td>
               </tr>
               <tr class="border-t bg-gray-50">
                 <td class="p-4">Setup tiempo</td>

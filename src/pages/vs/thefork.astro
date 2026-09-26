@@ -2,6 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import { tableIcon } from '../../lib/tableIcon';
+import Icon from '../../components/Icon.astro';
+import { Check, TriangleAlert, Trophy, Handshake } from '@lucide/astro';
 
 const pageTitle = 'Agenda de Reservas vs TheFork Manager 2026 — Comparativa real';
 const pageDescription = 'Comparativa honesta TheFork Manager vs Agenda de Reservas para restaurantes. Cuota real, comisiones por comensal, funcionalidades y ahorro anual calculado.';
@@ -31,70 +34,70 @@ const features = [
   {
     category: 'Reservas y gestión de mesas',
     rows: [
-      { name: 'Motor de reservas online',        ours: '✅ Propio, sin marca ajena',  theirs: '✅ Plataforma TheFork',  winner: 'tie'  },
-      { name: 'Gestión de turnos/franjas',        ours: '✅ Configurable',             theirs: '✅ Avanzado',            winner: 'tie'  },
-      { name: 'Lista de espera',                 ours: '✅ Incluida',                 theirs: '✅ Incluida',            winner: 'tie'  },
-      { name: 'Plano de sala/mesas',             ours: '✅ Incluido',                 theirs: '✅ Avanzado',            winner: 'tie'  },
-      { name: 'Capacidad por zona',              ours: '✅ Configurable',             theirs: '✅ Configurable',        winner: 'tie'  },
-      { name: 'Reservas manuales (teléfono)',    ours: '✅ Con notas internas',       theirs: '✅ Incluidas',           winner: 'tie'  },
+      { name: 'Motor de reservas online',        ours: `${tableIcon('check','text-green-600')} Propio, sin marca ajena`,  theirs: `${tableIcon('check','text-green-600')} Plataforma TheFork`,  winner: 'tie'  },
+      { name: 'Gestión de turnos/franjas',        ours: `${tableIcon('check','text-green-600')} Configurable`,             theirs: `${tableIcon('check','text-green-600')} Avanzado`,            winner: 'tie'  },
+      { name: 'Lista de espera',                 ours: `${tableIcon('check','text-green-600')} Incluida`,                 theirs: `${tableIcon('check','text-green-600')} Incluida`,            winner: 'tie'  },
+      { name: 'Plano de sala/mesas',             ours: `${tableIcon('check','text-green-600')} Incluido`,                 theirs: `${tableIcon('check','text-green-600')} Avanzado`,            winner: 'tie'  },
+      { name: 'Capacidad por zona',              ours: `${tableIcon('check','text-green-600')} Configurable`,             theirs: `${tableIcon('check','text-green-600')} Configurable`,        winner: 'tie'  },
+      { name: 'Reservas manuales (teléfono)',    ours: `${tableIcon('check','text-green-600')} Con notas internas`,       theirs: `${tableIcon('check','text-green-600')} Incluidas`,           winner: 'tie'  },
     ]
   },
   {
     category: 'Comunicación con clientes',
     rows: [
-      { name: 'Confirmación automática email',   ours: '✅ Personalizable',           theirs: '✅ Estándar',            winner: 'tie'  },
-      { name: 'Recordatorio automático',         ours: '✅ Email + WhatsApp',         theirs: '⚠️ Solo email',         winner: 'ours' },
-      { name: 'WhatsApp Business API',           ours: '✅ Nativo (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)',         theirs: '❌ No disponible',       winner: 'ours' },
-      { name: 'SMS recordatorio',                ours: '✅ Disponible',               theirs: '❌ No',                  winner: 'ours' },
-      { name: 'Mensajes post-visita',            ours: '✅ Automatizados',            theirs: '⚠️ Limitado',           winner: 'ours' },
-      { name: 'Encuesta de satisfacción',        ours: '✅ Configurable',             theirs: '✅ Plataforma propia',   winner: 'tie'  },
+      { name: 'Confirmación automática email',   ours: `${tableIcon('check','text-green-600')} Personalizable`,           theirs: `${tableIcon('check','text-green-600')} Estándar`,            winner: 'tie'  },
+      { name: 'Recordatorio automático',         ours: `${tableIcon('check','text-green-600')} Email + WhatsApp`,         theirs: `${tableIcon('warn','text-amber-500')} Solo email`,         winner: 'ours' },
+      { name: 'WhatsApp Business API',           ours: `${tableIcon('check','text-green-600')} Nativo (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)`,         theirs: `${tableIcon('x','text-red-500')} No disponible`,       winner: 'ours' },
+      { name: 'SMS recordatorio',                ours: `${tableIcon('check','text-green-600')} Disponible`,               theirs: `${tableIcon('x','text-red-500')} No`,                  winner: 'ours' },
+      { name: 'Mensajes post-visita',            ours: `${tableIcon('check','text-green-600')} Automatizados`,            theirs: `${tableIcon('warn','text-amber-500')} Limitado`,           winner: 'ours' },
+      { name: 'Encuesta de satisfacción',        ours: `${tableIcon('check','text-green-600')} Configurable`,             theirs: `${tableIcon('check','text-green-600')} Plataforma propia`,   winner: 'tie'  },
     ]
   },
   {
     category: 'CRM y datos de clientes',
     rows: [
-      { name: 'Propiedad de los datos',          ours: '✅ Tuyos al 100%',           theirs: '❌ De TheFork',         winner: 'ours' },
-      { name: 'Historial de visitas',            ours: '✅ Completo',                 theirs: '⚠️ Solo vía plataforma',winner: 'ours' },
-      { name: 'Notas internas por cliente',      ours: '✅ Ilimitadas',               theirs: '⚠️ Básico',             winner: 'ours' },
-      { name: 'Segmentación / filtros',          ours: '✅ Por etiquetas y visitas',  theirs: '⚠️ Limitado',           winner: 'ours' },
-      { name: 'Exportar base de clientes',       ours: '✅ CSV / Excel',              theirs: '❌ No permitido',        winner: 'ours' },
-      { name: 'Marketing directo a clientes',    ours: '✅ Email + WhatsApp',         theirs: '❌ Solo vía TheFork',   winner: 'ours' },
+      { name: 'Propiedad de los datos',          ours: `${tableIcon('check','text-green-600')} Tuyos al 100%`,           theirs: `${tableIcon('x','text-red-500')} De TheFork`,         winner: 'ours' },
+      { name: 'Historial de visitas',            ours: `${tableIcon('check','text-green-600')} Completo`,                 theirs: `${tableIcon('warn','text-amber-500')} Solo vía plataforma`,winner: 'ours' },
+      { name: 'Notas internas por cliente',      ours: `${tableIcon('check','text-green-600')} Ilimitadas`,               theirs: `${tableIcon('warn','text-amber-500')} Básico`,             winner: 'ours' },
+      { name: 'Segmentación / filtros',          ours: `${tableIcon('check','text-green-600')} Por etiquetas y visitas`,  theirs: `${tableIcon('warn','text-amber-500')} Limitado`,           winner: 'ours' },
+      { name: 'Exportar base de clientes',       ours: `${tableIcon('check','text-green-600')} CSV / Excel`,              theirs: `${tableIcon('x','text-red-500')} No permitido`,        winner: 'ours' },
+      { name: 'Marketing directo a clientes',    ours: `${tableIcon('check','text-green-600')} Email + WhatsApp`,         theirs: `${tableIcon('x','text-red-500')} Solo vía TheFork`,   winner: 'ours' },
     ]
   },
   {
     category: 'Reseñas y visibilidad',
     rows: [
-      { name: 'Reseñas en plataforma',           ours: '—',                          theirs: '✅ TheFork Reviews',     winner: 'theirs'},
-      { name: 'Visibilidad en buscador TheFork', ours: '—',                          theirs: '✅ 4M+ usuarios/mes',    winner: 'theirs'},
-      { name: 'Descuentos para captar clientes', ours: '—',                          theirs: '⚠️ Pierdes margen',     winner: 'tie'  },
-      { name: 'Google Business integrado',       ours: '✅ Reserva desde Google',    theirs: '✅ Integrado',           winner: 'tie'  },
-      { name: 'Widget en tu web propia',         ours: '✅ Sin comisión',             theirs: '⚠️ Comisión igual',     winner: 'ours' },
+      { name: 'Reseñas en plataforma',           ours: '—',                          theirs: `${tableIcon('check','text-green-600')} TheFork Reviews`,     winner: 'theirs'},
+      { name: 'Visibilidad en buscador TheFork', ours: '—',                          theirs: `${tableIcon('check','text-green-600')} 4M+ usuarios/mes`,    winner: 'theirs'},
+      { name: 'Descuentos para captar clientes', ours: '—',                          theirs: `${tableIcon('warn','text-amber-500')} Pierdes margen`,     winner: 'tie'  },
+      { name: 'Google Business integrado',       ours: `${tableIcon('check','text-green-600')} Reserva desde Google`,    theirs: `${tableIcon('check','text-green-600')} Integrado`,           winner: 'tie'  },
+      { name: 'Widget en tu web propia',         ours: `${tableIcon('check','text-green-600')} Sin comisión`,             theirs: `${tableIcon('warn','text-amber-500')} Comisión igual`,     winner: 'ours' },
     ]
   },
   {
     category: 'Pagos y facturación',
     rows: [
-      { name: 'Pago online al reservar',         ours: '✅ Stripe / Redsys',         theirs: '✅ Disponible',          winner: 'tie'  },
-      { name: 'Cobro de depósito',               ours: '✅ Configurable',             theirs: '✅ Disponible',          winner: 'tie'  },
+      { name: 'Pago online al reservar',         ours: `${tableIcon('check','text-green-600')} Stripe / Redsys`,         theirs: `${tableIcon('check','text-green-600')} Disponible`,          winner: 'tie'  },
+      { name: 'Cobro de depósito',               ours: `${tableIcon('check','text-green-600')} Configurable`,             theirs: `${tableIcon('check','text-green-600')} Disponible`,          winner: 'tie'  },
       { name: 'Comisión plataforma por pago',    ours: '0%',                         theirs: '0%',                    winner: 'tie'  },
-      { name: 'Facturación automática',          ours: '⚠️ Básica',                  theirs: '⚠️ No especializada',   winner: 'tie'  },
+      { name: 'Facturación automática',          ours: `${tableIcon('warn','text-amber-500')} Básica`,                  theirs: `${tableIcon('warn','text-amber-500')} No especializada`,   winner: 'tie'  },
     ]
   },
   {
     category: 'Turismo y servicios (más allá del restaurante)',
     rows: [
-      { name: 'Tours y actividades',             ours: '✅ Plan Turismo',             theirs: '❌ Solo restaurantes',  winner: 'ours' },
-      { name: 'Citas de servicios (peluquería…)',ours: '✅ Plan Servicios',           theirs: '❌ No',                 winner: 'ours' },
-      { name: 'Gestión multivertical',           ours: '✅ Un solo panel',            theirs: '❌ Solo restauración',  winner: 'ours' },
+      { name: 'Tours y actividades',             ours: `${tableIcon('check','text-green-600')} Plan Turismo`,             theirs: `${tableIcon('x','text-red-500')} Solo restaurantes`,  winner: 'ours' },
+      { name: 'Citas de servicios (peluquería…)',ours: `${tableIcon('check','text-green-600')} Plan Servicios`,           theirs: `${tableIcon('x','text-red-500')} No`,                 winner: 'ours' },
+      { name: 'Gestión multivertical',           ours: `${tableIcon('check','text-green-600')} Un solo panel`,            theirs: `${tableIcon('x','text-red-500')} Solo restauración`,  winner: 'ours' },
     ]
   },
   {
     category: 'Soporte y usabilidad',
     rows: [
-      { name: 'Idioma de la plataforma',         ours: '✅ Español nativo',           theirs: '✅ Español',            winner: 'tie'  },
+      { name: 'Idioma de la plataforma',         ours: `${tableIcon('check','text-green-600')} Español nativo`,           theirs: `${tableIcon('check','text-green-600')} Español`,            winner: 'tie'  },
       { name: 'Setup inicial',                   ours: '2 minutos',                  theirs: '1–2 días con equipo',   winner: 'ours' },
-      { name: 'Soporte técnico',                 ours: '✅ Chat + email',             theirs: '✅ Teléfono + email',   winner: 'tie'  },
-      { name: 'Contrato de permanencia',         ours: 'Mensual, cancela cuando quieras', theirs: '⚠️ Contrato anual', winner: 'ours' },
+      { name: 'Soporte técnico',                 ours: `${tableIcon('check','text-green-600')} Chat + email`,             theirs: `${tableIcon('check','text-green-600')} Teléfono + email`,   winner: 'tie'  },
+      { name: 'Contrato de permanencia',         ours: 'Mensual, cancela cuando quieras', theirs: `${tableIcon('warn','text-amber-500')} Contrato anual`, winner: 'ours' },
     ]
   },
 ];
@@ -124,13 +127,13 @@ features.forEach(cat => cat.rows.forEach(r => wins[r.winner as keyof typeof wins
         </p>
         <div class="flex flex-wrap justify-center gap-4 text-sm mb-12">
           <span class="px-4 py-2 bg-green-500/20 border border-green-500/30 text-green-300 rounded-full">
-            🏆 {wins.ours} ventajas Agenda de Reservas
+            <Icon icon={Trophy} size={16} /> {wins.ours} ventajas Agenda de Reservas
           </span>
           <span class="px-4 py-2 bg-red-500/20 border border-red-500/30 text-red-300 rounded-full">
-            ✅ {wins.theirs} ventajas TheFork
+            <Icon icon={Check} size={16} /> {wins.theirs} ventajas TheFork
           </span>
           <span class="px-4 py-2 bg-gray-500/20 border border-gray-500/30 text-gray-400 rounded-full">
-            🤝 {wins.tie} empates
+            <Icon icon={Handshake} size={16} /> {wins.tie} empates
           </span>
         </div>
 
@@ -232,11 +235,11 @@ features.forEach(cat => cat.rows.forEach(r => wins[r.winner as keyof typeof wins
                       <td class="py-3 px-4 font-medium text-gray-700">{row.name}</td>
                       <td class={`py-3 px-4 text-center ${row.winner === 'ours' ? 'text-green-700 font-semibold bg-green-50' : 'text-gray-600'}`}>
                         <span set:html={row.ours} />
-                        {row.winner === 'ours' && <span class="ml-1.5">🏆</span>}
+                        {row.winner === 'ours' && <span class="ml-1.5"><Icon icon={Trophy} size={16} /></span>}
                       </td>
                       <td class={`py-3 px-4 text-center ${row.winner === 'theirs' ? 'text-green-700 font-semibold bg-green-50' : 'text-gray-600'}`}>
-                        {row.theirs}
-                        {row.winner === 'theirs' && <span class="ml-1.5">🏆</span>}
+                        <span set:html={row.theirs} />
+                        {row.winner === 'theirs' && <span class="ml-1.5"><Icon icon={Trophy} size={16} /></span>}
                       </td>
                     </tr>
                   ))}
@@ -256,19 +259,19 @@ features.forEach(cat => cat.rows.forEach(r => wins[r.winner as keyof typeof wins
 
         <div class="grid md:grid-cols-2 gap-6">
           <div class="bg-white rounded-2xl p-6 border border-red-100">
-            <h3 class="font-bold text-red-600 mb-3 flex items-center gap-2">⚠️ Cuanto más llenas el restaurante, más pagas</h3>
+            <h3 class="font-bold text-red-600 mb-3 flex items-center gap-2"><Icon icon={TriangleAlert} size={16} /> Cuanto más llenas el restaurante, más pagas</h3>
             <p class="text-gray-600 text-sm">La comisión por comensal (1,5–2€) se multiplica por cada persona que viene a través de TheFork. Con 300 comensales al mes, pagas ~525€ extra solo en comisiones, además de la cuota.</p>
           </div>
           <div class="bg-white rounded-2xl p-6 border border-red-100">
-            <h3 class="font-bold text-red-600 mb-3 flex items-center gap-2">⚠️ Los clientes son de TheFork, no tuyos</h3>
+            <h3 class="font-bold text-red-600 mb-3 flex items-center gap-2"><Icon icon={TriangleAlert} size={16} /> Los clientes son de TheFork, no tuyos</h3>
             <p class="text-gray-600 text-sm">Los comensales que reservan por TheFork tienen su perfil en la plataforma, no en tu CRM. Si cancelas TheFork, no puedes contactarlos. No son "tus clientes" legalmente según su política.</p>
           </div>
           <div class="bg-white rounded-2xl p-6 border border-red-100">
-            <h3 class="font-bold text-red-600 mb-3 flex items-center gap-2">⚠️ Contrato anual con penalizaciones</h3>
+            <h3 class="font-bold text-red-600 mb-3 flex items-center gap-2"><Icon icon={TriangleAlert} size={16} /> Contrato anual con penalizaciones</h3>
             <p class="text-gray-600 text-sm">TheFork Manager suele requerir contrato anual. Cancelar antes conlleva penalizaciones. Agenda de Reservas es mensual: si no funciona, te vas sin coste en 30 días.</p>
           </div>
           <div class="bg-white rounded-2xl p-6 border border-red-100">
-            <h3 class="font-bold text-red-600 mb-3 flex items-center gap-2">⚠️ Sin WhatsApp ni comunicación directa</h3>
+            <h3 class="font-bold text-red-600 mb-3 flex items-center gap-2"><Icon icon={TriangleAlert} size={16} /> Sin WhatsApp ni comunicación directa</h3>
             <p class="text-gray-600 text-sm">TheFork no ofrece integración con WhatsApp Business. Todos sus recordatorios son email genérico con su marca. El 90% de tasa de apertura de WhatsApp vs el 20% de email es una ventaja competitiva real.</p>
           </div>
         </div>
@@ -303,12 +306,12 @@ features.forEach(cat => cat.rows.forEach(r => wins[r.winner as keyof typeof wins
           <div class="bg-green-900/30 border border-green-500/30 rounded-2xl p-8">
             <h3 class="font-bold text-green-400 mb-4 text-lg">Elige Agenda de Reservas si...</h3>
             <ul class="space-y-3 text-sm text-gray-300">
-              <li>✅ Quieres controlar tus datos y tus clientes</li>
-              <li>✅ Buscas precio fijo sin sorpresas</li>
-              <li>✅ Valoras WhatsApp Business para recordatorios</li>
-              <li>✅ Gestionas también turismo o servicios</li>
-              <li>✅ Quieres cancelar en cualquier momento</li>
-              <li>✅ Tu restaurante ya tiene clientela fija</li>
+              <li><Icon icon={Check} size={16} /> Quieres controlar tus datos y tus clientes</li>
+              <li><Icon icon={Check} size={16} /> Buscas precio fijo sin sorpresas</li>
+              <li><Icon icon={Check} size={16} /> Valoras WhatsApp Business para recordatorios</li>
+              <li><Icon icon={Check} size={16} /> Gestionas también turismo o servicios</li>
+              <li><Icon icon={Check} size={16} /> Quieres cancelar en cualquier momento</li>
+              <li><Icon icon={Check} size={16} /> Tu restaurante ya tiene clientela fija</li>
             </ul>
           </div>
           <div class="bg-gray-800 border border-gray-700 rounded-2xl p-8">

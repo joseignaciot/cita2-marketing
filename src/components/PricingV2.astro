@@ -1,6 +1,8 @@
 ---
 // PricingV2 - Modular pricing section
 // Prices loaded from API at build time, with static fallback
+import Icon from './Icon.astro';
+import { Scissors, UtensilsCrossed, Mountain, MessageCircle, CreditCard, Smartphone, Lock, X, Infinity as InfinityIcon, Check } from '@lucide/astro';
 
 const API_URL = 'https://api.agendadereservas.com';
 
@@ -44,7 +46,7 @@ const plans = [
   {
     key: 'service_business' as const,
     name: 'Servicios',
-    emoji: '✂️',
+    icon: Scissors,
     description: 'Peluquerías, clínicas, consultas, talleres y cualquier servicio con cita.',
     color: 'blue',
     popular: false,
@@ -52,7 +54,7 @@ const plans = [
   {
     key: 'restaurant' as const,
     name: 'Restaurante',
-    emoji: '🍽️',
+    icon: UtensilsCrossed,
     description: 'Restaurantes, bares, cafeterías con gestión de mesas y turnos de servicio.',
     color: 'orange',
     popular: true,
@@ -60,7 +62,7 @@ const plans = [
   {
     key: 'tourism_activities' as const,
     name: 'Turismo',
-    emoji: '🏔️',
+    icon: Mountain,
     description: 'Actividades, tours, excursiones, deportes y experiencias turísticas.',
     color: 'purple',
     popular: false,
@@ -79,19 +81,19 @@ const plans = [
 const addons = [
   {
     key: 'addon_whatsapp' as const,
-    icon: '💬',
+    icon: MessageCircle,
     name: 'WhatsApp',
     features: ['WhatsApp Business API', 'Bandeja de conversaciones', 'Plantillas aprobadas por Meta'],
   },
   {
     key: 'addon_payments' as const,
-    icon: '💳',
+    icon: CreditCard,
     name: 'Cobros Online',
     features: ['Pagos con Stripe y Redsys', 'Depósitos y cobros parciales', 'Enlace de pago para clientes', 'Reembolsos desde el panel'],
   },
   {
     key: 'addon_sms' as const,
-    icon: '📱',
+    icon: Smartphone,
     name: 'SMS Twilio',
     features: ['Recordatorios por SMS', 'Confirmaciones instantáneas', 'Requiere cuenta Twilio propia'],
   },
@@ -136,7 +138,7 @@ const baseFeatures = [
             </div>
           )}
           <div class="mb-6">
-            <span class="text-3xl mb-2 block">{plan.emoji}</span>
+            <span class="mb-2 block text-gray-700"><Icon icon={plan.icon} size={32} /></span>
             <h3 class="text-xl font-bold text-gray-900">{plan.name}</h3>
             <p class="text-sm text-gray-500 mt-1">{plan.description}</p>
           </div>
@@ -153,9 +155,7 @@ const baseFeatures = [
           <ul class="space-y-2 mb-8 flex-1">
             {baseFeatures.map(f => (
               <li class="flex items-start gap-2 text-sm text-gray-600">
-                <svg class="w-4 h-4 text-green-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
+                <Icon icon={Check} size={16} class="text-green-500 mt-0.5 shrink-0" />
                 {f}
               </li>
             ))}
@@ -183,7 +183,7 @@ const baseFeatures = [
           return (
             <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
               <div class="flex items-center gap-3 mb-4">
-                <span class="text-2xl">{addon.icon}</span>
+                <span class="text-gray-700"><Icon icon={addon.icon} size={28} /></span>
                 <div>
                   <h4 class="font-bold text-gray-900">{addon.name}</h4>
                   <p class="text-sm text-gray-500">
@@ -194,9 +194,7 @@ const baseFeatures = [
               <ul class="space-y-2">
                 {addon.features.map(f => (
                   <li class="flex items-center gap-2 text-sm text-gray-600">
-                    <svg class="w-3.5 h-3.5 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
+                    <Icon icon={Check} size={14} class="text-blue-500 shrink-0" />
                     {f}
                   </li>
                 ))}
@@ -236,13 +234,13 @@ const baseFeatures = [
     <!-- Trust badges -->
     <div class="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-600">
       {[
-        { icon: '🔒', text: 'Sin tarjeta para probar' },
-        { icon: '❌', text: 'Cancela cuando quieras' },
-        { icon: '🇪🇸', text: 'Soporte en español' },
-        { icon: '♾️', text: 'Sin límite de reservas' },
-      ].map(({ icon, text }) => (
+        { icon: Lock, text: 'Sin tarjeta para probar' },
+        { icon: X, text: 'Cancela cuando quieras' },
+        { icon: null, flag: '🇪🇸', text: 'Soporte en español' },
+        { icon: InfinityIcon, text: 'Sin límite de reservas' },
+      ].map(({ icon, text, flag }) => (
         <div class="flex items-center gap-2">
-          <span>{icon}</span>
+          <span>{icon ? <Icon icon={icon} size={20} /> : flag}</span>
           <span>{text}</span>
         </div>
       ))}

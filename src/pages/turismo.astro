@@ -9,6 +9,8 @@ import PricingV2 from '../components/PricingV2.astro';
 import FAQ from '../components/FAQ.astro';
 import DashboardMockup from '../components/DashboardMockup.astro';
 import '../styles/apple-design.css';
+import Icon from '../components/Icon.astro';
+import { Check, X, Anchor, Globe, Compass, Frown, Phone, Mail, MessageCircle, Bot, Moon, Brain, Euro } from '@lucide/astro';
 
 // Contenido editable desde el CMS → public/admin → Páginas de Sector → Turismo
 import content from '../content/sectors/turismo.json';
@@ -95,7 +97,7 @@ const schema = {
           <!-- Bókun -->
           <div class="bg-white rounded-2xl border-2 border-red-200 p-6">
             <div class="flex items-center gap-2 mb-1">
-              <span class="text-2xl">🌐</span>
+              <Icon icon={Globe} size={24} class="text-red-500" />
               <div>
                 <h3 class="font-bold text-red-600">Bókun</h3>
                 <p class="text-xs text-gray-400">De TripAdvisor · Precio en USD</p>
@@ -120,10 +122,10 @@ const schema = {
               </div>
             </div>
             <ul class="text-xs text-gray-400 space-y-1">
-              <li>❌ Precio en USD — fluctuación de cambio</li>
-              <li>❌ Sin soporte en español</li>
-              <li>❌ Sin WhatsApp</li>
-              <li>✔ Channel manager Viator</li>
+              <li><Icon icon={X} size={16} /> Precio en USD — fluctuación de cambio</li>
+              <li><Icon icon={X} size={16} /> Sin soporte en español</li>
+              <li><Icon icon={X} size={16} /> Sin WhatsApp</li>
+              <li><Icon icon={Check} size={16} /> Channel manager Viator</li>
             </ul>
             <p class="text-xs text-gray-300 mt-3">
               Fuente: <a data-competitor-source-url="bokun" href="https://www.bokun.io/pricing" target="_blank" rel="nofollow noopener noreferrer" class="underline hover:text-white"><span data-competitor-source="bokun">bokun.io · verificado</span></a>
@@ -134,7 +136,7 @@ const schema = {
           <!-- FareHarbor -->
           <div class="bg-white rounded-2xl border-2 border-orange-200 p-6">
             <div class="flex items-center gap-2 mb-1">
-              <span class="text-2xl">⚓</span>
+              <Icon icon={Anchor} size={28} class="text-orange-600" />
               <div>
                 <h3 class="font-bold text-orange-600">FareHarbor</h3>
                 <p class="text-xs text-gray-400">De Booking Holdings</p>
@@ -159,10 +161,10 @@ const schema = {
               </div>
             </div>
             <ul class="text-xs text-gray-400 space-y-1">
-              <li>❌ Comisión visible al cliente final</li>
-              <li>❌ Solo en inglés</li>
-              <li>❌ Sin WhatsApp</li>
-              <li>❌ No adaptado al mercado español</li>
+              <li><Icon icon={X} size={16} /> Comisión visible al cliente final</li>
+              <li><Icon icon={X} size={16} /> Solo en inglés</li>
+              <li><Icon icon={X} size={16} /> Sin WhatsApp</li>
+              <li><Icon icon={X} size={16} /> No adaptado al mercado español</li>
             </ul>
             <p class="text-xs text-gray-300 mt-3">
               Fuente: <a data-competitor-source-url="fareharbor" href="https://fareharbor.com/pricing/" target="_blank" rel="nofollow noopener noreferrer" class="underline hover:text-white"><span data-competitor-source="fareharbor">fareharbor.com · verificado</span></a>
@@ -173,10 +175,10 @@ const schema = {
           <!-- Agenda de Reservas -->
           <div class="bg-white rounded-2xl border-2 border-green-400 p-6 shadow-lg relative">
             <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-              La opción inteligente ✓
+              La opción inteligente <Icon icon={Check} size={16} />
             </div>
             <div class="flex items-center gap-2 mb-1">
-              <span class="text-2xl">🧭</span>
+              <Icon icon={Compass} size={24} class="text-green-600" />
               <div>
                 <h3 class="font-bold text-green-600">Agenda de Reservas</h3>
                 <p class="text-xs text-gray-400">Plan Turismo · En euros</p>
@@ -201,10 +203,10 @@ const schema = {
               </div>
             </div>
             <ul class="text-xs text-gray-600 space-y-1">
-              <li>✅ En euros, soporte en español</li>
-              <li>✅ WhatsApp Business API nativo (módulo opcional)</li>
-              <li>✅ Manifest de participantes incluido</li>
-              <li>✅ Precios por adulto/niño/grupo</li>
+              <li><Icon icon={Check} size={16} /> En euros, soporte en español</li>
+              <li><Icon icon={Check} size={16} /> WhatsApp Business API nativo (módulo opcional)</li>
+              <li><Icon icon={Check} size={16} /> Manifest de participantes incluido</li>
+              <li><Icon icon={Check} size={16} /> Precios por adulto/niño/grupo</li>
             </ul>
           </div>
         </div>
@@ -248,7 +250,7 @@ const schema = {
           <!-- SIN chat IA -->
           <div class="bg-red-50 rounded-3xl p-8 border-2 border-red-100">
             <div class="flex items-center gap-3 mb-6">
-              <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">😩</div>
+              <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-red-500"><Icon icon={Frown} size={20} /></div>
               <div>
                 <h3 class="font-bold text-gray-900">Sin asistente IA</h3>
                 <p class="text-sm text-red-600">Cómo reservan los turistas hoy</p>
@@ -256,14 +258,14 @@ const schema = {
             </div>
             <div class="space-y-4">
               {[
-                { icon: "📞", text: "Buscan tu teléfono → Llaman → Nadie responde" },
-                { icon: "📧", text: "Envían un email → Esperan 24-48h tu respuesta" },
-                { icon: "🌐", text: "Intentan el formulario → Demasiados campos → Abandonan" },
-                { icon: "💬", text: "Preguntan por WhatsApp → Tú lo ves cuando puedes" },
-                { icon: "😞", text: "Se van a reservar con la competencia" },
+                { icon: Phone, text: "Buscan tu teléfono → Llaman → Nadie responde" },
+                { icon: Mail, text: "Envían un email → Esperan 24-48h tu respuesta" },
+                { icon: Globe, text: "Intentan el formulario → Demasiados campos → Abandonan" },
+                { icon: MessageCircle, text: "Preguntan por WhatsApp → Tú lo ves cuando puedes" },
+                { icon: Frown, text: "Se van a reservar con la competencia" },
               ].map(item => (
                 <div class="flex items-start gap-3">
-                  <span class="text-xl flex-shrink-0">{item.icon}</span>
+                  <span class="flex-shrink-0 text-red-500"><Icon icon={item.icon} size={20} /></span>
                   <p class="text-sm text-red-800">{item.text}</p>
                 </div>
               ))}
@@ -279,7 +281,7 @@ const schema = {
               Disponible en tu web en 5 min
             </div>
             <div class="flex items-center gap-3 mb-6">
-              <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">🤖</div>
+              <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"><Icon icon={Bot} size={20} /></div>
               <div>
                 <h3 class="font-bold text-gray-900">Con Asistente IA Cita2</h3>
                 <p class="text-sm text-blue-600">Cómo reservan tus turistas desde mañana</p>
@@ -305,14 +307,14 @@ const schema = {
               </div>
               <div class="flex justify-start">
                 <div class="bg-blue-600 rounded-2xl rounded-tl-none px-4 py-2.5 text-sm text-white shadow-sm max-w-xs">
-                  Perfecto ✅ Te reservo las 10:00 del sábado. Necesito tu nombre y teléfono para confirmar.
+                  Perfecto <Icon icon={Check} size={16} /> Te reservo las 10:00 del sábado. Necesito tu nombre y teléfono para confirmar.
                 </div>
               </div>
             </div>
 
             <div class="bg-white rounded-xl p-4 border border-blue-100">
               <div class="flex items-center gap-2 text-sm">
-                <span class="text-green-600 font-bold">✅ Reserva confirmada</span>
+                <span class="text-green-600 font-bold"><Icon icon={Check} size={16} /> Reserva confirmada</span>
                 <span class="text-gray-400">·</span>
                 <span class="text-gray-500">en tu agenda automáticamente</span>
               </div>
@@ -325,26 +327,26 @@ const schema = {
         <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
           {[
             {
-              icon: "🌙",
+              icon: Moon,
               title: "Reservas mientras duermes",
               stat: "60% de reservas fuera de horario",
               desc: "El 60% de las búsquedas de actividades turísticas son fuera del horario de oficina. Tu IA atiende 24/7."
             },
             {
-              icon: "🧠",
+              icon: Brain,
               title: "Conoce tu negocio",
               stat: "Respuestas en <3 segundos",
               desc: "Precios, disponibilidad, qué incluye, requisitos de edad... Todo respondido al instante con tus datos reales."
             },
             {
-              icon: "💶",
+              icon: Euro,
               title: "Sin comisiones por reserva",
               stat: "0€ por reserva completada",
               desc: "Bókun y FareHarbor cobran 1,5-6% por reserva. Nuestro chat IA está incluido en tu plan mensual."
             }
           ].map(b => (
             <div class="bg-gray-50 rounded-2xl p-6 text-center hover-lift">
-              <div class="text-4xl mb-4">{b.icon}</div>
+              <div class="mb-4 flex justify-center text-blue-600"><Icon icon={b.icon} size={36} /></div>
               <div class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full inline-block mb-3">{b.stat}</div>
               <h3 class="font-bold text-gray-900 mb-2">{b.title}</h3>
               <p class="text-sm text-gray-500">{b.desc}</p>

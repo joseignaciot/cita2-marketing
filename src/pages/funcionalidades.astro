@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import { Check, Coins, TriangleAlert, X } from '@lucide/astro';
 
 const canonicalUrl = 'https://agendadereservas.com/funcionalidades/';
 
@@ -182,19 +184,19 @@ const featureCategories = [
               </tr>
             </thead>
             <tbody class="text-sm">
-              <tr class="border-t"><td class="p-4">Reservas online</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td></tr>
-              <tr class="border-t bg-gray-50"><td class="p-4">Recordatorios email</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td></tr>
-              <tr class="border-t"><td class="p-4">WhatsApp Business</td><td class="p-4 text-center text-yellow-500">💰</td><td class="p-4 text-center text-red-500">❌</td><td class="p-4 text-center text-red-500">❌</td></tr>
-              <tr class="border-t bg-gray-50"><td class="p-4">Recordatorios SMS</td><td class="p-4 text-center text-yellow-500">💰</td><td class="p-4 text-center text-yellow-500">💰</td><td class="p-4 text-center text-yellow-500">💰</td></tr>
-              <tr class="border-t"><td class="p-4">Pagos online</td><td class="p-4 text-center text-yellow-500">💰</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td></tr>
-              <tr class="border-t bg-gray-50"><td class="p-4">Bonos/paquetes</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-red-500">❌</td><td class="p-4 text-center text-yellow-500">⚠️</td></tr>
-              <tr class="border-t"><td class="p-4">Usuarios ilimitados</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-red-500">❌</td><td class="p-4 text-center text-red-500">❌</td></tr>
+              <tr class="border-t"><td class="p-4">Reservas online</td><td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /></td><td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /></td><td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /></td></tr>
+              <tr class="border-t bg-gray-50"><td class="p-4">Recordatorios email</td><td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /></td><td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /></td><td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /></td></tr>
+              <tr class="border-t"><td class="p-4">WhatsApp Business</td><td class="p-4 text-center text-yellow-500"><Icon icon={Coins} size={16} /></td><td class="p-4 text-center text-red-500"><Icon icon={X} size={16} /></td><td class="p-4 text-center text-red-500"><Icon icon={X} size={16} /></td></tr>
+              <tr class="border-t bg-gray-50"><td class="p-4">Recordatorios SMS</td><td class="p-4 text-center text-yellow-500"><Icon icon={Coins} size={16} /></td><td class="p-4 text-center text-yellow-500"><Icon icon={Coins} size={16} /></td><td class="p-4 text-center text-yellow-500"><Icon icon={Coins} size={16} /></td></tr>
+              <tr class="border-t"><td class="p-4">Pagos online</td><td class="p-4 text-center text-yellow-500"><Icon icon={Coins} size={16} /></td><td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /></td><td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /></td></tr>
+              <tr class="border-t bg-gray-50"><td class="p-4">Bonos/paquetes</td><td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /></td><td class="p-4 text-center text-red-500"><Icon icon={X} size={16} /></td><td class="p-4 text-center text-yellow-500"><Icon icon={TriangleAlert} size={16} /></td></tr>
+              <tr class="border-t"><td class="p-4">Usuarios ilimitados</td><td class="p-4 text-center text-green-600"><Icon icon={Check} size={16} /></td><td class="p-4 text-center text-red-500"><Icon icon={X} size={16} /></td><td class="p-4 text-center text-red-500"><Icon icon={X} size={16} /></td></tr>
               <tr class="border-t bg-gray-50"><td class="p-4">Precio (3 empleados)</td><td class="p-4 text-center font-bold text-green-600"><span data-price-key="service_business.monthly">19</span>€</td><td class="p-4 text-center font-bold">147€</td><td class="p-4 text-center font-bold">63€</td></tr>
             </tbody>
           </table>
         </div>
         <p class="text-center text-sm text-gray-700 mt-4">
-          ✅ Incluido · 💰 Pago extra · ❌ No disponible · ⚠️ Limitado
+          <Icon icon={Check} size={16} /> Incluido · <Icon icon={Coins} size={16} /> Pago extra · <Icon icon={X} size={16} /> No disponible · <Icon icon={TriangleAlert} size={16} /> Limitado
         </p>
       </div>
     </section>

@@ -3,6 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import pricingData from '../../content/pricing.json';
+import { tableIcon } from '../../lib/tableIcon';
+import Icon from '../../components/Icon.astro';
+import { Check, Coins, Trophy, Handshake, Target, Heart } from '@lucide/astro';
 
 // Precios de build-time leídos desde pricing.json
 const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
@@ -52,23 +55,23 @@ const comparisonData = [
   {
     category: 'Funcionalidades Core',
     features: [
-      { name: 'Calendario y agenda', cita2: '✅ Avanzado', agendapro: '✅ Avanzado', winner: 'tie' },
-      { name: 'Reservas online', cita2: '✅ Incluido', agendapro: '✅ Incluido', winner: 'tie' },
-      { name: 'Recordatorios email', cita2: '✅ Incluido', agendapro: '✅ Incluido', winner: 'tie' },
-      { name: 'Recordatorios SMS', cita2: '✅ Disponible (+<span data-price-key="addon_sms.monthly">15</span>€/mes)', agendapro: '⚠️ Pago aparte', winner: 'cita2' },
-      { name: 'WhatsApp Business', cita2: '✅ Disponible (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)', agendapro: '❌ No', winner: 'cita2' },
-      { name: 'Ficha de clientes', cita2: '✅ Completa', agendapro: '✅ Completa', winner: 'tie' },
-      { name: 'Historial de servicios', cita2: '✅ Detallado', agendapro: '✅ Básico', winner: 'cita2' },
-      { name: 'Estadísticas y KPIs', cita2: '✅ Dashboard', agendapro: '✅ Reportes', winner: 'tie' },
+      { name: 'Calendario y agenda', cita2: `${tableIcon('check','text-green-600')} Avanzado`, agendapro: `${tableIcon('check','text-green-600')} Avanzado`, winner: 'tie' },
+      { name: 'Reservas online', cita2: `${tableIcon('check','text-green-600')} Incluido`, agendapro: `${tableIcon('check','text-green-600')} Incluido`, winner: 'tie' },
+      { name: 'Recordatorios email', cita2: `${tableIcon('check','text-green-600')} Incluido`, agendapro: `${tableIcon('check','text-green-600')} Incluido`, winner: 'tie' },
+      { name: 'Recordatorios SMS', cita2: `${tableIcon('check','text-green-600')} Disponible (+<span data-price-key="addon_sms.monthly">15</span>€/mes)`, agendapro: `${tableIcon('warn','text-amber-500')} Pago aparte`, winner: 'cita2' },
+      { name: 'WhatsApp Business', cita2: `${tableIcon('check','text-green-600')} Disponible (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)`, agendapro: `${tableIcon('x','text-red-500')} No`, winner: 'cita2' },
+      { name: 'Ficha de clientes', cita2: `${tableIcon('check','text-green-600')} Completa`, agendapro: `${tableIcon('check','text-green-600')} Completa`, winner: 'tie' },
+      { name: 'Historial de servicios', cita2: `${tableIcon('check','text-green-600')} Detallado`, agendapro: `${tableIcon('check','text-green-600')} Básico`, winner: 'cita2' },
+      { name: 'Estadísticas y KPIs', cita2: `${tableIcon('check','text-green-600')} Dashboard`, agendapro: `${tableIcon('check','text-green-600')} Reportes`, winner: 'tie' },
     ]
   },
   {
     category: 'Pagos y Facturación',
     features: [
-      { name: 'Pagos online', cita2: '✅ Stripe', agendapro: '✅ Redsys', winner: 'tie' },
-      { name: 'Depósitos/reservas', cita2: '✅ Configurable', agendapro: '⚠️ Limitado', winner: 'cita2' },
-      { name: 'Facturación', cita2: '⚠️ Básica', agendapro: '✅ Avanzada', winner: 'agendapro' },
-      { name: 'TPV integrado', cita2: '❌ No', agendapro: '✅ Sí', winner: 'agendapro' },
+      { name: 'Pagos online', cita2: `${tableIcon('check','text-green-600')} Stripe`, agendapro: `${tableIcon('check','text-green-600')} Redsys`, winner: 'tie' },
+      { name: 'Depósitos/reservas', cita2: `${tableIcon('check','text-green-600')} Configurable`, agendapro: `${tableIcon('warn','text-amber-500')} Limitado`, winner: 'cita2' },
+      { name: 'Facturación', cita2: `${tableIcon('warn','text-amber-500')} Básica`, agendapro: `${tableIcon('check','text-green-600')} Avanzada`, winner: 'agendapro' },
+      { name: 'TPV integrado', cita2: `${tableIcon('x','text-red-500')} No`, agendapro: `${tableIcon('check','text-green-600')} Sí`, winner: 'agendapro' },
     ]
   },
   {
@@ -77,17 +80,17 @@ const comparisonData = [
       { name: 'Setup inicial', cita2: '2 minutos (presets)', agendapro: '30-60 minutos', winner: 'cita2' },
       { name: 'Interfaz', cita2: 'Moderna, simple', agendapro: 'Funcional', winner: 'cita2' },
       { name: 'App móvil', cita2: 'Web app responsive', agendapro: 'Nativa iOS/Android', winner: 'agendapro' },
-      { name: 'Velocidad', cita2: '⚡ Rápida', agendapro: '⚡ Rápida', winner: 'tie' },
-      { name: 'Soporte español', cita2: '✅ Chat tiempo real', agendapro: '✅ Email/teléfono', winner: 'tie' },
+      { name: 'Velocidad', cita2: `${tableIcon('zap','text-amber-500')} Rápida`, agendapro: `${tableIcon('zap','text-amber-500')} Rápida`, winner: 'tie' },
+      { name: 'Soporte español', cita2: `${tableIcon('check','text-green-600')} Chat tiempo real`, agendapro: `${tableIcon('check','text-green-600')} Email/teléfono`, winner: 'tie' },
     ]
   },
   {
     category: 'Sectores Específicos',
     features: [
-      { name: 'Peluquerías', cita2: '✅ Preset incluido', agendapro: '✅ Configurable', winner: 'tie' },
-      { name: 'Restaurantes', cita2: '✅ Gestión mesas', agendapro: '✅ Gestión mesas', winner: 'tie' },
-      { name: 'Turismo', cita2: '✅ Capacidad, extras', agendapro: '⚠️ Básico', winner: 'cita2' },
-      { name: 'Estética/spa', cita2: '✅ Ficha tratamientos', agendapro: '⚠️ Básica', winner: 'cita2' },
+      { name: 'Peluquerías', cita2: `${tableIcon('check','text-green-600')} Preset incluido`, agendapro: `${tableIcon('check','text-green-600')} Configurable`, winner: 'tie' },
+      { name: 'Restaurantes', cita2: `${tableIcon('check','text-green-600')} Gestión mesas`, agendapro: `${tableIcon('check','text-green-600')} Gestión mesas`, winner: 'tie' },
+      { name: 'Turismo', cita2: `${tableIcon('check','text-green-600')} Capacidad, extras`, agendapro: `${tableIcon('warn','text-amber-500')} Básico`, winner: 'cita2' },
+      { name: 'Estética/spa', cita2: `${tableIcon('check','text-green-600')} Ficha tratamientos`, agendapro: `${tableIcon('warn','text-amber-500')} Básica`, winner: 'cita2' },
     ]
   }
 ];
@@ -120,13 +123,13 @@ comparisonData.forEach(cat => {
         </p>
         <div class="flex flex-wrap justify-center gap-4 text-sm">
           <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full">
-            ✅ {winnerCount.cita2} puntos ganados por Agenda de Reservas
+            <Icon icon={Check} size={16} /> {winnerCount.cita2} puntos ganados por Agenda de Reservas
           </span>
           <span class="px-4 py-2 bg-red-100 text-red-700 rounded-full">
-            ✅ {winnerCount.agendapro} puntos ganados por AgendaPro
+            <Icon icon={Check} size={16} /> {winnerCount.agendapro} puntos ganados por AgendaPro
           </span>
           <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full">
-            🤝 {winnerCount.tie} empates
+            <Icon icon={Handshake} size={16} /> {winnerCount.tie} empates
           </span>
         </div>
       </div>
@@ -136,7 +139,7 @@ comparisonData.forEach(cat => {
     <section class="py-12 border-b">
       <div class="container mx-auto px-4 max-w-4xl">
         <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
-          <h2 class="text-xl font-bold text-yellow-800 mb-4">🎯 Veredicto rápido</h2>
+          <h2 class="text-xl font-bold text-yellow-800 mb-4 flex items-center gap-2"><Icon icon={Target} size={20} /> Veredicto rápido</h2>
           <div class="grid md:grid-cols-2 gap-6">
             <div>
               <h3 class="font-semibold text-gray-900 mb-2">Elige Agenda de Reservas si:</h3>
@@ -185,13 +188,12 @@ comparisonData.forEach(cat => {
                       <td class="py-3 px-4 text-center">
                         <span class={feature.winner === 'cita2' ? 'font-semibold text-green-600' : ''} set:html={feature.cita2}>
                         </span>
-                        {feature.winner === 'cita2' && <span class="ml-2">🏆</span>}
+                        {feature.winner === 'cita2' && <span class="ml-2"><Icon icon={Trophy} size={16} /></span>}
                       </td>
                       <td class="py-3 px-4 text-center">
-                        <span class={feature.winner === 'agendapro' ? 'font-semibold text-green-600' : ''}>
-                          {feature.agendapro}
+                        <span class={feature.winner === 'agendapro' ? 'font-semibold text-green-600' : ''} set:html={feature.agendapro}>
                         </span>
-                        {feature.winner === 'agendapro' && <span class="ml-2">🏆</span>}
+                        {feature.winner === 'agendapro' && <span class="ml-2"><Icon icon={Trophy} size={16} /></span>}
                       </td>
                     </tr>
                   ))}
@@ -206,7 +208,7 @@ comparisonData.forEach(cat => {
     <!-- Pricing Deep Dive -->
     <section class="py-16 bg-gray-50">
       <div class="container mx-auto px-4 max-w-4xl">
-        <h2 class="text-3xl font-bold text-center mb-12">💰 Análisis de precios: La diferencia real</h2>
+        <h2 class="text-3xl font-bold text-center mb-12"><Icon icon={Coins} size={16} /> Análisis de precios: La diferencia real</h2>
         
         <div class="grid md:grid-cols-3 gap-6 mb-12">
           <div class="bg-white p-6 rounded-xl text-center">
@@ -238,7 +240,7 @@ comparisonData.forEach(cat => {
         <div class="bg-blue-600 text-white p-8 rounded-xl text-center">
           <p class="text-lg mb-2">Ahorro anual con 3 empleados:</p>
           <p class="text-4xl font-bold"><span data-price-saving-annual={`service_business.monthly:${agendaProPerSeat * 3}`}>{savingAnnual3.toLocaleString('es-ES')}</span>€</p>
-          <p class="text-blue-200 mt-2">Suficiente para unas buenas vacaciones 💙</p>
+          <p class="text-blue-200 mt-2 flex items-center gap-1.5">Suficiente para unas buenas vacaciones <Icon icon={Heart} size={16} /></p>
         </div>
       </div>
     </section>

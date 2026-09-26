@@ -4,6 +4,8 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import AdvancedSEO from '../../components/AdvancedSEO.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import Icon from '../../components/Icon.astro';
+import { Check, DoorOpen, ClipboardList, Ticket, MessageCircle, ChartColumn } from '@lucide/astro';
 
 const API_URL = 'https://api.agendadereservas.com';
 const FALLBACK_PRICING = { service_business: { monthly: 19, yearly: 190 } };
@@ -127,10 +129,10 @@ const faqs = [
                 Para la mayoría de centros de estética con 1-5 cabinas, <strong>Agenda de Reservas</strong> ofrece la mejor relación calidad-precio.
               </p>
               <ul class="space-y-2 text-blue-700 text-sm">
-                <li>✓ Precio fijo <span data-price-key="service_business.monthly">19</span>€/mes (no por empleado)</li>
-                <li>✓ Gestión de cabinas incluida</li>
-                <li>✓ WhatsApp Business disponible (módulo opcional +<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)</li>
-                <li>✓ Bonos de sesiones</li>
+                <li><Icon icon={Check} size={16} /> Precio fijo <span data-price-key="service_business.monthly">19</span>€/mes (no por empleado)</li>
+                <li><Icon icon={Check} size={16} /> Gestión de cabinas incluida</li>
+                <li><Icon icon={Check} size={16} /> WhatsApp Business disponible (módulo opcional +<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)</li>
+                <li><Icon icon={Check} size={16} /> Bonos de sesiones</li>
               </ul>
             </div>
             <div class="bg-white rounded-xl p-6">
@@ -284,35 +286,35 @@ const faqs = [
           <div class="grid md:grid-cols-2 gap-6">
             <div class="bg-white rounded-xl p-6 shadow-sm">
               <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <span class="text-purple-600 text-xl">🚪</span>
+                <Icon icon={DoorOpen} size={20} class="text-purple-600" />
               </div>
               <h3 class="font-semibold text-gray-900 mb-2">Gestión de cabinas</h3>
               <p class="text-gray-600 text-sm">Asigna cabinas específicas a cada servicio, evita solapamientos y maximiza uso de espacio.</p>
             </div>
             <div class="bg-white rounded-xl p-6 shadow-sm">
               <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <span class="text-purple-600 text-xl">📋</span>
+                <Icon icon={ClipboardList} size={20} class="text-purple-600" />
               </div>
               <h3 class="font-semibold text-gray-900 mb-2">Ficha cliente completa</h3>
               <p class="text-gray-600 text-sm">Historial de tratamientos, alergias, contraindicaciones, fotos antes/después.</p>
             </div>
             <div class="bg-white rounded-xl p-6 shadow-sm">
               <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <span class="text-purple-600 text-xl">🎟️</span>
+                <Icon icon={Ticket} size={20} class="text-purple-600" />
               </div>
               <h3 class="font-semibold text-gray-900 mb-2">Bonos de sesiones</h3>
               <p class="text-gray-600 text-sm">Vende bonos de 5 o 10 sesiones con descuento. El sistema controla automáticamente las restantes.</p>
             </div>
             <div class="bg-white rounded-xl p-6 shadow-sm">
               <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <span class="text-purple-600 text-xl">💬</span>
+                <Icon icon={MessageCircle} size={20} class="text-purple-600" />
               </div>
               <h3 class="font-semibold text-gray-900 mb-2">Recordatorios WhatsApp</h3>
               <p class="text-gray-600 text-sm">Reduce ausencias un 70% con recordatorios automáticos por WhatsApp (donde están tus clientes).</p>
             </div>
             <div class="bg-white rounded-xl p-6 shadow-sm md:col-span-2">
               <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <span class="text-purple-600 text-xl">📊</span>
+                <Icon icon={ChartColumn} size={20} class="text-purple-600" />
               </div>
               <h3 class="font-semibold text-gray-900 mb-2">Estadísticas por tratamiento</h3>
               <p class="text-gray-600 text-sm">Saber qué tratamientos son más rentables, qué esteticista genera más ingresos, y cuál es el horario más demandado.</p>

@@ -4,6 +4,9 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import AdvancedSEO from '../../components/AdvancedSEO.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import { tableIcon } from '../../lib/tableIcon';
+import Icon from '../../components/Icon.astro';
+import { Check, Coins, MessageCircle, Palette } from '@lucide/astro';
 
 const API_URL = 'https://api.agendadereservas.com';
 const FALLBACK_PRICING = {
@@ -56,44 +59,44 @@ const comparison = [
   },
   {
     feature: 'Reservas online',
-    agendadereservas: { value: '✓', highlight: true },
-    agendapro: { value: '✓', highlight: false },
-    phorest: { value: '✓', highlight: false },
-    reservio: { value: '✓', highlight: false }
+    agendadereservas: { value: `${tableIcon('check','text-green-600')}`, highlight: true },
+    agendapro: { value: `${tableIcon('check','text-green-600')}`, highlight: false },
+    phorest: { value: `${tableIcon('check','text-green-600')}`, highlight: false },
+    reservio: { value: `${tableIcon('check','text-green-600')}`, highlight: false }
   },
   {
     feature: 'Recordatorios WhatsApp',
     agendadereservas: { value: `+<span data-price-key="addon_whatsapp.monthly">${pricing.addon_whatsapp.monthly}</span>€/mes (módulo opcional)`, highlight: false },
     agendapro: { value: '+15€/mes', highlight: false },
     phorest: { value: '+10€/mes', highlight: false },
-    reservio: { value: '✗', highlight: false }
+    reservio: { value: `${tableIcon('x','text-red-500')}`, highlight: false }
   },
   {
     feature: 'Gestión técnicos',
-    agendadereservas: { value: '✓', highlight: true },
-    agendapro: { value: '✓', highlight: false },
-    phorest: { value: '✓', highlight: false },
-    reservio: { value: '✓', highlight: false }
+    agendadereservas: { value: `${tableIcon('check','text-green-600')}`, highlight: true },
+    agendapro: { value: `${tableIcon('check','text-green-600')}`, highlight: false },
+    phorest: { value: `${tableIcon('check','text-green-600')}`, highlight: false },
+    reservio: { value: `${tableIcon('check','text-green-600')}`, highlight: false }
   },
   {
     feature: 'Historial coloración',
-    agendadereservas: { value: '✓', highlight: true },
-    agendapro: { value: '✓', highlight: false },
-    phorest: { value: '✓', highlight: false },
+    agendadereservas: { value: `${tableIcon('check','text-green-600')}`, highlight: true },
+    agendapro: { value: `${tableIcon('check','text-green-600')}`, highlight: false },
+    phorest: { value: `${tableIcon('check','text-green-600')}`, highlight: false },
     reservio: { value: '△', highlight: false }
   },
   {
     feature: 'Comisiones automáticas',
-    agendadereservas: { value: '✓', highlight: true },
-    agendapro: { value: '✓', highlight: false },
-    phorest: { value: '✓', highlight: false },
-    reservio: { value: '✗', highlight: false }
+    agendadereservas: { value: `${tableIcon('check','text-green-600')}`, highlight: true },
+    agendapro: { value: `${tableIcon('check','text-green-600')}`, highlight: false },
+    phorest: { value: `${tableIcon('check','text-green-600')}`, highlight: false },
+    reservio: { value: `${tableIcon('x','text-red-500')}`, highlight: false }
   },
   {
     feature: 'App móvil',
     agendadereservas: { value: 'Web responsive', highlight: false },
-    agendapro: { value: '✓ Nativa', highlight: true },
-    phorest: { value: '✓ Nativa', highlight: true },
+    agendapro: { value: `${tableIcon('check','text-green-600')} Nativa`, highlight: true },
+    phorest: { value: `${tableIcon('check','text-green-600')} Nativa`, highlight: true },
     reservio: { value: 'Web responsive', highlight: false }
   }
 ];
@@ -155,10 +158,10 @@ const faqs = [
           </p>
           <div class="grid md:grid-cols-2 gap-4">
             <ul class="space-y-2 text-blue-700 text-sm">
-              <li>✓ <span data-price-key="service_business.monthly">19</span>€/mes plan base (no por peluquero)</li>
-              <li>✓ WhatsApp Business disponible (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes, módulo opcional)</li>
-              <li>✓ Setup rápido, presets por sector</li>
-              <li>✓ Historial de coloraciones</li>
+              <li><Icon icon={Check} size={16} /> <span data-price-key="service_business.monthly">19</span>€/mes plan base (no por peluquero)</li>
+              <li><Icon icon={Check} size={16} /> WhatsApp Business disponible (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes, módulo opcional)</li>
+              <li><Icon icon={Check} size={16} /> Setup rápido, presets por sector</li>
+              <li><Icon icon={Check} size={16} /> Historial de coloraciones</li>
             </ul>
             <div class="bg-white rounded-xl p-4 text-center">
               <p class="text-sm text-gray-700 mb-2">Coste mensual (3 peluqueros)</p>
@@ -203,9 +206,9 @@ const faqs = [
                         <span set:html={row.agendadereservas.value} />
                       </span>
                     </td>
-                    <td class="px-4 py-4 text-center text-gray-600">{row.agendapro.value}</td>
-                    <td class="px-4 py-4 text-center text-gray-600">{row.phorest.value}</td>
-                    <td class="px-4 py-4 text-center text-gray-600">{row.reservio.value}</td>
+                    <td class="px-4 py-4 text-center text-gray-600" set:html={row.agendapro.value}></td>
+                    <td class="px-4 py-4 text-center text-gray-600" set:html={row.phorest.value}></td>
+                    <td class="px-4 py-4 text-center text-gray-600" set:html={row.reservio.value}></td>
                   </tr>
                 ))}
               </tbody>
@@ -219,21 +222,21 @@ const faqs = [
           <div class="grid md:grid-cols-3 gap-6">
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
               <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                <span class="text-2xl">💬</span>
+                <Icon icon={MessageCircle} size={24} class="text-blue-600" />
               </div>
               <h3 class="font-semibold text-gray-900 mb-2">WhatsApp Business (módulo opcional +<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)</h3>
               <p class="text-gray-600 text-sm">WhatsApp tiene las mayores tasas de apertura. Con el módulo de WhatsApp Business envía recordatorios y confirmaciones automáticas.</p>
             </div>
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
               <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                <span class="text-2xl">💰</span>
+                <span class="text-2xl"><Icon icon={Coins} size={16} /></span>
               </div>
               <h3 class="font-semibold text-gray-900 mb-2">Precio por peluquería, no por peluquero</h3>
               <p class="text-gray-600 text-sm"><span data-price-key="service_business.monthly">19</span>€/mes ya sea que tengas 1 o 5 peluqueros. AgendaPro cobra 49€ por cada uno. Con 3 peluqueros ahorras 1.536€/año.</p>
             </div>
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
               <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                <span class="text-2xl">🎨</span>
+                <Icon icon={Palette} size={24} class="text-blue-600" />
               </div>
               <h3 class="font-semibold text-gray-900 mb-2">Historial de coloraciones</h3>
               <p class="text-gray-600 text-sm">Registra fórmulas de color, tratamientos aplicados, y fotos antes/después. Nunca más "¿qué tinte le puse la última vez?"</p>
@@ -245,10 +248,10 @@ const faqs = [
           <div class="bg-blue-50 rounded-xl p-6">
             <h3 class="font-semibold text-gray-900 mb-2">Lo que suele cambiar con Agenda de Reservas</h3>
             <ul class="space-y-2 text-sm text-gray-700">
-              <li>✓ Menos llamadas para gestionar citas — los clientes reservan online</li>
-              <li>✓ Historial digital de coloraciones — sin depender de la memoria</li>
-              <li>✓ Recordatorios automáticos — menos ausencias por olvido</li>
-              <li>✓ Estadísticas de ocupación — saber qué días y horas son más rentables</li>
+              <li><Icon icon={Check} size={16} /> Menos llamadas para gestionar citas — los clientes reservan online</li>
+              <li><Icon icon={Check} size={16} /> Historial digital de coloraciones — sin depender de la memoria</li>
+              <li><Icon icon={Check} size={16} /> Recordatorios automáticos — menos ausencias por olvido</li>
+              <li><Icon icon={Check} size={16} /> Estadísticas de ocupación — saber qué días y horas son más rentables</li>
             </ul>
           </div>
         </div>

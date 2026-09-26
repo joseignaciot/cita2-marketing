@@ -1,5 +1,7 @@
 ---
 // Breadcrumb schema component for SEO
+import Icon from './Icon.astro';
+import { ChevronRight } from '@lucide/astro';
 
 interface Props {
   items: Array<{
@@ -27,9 +29,7 @@ const { items } = Astro.props;
     {items.map((item, index) => (
       <li class="flex items-center">
         {index > 0 && (
-          <svg class="w-4 h-4 text-gray-400 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-          </svg>
+          <Icon icon={ChevronRight} size={16} class="text-gray-400 mx-2" />
         )}
         {index === items.length - 1 ? (
           <span class="text-gray-600 dark:text-gray-400" aria-current="page">{item.name}</span>

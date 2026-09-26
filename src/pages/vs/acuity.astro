@@ -5,6 +5,8 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import '../../styles/apple-design.css';
 import pricingData from '../../content/pricing.json';
+import Icon from '../../components/Icon.astro';
+import { Check, X, Globe, MessageCircle, Lock, Euro, Timer, Receipt } from '@lucide/astro';
 
 // Precios de build-time desde pricing.json — fuente de verdad
 const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
@@ -258,7 +260,7 @@ const schema = {
                 'Eres un profesional independiente: coach, fotógrafo, consultor o terapeuta.',
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold"><Icon icon={Check} size={16} /></span>
                   <span set:html={item} />
                 </li>
               ))}
@@ -275,7 +277,7 @@ const schema = {
                 'Tu sector (clínicas, fisioterapia) requiere datos almacenados en la UE por el RGPD.',
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
+                  <span class="text-red-500 mt-0.5 flex-shrink-0"><Icon icon={X} size={16} /></span>
                   <span set:html={item} />
                 </li>
               ))}
@@ -347,42 +349,42 @@ const schema = {
             {
               titulo: 'Interfaz y soporte exclusivamente en inglés',
               desc: 'El panel de gestión, la página de reservas que ven tus clientes y el soporte técnico operan en inglés. Para negocios con clientes españoles, recibir un formulario de reserva en inglés genera fricción y abandono. No existe soporte en español con respuesta garantizada.',
-              icono: '🌐',
+              icono: Globe,
               tipo: 'problema',
             },
             {
               titulo: 'Sin WhatsApp Business integrado',
               desc: 'España tiene una de las tasas de uso de WhatsApp más altas de Europa. Sin embargo, Acuity no dispone de integración nativa con WhatsApp Business API. Los recordatorios se limitan a email y SMS. La ausencia de WhatsApp puede traducirse en más citas perdidas (no-shows).',
-              icono: '💬',
+              icono: MessageCircle,
               tipo: 'problema',
             },
             {
               titulo: 'Datos en servidores de EE. UU.',
               desc: 'Acuity Scheduling pertenece a Squarespace, empresa americana con servidores en EE. UU. Aunque dispone de un acuerdo de tratamiento de datos (DPA), para clínicas, fisioterapeutas y psicólogos en España — obligados por el RGPD y la LOPD — puede plantear dudas regulatorias adicionales sobre la transferencia internacional de datos de salud.',
-              icono: '🔒',
+              icono: Lock,
               tipo: 'problema',
             },
             {
               titulo: 'Coste escala por número de calendarios',
               desc: 'Si tienes un equipo de cuatro profesionales en una peluquería, necesitas el plan Growing (~27 USD/mes, orientativo). Si creces a siete, saltas al Powerhouse (~61 USD/mes). Agenda de Reservas incluye todos los profesionales en el precio base sin restricción por número de calendarios.',
-              icono: '💶',
+              icono: Euro,
               tipo: 'problema',
             },
             {
               titulo: 'Prueba gratuita más corta',
               desc: 'Acuity ofrece 7 días de prueba, frente a los 14 días sin tarjeta de Agenda de Reservas. Evaluar un software de gestión de agenda en 7 días es justo: necesitas al menos una semana completa de operación real para valorar recordatorios, flujo de reservas y experiencia del cliente.',
-              icono: '⏱',
+              icono: Timer,
               tipo: 'problema',
             },
             {
               titulo: 'Facturación en USD sin IVA español',
               desc: 'Al ser una empresa americana, Acuity no emite facturas con IVA español. Esto dificulta la deducción del gasto para autónomos y pymes en España. Agenda de Reservas factura desde Santiago de Compostela con IVA incluido y factura electrónica válida para Hacienda.',
-              icono: '🧾',
+              icono: Receipt,
               tipo: 'problema',
             },
           ].map(({ titulo, desc, icono, tipo }) => (
             <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
-              <div class="text-3xl mb-3">{icono}</div>
+              <div class="mb-3 text-gray-700"><Icon icon={icono} size={28} /></div>
               <h3 class="font-bold text-gray-900 mb-2">{titulo}</h3>
               <p class="text-sm text-gray-600 leading-relaxed">{desc}</p>
             </div>
@@ -517,7 +519,7 @@ const schema = {
                 'Necesitas factura española con IVA y datos alojados en servidores de la UE.',
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold"><Icon icon={Check} size={16} /></span>
                   <span set:html={item} />
                 </li>
               ))}

@@ -1,0 +1,29 @@
+---
+// Thin wrapper around @lucide/astro icon components.
+//
+// Usage:
+//   import { Check } from '@lucide/astro';
+//   <Icon icon={Check} />
+//
+// Always import icons individually. Never import the whole library or
+// build a name -> component map of every icon: that bundles icons the
+// site never renders.
+export interface Props {
+  icon: any;
+  size?: number | string;
+  class?: string;
+  label?: string;
+}
+
+const { icon: IconComponent, size = 20, class: className, label } = Astro.props;
+
+const a11yProps = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': 'true' };
+---
+
+<IconComponent
+  size={size}
+  stroke-width={1.75}
+  color="currentColor"
+  class:list={['inline-block', 'shrink-0', 'align-[-0.125em]', className]}
+  {...a11yProps}
+/>

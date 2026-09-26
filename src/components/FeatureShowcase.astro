@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+import { Check } from '@lucide/astro';
 // FeatureShowcase - Apple-style feature storytelling
 // Deep dive into 3 main features with visual storytelling
 
@@ -158,14 +160,12 @@ const features = [
                     <div class="bg-white rounded-xl p-4 shadow-sm">
                       <div class="flex items-start gap-3">
                         <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                          <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                          </svg>
+                          <Icon icon={Check} size={20} class="text-green-600" />
                         </div>
                         <div>
                           <p class="font-medium text-gray-900">Recordatorio enviado</p>
                           <p class="text-sm text-gray-700">María García - Mañana 10:00</p>
-                          <p class="text-xs text-green-600 mt-1">✓ Email + WhatsApp enviados</p>
+                          <p class="text-xs text-green-600 mt-1"><Icon icon={Check} size={16} /> Email + WhatsApp enviados</p>
                         </div>
                       </div>
                     </div>

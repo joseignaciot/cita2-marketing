@@ -11,6 +11,8 @@ import '../styles/apple-design.css';
 
 // Contenido editable desde el CMS → public/admin → Páginas de Sector → Psicología
 import content from '../content/sectors/clinicas-psicologia.json';
+import Icon from '../components/Icon.astro';
+import { Check, X, Frown, Smile } from '@lucide/astro';
 const { pageTitle, pageDescription, features, testimonials, faqs, heroTitle, heroSubtitle } = content;
 
 const canonicalUrl = 'https://agendadereservas.com/clinicas-psicologia/';
@@ -160,7 +162,7 @@ const schema = {
         <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <div class="bg-red-50 rounded-2xl p-8 border-2 border-red-100">
             <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <span class="text-2xl">😓</span> Gestión manual
+              <Icon icon={Frown} size={24} class="text-red-500" /> Gestión manual
             </h3>
             <ul class="space-y-3 text-sm text-red-800">
               {[
@@ -171,7 +173,7 @@ const schema = {
                 'Tu número personal en Google = sin límites de horario'
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-red-400 mt-0.5">✗</span>
+                  <span class="text-red-400 mt-0.5"><Icon icon={X} size={16} /></span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -180,7 +182,7 @@ const schema = {
 
           <div class="bg-green-50 rounded-2xl p-8 border-2 border-green-200">
             <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <span class="text-2xl">😌</span> Con Agenda de Reservas
+              <Icon icon={Smile} size={24} class="text-green-600" /> Con Agenda de Reservas
             </h3>
             <ul class="space-y-3 text-sm text-green-800">
               {[
@@ -191,7 +193,7 @@ const schema = {
                 'Número personal protegido, horarios respetados'
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-0.5">✓</span>
+                  <span class="text-green-600 mt-0.5"><Icon icon={Check} size={16} /></span>
                   <span>{item}</span>
                 </li>
               ))}

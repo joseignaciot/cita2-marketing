@@ -5,6 +5,8 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import '../../styles/apple-design.css';
 import pricingData from '../../content/pricing.json';
+import Icon from '../../components/Icon.astro';
+import { Armchair, Check, ClipboardList, Euro, Globe, Lock, MessageCircle, X } from '@lucide/astro';
 
 // Precios de build-time desde pricing.json — fuente de verdad
 const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
@@ -250,7 +252,7 @@ const schema = {
                 'Quieres compartir un enlace de disponibilidad en un email o en LinkedIn.',
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold"><Icon icon={Check} size={16} /></span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -267,7 +269,7 @@ const schema = {
                 'Tus clientes son consumidores finales en España, no empresas B2B.',
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
+                  <span class="text-red-500 mt-0.5 flex-shrink-0"><Icon icon={X} size={16} /></span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -342,36 +344,43 @@ const schema = {
             {
               titulo: 'Sin gestion de recursos fisicos',
               desc: 'Una peluqueria tiene sillas, cabinas o boxes. Una clinica tiene consultas. Calendly no entiende el concepto de recurso fisico: no puede saber si la "cabina de color" esta libre o si el box de fisioterapia esta ocupado.',
-              icon: '🪑',
+              icon: 'chair',
             },
             {
               titulo: 'Sin recordatorios por WhatsApp',
               desc: 'En Espana, WhatsApp es el canal de comunicacion predominante. El 90 % de los mensajes de WhatsApp se abren, frente al 20-30 % del email. Calendly no ofrece integracion nativa con WhatsApp Business API.',
-              icon: '💬',
+              icon: 'chat',
             },
             {
               titulo: 'Sin historial de clientes ni CRM',
               desc: 'Una peluquera necesita saber que color uso Maria la ultima vez. Un psicologo necesita el historial de sesiones. Calendly no tiene CRM: solo gestiona el hueco en el calendario, no la relacion con el cliente.',
-              icon: '📋',
+              icon: 'list',
             },
             {
               titulo: 'Interfaz y soporte solo en ingles',
               desc: 'La pagina de reservas que ven tus clientes y el panel de gestion estan en ingles. Para muchos clientes y negocios espanoles esto es una barrera real. El soporte de Calendly tambien opera en ingles.',
-              icon: '🌐',
+              icon: 'globe',
             },
             {
               titulo: 'RGPD: datos en EE. UU.',
               desc: 'Calendly almacena datos en servidores americanos. Aunque dispone de DPA (acuerdo de tratamiento de datos), para clinicas y profesionales de la salud en Espana puede plantear dudas regulatorias adicionales. Agenda de Reservas opera con servidores en la UE.',
-              icon: '🔒',
+              icon: 'lock',
             },
             {
               titulo: 'Precio por usuario, no por negocio',
               desc: 'Calendly cobra por cada usuario/empleado. Si tienes tres peluqueras, pagas tres licencias de 10 USD/mes cada una. Agenda de Reservas cobra una cuota fija por negocio, con usuarios ilimitados incluidos.',
-              icon: '💶',
+              icon: 'euro',
             },
           ].map(({ titulo, desc, icon }) => (
             <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
-              <div class="text-3xl mb-3">{icon}</div>
+              <div class="mb-3 text-gray-700">
+                {icon === 'chair' && <Icon icon={Armchair} size={28} />}
+                {icon === 'chat' && <Icon icon={MessageCircle} size={28} />}
+                {icon === 'list' && <Icon icon={ClipboardList} size={28} />}
+                {icon === 'globe' && <Icon icon={Globe} size={28} />}
+                {icon === 'lock' && <Icon icon={Lock} size={28} />}
+                {icon === 'euro' && <Icon icon={Euro} size={28} />}
+              </div>
               <h3 class="font-bold text-gray-900 mb-2">{titulo}</h3>
               <p class="text-sm text-gray-600 leading-relaxed">{desc}</p>
             </div>
@@ -511,7 +520,7 @@ const schema = {
                 'Requieres factura espanola con IVA y datos alojados en la UE.',
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold"><Icon icon={Check} size={16} /></span>
                   <span>{item}</span>
                 </li>
               ))}

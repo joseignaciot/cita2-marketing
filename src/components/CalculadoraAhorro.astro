@@ -1,9 +1,11 @@
 ---
 // Calculadora de ahorro interactiva para la página de precios
+import Icon from './Icon.astro';
+import { Coins } from '@lucide/astro';
 ---
 
 <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 md:p-8" id="calculadora-ahorro">
-  <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">💰 Calcula tu ahorro anual</h3>
+  <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center flex items-center justify-center gap-2"><Icon icon={Coins} size={24} class="text-amber-500" /> Calcula tu ahorro anual</h3>
   
   <div class="space-y-6">
     <!-- Empleados -->

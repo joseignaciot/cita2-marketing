@@ -5,6 +5,9 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import '../../styles/apple-design.css';
 import pricingData from '../../content/pricing.json';
+import { tableIcon } from '../../lib/tableIcon';
+import Icon from '../../components/Icon.astro';
+import { Check, X } from '@lucide/astro';
 
 // Precios de build-time desde pricing.json — fuente de verdad
 const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
@@ -34,68 +37,68 @@ const comparativa = [
   },
   {
     feature: 'Soporte en español',
-    simplybook: '⚠️ Principalmente en inglés; soporte ES limitado',
-    agenda: '✅ Humano, <2h en español (horario laboral)',
+    simplybook: `${tableIcon('warn','text-amber-500')} Principalmente en inglés; soporte ES limitado`,
+    agenda: `${tableIcon('check','text-green-600')} Humano, <2h en español (horario laboral)`,
     winner: 'agenda',
   },
   {
     feature: 'Idioma de la interfaz',
-    simplybook: '⚠️ Inglés por defecto; traducciones parciales',
-    agenda: '✅ 100% español de España',
+    simplybook: `${tableIcon('warn','text-amber-500')} Inglés por defecto; traducciones parciales`,
+    agenda: `${tableIcon('check','text-green-600')} 100% español de España`,
     winner: 'agenda',
   },
   {
     feature: 'RGPD / alojamiento en la UE',
-    simplybook: '⚠️ Servidores en varios países; revisar DPA',
-    agenda: '✅ Servidores UE, conforme al RGPD',
+    simplybook: `${tableIcon('warn','text-amber-500')} Servidores en varios países; revisar DPA`,
+    agenda: `${tableIcon('check','text-green-600')} Servidores UE, conforme al RGPD`,
     winner: 'agenda',
   },
   {
     feature: 'WhatsApp Business API nativo',
-    simplybook: '❌ No integrado de forma nativa',
-    agenda: `✅ Disponible (+<span data-price-key="addon_whatsapp.monthly">${whatsappPrice}</span>€/mes)`,
+    simplybook: `${tableIcon('x','text-red-500')} No integrado de forma nativa`,
+    agenda: `${tableIcon('check','text-green-600')} Disponible (+<span data-price-key="addon_whatsapp.monthly">${whatsappPrice}</span>€/mes)`,
     winner: 'agenda',
   },
   {
     feature: 'Facturación en español',
-    simplybook: '⚠️ Facturas en inglés / moneda USD',
-    agenda: '✅ Facturación en euros, empresa española',
+    simplybook: `${tableIcon('warn','text-amber-500')} Facturas en inglés / moneda USD`,
+    agenda: `${tableIcon('check','text-green-600')} Facturación en euros, empresa española`,
     winner: 'agenda',
   },
   {
     feature: 'Plan gratuito',
-    simplybook: '✅ Plan Free (hasta 50 reservas/mes, funciones limitadas)',
-    agenda: '✅ Prueba 14 días completa, sin tarjeta',
+    simplybook: `${tableIcon('check','text-green-600')} Plan Free (hasta 50 reservas/mes, funciones limitadas)`,
+    agenda: `${tableIcon('check','text-green-600')} Prueba 14 días completa, sin tarjeta`,
     winner: 'empate',
   },
   {
     feature: 'Comisión por reserva',
-    simplybook: '❌ No cobra comisión (cuota mensual)',
-    agenda: '✅ Sin comisión por reserva',
+    simplybook: `${tableIcon('x','text-red-500')} No cobra comisión (cuota mensual)`,
+    agenda: `${tableIcon('check','text-green-600')} Sin comisión por reserva`,
     winner: 'empate',
   },
   {
     feature: 'Reservas ilimitadas desde plan de pago',
-    simplybook: '⚠️ Reservas limitadas según plan',
-    agenda: '✅ Ilimitadas en todos los planes de pago',
+    simplybook: `${tableIcon('warn','text-amber-500')} Reservas limitadas según plan`,
+    agenda: `${tableIcon('check','text-green-600')} Ilimitadas en todos los planes de pago`,
     winner: 'agenda',
   },
   {
     feature: 'Usuarios/staff ilimitados',
-    simplybook: '⚠️ Número de proveedores limitado por plan',
-    agenda: '✅ Usuarios ilimitados en todos los planes',
+    simplybook: `${tableIcon('warn','text-amber-500')} Número de proveedores limitado por plan`,
+    agenda: `${tableIcon('check','text-green-600')} Usuarios ilimitados en todos los planes`,
     winner: 'agenda',
   },
   {
     feature: 'CRM de clientes exportable',
-    simplybook: '✅ Disponible',
-    agenda: '✅ Completo, exportable en CSV',
+    simplybook: `${tableIcon('check','text-green-600')} Disponible`,
+    agenda: `${tableIcon('check','text-green-600')} Completo, exportable en CSV`,
     winner: 'empate',
   },
   {
     feature: 'Empresa y soporte legal en España',
-    simplybook: '❌ Empresa no española (Islandia/global)',
-    agenda: '✅ Tecelia Solutions S.L. — Santiago de Compostela',
+    simplybook: `${tableIcon('x','text-red-500')} Empresa no española (Islandia/global)`,
+    agenda: `${tableIcon('check','text-green-600')} Tecelia Solutions S.L. — Santiago de Compostela`,
     winner: 'agenda',
   },
 ];
@@ -314,7 +317,7 @@ const schema = {
                 'Sin marca de terceros en tu página',
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold"><Icon icon={Check} size={16} /></span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -359,7 +362,7 @@ const schema = {
                 'Sin equipo local en España',
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
+                  <span class="text-red-500 mt-0.5 flex-shrink-0"><Icon icon={X} size={16} /></span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -377,7 +380,7 @@ const schema = {
                 'Empresa española: Tecelia Solutions S.L. (Santiago de Compostela)',
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold"><Icon icon={Check} size={16} /></span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -416,8 +419,8 @@ const schema = {
               {comparativa.map(({ feature, simplybook, agenda, winner }) => (
                 <tr class="border-b border-gray-100 hover:bg-gray-50">
                   <td class="py-3 px-4 font-medium text-gray-800">{feature}</td>
-                  <td class={`py-3 px-4 text-center ${winner === 'simplybook' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-red-600' : 'text-gray-600'}`}>
-                    {simplybook}
+                  <td class={`py-3 px-4 text-center ${winner === 'simplybook' ? 'text-green-700 font-semibold' : winner === 'agenda' ? 'text-red-600' : 'text-gray-600'}`} set:html={simplybook}>
+
                   </td>
                   <td class={`py-3 px-4 text-center bg-blue-50 ${winner === 'agenda' ? 'text-green-700 font-bold' : winner === 'simplybook' ? 'text-gray-500' : 'text-gray-600'}`} set:html={agenda}>
                   </td>
@@ -476,7 +479,7 @@ const schema = {
                 'WhatsApp Business API disponible como add-on nativo.',
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold"><Icon icon={Check} size={16} /></span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -543,7 +546,7 @@ const schema = {
                 'Prefieres una herramienta simple y directa, sin configurar 60 módulos.',
               ].map(item => (
                 <li class="flex items-start gap-2">
-                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold">✓</span>
+                  <span class="text-green-600 mt-0.5 flex-shrink-0 font-bold"><Icon icon={Check} size={16} /></span>
                   <span>{item}</span>
                 </li>
               ))}

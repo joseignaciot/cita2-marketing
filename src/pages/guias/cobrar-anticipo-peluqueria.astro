@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import Icon from '../../components/Icon.astro';
+import { Check, X } from '@lucide/astro';
 
 const pageTitle = 'Cómo cobrar anticipo en reservas de peluquería (guía 2026)';
 const pageDescription = '¿Es legal cobrar una seña en tu peluquería? Cuánto pedir, cómo configurarlo y cómo comunicarlo sin que los clientes se molesten. Guía práctica.';
@@ -399,7 +401,7 @@ const schema = {
                 '"Si cancelas perderás el dinero"'
               ].map(f => (
                 <li class="flex items-start gap-2">
-                  <span class="text-red-500 font-bold flex-shrink-0">✗</span>
+                  <span class="text-red-500 font-bold flex-shrink-0"><Icon icon={X} size={16} /></span>
                   <span>{f}</span>
                 </li>
               ))}
@@ -415,7 +417,7 @@ const schema = {
                 '"Puedes cancelar sin coste hasta 48 horas antes"'
               ].map(f => (
                 <li class="flex items-start gap-2">
-                  <span class="text-green-600 font-bold flex-shrink-0">✓</span>
+                  <span class="text-green-600 font-bold flex-shrink-0"><Icon icon={Check} size={16} /></span>
                   <span>{f}</span>
                 </li>
               ))}

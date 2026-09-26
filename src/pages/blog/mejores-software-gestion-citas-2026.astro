@@ -4,6 +4,8 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import AdvancedSEO from '../../components/AdvancedSEO.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import Icon from '../../components/Icon.astro';
+import { Check, Trophy, X, Star } from '@lucide/astro';
 
 const API_URL = 'https://api.agendadereservas.com';
 const FALLBACK_PRICING = {
@@ -248,7 +250,7 @@ const faqs = [
                     <p class="text-xs text-gray-700">890 reviews</p>
                   </td>
                   <td class="px-6 py-4 text-center">
-                    <span class="text-sm text-gray-700">✗ No</span>
+                    <span class="text-sm text-gray-700"><Icon icon={X} size={16} /> No</span>
                   </td>
                   <td class="px-6 py-4 text-center text-lg font-bold text-red-600">-528€</td>
                 </tr>
@@ -268,7 +270,7 @@ const faqs = [
                     <p class="text-xs text-gray-700">5.000 reviews</p>
                   </td>
                   <td class="px-6 py-4 text-center">
-                    <span class="text-sm text-gray-700">✗ No</span>
+                    <span class="text-sm text-gray-700"><Icon icon={X} size={16} /> No</span>
                   </td>
                   <td class="px-6 py-4 text-center text-lg font-bold text-red-600">-5.772€</td>
                 </tr>
@@ -311,7 +313,7 @@ const faqs = [
                       <h3 class="text-xl font-bold text-gray-900">{software.position}. {software.name}</h3>
                       <div class="flex items-center gap-2 mt-1">
                         <span class="text-lg font-bold text-blue-600">{software.rating}</span>
-                        <span class="text-yellow-500">{'★'.repeat(Math.floor(software.rating))}</span>
+                        <span class="text-yellow-500 inline-flex gap-0.5">{Array.from({ length: Math.floor(software.rating) }).map(() => <Icon icon={Star} size={14} />)}</span>
                         <span class="text-gray-400 text-sm">({software.reviews} reseñas)</span>
                       </div>
                     </div>
@@ -320,7 +322,7 @@ const faqs = [
                     <p class="text-3xl font-bold text-gray-900" set:html={software.price} />
                     {software.position === 1 && (
                       <span class="inline-block mt-2 px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
-                        🏆 Mejor valorado
+                        <Icon icon={Trophy} size={16} /> Mejor valorado
                       </span>
                     )}
                   </div>
@@ -329,15 +331,13 @@ const faqs = [
                 <div class="grid md:grid-cols-2 gap-8">
                   <div>
                     <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                      <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                      </svg>
+                      <Icon icon={Check} size={20} class="text-green-500" />
                       Lo que nos gusta
                     </h4>
                     <ul class="space-y-2">
                       {software.pros.map((pro) => (
                         <li class="flex items-start gap-2 text-gray-700">
-                          <span class="text-green-500 mt-1">✓</span>
+                          <span class="text-green-500 mt-1"><Icon icon={Check} size={16} /></span>
                           {pro}
                         </li>
                       ))}
@@ -345,15 +345,13 @@ const faqs = [
                   </div>
                   <div>
                     <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                      <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
+                      <Icon icon={X} size={20} class="text-red-500" />
                       Lo que puede mejorar
                     </h4>
                     <ul class="space-y-2">
                       {software.cons.map((con) => (
                         <li class="flex items-start gap-2 text-gray-700">
-                          <span class="text-red-500 mt-1">✗</span>
+                          <span class="text-red-500 mt-1"><Icon icon={X} size={16} /></span>
                           {con}
                         </li>
                       ))}

@@ -10,6 +10,8 @@ import '../styles/apple-design.css';
 
 // Contenido editable desde el CMS → public/admin → Páginas de Sector → Veterinarias
 import content from '../content/sectors/veterinarias.json';
+import Icon from '../components/Icon.astro';
+import { Check, ClipboardList, Phone, NotebookPen, PawPrint, MessageCircle, Bell, Syringe, Globe, Smartphone, Dog } from '@lucide/astro';
 const { pageTitle, pageDescription, features, testimonials, faqs, heroTitle, heroSubtitle } = content;
 const canonicalUrl = 'https://agendadereservas.com/veterinarias/';
 
@@ -117,33 +119,33 @@ const schema = {
           </h2>
 
           <div class="bg-amber-50 rounded-2xl p-8 border-2 border-amber-200 mb-8">
-            <h3 class="font-bold text-amber-900 text-lg mb-4">📋 Hoy: sin sistema de citas online</h3>
+            <h3 class="font-bold text-amber-900 text-lg mb-4"><Icon icon={ClipboardList} size={16} /> Hoy: sin sistema de citas online</h3>
             <div class="grid md:grid-cols-2 gap-6 text-sm text-amber-800">
               <ul class="space-y-2">
-                <li>📞 El teléfono suena mientras estás en consulta</li>
-                <li>📝 Agenda en papel o Excel difícil de compartir</li>
-                <li>🐾 Mezclas fichas de dueños con múltiples mascotas</li>
+                <li><Icon icon={Phone} size={16} /> El teléfono suena mientras estás en consulta</li>
+                <li><Icon icon={NotebookPen} size={16} /> Agenda en papel o Excel difícil de compartir</li>
+                <li><Icon icon={PawPrint} size={16} /> Mezclas fichas de dueños con múltiples mascotas</li>
               </ul>
               <ul class="space-y-2">
-                <li>💬 Los clientes te escriben al WhatsApp personal a cualquier hora</li>
-                <li>🔔 Olvidan la cita → pierdes ese tiempo de consulta</li>
-                <li>💉 No hay sistema de recordatorios de vacunas anuales</li>
+                <li><Icon icon={MessageCircle} size={16} /> Los clientes te escriben al WhatsApp personal a cualquier hora</li>
+                <li><Icon icon={Bell} size={16} /> Olvidan la cita → pierdes ese tiempo de consulta</li>
+                <li><Icon icon={Syringe} size={16} /> No hay sistema de recordatorios de vacunas anuales</li>
               </ul>
             </div>
           </div>
 
           <div class="bg-green-50 rounded-2xl p-8 border-2 border-green-200">
-            <h3 class="font-bold text-green-900 text-lg mb-4">✅ Con Agenda de Reservas</h3>
+            <h3 class="font-bold text-green-900 text-lg mb-4"><Icon icon={Check} size={16} /> Con Agenda de Reservas</h3>
             <div class="grid md:grid-cols-2 gap-6 text-sm text-green-800">
               <ul class="space-y-2">
-                <li>🌐 Los clientes reservan online 24/7 sin llamarte</li>
-                <li>📱 Agenda digital accesible desde cualquier dispositivo</li>
-                <li>🐕 Ficha individual por mascota, histórico limpio</li>
+                <li><Icon icon={Globe} size={16} /> Los clientes reservan online 24/7 sin llamarte</li>
+                <li><Icon icon={Smartphone} size={16} /> Agenda digital accesible desde cualquier dispositivo</li>
+                <li><Icon icon={Dog} size={16} /> Ficha individual por mascota, histórico limpio</li>
               </ul>
               <ul class="space-y-2">
-                <li>💬 WhatsApp Business separado de tu número personal (módulo opcional)</li>
-                <li>🔔 Recordatorio automático 24h antes — 0 olvidos</li>
-                <li>💉 Alerta automática de vacunas programada por mascota</li>
+                <li><Icon icon={MessageCircle} size={16} /> WhatsApp Business separado de tu número personal (módulo opcional)</li>
+                <li><Icon icon={Bell} size={16} /> Recordatorio automático 24h antes — 0 olvidos</li>
+                <li><Icon icon={Syringe} size={16} /> Alerta automática de vacunas programada por mascota</li>
               </ul>
             </div>
           </div>

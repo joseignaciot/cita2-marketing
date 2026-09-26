@@ -9,6 +9,8 @@ import CTA from '../components/CTA.astro';
 import Footer from '../components/Footer.astro';
 import content from '../content/sectors/peluquerias.json';
 import DashboardMockup from '../components/DashboardMockup.astro';
+import Icon from '../components/Icon.astro';
+import { Check, TriangleAlert, X } from '@lucide/astro';
 
 const { pageTitle, pageDescription, aiDescription, heroTitle, heroSubtitle, features, testimonials, faqs } = content;
 const canonicalUrl = 'https://agendadereservas.com/peluquerias/';
@@ -100,15 +102,15 @@ const schema = {
               </tr>
               <tr>
                 <td class="py-4 px-4 font-medium">Comisiones</td>
-                <td class="py-4 px-4"><span class="text-success font-semibold">❌ Ninguna</span></td>
-                <td class="py-4 px-4 text-gray-700">❌ Ninguna</td>
-                <td class="py-4 px-4 text-gray-700">❌ Ninguna</td>
+                <td class="py-4 px-4"><span class="text-success font-semibold"><Icon icon={X} size={16} /> Ninguna</span></td>
+                <td class="py-4 px-4 text-gray-700"><Icon icon={X} size={16} /> Ninguna</td>
+                <td class="py-4 px-4 text-gray-700"><Icon icon={X} size={16} /> Ninguna</td>
               </tr>
               <tr>
                 <td class="py-4 px-4 font-medium">WhatsApp Business</td>
-                <td class="py-4 px-4"><span class="text-success font-semibold">✅ Módulo opcional (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)</span></td>
-                <td class="py-4 px-4 text-gray-700">❌ No</td>
-                <td class="py-4 px-4 text-gray-700">❌ No</td>
+                <td class="py-4 px-4"><span class="text-success font-semibold"><Icon icon={Check} size={16} /> Módulo opcional (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)</span></td>
+                <td class="py-4 px-4 text-gray-700"><Icon icon={X} size={16} /> No</td>
+                <td class="py-4 px-4 text-gray-700"><Icon icon={X} size={16} /> No</td>
               </tr>
               <tr>
                 <td class="py-4 px-4 font-medium">Setup tiempo</td>
@@ -118,15 +120,15 @@ const schema = {
               </tr>
               <tr>
                 <td class="py-4 px-4 font-medium">Preset peluquería</td>
-                <td class="py-4 px-4"><span class="text-success font-semibold">✅ Sí</span></td>
-                <td class="py-4 px-4 text-gray-700">✅ Sí</td>
-                <td class="py-4 px-4 text-gray-700">⚠️ Parcial</td>
+                <td class="py-4 px-4"><span class="text-success font-semibold"><Icon icon={Check} size={16} /> Sí</span></td>
+                <td class="py-4 px-4 text-gray-700"><Icon icon={Check} size={16} /> Sí</td>
+                <td class="py-4 px-4 text-gray-700"><Icon icon={TriangleAlert} size={16} /> Parcial</td>
               </tr>
               <tr>
                 <td class="py-4 px-4 font-medium">Soporte español</td>
-                <td class="py-4 px-4"><span class="text-success font-semibold">✅ Sí</span></td>
-                <td class="py-4 px-4 text-gray-700">✅ Sí</td>
-                <td class="py-4 px-4 text-gray-700">⚠️ Limitado</td>
+                <td class="py-4 px-4"><span class="text-success font-semibold"><Icon icon={Check} size={16} /> Sí</span></td>
+                <td class="py-4 px-4 text-gray-700"><Icon icon={Check} size={16} /> Sí</td>
+                <td class="py-4 px-4 text-gray-700"><Icon icon={TriangleAlert} size={16} /> Limitado</td>
               </tr>
             </tbody>
           </table>

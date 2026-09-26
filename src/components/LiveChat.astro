@@ -1,6 +1,8 @@
 ---
 // LiveChat - Interactive chat widget for customer support
 // Floating chat button with real-time messaging interface
+import Icon from './Icon.astro';
+import { MessageCircle, Bot, Coins, Rocket, RefreshCw } from '@lucide/astro';
 
 const chatConfig = {
   welcomeMessage: '¡Hola! 👋 ¿En qué puedo ayudarte sobre Agenda de Reservas?',
@@ -38,7 +40,7 @@ const chatConfig = {
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-            <span class="text-lg">💬</span>
+            <Icon icon={MessageCircle} size={20} />
           </div>
           <div>
             <h3 class="font-semibold">Soporte Agenda de Reservas</h3>
@@ -57,19 +59,19 @@ const chatConfig = {
       <!-- Welcome Message -->
       <div class="flex gap-3">
         <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-          <span class="text-sm">🤖</span>
+          <Icon icon={Bot} size={16} class="text-blue-600" />
         </div>
         <div class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[80%]">
           <p class="text-sm text-gray-700">{chatConfig.welcomeMessage}</p>
           <div class="mt-3 space-y-2">
-            <button class="quick-reply w-full text-left px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-700 transition-colors">
-              💰 ¿Cuánto cuesta Agenda de Reservas?
+            <button class="quick-reply w-full text-left px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-700 transition-colors flex items-center gap-1.5">
+              <Icon icon={Coins} size={16} class="text-amber-500" /> ¿Cuánto cuesta Agenda de Reservas?
             </button>
-            <button class="quick-reply w-full text-left px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-700 transition-colors">
-              🚀 ¿Cómo empiezo la prueba?
+            <button class="quick-reply w-full text-left px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-700 transition-colors flex items-center gap-1.5">
+              <Icon icon={Rocket} size={16} class="text-blue-500" /> ¿Cómo empiezo la prueba?
             </button>
-            <button class="quick-reply w-full text-left px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-700 transition-colors">
-              🔄 ¿Puedo migrar desde ElTenedor?
+            <button class="quick-reply w-full text-left px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-700 transition-colors flex items-center gap-1.5">
+              <Icon icon={RefreshCw} size={16} class="text-gray-500" /> ¿Puedo migrar desde ElTenedor?
             </button>
           </div>
         </div>
@@ -193,9 +195,13 @@ const chatConfig = {
       const div = document.createElement('div');
       div.className = 'flex gap-3' + (sender === 'user' ? ' flex-row-reverse' : '');
       
-      const avatar = sender === 'user' 
-        ? '<div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-sm">👤</span></div>'
-        : '<div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-sm">🤖</span></div>';
+      // Same path data as the Lucide `user` / `bot` icons — this runs in the
+      // browser after hydration, so the Astro <Icon> component isn't available.
+      const userIconSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+      const botIconSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="lucide lucide-bot"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>';
+      const avatar = sender === 'user'
+        ? `<div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0 text-gray-600">${userIconSvg}</div>`
+        : `<div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 text-blue-600">${botIconSvg}</div>`;
       
       const bubbleClass = sender === 'user'
         ? 'bg-blue-600 text-white rounded-2xl rounded-tr-none'
