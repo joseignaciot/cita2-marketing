@@ -46,10 +46,10 @@ const featureCategories = [
     title: 'Comunicaciones Automáticas',
     icon: 'bell',
     features: [
-      { name: 'Recordatorios email', desc: 'Emails automáticos 24h antes de la cita. Reducen ausencias un 40%.' },
-      { name: 'Recordatorios SMS', desc: 'SMS de última hora (2h antes) para maximizar asistencia.' },
-      { name: 'WhatsApp Business', desc: 'Confirmaciones y recordatorios por WhatsApp. 90% tasa de apertura.' },
-      { name: 'Confirmaciones automáticas', desc: 'El cliente recibe email/SMS inmediatamente al reservar.' },
+      { name: 'Recordatorios email', desc: 'Emails automáticos 24h antes de la cita. Reducen ausencias un 40%. Incluido en el plan base.' },
+      { name: 'Recordatorios SMS', desc: 'SMS de última hora (2h antes) para maximizar asistencia. Módulo opcional, +15€/mes.' },
+      { name: 'WhatsApp Business', desc: 'Confirmaciones y recordatorios por WhatsApp. 90% tasa de apertura. Módulo opcional, +28€/mes.' },
+      { name: 'Confirmaciones automáticas', desc: 'El cliente recibe un email de confirmación inmediatamente al reservar.' },
       { name: 'Mensajes personalizables', desc: 'Adapta el tono y contenido de todos los mensajes a tu marca.' },
       { name: 'Follow-ups post-cita', desc: 'Envía agradecimientos y solicita reseñas automáticamente.' },
     ]
@@ -58,8 +58,8 @@ const featureCategories = [
     title: 'Pagos y Facturación',
     icon: 'credit',
     features: [
-      { name: 'Pagos online con Stripe', desc: 'Cobra al reservar con tarjeta. Seguro, rápido y automático.' },
-      { name: 'Depósitos configurables', desc: 'Pide señal para reservas grandes o especiales. Reduce no-shows.' },
+      { name: 'Pagos online con Stripe y Redsys', desc: 'Cobra al reservar con tarjeta. Módulo opcional de Cobros Online, +18€/mes.' },
+      { name: 'Depósitos configurables', desc: 'Pide señal para reservas grandes o especiales. Requiere el módulo de Cobros Online.' },
       { name: 'Bonos y paquetes', desc: 'Vende sesiones múltiples. El sistema controla sesiones usadas/pendientes.' },
       { name: 'Gift cards', desc: 'Vende regalos digitales para tu negocio. Perfecto para Navidad.' },
       { name: 'Facturación simplificada', desc: 'Genera facturas de tus pagos recibidos automáticamente.' },
@@ -83,8 +83,8 @@ const featureCategories = [
     icon: 'zap',
     features: [
       { name: 'Google Calendar', desc: 'Sincronización bidireccional. Tus citas en tu calendario personal.' },
-      { name: 'WhatsApp Business API', desc: 'Conecta tu WhatsApp oficial para mensajes automáticos.' },
-      { name: 'Stripe', desc: 'Procesamiento de pagos seguro y global.' },
+      { name: 'WhatsApp Business API', desc: 'Conecta tu WhatsApp oficial para mensajes automáticos. Módulo opcional.' },
+      { name: 'Stripe y Redsys', desc: 'Procesamiento de pagos seguro. Parte del módulo opcional de Cobros Online.' },
       { name: 'Zapier (próximamente)', desc: 'Conecta con 5,000+ aplicaciones más.' },
       { name: 'API REST', desc: 'Para desarrolladores: integra Agenda de Reservas con tus sistemas.' },
       { name: 'Widgets embed', desc: 'Inserta tu calendario de reservas en cualquier web.' },
@@ -104,7 +104,7 @@ const featureCategories = [
           Todo lo que incluye Agenda de Reservas
         </h1>
         <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-          Un plan único con todas las funcionalidades. Sin límites, sin sorpresas.
+          Un plan base por tipo de negocio con todo lo esencial incluido, sin límites de citas ni usuarios. WhatsApp, SMS y cobros online, disponibles como módulos opcionales.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
           <a href="https://app.agendadereservas.com" class="px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors">
@@ -185,9 +185,9 @@ const featureCategories = [
             <tbody class="text-sm">
               <tr class="border-t"><td class="p-4">Reservas online</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td></tr>
               <tr class="border-t bg-gray-50"><td class="p-4">Recordatorios email</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td></tr>
-              <tr class="border-t"><td class="p-4">WhatsApp Business</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-red-500">❌</td><td class="p-4 text-center text-red-500">❌</td></tr>
-              <tr class="border-t bg-gray-50"><td class="p-4">Recordatorios SMS</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-yellow-500">💰</td><td class="p-4 text-center text-yellow-500">💰</td></tr>
-              <tr class="border-t"><td class="p-4">Pagos online</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td></tr>
+              <tr class="border-t"><td class="p-4">WhatsApp Business</td><td class="p-4 text-center text-yellow-500">💰</td><td class="p-4 text-center text-red-500">❌</td><td class="p-4 text-center text-red-500">❌</td></tr>
+              <tr class="border-t bg-gray-50"><td class="p-4">Recordatorios SMS</td><td class="p-4 text-center text-yellow-500">💰</td><td class="p-4 text-center text-yellow-500">💰</td><td class="p-4 text-center text-yellow-500">💰</td></tr>
+              <tr class="border-t"><td class="p-4">Pagos online</td><td class="p-4 text-center text-yellow-500">💰</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-green-600">✅</td></tr>
               <tr class="border-t bg-gray-50"><td class="p-4">Bonos/paquetes</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-red-500">❌</td><td class="p-4 text-center text-yellow-500">⚠️</td></tr>
               <tr class="border-t"><td class="p-4">Usuarios ilimitados</td><td class="p-4 text-center text-green-600">✅</td><td class="p-4 text-center text-red-500">❌</td><td class="p-4 text-center text-red-500">❌</td></tr>
               <tr class="border-t bg-gray-50"><td class="p-4">Precio (3 empleados)</td><td class="p-4 text-center font-bold text-green-600"><span data-price-key="service_business.monthly">19</span>€</td><td class="p-4 text-center font-bold">147€</td><td class="p-4 text-center font-bold">63€</td></tr>

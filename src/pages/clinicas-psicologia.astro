@@ -34,11 +34,11 @@ const schema = {
       description: pageDescription,
       featureList: [
         'Citas online 24/7 para pacientes',
-        'Recordatorios automáticos por WhatsApp y email',
+        'Recordatorios automáticos por email',
         'Historial de pacientes confidencial',
         'Política de cancelación configurable',
-        'Pagos online con Stripe',
-        'Compatible con normativa RGPD'
+        'Compatible con normativa RGPD',
+        'WhatsApp Business y Cobros online disponibles como módulos adicionales'
       ]
     },
     {
@@ -73,7 +73,7 @@ const schema = {
           name: '¿Puedo cobrar la sesión al reservar?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Sí. Puedes activar el pago anticipado completo o un depósito para reducir cancelaciones de último minuto. El paciente paga con tarjeta al reservar a través de Stripe.'
+            text: 'Sí, con el módulo de Cobros online (desde 18€/mes). Puedes activar el pago anticipado completo o un depósito para reducir cancelaciones de último minuto. El paciente paga con tarjeta al reservar a través de Stripe o Redsys.'
           }
         },
         {
@@ -185,7 +185,7 @@ const schema = {
             </h3>
             <ul class="space-y-3 text-sm text-green-800">
               {[
-                'Recordatorio automático 48h y 2h antes por WA y email',
+                'Recordatorio automático 48h y 2h antes por email (o WhatsApp con el módulo adicional)',
                 'Página de reservas propia con tu marca, 24/7',
                 'Cero tiempo en gestión: todo automatizado',
                 'Política de cancelación con depósito configurable',

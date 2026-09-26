@@ -9,18 +9,18 @@ interface PricingConfig {
   service_business:     PlanPrice;
   restaurant:           PlanPrice;
   tourism_activities:   PlanPrice;
-  addon_communications: PlanPrice;
-  addon_payments:       PlanPrice;
+  addon_whatsapp:       PlanPrice;
   addon_sms:            PlanPrice;
+  addon_payments:       PlanPrice;
 }
 
 const FALLBACK: PricingConfig = {
   service_business:     { monthly: 19, yearly: 190 },
   restaurant:           { monthly: 24, yearly: 240 },
   tourism_activities:   { monthly: 29, yearly: 290 },
-  addon_communications: { monthly: 8,  yearly: 80  },
-  addon_payments:       { monthly: 8,  yearly: 80  },
-  addon_sms:            { monthly: 5,  yearly: 50  },
+  addon_whatsapp:       { monthly: 28, yearly: 280 },
+  addon_sms:            { monthly: 15, yearly: 150 },
+  addon_payments:       { monthly: 18, yearly: 180 },
 };
 
 let pricing: PricingConfig = FALLBACK;
@@ -78,16 +78,16 @@ const plans = [
 
 const addons = [
   {
-    key: 'addon_communications' as const,
+    key: 'addon_whatsapp' as const,
     icon: '💬',
-    name: 'Comunicaciones',
-    features: ['WhatsApp Business API', 'SMTP personalizado', 'Encuestas de satisfacción', 'Informes diarios automáticos'],
+    name: 'WhatsApp',
+    features: ['WhatsApp Business API', 'Bandeja de conversaciones', 'Plantillas aprobadas por Meta'],
   },
   {
     key: 'addon_payments' as const,
     icon: '💳',
-    name: 'Pagos Online',
-    features: ['Stripe, PayPal, WebPay', 'Depósitos y pagos parciales', 'Seguimiento de cobros por reserva', 'Liquidación automática'],
+    name: 'Cobros Online',
+    features: ['Pagos con Stripe y Redsys', 'Depósitos y cobros parciales', 'Enlace de pago para clientes', 'Reembolsos desde el panel'],
   },
   {
     key: 'addon_sms' as const,
@@ -104,6 +104,7 @@ const baseFeatures = [
   'Página de reservas personalizable',
   'Equipo ilimitado de usuarios',
   'Estadísticas y dashboard',
+  'Chat con IA, traducción y Communication Hub incluidos',
   'Soporte en español',
   'App móvil incluida',
 ];
@@ -215,17 +216,17 @@ const baseFeatures = [
           <span>{pricing.service_business.monthly}€/mes</span>
         </div>
         <div class="flex justify-between text-gray-300">
-          <span>+ Comunicaciones (WhatsApp + emails)</span>
-          <span>+{pricing.addon_communications.monthly}€/mes</span>
+          <span>+ WhatsApp (bandeja de conversaciones)</span>
+          <span>+{pricing.addon_whatsapp.monthly}€/mes</span>
         </div>
         <div class="flex justify-between text-gray-300">
-          <span>+ Pagos Online (cobros con Stripe)</span>
+          <span>+ Cobros Online (Stripe y Redsys)</span>
           <span>+{pricing.addon_payments.monthly}€/mes</span>
         </div>
         <div class="border-t border-gray-700 pt-2 mt-2 flex justify-between font-bold text-lg">
           <span>Total mensual</span>
           <span class="text-green-400">
-            {pricing.service_business.monthly + pricing.addon_communications.monthly + pricing.addon_payments.monthly}€/mes
+            {pricing.service_business.monthly + pricing.addon_whatsapp.monthly + pricing.addon_payments.monthly}€/mes
           </span>
         </div>
         <p class="text-gray-500 text-xs pt-1">vs. más de 147€/mes en la competencia para 3 empleados</p>

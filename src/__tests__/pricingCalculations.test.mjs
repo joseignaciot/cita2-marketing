@@ -128,7 +128,7 @@ describe('resolvePricing – merge datos de API con valores por defecto', () => 
   it('merge no pierde claves de fallback no presentes en apiData.pricing', () => {
     const apiData = { pricing: { service_business: { monthly: 25, yearly: 250 } } };
     const { pricing } = resolvePricing(apiData, DEFAULT_PRICING, DEFAULT_COMPETITORS);
-    assert.equal(pricing.addon_communications.monthly, 8);
+    assert.equal(pricing.addon_whatsapp.monthly, 28);
     assert.equal(pricing.restaurant.monthly, 24);
     assert.equal(pricing.tourism_activities.monthly, 29);
   });
@@ -155,8 +155,8 @@ describe('DEFAULT_PRICING – valores actuales en system_settings', () => {
     assert.equal(DEFAULT_PRICING.tourism_activities.monthly, 29);
   });
 
-  it('addon_communications.monthly = 8€', () => {
-    assert.equal(DEFAULT_PRICING.addon_communications.monthly, 8);
+  it('addon_whatsapp.monthly = 28€', () => {
+    assert.equal(DEFAULT_PRICING.addon_whatsapp.monthly, 28);
   });
 
   it('yearly equivale a 10 meses (descuento ~17%)', () => {
@@ -169,9 +169,9 @@ describe('DEFAULT_PRICING – valores actuales en system_settings', () => {
                  DEFAULT_PRICING.tourism_activities.monthly * 10);
   });
 
-  it('addon_communications.yearly equivale a 10 meses', () => {
-    assert.equal(DEFAULT_PRICING.addon_communications.yearly,
-                 DEFAULT_PRICING.addon_communications.monthly * 10);
+  it('addon_whatsapp.yearly equivale a 10 meses', () => {
+    assert.equal(DEFAULT_PRICING.addon_whatsapp.yearly,
+                 DEFAULT_PRICING.addon_whatsapp.monthly * 10);
   });
 });
 

@@ -10,10 +10,10 @@ import pricingData from '../../content/pricing.json';
 // Precios de build-time desde pricing.json — fuente de verdad
 const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
 const svcPrice = svcPlan?.monthly ?? 19;
-const commsAddon = pricingData.addons.find(a => a.id === 'comunicaciones');
-const commsPrice = commsAddon?.price ?? 39;
+const whatsappAddon = pricingData.addons.find(a => a.id === 'whatsapp');
+const whatsappPrice = whatsappAddon?.price ?? 28;
 const pagosAddon = pricingData.addons.find(a => a.id === 'pagos');
-const pagosPrice = pagosAddon?.price ?? 12;
+const pagosPrice = pagosAddon?.price ?? 18;
 
 const pageTitle = 'Alternativa a Calendly para negocios en España | Agenda de Reservas';
 const pageDescription = 'Calendly está pensado para reuniones B2B, no para peluquerías o clínicas. Agenda de Reservas: reservas de servicios, recordatorios WhatsApp y soporte en español.';
@@ -45,7 +45,7 @@ const comparativa = [
   {
     feature: 'WhatsApp Business API',
     calendly: 'No — no integrado de forma nativa',
-    agenda: `Sí — disponible (+${commsPrice}€/mes)`,
+    agenda: `Sí — disponible (+${whatsappPrice}€/mes)`,
     winner: 'agenda',
   },
   {

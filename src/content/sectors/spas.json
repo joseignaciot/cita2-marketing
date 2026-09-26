@@ -27,7 +27,7 @@
     },
     {
       "title": "Recordatorios automáticos",
-      "description": "Emails y WhatsApps con instrucciones previas (qué traer, llegar 15min antes) y confirmaciones.",
+      "description": "Emails (y WhatsApp con el módulo adicional) con instrucciones previas (qué traer, llegar 15min antes) y confirmaciones.",
       "icon": "bell"
     },
     {

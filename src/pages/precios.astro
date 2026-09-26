@@ -6,7 +6,16 @@ import FAQ from '../components/FAQ.astro';
 import DynamicPricing from '../components/DynamicPricing.astro';
 import pricing from '../content/pricing.json';
 
-const { pageTitle, pageDescription, businessTypes, addons, pricingFAQs } = pricing;
+const { pageTitle, pageDescription, businessTypes, includedFree, addons, pricingFAQs } = pricing;
+// pricing.json addon ids → /pricing API keys (live prices via DynamicPricing)
+const addonKeyMap: Record<string, string> = { whatsapp: 'addon_whatsapp', sms: 'addon_sms', pagos: 'addon_payments' };
+
+// Mapea el id de cada plan (usado en pricing.json) a la clave de precios de la API dinámica
+const priceKeyMap: Record<string, string> = {
+  servicios: 'service_business',
+  restaurantes: 'restaurant',
+  turismo: 'tourism_activities',
+};
 
 const schema = {
   '@context': 'https://schema.org',
@@ -117,12 +126,14 @@ const canonicalUrl = 'https://agendadereservas.com/precios/';
 
                 <div class="mb-6">
                   <div class="flex items-baseline gap-1">
-                    <span class="text-5xl font-extrabold text-gray-900 price-monthly-p">{bt.monthly}€</span>
-                    <span class="text-5xl font-extrabold text-gray-900 price-yearly-p hidden">{Math.floor(bt.yearly / 12)}€</span>
+                    <span class="text-5xl font-extrabold text-gray-900 price-monthly-p"><span data-price-key={`${priceKeyMap[bt.id]}.monthly`}>{bt.monthly}</span>€</span>
+                    <span class="text-5xl font-extrabold text-gray-900 price-yearly-p hidden"><span
+                      data-price-permonth-yearly={`${priceKeyMap[bt.id]}.yearly`}
+                    >{(bt.yearly / 12).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>€</span>
                     <span class="text-gray-500 text-sm">/mes</span>
                   </div>
                   <p class="text-sm text-gray-400 mt-1 price-label-monthly-p">Facturado mensualmente</p>
-                  <p class="text-sm text-green-600 mt-1 price-label-yearly-p hidden font-medium">{bt.yearly}€/año · ahorras {bt.saving}€</p>
+                  <p class="text-sm text-green-600 mt-1 price-label-yearly-p hidden font-medium"><span data-price-key={`${priceKeyMap[bt.id]}.yearly`}>{bt.yearly}</span>€/año · ahorras <span data-price-yearly-saving={priceKeyMap[bt.id]}>{bt.saving}</span>€</p>
                 </div>
 
                 <ul class="space-y-2.5 mb-8">
@@ -158,6 +169,29 @@ const canonicalUrl = 'https://agendadereservas.com/precios/';
       </div>
     </section>
 
+    <!-- Included free -->
+    <section class="py-16 bg-white border-b border-gray-100">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="text-center mb-12">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-700 text-sm font-semibold mb-4">
+            Incluido gratis en los 3 planes
+          </span>
+          <h2 class="text-3xl font-bold text-gray-900 mb-3">Todo esto ya viene incluido</h2>
+          <p class="text-lg text-gray-600">Sin coste extra, en cualquiera de los planes base.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          {includedFree.map((item) => (
+            <div class="bg-emerald-50/60 border border-emerald-100 rounded-2xl p-6">
+              <span class="text-3xl">{item.icon}</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-3">{item.name}</h3>
+              <p class="text-sm text-gray-600 mt-1.5">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <!-- Add-ons -->
     <section class="py-20 bg-white">
       <div class="container mx-auto px-4 max-w-5xl">
@@ -175,7 +209,7 @@ const canonicalUrl = 'https://agendadereservas.com/precios/';
                   <h3 class="text-xl font-bold text-gray-900 mt-2">{addon.name}</h3>
                 </div>
                 <div class="text-right">
-                  <span class="text-3xl font-extrabold text-purple-600">+{addon.price}€</span>
+                  <span class="text-3xl font-extrabold text-purple-600">+<span data-price-key={`${addonKeyMap[addon.id] ?? `addon_${addon.id}`}.monthly`}>{addon.price}</span>€</span>
                   <p class="text-xs text-gray-400">/mes</p>
                 </div>
               </div>
@@ -202,14 +236,14 @@ const canonicalUrl = 'https://agendadereservas.com/precios/';
               <p class="text-sm text-gray-500 mt-1">✂️ Peluquería o servicio</p>
             </div>
             <div class="bg-white/5 rounded-2xl p-5">
-              <p class="text-sm text-gray-400 mb-1">Base + comunicaciones</p>
-              <p class="text-3xl font-extrabold"><span data-price-calc="restaurant.monthly+addon_communications.monthly">32</span>€<span class="text-base font-normal text-gray-400">/mes</span></p>
+              <p class="text-sm text-gray-400 mb-1">Base + WhatsApp</p>
+              <p class="text-3xl font-extrabold"><span data-price-calc="restaurant.monthly+addon_whatsapp.monthly">52</span>€<span class="text-base font-normal text-gray-400">/mes</span></p>
               <p class="text-sm text-gray-500 mt-1">🍽️ Restaurante + WhatsApp</p>
             </div>
             <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
-              <p class="text-sm text-gray-400 mb-1">Todo incluido</p>
-              <p class="text-3xl font-extrabold text-purple-300"><span data-price-calc="tourism_activities.monthly+addon_communications.monthly+addon_payments.monthly">45</span>€<span class="text-base font-normal text-gray-400">/mes</span></p>
-              <p class="text-sm text-gray-500 mt-1">🧭 Turismo + comms + cobro</p>
+              <p class="text-sm text-gray-400 mb-1">Base + WhatsApp + Cobros</p>
+              <p class="text-3xl font-extrabold text-purple-300"><span data-price-calc="tourism_activities.monthly+addon_whatsapp.monthly+addon_payments.monthly">75</span>€<span class="text-base font-normal text-gray-400">/mes</span></p>
+              <p class="text-sm text-gray-500 mt-1">🧭 Turismo + WhatsApp + Cobros online</p>
             </div>
           </div>
           <p class="text-xs text-gray-500 mt-6 text-center">
@@ -267,7 +301,7 @@ const canonicalUrl = 'https://agendadereservas.com/precios/';
               </tr>
               <tr class="border-b border-gray-100">
                 <td class="p-5 text-sm text-gray-700">WhatsApp Business</td>
-                <td class="p-5 text-center text-sm font-semibold text-green-700 bg-blue-50/30">✓ Add-on 8€</td>
+                <td class="p-5 text-center text-sm font-semibold text-green-700 bg-blue-50/30">✓ Add-on 28€</td>
                 <td class="p-5 text-center text-sm text-gray-600">✗ No</td>
                 <td class="p-5 text-center text-sm text-gray-600">✗ No</td>
                 <td class="p-5 text-center text-sm text-gray-600">✗ No</td>

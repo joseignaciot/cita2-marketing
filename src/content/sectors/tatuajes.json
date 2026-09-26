@@ -1,9 +1,9 @@
 {
   "pageTitle": "Software de Gestión para Estudios de Tatuajes - Agenda de Reservas",
   "pageDescription": "Gestión integral para estudios de tatuajes y piercing. Gestión de citas, diseños, consentimientos y aftercare. 19€/mes, sin comisiones.",
-  "aiDescription": "Software para estudios de tatuajes y piercing: 19€/mes fijo. Sesiones múltiples, cobro de señal al reservar, aftercare automático y ficha de diseños por cliente. Sin comisiones.",
+  "aiDescription": "Software para estudios de tatuajes y piercing: 19€/mes fijo. Sesiones múltiples, aftercare automático y ficha de diseños por cliente. Cobro de señal al reservar disponible con el módulo de Cobros online. Sin comisiones.",
   "heroTitle": "Software de gestión para estudios de tatuajes",
-  "heroSubtitle": "Gestiona citas, diseños, sesiones múltiples y pagos. Envía aftercare automático y reduce no-shows con depósitos online.",
+  "heroSubtitle": "Gestiona citas, diseños, sesiones múltiples y pagos. Envía aftercare automático y reduce no-shows con depósitos online (módulo de Cobros online).",
   "features": [
     {
       "title": "Gestión de diseños",
@@ -55,7 +55,7 @@
   "faqs": [
     {
       "question": "¿Puedo cobrar señal al reservar?",
-      "answer": "Sí, puedes configurar depósitos obligatorios para reservar cita. Reduce no-shows drásticamente. El pago se procesa online mediante Stripe."
+      "answer": "Sí, puedes configurar depósitos obligatorios para reservar cita. Reduce no-shows drásticamente. El pago se procesa online mediante Stripe o Redsys, con el módulo de Cobros online (desde 18€/mes)."
     },
     {
       "question": "¿Funciona para tatuajes que necesitan varias sesiones?",

@@ -62,10 +62,14 @@ export function resolvePricing(apiData, fallbackPricing, fallbackCompetitors) {
 
 // Valores de fallback (iguales a los hardcodeados en los artículos Astro)
 export const DEFAULT_PRICING = {
-  service_business:     { monthly: 19, yearly: 190 },
-  restaurant:           { monthly: 24, yearly: 240 },
-  tourism_activities:   { monthly: 29, yearly: 290 },
-  addon_communications: { monthly: 8,  yearly: 80  },
+  service_business:      { monthly: 19, yearly: 190 },
+  restaurant:             { monthly: 24, yearly: 240 },
+  tourism_activities:     { monthly: 29, yearly: 290 },
+  addon_whatsapp:         { monthly: 28, yearly: 280 },
+  addon_sms:              { monthly: 15, yearly: 150 },
+  addon_payments:         { monthly: 18, yearly: 180 },
+  addon_voice_assistant:  { monthly: 0,  yearly: 0   },
+  addon_booking_widget:   { monthly: 0,  yearly: 0   },
 };
 
 export const DEFAULT_COMPETITORS = {

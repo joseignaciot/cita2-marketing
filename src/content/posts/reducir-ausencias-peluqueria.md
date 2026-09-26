@@ -46,7 +46,7 @@ Con Agenda de Reservas puedes configurar todos estos recordatorios en pocos minu
 
 1. Ve a Configuración > Notificaciones
 2. Activa "Recordatorio automático 24h"
-3. Activa "Recordatorio WhatsApp" (requiere módulo Comunicaciones Avanzadas, +8€/mes)
+3. Activa "Recordatorio WhatsApp" (requiere el módulo de WhatsApp Business, +28€/mes)
 4. Personaliza los mensajes con tu tono de marca
 
 **No necesitas tarjeta para probarlo.** 14 días gratis, setup en 2 minutos.

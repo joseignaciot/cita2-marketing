@@ -86,7 +86,7 @@ const schema = {
           name: '¿Cómo aviso a los comensales con recordatorio automático?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'El sistema envía recordatorios automáticos por email y, con el add-on de WhatsApp Business API (+8€/mes), también por WhatsApp. Puedes configurar el momento del envío: habitualmente 24 horas antes y 2 horas antes de la reserva. El comensal puede confirmar o cancelar directamente desde el mensaje.'
+            text: 'El sistema envía recordatorios automáticos por email y, con el módulo de WhatsApp Business API (+28€/mes), también por WhatsApp. Puedes configurar el momento del envío: habitualmente 24 horas antes y 2 horas antes de la reserva. El comensal puede confirmar o cancelar directamente desde el mensaje.'
           }
         },
         {
@@ -463,7 +463,7 @@ const schema = {
                 'Aforos por turno y zona',
                 'Lista de espera digital',
                 'Depósito para grupos',
-                'Recordatorios email/SMS',
+                'Recordatorios por email',
                 'Historial de comensales',
                 'Soporte en español'
               ].map(f => (
@@ -476,8 +476,8 @@ const schema = {
           </div>
 
           <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-            <p class="text-sm font-medium text-gray-600 mb-1">Add-on WhatsApp Business</p>
-            <p class="text-3xl font-bold text-gray-900 mb-1">+8€<span class="text-base font-normal text-gray-500">/mes</span></p>
+            <p class="text-sm font-medium text-gray-600 mb-1">Módulo WhatsApp Business</p>
+            <p class="text-3xl font-bold text-gray-900 mb-1">+28€<span class="text-base font-normal text-gray-500">/mes</span></p>
             <p class="text-xs text-gray-500 mb-4">Opcional, se añade al plan Restaurante</p>
             <ul class="space-y-2 text-sm text-gray-700">
               {[
@@ -498,7 +498,7 @@ const schema = {
           <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
             <div>
               <p class="text-sm font-medium text-gray-600 mb-1">Total máximo para restaurante</p>
-              <p class="text-3xl font-bold text-gray-900 mb-1">32€<span class="text-base font-normal text-gray-500">/mes</span></p>
+              <p class="text-3xl font-bold text-gray-900 mb-1">52€<span class="text-base font-normal text-gray-500">/mes</span></p>
               <p class="text-xs text-gray-500 mb-4">Plan completo con WhatsApp</p>
               <p class="text-sm text-gray-600">Sin comisiones por comensal. Sin límite de reservas ni de mesas. Sin permanencia.</p>
             </div>
@@ -525,7 +525,7 @@ const schema = {
               'Activa la lista de espera digital para turnos que se llenen',
               'Configura el depósito automático para grupos de 8 o más comensales',
               'Publica el enlace de reserva en tu web, Instagram y Google Business',
-              'Activa los recordatorios automáticos por email (y WhatsApp si tienes el add-on)'
+              'Activa los recordatorios automáticos por email (y WhatsApp si tienes el módulo activado)'
             ].map((step, i) => (
               <li class="flex items-start gap-3">
                 <span class="flex-shrink-0 w-6 h-6 border-2 border-blue-400 rounded mt-0.5" aria-hidden="true"></span>
@@ -553,7 +553,7 @@ const schema = {
             },
             {
               q: '¿Cómo aviso a los comensales con recordatorio automático?',
-              a: 'El sistema envía recordatorios por email automáticamente sin configuración adicional. Con el add-on de WhatsApp Business API (+8€/mes), los recordatorios se envían también por WhatsApp, que tiene tasas de apertura superiores al 90%. Puedes elegir el momento del envío: 24 horas antes, 2 horas antes o ambos. El comensal puede confirmar o cancelar directamente desde el mensaje de WhatsApp.'
+              a: 'El sistema envía recordatorios por email automáticamente sin configuración adicional. Con el módulo de WhatsApp Business API (+28€/mes), los recordatorios se envían también por WhatsApp, que tiene tasas de apertura superiores al 90%. Puedes elegir el momento del envío: 24 horas antes, 2 horas antes o ambos. El comensal puede confirmar o cancelar directamente desde el mensaje de WhatsApp.'
             },
             {
               q: '¿Puedo cobrar depósito solo para grupos grandes?',

@@ -1,7 +1,7 @@
 {
   "pageTitle": "Software de Gestión para Peluquerías - Agenda de Reservas",
-  "pageDescription": "Software diseñado específicamente para peluquerías. Reservas online 24/7, recordatorios automáticos, WhatsApp integrado. Setup en 2 minutos. 19€/mes sin comisiones.",
-  "aiDescription": "Software de gestión para peluquerías: 19€/mes fijo, sin comisiones. Reservas online 24/7, recordatorios WhatsApp automáticos, ficha de clientes con historial de cortes. Setup en 2 minutos.",
+  "pageDescription": "Software diseñado específicamente para peluquerías. Reservas online 24/7, recordatorios automáticos, WhatsApp como módulo opcional. Setup en 2 minutos. 19€/mes sin comisiones.",
+  "aiDescription": "Software de gestión para peluquerías: 19€/mes fijo, sin comisiones. Reservas online 24/7, recordatorios automáticos por email, ficha de clientes con historial de cortes. WhatsApp Business disponible como módulo adicional (+28€/mes). Setup en 2 minutos.",
   "heroTitle": "Software de gestión diseñado específicamente para peluquerías",
   "heroSubtitle": "Olvídate de las llamadas a deshoras y las citas perdidas. Gestiona tu agenda online 24/7 con recordatorios automáticos y una página de reservas profesional que tus clientes adorarán.",
   "features": [
@@ -12,11 +12,11 @@
     },
     {
       "title": "Recordatorios automáticos",
-      "description": "Emails y WhatsApps automáticos que reducen las ausencias hasta un 80%. Sin que tú hagas nada.",
+      "description": "Emails automáticos (y WhatsApp con el módulo adicional) que reducen las ausencias hasta un 80%. Sin que tú hagas nada.",
       "icon": "bell"
     },
     {
-      "title": "WhatsApp Business integrado",
+      "title": "WhatsApp Business (módulo opcional, desde 28€/mes)",
       "description": "Conecta tu WhatsApp y envía confirmaciones, recordatorios y follow-ups automáticamente. Tus clientes responden al instante.",
       "icon": "message"
     },

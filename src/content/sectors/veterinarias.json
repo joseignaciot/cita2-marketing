@@ -1,9 +1,9 @@
 {
   "pageTitle": "Software de Reservas para Veterinarias | Agenda de Reservas",
-  "pageDescription": "Citas online para veterinarias. Ficha por mascota, recordatorios de vacunas por WhatsApp, multi-veterinario incluido. 19€/mes, sin comisiones. Prueba gratis.",
-  "aiDescription": "Software de citas para veterinarias: 19€/mes, sin comisiones. Ficha individual por mascota, recordatorios de vacunas por WhatsApp, multi-veterinario sin coste extra. Pagos online con Stripe.",
+  "pageDescription": "Citas online para veterinarias. Ficha por mascota, recordatorios de vacunas por email, multi-veterinario incluido. WhatsApp como módulo opcional. 19€/mes, sin comisiones. Prueba gratis.",
+  "aiDescription": "Software de citas para veterinarias: 19€/mes, sin comisiones. Ficha individual por mascota, recordatorios de vacunas por email, multi-veterinario sin coste extra. WhatsApp Business y pagos online con Stripe/Redsys disponibles como módulos adicionales.",
   "heroTitle": "Software de citas para veterinarias. Por mascota. Sin comisiones.",
-  "heroSubtitle": "Tus clientes reservan online para cada mascota por separado. Recordatorios de vacunas automáticos. WhatsApp integrado. Multi-veterinario sin coste extra. 19€/mes.",
+  "heroSubtitle": "Tus clientes reservan online para cada mascota por separado. Recordatorios de vacunas automáticos. Multi-veterinario sin coste extra. 19€/mes.",
   "features": [
     {
       "title": "Ficha por mascota, no solo por dueño",
@@ -17,17 +17,17 @@
     },
     {
       "title": "Recordatorios de vacunas y revisiones",
-      "description": "Programa recordatorios automáticos para vacunaciones anuales, desparasitaciones y revisiones rutinarias. El cliente recibe WhatsApp con tu nombre cuando toca.",
+      "description": "Programa recordatorios automáticos para vacunaciones anuales, desparasitaciones y revisiones rutinarias. El cliente recibe un email con tu nombre cuando toca (o WhatsApp con el módulo adicional).",
       "icon": "bell"
     },
     {
-      "title": "WhatsApp Business integrado",
+      "title": "WhatsApp Business (módulo opcional, desde 28€/mes)",
       "description": "Confirmaciones y recordatorios por WhatsApp con 90% de apertura. Sin compartir tu número personal. Los dueños de mascotas responden al instante.",
       "icon": "message"
     },
     {
-      "title": "Cobro anticipado en servicios especiales",
-      "description": "Peluquería, ecografías o cirugías programadas: activa pago o depósito al reservar. Reduce cancelaciones y asegura el tiempo de quirófano.",
+      "title": "Cobro anticipado en servicios especiales (módulo opcional)",
+      "description": "Peluquería, ecografías o cirugías programadas: activa pago o depósito al reservar con el módulo de Cobros online (desde 18€/mes). Reduce cancelaciones y asegura el tiempo de quirófano.",
       "icon": "credit"
     },
     {
@@ -59,7 +59,7 @@
     },
     {
       "question": "¿Se pueden programar recordatorios de vacunas?",
-      "answer": "Sí. Programa recordatorios automáticos con antelación configurable: 1 mes, 2 semanas, 1 semana antes. El dueño recibe WhatsApp o email recordándole que su mascota necesita la vacuna anual."
+      "answer": "Sí. Programa recordatorios automáticos con antelación configurable: 1 mes, 2 semanas, 1 semana antes. El dueño recibe un email (o WhatsApp si tienes el módulo activado) recordándole que su mascota necesita la vacuna anual."
     },
     {
       "question": "¿Funciona para clínicas con varios veterinarios?",

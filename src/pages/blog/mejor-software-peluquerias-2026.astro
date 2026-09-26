@@ -9,7 +9,7 @@ import DynamicPricing from '../../components/DynamicPricing.astro';
 const API_URL = 'https://api.agendadereservas.com';
 const FALLBACK_PRICING = {
   service_business:     { monthly: 19, yearly: 190 },
-  addon_communications: { monthly: 8,  yearly: 80  },
+  addon_whatsapp:       { monthly: 28, yearly: 280 },
 };
 let pricing = FALLBACK_PRICING;
 try {
@@ -64,7 +64,7 @@ const comparison = [
   },
   {
     feature: 'Recordatorios WhatsApp',
-    agendadereservas: { value: `+${pricing.addon_communications.monthly}€/mes (add-on)`, highlight: false },
+    agendadereservas: { value: `+${pricing.addon_whatsapp.monthly}€/mes (módulo opcional)`, highlight: false },
     agendapro: { value: '+15€/mes', highlight: false },
     phorest: { value: '+10€/mes', highlight: false },
     reservio: { value: '✗', highlight: false }
@@ -104,7 +104,7 @@ const comparison = [
 const faqs = [
   {
     question: '¿Cuál es el mejor software para peluquería pequeña?',
-    answer: 'Para peluquerías con 1-3 peluqueros, Agenda de Reservas es la mejor opción: precio plano por negocio (no por peluquero), incluyendo WhatsApp Business. AgendaPro cuesta 49€ por cada peluquero, así que para 3 son 147€/mes. Agenda de Reservas incluye todas las funciones esenciales: reservas online, recordatorios, historial de coloraciones y gestión de técnicos.'
+    answer: 'Para peluquerías con 1-3 peluqueros, Agenda de Reservas es la mejor opción: precio plano por negocio (no por peluquero), con WhatsApp Business disponible como módulo opcional. AgendaPro cuesta 49€ por cada peluquero, así que para 3 son 147€/mes. Agenda de Reservas incluye todas las funciones esenciales: reservas online, recordatorios por email, historial de coloraciones y gestión de técnicos.'
   },
   {
     question: '¿Cómo reducir ausencias en peluquería?',
@@ -120,7 +120,7 @@ const faqs = [
   },
   {
     question: '¿Agenda de Reservas o AgendaPro para peluquería?',
-    answer: 'Para la mayoría de peluquerías, Agenda de Reservas ofrece mejor relación calidad-precio: precio plano por negocio vs 147€/mes de AgendaPro para 3 peluqueros. Agenda de Reservas incluye WhatsApp Business (AgendaPro cobra extra), tiene setup más rápido (2 min vs horas), y soporte igual de bueno. AgendaPro solo tiene sentido para grandes franquicias con presupuesto alto.'
+    answer: 'Para la mayoría de peluquerías, Agenda de Reservas ofrece mejor relación calidad-precio: precio plano por negocio vs 147€/mes de AgendaPro para 3 peluqueros. Agenda de Reservas ofrece WhatsApp Business como módulo opcional, tiene setup más rápido (2 min vs horas), y soporte igual de bueno. AgendaPro solo tiene sentido para grandes franquicias con presupuesto alto.'
   }
 ];
 ---
@@ -157,7 +157,7 @@ const faqs = [
           <div class="grid md:grid-cols-2 gap-4">
             <ul class="space-y-2 text-blue-700 text-sm">
               <li>✓ <span data-price-key="service_business.monthly">19</span>€/mes plan base (no por peluquero)</li>
-              <li>✓ WhatsApp Business disponible (+<span data-price-key="addon_communications.monthly">8</span>€/mes add-on)</li>
+              <li>✓ WhatsApp Business disponible (+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes, módulo opcional)</li>
               <li>✓ Setup rápido, presets por sector</li>
               <li>✓ Historial de coloraciones</li>
             </ul>
@@ -222,8 +222,8 @@ const faqs = [
               <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
                 <span class="text-2xl">💬</span>
               </div>
-              <h3 class="font-semibold text-gray-900 mb-2">WhatsApp Business (add-on +<span data-price-key="addon_communications.monthly">8</span>€/mes)</h3>
-              <p class="text-gray-600 text-sm">WhatsApp tiene las mayores tasas de apertura. Con el módulo de Comunicaciones Avanzadas envía recordatorios y confirmaciones automáticas.</p>
+              <h3 class="font-semibold text-gray-900 mb-2">WhatsApp Business (módulo opcional +<span data-price-key="addon_whatsapp.monthly">28</span>€/mes)</h3>
+              <p class="text-gray-600 text-sm">WhatsApp tiene las mayores tasas de apertura. Con el módulo de WhatsApp Business envía recordatorios y confirmaciones automáticas.</p>
             </div>
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
               <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">

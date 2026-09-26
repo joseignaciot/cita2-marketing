@@ -1,6 +1,6 @@
 {
   "pageTitle": "Precios - Agenda de Reservas | Software de Gestión de Citas",
-  "pageDescription": "Servicios desde 19€/mes, restaurantes 24€/mes, turismo 29€/mes. Sin comisiones ni permanencia. Módulos opcionales de comunicaciones y cobro online.",
+  "pageDescription": "Servicios desde 19€/mes, restaurantes 24€/mes, turismo 29€/mes. IA, hub de comunicación e informes incluidos. Módulos opcionales de WhatsApp, SMS y cobro online.",
   "businessTypes": [
     {
       "colorCls": "blue",
@@ -64,33 +64,105 @@
       ]
     }
   ],
+  "includedFree": [
+    {
+      "id": "ia",
+      "icon": "🤖",
+      "name": "Todo lo que usa IA",
+      "description": "Chat widget con IA en tu web, traducción automática, importar carta con IA y asistente del panel.",
+      "highlights": [
+        "Chat widget IA en tu web",
+        "Traducción automática",
+        "Importar carta con IA",
+        "Asistente del panel"
+      ]
+    },
+    {
+      "id": "hub",
+      "icon": "💬",
+      "name": "Communication Hub",
+      "description": "Historial de mensajes, informes programados, plantillas y notificaciones, todo centralizado.",
+      "highlights": [
+        "Historial de mensajes",
+        "Informes programados",
+        "Plantillas de mensajes",
+        "Notificaciones"
+      ]
+    },
+    {
+      "id": "encuestas",
+      "icon": "⭐",
+      "name": "Encuestas de satisfacción",
+      "description": "Encuestas automáticas post-cita para medir la satisfacción de tus clientes."
+    },
+    {
+      "id": "informes",
+      "icon": "📊",
+      "name": "Informe diario por email",
+      "description": "Resumen diario de tu actividad directo a tu correo."
+    },
+    {
+      "id": "recordatorios",
+      "icon": "🔔",
+      "name": "Recordatorios por email",
+      "description": "Recordatorios automáticos por email para reducir ausencias."
+    },
+    {
+      "id": "asistente-voz",
+      "icon": "📞",
+      "name": "Asistente de voz",
+      "description": "Reservas por teléfono con IA (Retell). Incluido / gratis por ahora."
+    },
+    {
+      "id": "widget-reservas",
+      "icon": "🌐",
+      "name": "Widget de reservas embebido",
+      "description": "Widget de reservas para insertar en tu propia web. Incluido / gratis por ahora."
+    }
+  ],
   "addons": [
     {
-      "id": "comunicaciones",
+      "id": "whatsapp",
       "icon": "💬",
-      "name": "Comunicaciones Avanzadas",
-      "price": 8,
-      "description": "WhatsApp Business API, SMS, hub de mensajes, recordatorios automáticos, encuestas post-cita e informes diarios.",
+      "name": "WhatsApp",
+      "priceKey": "addon_whatsapp.monthly",
+      "priceYearlyKey": "addon_whatsapp.yearly",
+      "price": 28,
+      "yearly": 280,
+      "description": "WhatsApp Business API y bandeja de conversaciones para hablar con tus clientes por WhatsApp.",
       "highlights": [
         "WhatsApp Business API",
+        "Bandeja de conversaciones",
+        "Plantillas aprobadas por Meta"
+      ]
+    },
+    {
+      "id": "sms",
+      "icon": "✉️",
+      "name": "SMS",
+      "priceKey": "addon_sms.monthly",
+      "priceYearlyKey": "addon_sms.yearly",
+      "price": 15,
+      "yearly": 150,
+      "description": "Envío de SMS con Twilio (requiere cuenta de Twilio propia).",
+      "highlights": [
         "SMS con Twilio",
-        "Hub de mensajes centralizado",
-        "Recordatorios automáticos",
-        "Encuestas de satisfacción",
-        "Informes diarios por email"
+        "Requiere cuenta Twilio propia"
       ]
     },
     {
       "id": "pagos",
       "icon": "💳",
-      "name": "Cobro Online",
-      "price": 8,
-      "description": "Stripe integrado, depósitos y cobros parciales, enlace de pago, historial de transacciones y gestión de métodos de pago.",
+      "name": "Cobros online",
+      "priceKey": "addon_payments.monthly",
+      "priceYearlyKey": "addon_payments.yearly",
+      "price": 18,
+      "yearly": 180,
+      "description": "Stripe y Redsys: depósitos, cobros parciales, enlace de pago y reembolsos.",
       "highlights": [
-        "Pagos con Stripe",
+        "Pagos con Stripe y Redsys",
         "Depósitos y cobros parciales",
         "Enlace de pago para clientes",
-        "Historial de transacciones",
         "Reembolsos desde el panel"
       ]
     }
@@ -102,7 +174,7 @@
     },
     {
       "question": "¿Los módulos add-on son obligatorios?",
-      "answer": "No. Los módulos de Comunicaciones Avanzadas (+8€) y Cobro Online (+8€) son completamente opcionales. Puedes empezar con el plan base y añadirlos cuando los necesites, sin cambiar de plan."
+      "answer": "No. Los módulos de WhatsApp (+28€), SMS (+15€) y Cobros online (+18€) son completamente opcionales. Puedes empezar con el plan base y añadirlos cuando los necesites, sin cambiar de plan. Todo lo que usa IA, el Communication Hub, las encuestas y los informes ya vienen incluidos gratis en el plan base."
     },
     {
       "question": "¿Hay algún coste oculto?",
@@ -114,7 +186,7 @@
     },
     {
       "question": "¿Hay descuento por pago anual?",
-      "answer": "Sí. Al pagar anualmente obtienes el equivalente a 2 meses gratis. Servicios: 190€/año (19€/mes), Restaurantes: 240€/año (20€/mes), Turismo: 290€/año (24€/mes)."
+      "answer": "Sí. Al pagar anualmente obtienes el equivalente a 2 meses gratis. Servicios: 190€/año (≈15,83€/mes), Restaurantes: 240€/año (20€/mes), Turismo: 290€/año (≈24,17€/mes)."
     },
     {
       "question": "¿Necesito tarjeta para la prueba?",

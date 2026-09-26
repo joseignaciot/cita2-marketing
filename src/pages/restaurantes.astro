@@ -56,7 +56,7 @@ const schema = {
           name: '¿Cómo funciona la lista de espera?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Cuando estás lleno, el cliente se apunta a lista de espera. Si hay cancelación, el sistema notifica automáticamente por email/WhatsApp al primero de la lista.'
+            text: 'Cuando estás lleno, el cliente se apunta a lista de espera. Si hay cancelación, el sistema notifica automáticamente por email (y por WhatsApp si tienes activo el módulo) al primero de la lista.'
           }
         },
         {
@@ -64,7 +64,7 @@ const schema = {
           name: '¿Se pueden pedir depósitos al reservar?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Sí, es opcional y configurable por tamaño de grupo o día de la semana. El pago se procesa mediante Stripe de forma segura.'
+            text: 'Sí, es opcional y configurable por tamaño de grupo o día de la semana. El pago se procesa mediante Stripe o Redsys, con el módulo de Cobros online.'
           }
         }
       ]
@@ -215,16 +215,16 @@ const schema = {
                 <span class="font-semibold text-green-600">0€ — nunca</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-gray-500">WhatsApp Business</span>
-                <span class="font-semibold">+<span data-price-key="addon_communications.monthly">8</span>€/mes</span>
+                <span class="text-gray-500">WhatsApp Business (opcional)</span>
+                <span class="font-semibold">+<span data-price-key="addon_whatsapp.monthly">28</span>€/mes</span>
               </div>
               <div class="border-t pt-3 flex justify-between">
-                <span class="font-bold">Total completo</span>
-                <span class="font-extrabold text-green-600 text-lg"><span data-price-calc="restaurant.monthly+addon_communications.monthly">32</span>€/mes</span>
+                <span class="font-bold">Total con WhatsApp</span>
+                <span class="font-extrabold text-green-600 text-lg"><span data-price-calc="restaurant.monthly+addon_whatsapp.monthly">52</span>€/mes</span>
               </div>
             </div>
             <ul class="text-xs text-gray-600 space-y-1">
-              <li>✅ WhatsApp Business API nativo</li>
+              <li>✅ WhatsApp Business API nativo (módulo opcional)</li>
               <li>✅ CRM — tus datos, siempre</li>
               <li>✅ Turismo y servicios en un plan</li>
             </ul>
@@ -233,9 +233,9 @@ const schema = {
 
         <div class="text-center mt-10">
           <p class="text-xl font-bold text-gray-900">
-            Ahorro vs TheFork: <span class="text-green-600">hasta <span data-price-saving-annual="restaurant.monthly+addon_communications.monthly:475">5.316</span>€/año</span>
+            Ahorro vs TheFork: <span class="text-green-600">hasta <span data-price-saving-annual="restaurant.monthly+addon_whatsapp.monthly:475">5.076</span>€/año</span>
           </p>
-          <p class="text-sm text-gray-500 mt-1">(475€ TheFork - <span data-price-calc="restaurant.monthly+addon_communications.monthly">32</span>€) × 12 meses</p>
+          <p class="text-sm text-gray-500 mt-1">(475€ TheFork - <span data-price-calc="restaurant.monthly+addon_whatsapp.monthly">52</span>€) × 12 meses</p>
         </div>
       </div>
     </section>

@@ -10,8 +10,8 @@ import pricingData from '../../content/pricing.json';
 // Precios de build-time desde pricing.json — fuente de verdad
 const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
 const svcPrice = svcPlan?.monthly ?? 19;
-const commsAddon = pricingData.addons.find(a => a.id === 'comunicaciones');
-const commsPrice = commsAddon?.price ?? 39;
+const whatsappAddon = pricingData.addons.find(a => a.id === 'whatsapp');
+const whatsappPrice = whatsappAddon?.price ?? 28;
 
 const pageTitle = 'Alternativa a Koibox para peluquerías | Agenda de Reservas';
 const pageDescription = `Koibox desde 25€/mes para peluquerías. Agenda de Reservas ofrece las mismas funciones desde ${svcPrice}€/mes, con soporte en español y sin permanencia.`;
@@ -41,7 +41,7 @@ const comparativa = [
   {
     feature: 'WhatsApp nativo',
     koibox: '⚠️ Integración disponible según plan',
-    agenda: `✅ WhatsApp Business API (+${commsPrice}€/mes)`,
+    agenda: `✅ WhatsApp Business API (+${whatsappPrice}€/mes)`,
     winner: 'empate',
   },
   {

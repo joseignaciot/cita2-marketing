@@ -9,7 +9,7 @@ import DynamicPricing from '../../components/DynamicPricing.astro';
 const API_URL = 'https://api.agendadereservas.com';
 const FALLBACK_PRICING = {
   service_business:     { monthly: 19, yearly: 190 },
-  addon_communications: { monthly: 8,  yearly: 80  },
+  addon_whatsapp:       { monthly: 28, yearly: 280 },
 };
 let apiPricing = FALLBACK_PRICING;
 try {
@@ -52,7 +52,7 @@ const softwareList = [
     price: `${apiPricing.service_business.monthly}€/mes`,
     rating: 4.9,
     reviews: 523,
-    pros: ['Precio fijo sin comisiones', 'WhatsApp Business incluido', 'Setup 2 minutos', 'Sin límites de usuarios'],
+    pros: ['Precio fijo sin comisiones', 'WhatsApp Business como módulo opcional', 'Setup 2 minutos', 'Sin límites de usuarios'],
     cons: ['Sin app nativa (web responsive)'],
     bestFor: 'Negocios que quieren simplicidad y ahorrar',
     position: 1
@@ -115,7 +115,7 @@ const howToData = {
 const faqs = [
   {
     question: '¿Cuál es el mejor software de gestión de citas para peluquerías?',
-    answer: 'Para peluquerías, Agenda de Reservas ofrece la mejor relación calidad-precio: precio plano por negocio (no por empleado), vs AgendaPro a 147€/mes para 3 peluqueros. El módulo de WhatsApp Business está disponible como add-on de comunicaciones.'
+    answer: 'Para peluquerías, Agenda de Reservas ofrece la mejor relación calidad-precio: precio plano por negocio (no por empleado), vs AgendaPro a 147€/mes para 3 peluqueros. El módulo de WhatsApp Business está disponible como módulo opcional (+28€/mes).'
   },
   {
     question: '¿TheFork o software propio para restaurantes?',
@@ -127,7 +127,7 @@ const faqs = [
   },
   {
     question: '¿Qué software de citas incluye WhatsApp Business?',
-    answer: 'Agenda de Reservas ofrece integración con WhatsApp Business API como módulo adicional (add-on de Comunicaciones Avanzadas). AgendaPro cobra extra por WhatsApp y Reservio no ofrece integración nativa.'
+    answer: 'Agenda de Reservas ofrece integración con WhatsApp Business API como módulo opcional (+28€/mes). AgendaPro cobra extra por WhatsApp y Reservio no ofrece integración nativa.'
   }
 ];
 ---
@@ -208,7 +208,7 @@ const faqs = [
                   </td>
                   <td class="px-6 py-4 text-center">
                     <span class="inline-flex items-center gap-1 text-blue-600 text-sm">
-                      Add-on +<span data-price-key="addon_communications.monthly">8</span>€/mes
+                      Módulo opcional +<span data-price-key="addon_whatsapp.monthly">28</span>€/mes
                     </span>
                   </td>
                   <td class="px-6 py-4 text-center text-lg font-bold text-green-600">Base</td>
@@ -417,7 +417,7 @@ const faqs = [
         <div class="text-center">
           <h2 class="text-title text-gray-900 mb-4">Nuestra recomendación 2026</h2>
           <p class="text-body text-lg mb-8 max-w-2xl mx-auto">
-          Tras analizar las opciones, <strong>Agenda de Reservas</strong> ofrece la mejor relación calidad-precio para la mayoría de negocios de servicios. Precio fijo por negocio, sin comisiones, y soporte en español. El módulo de WhatsApp Business está disponible como add-on (+8€/mes) si lo necesitas.
+          Tras analizar las opciones, <strong>Agenda de Reservas</strong> ofrece la mejor relación calidad-precio para la mayoría de negocios de servicios. Precio fijo por negocio, sin comisiones, y soporte en español. El módulo de WhatsApp Business está disponible como opcional (+28€/mes) si lo necesitas.
           </p>
           <a href="https://app.agendadereservas.com" class="btn-apple-primary text-lg px-12 py-5 inline-flex">
             Prueba Agenda de Reservas gratis 14 días

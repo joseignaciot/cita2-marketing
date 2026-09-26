@@ -6,9 +6,11 @@
 // ── Atributos disponibles ──────────────────────────────────────────────────
 // Precios propios:
 //   data-price-key="restaurant.monthly"           → 24
-//   data-price-calc="restaurant.monthly+addon_communications.monthly" → 32
-//   data-price-saving-annual="restaurant.monthly+addon_communications.monthly:475" → 5316
+//   data-price-calc="restaurant.monthly+addon_whatsapp.monthly" → 52
+//   data-price-saving-annual="restaurant.monthly+addon_whatsapp.monthly:475" → 5316
 //   data-price-vs="restaurant.monthly:475"        → 451  (diferencia mensual)
+//   data-price-permonth-yearly="service_business.yearly" → "15,83" (yearly/12, formato es-ES, 2 decimales)
+//   data-price-yearly-saving="service_business"   → 38 (monthly*12 - yearly)
 //
 // Competidores:
 //   data-competitor-key="thefork.monthly_fee"     → 175
@@ -26,12 +28,14 @@
 
   // ── Fallbacks (idénticos al DEFAULT en server.js) ─────────────────────────
   const FALLBACK_PRICING: Record<string, Record<string, number>> = {
-    service_business:     { monthly: 19, yearly: 190 },
-    restaurant:           { monthly: 24, yearly: 240 },
-    tourism_activities:   { monthly: 29, yearly: 290 },
-    addon_communications: { monthly: 8,  yearly: 80  },
-    addon_payments:       { monthly: 8,  yearly: 80  },
-    addon_sms:            { monthly: 5,  yearly: 50  },
+    service_business:       { monthly: 19, yearly: 190 },
+    restaurant:             { monthly: 24, yearly: 240 },
+    tourism_activities:     { monthly: 29, yearly: 290 },
+    addon_whatsapp:         { monthly: 28, yearly: 280 },
+    addon_sms:              { monthly: 15, yearly: 150 },
+    addon_payments:         { monthly: 18, yearly: 180 },
+    addon_voice_assistant:  { monthly: 0,  yearly: 0   },
+    addon_booking_widget:   { monthly: 0,  yearly: 0   },
   };
 
   interface Competitor {
@@ -114,6 +118,24 @@
       const theirs = parseFloat(competitorStr);
       if (ours !== null && !isNaN(theirs)) {
         el.textContent = Math.round((theirs - ours) * 12).toLocaleString('es-ES');
+      }
+    });
+
+    // 3c. data-price-yearly-saving="plan" → monthly*12 - yearly (ahorro del pago anual)
+    document.querySelectorAll<HTMLElement>('[data-price-yearly-saving]').forEach(el => {
+      const plan = el.dataset.priceYearlySaving!;
+      const monthly = resolvePricing(`${plan}.monthly`, pricing);
+      const yearly = resolvePricing(`${plan}.yearly`, pricing);
+      if (monthly !== null && yearly !== null) {
+        el.textContent = String(Math.round(monthly * 12 - yearly));
+      }
+    });
+
+    // 3b. data-price-permonth-yearly="plan.yearly" → yearly/12 formateado "15,83"
+    document.querySelectorAll<HTMLElement>('[data-price-permonth-yearly]').forEach(el => {
+      const v = resolvePricing(el.dataset.pricePermonthYearly!, pricing);
+      if (v !== null) {
+        el.textContent = (v / 12).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       }
     });
 

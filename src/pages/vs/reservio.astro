@@ -12,7 +12,7 @@ const reservioProPrice = 63; // competidor — verificado reservio.com/es abril 
 const savingAnnual = (reservioProPrice - svcPrice) * 12;
 
 const pageTitle = 'Reservio vs Agenda de Reservas (2026) | Soporte local en español';
-const pageDescription = 'Reservio (alemán) vs Agenda de Reservas (española). WhatsApp integrado, soporte en español nativo y 19€/mes para todo tu equipo. Precios reales 2026.';
+const pageDescription = 'Reservio (alemán) vs Agenda de Reservas (española). WhatsApp disponible, soporte en español nativo y 19€/mes para todo tu equipo. Precios reales 2026.';
 const canonicalUrl = 'https://agendadereservas.com/vs/reservio/';
 
 const schema = {
@@ -27,15 +27,15 @@ const schema = {
 };
 
 const comparisonRows = [
-  { feature: 'Precio plan básico', agendadereservas: `${svcPrice}€/mes (todo incluido)`, reservio: '0€ (limitado) / 31€ (pro)', winner: 'agendadereservas' },
+  { feature: 'Precio plan básico', agendadereservas: `${svcPrice}€/mes (IA, comunicaciones e informes incluidos)`, reservio: '0€ (limitado) / 31€ (pro)', winner: 'agendadereservas' },
   { feature: 'Precio plan premium', agendadereservas: `${svcPrice}€ (\u00fanico plan)`, reservio: `${reservioProPrice}€/mes (max 5 staff)`, winner: 'agendadereservas' },
   { feature: 'Usuarios/staff', agendadereservas: 'Ilimitados', reservio: 'Limitado por plan', winner: 'agendadereservas' },
   { feature: 'Reservas mensuales', agendadereservas: 'Ilimitadas', reservio: 'Limitadas en plan gratis', winner: 'agendadereservas' },
   { feature: 'Soporte en español', agendadereservas: '✅ Nativo (chat/email)', reservio: '⚠️ Inglés/Alemán principal', winner: 'agendadereservas' },
-  { feature: 'WhatsApp Business', agendadereservas: '✅ Incluido nativo', reservio: '❌ No disponible', winner: 'agendadereservas' },
-  { feature: 'Recordatorios SMS', agendadereservas: '✅ Incluido', reservio: '⚠️ Pago aparte', winner: 'agendadereservas' },
+  { feature: 'WhatsApp Business', agendadereservas: '✅ Disponible (+28€/mes)', reservio: '❌ No disponible', winner: 'agendadereservas' },
+  { feature: 'Recordatorios SMS', agendadereservas: '✅ Disponible (+15€/mes)', reservio: '⚠️ Pago aparte', winner: 'agendadereservas' },
   { feature: 'Presets por sector', agendadereservas: '✅ Peluquería, estética, turismo', reservio: '⚠️ Genérico', winner: 'agendadereservas' },
-  { feature: 'Pagos online', agendadereservas: '✅ Stripe integrado', reservio: '✅ Stripe/PayPal', winner: 'tie' },
+  { feature: 'Pagos online', agendadereservas: '✅ Stripe (+18€/mes)', reservio: '✅ Stripe/PayPal', winner: 'tie' },
   { feature: 'Calendario Google', agendadereservas: '✅ Sync bidireccional', reservio: '✅ Sync bidireccional', winner: 'tie' },
   { feature: 'Interfaz en español', agendadereservas: '✅ 100% traducida', reservio: '⚠️ Algunas partes en inglés', winner: 'agendadereservas' },
   { feature: 'App móvil nativa', agendadereservas: '❌ Web app responsive', reservio: '✅ App nativa', winner: 'reservio' },

@@ -46,7 +46,7 @@ const schema = {
           name: '¿Se pueden programar recordatorios de vacunas?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Sí. Puedes programar recordatorios automáticos con antelación configurable (1 mes, 2 semanas, 1 semana antes). El cliente recibe un WhatsApp o email recordándole que su mascota necesita la vacuna anual.'
+            text: 'Sí. Puedes programar recordatorios automáticos con antelación configurable (1 mes, 2 semanas, 1 semana antes). El cliente recibe un email (o WhatsApp con el módulo adicional) recordándole que su mascota necesita la vacuna anual.'
           }
         },
         {
@@ -89,7 +89,7 @@ const schema = {
       <div class="container-apple">
         <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
           {[
-            { stat: '−85%', label: 'ausencias con recordatorio automático de WhatsApp' },
+            { stat: '−85%', label: 'ausencias con recordatorio automático de citas' },
             { stat: '2.8', label: 'mascotas de media por cliente en España (INE 2024)' },
             { stat: '0€', label: 'coste adicional por añadir más veterinarios al equipo' }
           ].map(({ stat, label }) => (
@@ -142,7 +142,7 @@ const schema = {
                 <li>🐕 Ficha individual por mascota, histórico limpio</li>
               </ul>
               <ul class="space-y-2">
-                <li>💬 WhatsApp Business separado de tu número personal</li>
+                <li>💬 WhatsApp Business separado de tu número personal (módulo opcional)</li>
                 <li>🔔 Recordatorio automático 24h antes — 0 olvidos</li>
                 <li>💉 Alerta automática de vacunas programada por mascota</li>
               </ul>

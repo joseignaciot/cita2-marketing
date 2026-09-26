@@ -10,7 +10,7 @@ import {
 // ─── Constantes de referencia ────────────────────────────────────────────────
 const OUR_PRICE   = 19;   // service_business.monthly
 const REST_PRICE  = 24;   // restaurant.monthly
-const ADDON_PRICE = 8;    // addon_communications.monthly
+const ADDON_PRICE = 28;   // addon_whatsapp.monthly
 const AGENDAPRO_PPE = 49; // precio por empleado
 const RESERVIO_BASE = 31; // base
 const RESERVIO_PPS  = 26.25; // por empleado adicional
@@ -110,7 +110,7 @@ describe('resolvePricing – merge de datos de API con fallbacks', () => {
   it('merge no pierde claves del DEFAULT_PRICING ausentes en apiData', () => {
     const apiData = { pricing: { service_business: { monthly: 25, yearly: 250 } } };
     const { pricing } = resolvePricing(apiData, DEFAULT_PRICING, DEFAULT_COMPETITORS);
-    expect(pricing.addon_communications.monthly).toBe(8); // fallback preservado
+    expect(pricing.addon_whatsapp.monthly).toBe(28); // fallback preservado
     expect(pricing.restaurant.monthly).toBe(24);          // fallback preservado
   });
 });
@@ -129,8 +129,8 @@ describe('DEFAULT_PRICING – valores actuales de la BD', () => {
     expect(DEFAULT_PRICING.tourism_activities.monthly).toBe(29);
   });
 
-  it('addon_communications.monthly = 8€', () => {
-    expect(DEFAULT_PRICING.addon_communications.monthly).toBe(8);
+  it('addon_whatsapp.monthly = 28€', () => {
+    expect(DEFAULT_PRICING.addon_whatsapp.monthly).toBe(28);
   });
 
   it('yearly = monthly × 10 (descuento ~17%)', () => {

@@ -1,9 +1,9 @@
 {
   "pageTitle": "Software de Reservas para Restaurantes sin Comisiones - Agenda de Reservas",
   "pageDescription": "Sistema de reservas para restaurantes. Gestiona mesas, turnos y lista de espera sin comisiones por comensal. Solo 24€/mes vs 300-500€/mes en TheFork. Prueba gratis 14 días.",
-  "aiDescription": "Software de reservas para restaurantes: 24€/mes fijo, 0% de comisión por comensal. Alternativa a TheFork/ElTenedor. Incluye gestión de mesas, turnos, lista de espera y WhatsApp Business.",
+  "aiDescription": "Software de reservas para restaurantes: 24€/mes fijo, 0% de comisión por comensal. Alternativa a TheFork/ElTenedor. Incluye gestión de mesas, turnos, lista de espera, chat con IA y encuestas de satisfacción. WhatsApp Business disponible como módulo adicional.",
   "heroTitle": "Reservas para restaurantes. Sin comisiones.",
-  "heroSubtitle": "TheFork cobra 150-200€/mes en cuota más 1,5-2€ por cada comensal. Nosotros: 24€/mes fijo. Sin sorpresas. Con WhatsApp incluido.",
+  "heroSubtitle": "TheFork cobra 150-200€/mes en cuota más 1,5-2€ por cada comensal. Nosotros: 24€/mes fijo. Sin sorpresas.",
   "features": [
     {
       "title": "Reservas online sin comisiones",
@@ -63,11 +63,11 @@
     },
     {
       "question": "¿Cómo funciona la lista de espera?",
-      "answer": "Cuando un cliente intenta reservar y estás lleno, puede apuntarse a lista de espera. Si hay una cancelación, el sistema notifica automáticamente por email/WhatsApp al primer cliente de la lista."
+      "answer": "Cuando un cliente intenta reservar y estás lleno, puede apuntarse a lista de espera. Si hay una cancelación, el sistema notifica automáticamente por email (y por WhatsApp si tienes activo el módulo de WhatsApp Business) al primer cliente de la lista."
     },
     {
       "question": "¿Se pueden pedir depósitos?",
-      "answer": "Sí, es opcional y configurable. Puedes pedir depósito para grupos grandes, fines de semana o días especiales. El pago se procesa mediante Stripe."
+      "answer": "Sí, es opcional y configurable. Puedes pedir depósito para grupos grandes, fines de semana o días especiales. El pago se procesa mediante Stripe o Redsys, con el módulo de Cobros online (desde 18€/mes)."
     },
     {
       "question": "¿Funciona para restaurantes con terraza?",

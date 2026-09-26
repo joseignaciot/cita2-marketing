@@ -10,10 +10,10 @@ import pricingData from '../../content/pricing.json';
 // Precios de build-time desde pricing.json — fuente de verdad
 const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
 const svcPrice = svcPlan?.monthly ?? 19;
-const commsAddon = pricingData.addons.find(a => a.id === 'comunicaciones');
-const commsPrice = commsAddon?.price ?? 39;
+const whatsappAddon = pricingData.addons.find(a => a.id === 'whatsapp');
+const whatsappPrice = whatsappAddon?.price ?? 28;
 const pagosAddon = pricingData.addons.find(a => a.id === 'pagos');
-const pagosPrice = pagosAddon?.price ?? 12;
+const pagosPrice = pagosAddon?.price ?? 18;
 
 const pageTitle = 'Alternativa a Fresha sin comisiones | Agenda de Reservas';
 const pageDescription = 'Fresha dice ser gratis pero cobra hasta un 20% por clientes nuevos del marketplace. Con Agenda de Reservas pagas 19€/mes fijo, sin comisiones nunca.';
@@ -44,7 +44,7 @@ const comparativa = [
   { feature: 'Control de datos del cliente',    fresha: '⚠️ Compartidos con la plataforma Fresha',       agenda: '✅ 100% tuyos, exportables CSV',           winner: 'agenda' },
   { feature: 'Soporte en español',              fresha: '⚠️ Email/chat, principalmente en inglés',       agenda: '✅ Humano, <2h en español',                winner: 'agenda' },
   { feature: 'RGPD / alojamiento UE',           fresha: '⚠️ Empresa con sede en UK (post-Brexit)',       agenda: '✅ Servidores UE, RGPD conforme',           winner: 'agenda' },
-  { feature: 'WhatsApp Business API',           fresha: '❌ No integrado de forma nativa',               agenda: `✅ Disponible (+${commsPrice}€/mes)`,       winner: 'agenda' },
+  { feature: 'WhatsApp Business API',           fresha: '❌ No integrado de forma nativa',               agenda: `✅ Disponible (+${whatsappPrice}€/mes)`,       winner: 'agenda' },
   { feature: 'Reservas en tu web propia',       fresha: '⚠️ Widget básico; prioridad al marketplace',   agenda: '✅ Widget en tu web + enlace directo',     winner: 'agenda' },
   { feature: 'Prueba gratuita',                 fresha: '✅ Gratis sin límite de tiempo (sin marketplace)', agenda: '✅ 14 días sin tarjeta',                 winner: 'empate' },
   { feature: 'Marketplace de captación',        fresha: '✅ Sí — visibilidad en Fresha.com',             agenda: '❌ No (reservas directas)',                winner: 'fresha' },
@@ -387,7 +387,7 @@ const schema = {
             },
             {
               titulo: 'Recordatorios automaticos',
-              desc: 'Reduccion de ausencias con recordatorios por email y, con el modulo de comunicaciones, por WhatsApp Business API.',
+              desc: 'Reduccion de ausencias con recordatorios por email y, con el módulo de WhatsApp Business API.',
               icono: 'Recordatorios',
             },
             {

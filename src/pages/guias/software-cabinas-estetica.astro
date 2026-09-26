@@ -385,7 +385,7 @@ const schema = {
               <li>Ve a la configuración del servicio y activa los recordatorios automáticos.</li>
               <li>Elige los momentos de envío (48 h, 24 h, 2 h) según la duración del tratamiento.</li>
               <li>Redacta el mensaje con las instrucciones de preparación específicas de ese servicio.</li>
-              <li>Selecciona el canal: email, SMS o WhatsApp (WhatsApp tiene tasa de apertura superior al 90%).</li>
+              <li>Selecciona el canal: email (incluido) o WhatsApp (módulo opcional, tasa de apertura superior al 90%).</li>
             </ol>
           </div>
         </div>
@@ -404,14 +404,14 @@ const schema = {
 
           <div class="grid sm:grid-cols-3 gap-4 mb-6">
             <div class="bg-white border-2 border-blue-600 rounded-2xl p-6 shadow-sm">
-              <p class="text-sm font-medium text-blue-600 mb-1">Plan Profesional</p>
+              <p class="text-sm font-medium text-blue-600 mb-1">Plan Servicios</p>
               <p class="text-3xl font-bold text-gray-900 mb-1">19€<span class="text-base font-normal text-gray-500">/mes</span></p>
               <p class="text-xs text-gray-500 mb-4">Cuota fija, sin comisiones por reserva</p>
               <ul class="space-y-2 text-sm text-gray-700">
                 {[
                   'Agenda online 24/7',
                   'Gestión de cabinas y terapeutas',
-                  'Recordatorios email y SMS',
+                  'Recordatorios por email',
                   'Historial de clientes',
                   'Cobro de anticipo',
                   'Soporte en español'
@@ -425,8 +425,8 @@ const schema = {
             </div>
 
             <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-              <p class="text-sm font-medium text-gray-600 mb-1">Add-on WhatsApp Business</p>
-              <p class="text-3xl font-bold text-gray-900 mb-1">+8€<span class="text-base font-normal text-gray-500">/mes</span></p>
+              <p class="text-sm font-medium text-gray-600 mb-1">Módulo WhatsApp Business</p>
+              <p class="text-3xl font-bold text-gray-900 mb-1">+28€<span class="text-base font-normal text-gray-500">/mes</span></p>
               <p class="text-xs text-gray-500 mb-4">Opcional, se añade al plan base</p>
               <ul class="space-y-2 text-sm text-gray-700">
                 {[
@@ -446,7 +446,7 @@ const schema = {
             <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
               <div>
                 <p class="text-sm font-medium text-gray-600 mb-1">Total máximo con WhatsApp</p>
-                <p class="text-3xl font-bold text-gray-900 mb-1">27€<span class="text-base font-normal text-gray-500">/mes</span></p>
+                <p class="text-3xl font-bold text-gray-900 mb-1">47€<span class="text-base font-normal text-gray-500">/mes</span></p>
                 <p class="text-xs text-gray-500 mb-4">Plan completo, sin comisiones</p>
                 <p class="text-sm text-gray-600">Sin límite de citas, terapeutas ni cabinas. Sin permanencia. Conforme al RGPD europeo.</p>
               </div>

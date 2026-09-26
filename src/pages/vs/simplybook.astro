@@ -10,8 +10,8 @@ import pricingData from '../../content/pricing.json';
 // Precios de build-time desde pricing.json — fuente de verdad
 const svcPlan = pricingData.businessTypes.find(bt => bt.id === 'servicios');
 const svcPrice = svcPlan?.monthly ?? 19;
-const commsAddon = pricingData.addons.find(a => a.id === 'comunicaciones');
-const commsPrice = commsAddon?.price ?? 39;
+const whatsappAddon = pricingData.addons.find(a => a.id === 'whatsapp');
+const whatsappPrice = whatsappAddon?.price ?? 28;
 const pagosAddon = pricingData.addons.find(a => a.id === 'pagos');
 const pagosPrice = pagosAddon?.price ?? 12;
 
@@ -54,7 +54,7 @@ const comparativa = [
   {
     feature: 'WhatsApp Business API nativo',
     simplybook: '❌ No integrado de forma nativa',
-    agenda: `✅ Disponible (+${commsPrice}€/mes)`,
+    agenda: `✅ Disponible (+${whatsappPrice}€/mes)`,
     winner: 'agenda',
   },
   {

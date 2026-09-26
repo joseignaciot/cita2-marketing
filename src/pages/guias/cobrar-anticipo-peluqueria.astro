@@ -60,7 +60,7 @@ const schema = {
           '@type': 'HowToStep',
           position: 3,
           name: 'Activa la opción de anticipo en tu software de citas',
-          text: 'En Agenda de Reservas, entra en el panel de Servicios, selecciona el servicio, activa "Cobrar anticipo al reservar" y fija el importe o el porcentaje. El cobro se procesa automáticamente con tarjeta cuando el cliente confirma la reserva online.'
+          text: 'En Agenda de Reservas, con el módulo de Cobros Online activado, entra en el panel de Servicios, selecciona el servicio, activa "Cobrar anticipo al reservar" y fija el importe o el porcentaje. El cobro se procesa automáticamente con tarjeta cuando el cliente confirma la reserva online.'
         },
         {
           '@type': 'HowToStep',
@@ -100,7 +100,7 @@ const schema = {
           name: '¿Cómo cobro el anticipo online de forma segura?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'A través de un software de reservas con pasarela de pago integrada, como Agenda de Reservas. El cliente introduce sus datos de tarjeta en el momento de confirmar la reserva; el pago se procesa de forma segura (PCI-DSS) y el importe queda retenido o cobrado según tu configuración. Nunca debería ser necesario pedir el número de tarjeta por teléfono ni por WhatsApp.'
+            text: 'A través de un software de reservas con módulo de pasarela de pago, como el módulo de Cobros Online de Agenda de Reservas. El cliente introduce sus datos de tarjeta en el momento de confirmar la reserva; el pago se procesa de forma segura (PCI-DSS) y el importe queda retenido o cobrado según tu configuración. Nunca debería ser necesario pedir el número de tarjeta por teléfono ni por WhatsApp.'
           }
         },
         {
@@ -302,8 +302,8 @@ const schema = {
             },
             {
               num: '3',
-              title: 'Activa la pasarela de pago',
-              body: 'El cliente introduce sus datos de tarjeta al confirmar la reserva, en un entorno seguro (PCI-DSS). No necesitas terminal físico ni gestionar cobros manualmente. El anticipo se descuenta del total al finalizar el servicio.'
+              title: 'Activa el módulo de Cobros Online',
+              body: 'Con el módulo opcional de Cobros Online (+18€/mes) activado, el cliente introduce sus datos de tarjeta al confirmar la reserva, en un entorno seguro (PCI-DSS). No necesitas terminal físico ni gestionar cobros manualmente. El anticipo se descuenta del total al finalizar el servicio.'
             },
             {
               num: '4',
@@ -531,7 +531,7 @@ const schema = {
             },
             {
               q: '¿Cómo cobro el anticipo online de forma segura?',
-              a: 'A través de un software de reservas con pasarela de pago integrada y certificada (PCI-DSS). El cliente introduce sus datos de tarjeta directamente en el formulario de reserva, en un entorno encriptado. Nunca debería ser necesario pedir el número de tarjeta por teléfono ni por WhatsApp, ya que no estarías cumpliendo los estándares de seguridad de pago. Agenda de Reservas incluye esta pasarela en todos los planes, sin comisión adicional por reserva.'
+              a: 'A través de un software de reservas con pasarela de pago certificada (PCI-DSS). El cliente introduce sus datos de tarjeta directamente en el formulario de reserva, en un entorno encriptado. Nunca debería ser necesario pedir el número de tarjeta por teléfono ni por WhatsApp, ya que no estarías cumpliendo los estándares de seguridad de pago. En Agenda de Reservas, esta pasarela se activa con el módulo opcional de Cobros Online (+18€/mes), sin comisión adicional de Agenda de Reservas por reserva.'
             },
             {
               q: '¿Funciona el cobro de anticipo también para barberías?',

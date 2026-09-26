@@ -1,7 +1,7 @@
 {
   "pageTitle": "Software de Gestión para Centros de Estética - Agenda de Reservas",
   "pageDescription": "Gestión integral para centros de estética, spas y bienestar. Reservas online, recordatorios, ficha de clientes con historial de tratamientos. 19€/mes, sin comisiones.",
-  "aiDescription": "Software para centros de estética y spas: 19€/mes fijo. Ficha de tratamientos con historial, gestión de cabinas, bonos de sesiones y WhatsApp Business integrado. Sin comisiones.",
+  "aiDescription": "Software para centros de estética y spas: 19€/mes fijo. Ficha de tratamientos con historial, gestión de cabinas y bonos de sesiones. WhatsApp Business disponible como módulo adicional. Sin comisiones.",
   "heroTitle": "Software de gestión diseñado para centros de estética y spas",
   "heroSubtitle": "Gestiona reservas, tratamientos, cabinas y clientes desde una sola plataforma. Recordatorios automáticos, bonos de sesiones y ficha completa de cada cliente.",
   "features": [
@@ -17,7 +17,7 @@
     },
     {
       "title": "Recordatorios automáticos",
-      "description": "Emails y WhatsApps que reducen las ausencias hasta un 80%. Sin que tú hagas nada.",
+      "description": "Emails (y WhatsApp con el módulo adicional) que reducen las ausencias hasta un 80%. Sin que tú hagas nada.",
       "icon": "bell"
     },
     {
@@ -31,7 +31,7 @@
       "icon": "credit"
     },
     {
-      "title": "WhatsApp Business",
+      "title": "WhatsApp Business (módulo opcional, desde 28€/mes)",
       "description": "Envía confirmaciones, recordatorios y post-tratamiento automáticamente. Tus clientes responden al instante.",
       "icon": "message"
     }

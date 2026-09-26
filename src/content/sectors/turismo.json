@@ -1,9 +1,9 @@
 {
   "pageTitle": "Software de Reservas para Actividades Turísticas - Agenda de Reservas",
-  "pageDescription": "Software de reservas para tours y actividades en España. 29€/mes fijo, sin comisiones. WhatsApp, manifest de participantes. Alternativa a Bókun.",
-  "aiDescription": "Software de reservas para tours y actividades turísticas: 29€/mes fijo, 0% de comisión. Alternativa a Bokun y FareHarbor. Incluye aforos, precios por persona, WhatsApp Business y pagos online en euros.",
+  "pageDescription": "Software de reservas para tours y actividades en España. 29€/mes fijo, sin comisiones. Manifest de participantes, WhatsApp y pagos online como módulos opcionales. Alternativa a Bókun.",
+  "aiDescription": "Software de reservas para tours y actividades turísticas: 29€/mes fijo, 0% de comisión. Alternativa a Bokun y FareHarbor. Incluye aforos, precios por persona y manifest de participantes. WhatsApp Business y pagos online en euros (Stripe/Redsys) disponibles como módulos adicionales.",
   "heroTitle": "Reservas para tours y actividades. Sin comisiones.",
-  "heroSubtitle": "Bókun cobra 49$/mes + 1,5% por reserva. FareHarbor, hasta el 6%. Nosotros: 29€/mes fijo. Sin comisiones, sin letra pequeña. Con WhatsApp y pago online incluidos.",
+  "heroSubtitle": "Bókun cobra 49$/mes + 1,5% por reserva. FareHarbor, hasta el 6%. Nosotros: 29€/mes fijo. Sin comisiones, sin letra pequeña.",
   "features": [
     {
       "title": "Precios por persona o grupo",
@@ -26,8 +26,8 @@
       "icon": "calendar"
     },
     {
-      "title": "Pagos online seguros",
-      "description": "Stripe integrado para cobrar al reservar. Depósitos o pago completo. Reduce no-shows y asegura ingresos.",
+      "title": "Pagos online seguros (módulo opcional, desde 18€/mes)",
+      "description": "Stripe y Redsys para cobrar al reservar. Depósitos o pago completo. Reduce no-shows y asegura ingresos.",
       "icon": "credit"
     },
     {
@@ -63,7 +63,7 @@
     },
     {
       "question": "¿Funciona el pago online en euros desde España?",
-      "answer": "Sí. Stripe en euros, sin conversión de divisa. A diferencia de Bókun (en USD), tus precios y pagos son siempre en euros."
+      "answer": "Sí, con el módulo de Cobros online (desde 18€/mes). Stripe y Redsys en euros, sin conversión de divisa. A diferencia de Bókun (en USD), tus precios y pagos son siempre en euros."
     },
     {
       "question": "¿Puedo imprimir el manifest del día?",

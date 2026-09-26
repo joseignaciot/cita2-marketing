@@ -21,7 +21,7 @@ const schema = {
 const features = [
   { category: 'Precios', rows: [
     { name: 'Plan básico mensual',          ours: '24€/mes',                    theirs: '39€/mes (Mini)',       winner: 'ours'   },
-    { name: 'Plan completo',                ours: '24€ (todo incluido)',         theirs: '79€/mes (Pro)',        winner: 'ours'   },
+    { name: 'Plan completo',                ours: '24€ (módulos opcionales aparte)', theirs: '79€/mes (Pro)',    winner: 'ours'   },
     { name: 'Comisión por reserva',         ours: '0%',                         theirs: '0%',                  winner: 'tie'    },
     { name: 'Modelo de precios',            ours: 'Plan único todo-en-uno',     theirs: 'Múltiples planes',    winner: 'ours'   },
   ]},
@@ -35,8 +35,8 @@ const features = [
   { category: 'Comunicación', rows: [
     { name: 'Email de confirmación',        ours: '✅ Personalizable',           theirs: '✅ Estándar',          winner: 'tie'    },
     { name: 'Recordatorio automático',      ours: '✅ Email + WhatsApp',         theirs: '✅ Email solo',        winner: 'ours'   },
-    { name: 'WhatsApp Business',            ours: '✅ Nativo (+8€/mes)',         theirs: '❌ No disponible',    winner: 'ours'   },
-    { name: 'SMS',                          ours: '✅ Disponible',               theirs: '❌ No',               winner: 'ours'   },
+    { name: 'WhatsApp Business',            ours: '✅ Nativo (+28€/mes)',         theirs: '❌ No disponible',    winner: 'ours'   },
+    { name: 'SMS',                          ours: '✅ Disponible (+15€/mes)',    theirs: '❌ No',               winner: 'ours'   },
   ]},
   { category: 'CRM y datos', rows: [
     { name: 'Ficha de cliente',             ours: '✅ Completa',                 theirs: '✅ Básica',            winner: 'ours'   },
@@ -85,7 +85,7 @@ features.forEach(c => c.rows.forEach(r => wins[r.winner as keyof typeof wins]++)
           <div class="bg-green-900/30 border border-green-500/30 rounded-2xl p-6">
             <p class="text-green-300 text-xs font-semibold uppercase mb-2">Agenda de Reservas</p>
             <p class="text-4xl font-black text-green-400"><span data-price-key="restaurant.monthly">24</span>€<span class="text-lg font-normal text-green-300">/mes</span></p>
-            <p class="text-xs text-green-400 mt-1">Todo incluido. WhatsApp +8€.</p>
+            <p class="text-xs text-green-400 mt-1">Plan base. WhatsApp +28€/mes aparte.</p>
           </div>
         </div>
       </div>
