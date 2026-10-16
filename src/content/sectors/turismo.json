@@ -12,7 +12,7 @@
     },
     {
       "title": "Gestión de capacidad",
-      "description": "Controla plazas disponibles en tiempo real. Overbooking controlado, lista de espera y gestión de grupos grandes.",
+      "description": "Controla plazas disponibles en tiempo real, con capacidad máxima y mínimo de participantes por actividad. Si una salida se llena, te avisa antes de permitir overbooking.",
       "icon": "users"
     },
     {
@@ -27,7 +27,7 @@
     },
     {
       "title": "Pagos online seguros (módulo opcional, desde 18€/mes)",
-      "description": "Stripe y Redsys para cobrar al reservar. Depósitos o pago completo. Reduce no-shows y asegura ingresos.",
+      "description": "Stripe, PayPal, Redsys y WebPay para cobrar al reservar. Depósito o pago completo, con condiciones propias por actividad y reembolsos automáticos cuando el cliente cancela dentro de plazo (Stripe).",
       "icon": "credit"
     },
     {

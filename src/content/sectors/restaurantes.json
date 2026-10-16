@@ -17,22 +17,22 @@
     },
     {
       "title": "Lista de espera inteligente",
-      "description": "Cuando estás lleno, los clientes se apuntan a lista de espera. Si hay cancelación, se notifica automáticamente.",
+      "description": "Cuando estás lleno, los clientes se apuntan a la lista de espera desde tu página de reservas. Si se libera una mesa, reciben un aviso por email automáticamente.",
       "icon": "bell"
     },
     {
-      "title": "Depósitos para reservas",
-      "description": "Opcional: pide depósito al reservar. Reduce no-shows al 2% y asegura ingresos. Configurable por tamaño de grupo.",
+      "title": "Garantía con tarjeta",
+      "description": "Opcional: el comensal deja los datos de su tarjeta al reservar y solo se le cobra si no se presenta o cancela fuera de plazo. Importe fijo por reserva o por comensal, con la ventana de cancelación que elijas.",
       "icon": "credit"
     },
     {
-      "title": "Preferencias de clientes",
-      "description": "Ficha de cliente con alergias, preferencias de mesa, ocasiones especiales. Ofrece un servicio personalizado.",
+      "title": "Alergias, dietas y ocasiones",
+      "description": "Etiqueta a los comensales (alergias, dietas, VIP) y anota ocasiones y peticiones en cada reserva. Antes del servicio ves un resumen con cumpleaños, alergias y notas del día.",
       "icon": "users"
     },
     {
       "title": "Estadísticas de ocupación",
-      "description": "Análisis de mesas vacías, ticket medio, rotación y días más demandados. Toma decisiones con datos reales.",
+      "description": "Cubiertos por día y por turno, ocupación media, tasa de no-show y media de comensales por reserva. Toma decisiones con datos reales.",
       "icon": "chart"
     }
   ],
