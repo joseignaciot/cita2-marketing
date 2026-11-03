@@ -31,7 +31,7 @@ const {
 const siteUrl = 'https://agendadereservas.com';
 const fullCanonical = canonicalUrl || `${siteUrl}${Astro.url.pathname}`;
 
-// Analytics: GA4 se gestiona desde GTM (GTM-NPTDPRTF)
+// Analytics: GA4 con gtag directo (ver <head>); GTM-NPTDPRTF queda para otros tags
 
 // Default WebSite schema
 const websiteSchema = {
@@ -104,7 +104,17 @@ const finalSchema = schema ? [websiteSchema, schema] : websiteSchema;
   
   <!-- Meta Pixel: configurar en GTM cuando se tenga Pixel ID -->
 
-    <!-- Google Tag Manager -->
+  <!-- Google tag (gtag.js) - GA4. El contenedor GTM no tiene tag de GA4 publicado;
+       si se publica allí, quitar este bloque para no duplicar sesiones. -->
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-47H0N7KECZ"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-47H0N7KECZ');
+  </script>
+
+  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
