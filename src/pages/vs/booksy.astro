@@ -15,8 +15,16 @@ const svcPrice = svcPlan?.monthly ?? 19; // fallback si la estructura cambia
 const whatsappAddon = pricingData.addons.find(a => a.id === 'whatsapp');
 const whatsappPrice = whatsappAddon?.price ?? 28;
 
-const pageTitle = 'Booksy vs Agenda de Reservas (2026) | Sin pago por empleado';
-const pageDescription = 'Booksy cobra 20-35€ por empleado/mes. Agenda de Reservas: 19€/mes fijo para todo el equipo, sin comisiones. Comparativa con precios reales 2026.';
+// Tarifa publicada por Booksy (biz.booksy.com/es-es/precios, consultada el 2026-11-03):
+// 34,99 € + IVA al mes con 1 usuario, +8 € + IVA al mes por cada usuario adicional.
+const booksyBase = 34.99;
+const booksyExtra = 8;
+const fmt = (n: number) => n.toFixed(2).replace('.', ',');
+const booksyCost = (employees: number) => booksyBase + booksyExtra * (employees - 1);
+const annualSaving3 = Math.round((booksyCost(3) - svcPrice) * 12);
+
+const pageTitle = 'Alternativa a Booksy: precios reales y comparativa (2026)';
+const pageDescription = 'Booksy cuesta 34,99 € + IVA al mes y 8 € por cada empleado extra. Agenda de Reservas: desde 19 €/mes fijo para todo el equipo, sin comisiones.';
 const canonicalUrl = 'https://agendadereservas.com/vs/booksy/';
 
 const schema = {
@@ -30,7 +38,7 @@ const schema = {
           name: '¿Booksy cobra por empleado?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Sí. Booksy cobra entre 20€ y 35€ por empleado al mes. Una peluquería con 3 empleados paga entre 60€ y 105€/mes. Agenda de Reservas cobra un precio fijo único sin límite de empleados.'
+            text: `Sí, a partir del primer usuario. Booksy cuesta ${fmt(booksyBase)}€ + IVA al mes con un usuario y suma ${booksyExtra}€ + IVA al mes por cada empleado adicional. Una peluquería con 3 empleados paga unos ${fmt(booksyCost(3))}€/mes más IVA. Agenda de Reservas cobra un precio fijo único sin límite de empleados.`
           }
         },
         {
@@ -46,7 +54,7 @@ const schema = {
           name: '¿Cuál es más barato para una peluquería con 3 empleados?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Agenda de Reservas: 19€/mes fijo. Booksy: 60-105€/mes (3 empleados × 20-35€). El ahorro anual con Agenda de Reservas es de entre 492€ y 1.032€.'
+            text: `Agenda de Reservas: ${svcPrice}€/mes fijo. Booksy: ${fmt(booksyCost(3))}€/mes + IVA (${fmt(booksyBase)}€ + 2 × ${booksyExtra}€). El ahorro anual con 3 empleados es de unos ${annualSaving3}€, sin contar las comisiones de Boost ni las tarifas de pago de Booksy.`
           }
         },
         {
@@ -64,7 +72,7 @@ const schema = {
       headline: pageTitle,
       description: pageDescription,
       datePublished: '2026-04-01',
-      dateModified: '2026-04-26',
+      dateModified: '2026-11-03',
       author: {
         '@type': 'Organization',
         name: 'Agenda de Reservas'
@@ -77,9 +85,10 @@ const pagosAddon = pricingData.addons.find(a => a.id === 'pagos');
 const pagosPrice = pagosAddon?.price ?? 18;
 
 const comparativa = [
-  { feature: 'Precio base', booksy: '20-35€/empleado/mes', agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes fijo total`, winner: 'agenda' },
-  { feature: '3 empleados', booksy: '60-105€/mes', agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes`, winner: 'agenda' },
-  { feature: '5 empleados', booksy: '100-175€/mes', agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes`, winner: 'agenda' },
+  { feature: 'Precio base', booksy: `${fmt(booksyBase)}€ + IVA/mes (1 usuario), +${booksyExtra}€ por usuario extra`, agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes fijo total`, winner: 'agenda' },
+  { feature: '3 empleados', booksy: `${fmt(booksyCost(3))}€/mes + IVA`, agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes`, winner: 'agenda' },
+  { feature: '5 empleados', booksy: `${fmt(booksyCost(5))}€/mes + IVA`, agenda: `<span data-price-key="service_business.monthly">${svcPrice}</span>€/mes`, winner: 'agenda' },
+  { feature: 'Clientes nuevos (Boost)', booksy: 'Opcional: 30% de la 1.ª visita (máx. 50€ + IVA)', agenda: 'Sin comisiones por reserva', winner: 'agenda' },
   { feature: 'WhatsApp Business API', booksy: `${tableIcon('x','text-red-500')} No`, agenda: `${tableIcon('check','text-green-600')} Disponible (+<span data-price-key="addon_whatsapp.monthly">${whatsappPrice}</span>€/mes)`, winner: 'agenda' },
   { feature: 'Soporte en español', booksy: `${tableIcon('warn','text-amber-500')} Limitado`, agenda: `${tableIcon('check','text-green-600')} Humano, <2h`, winner: 'agenda' },
   { feature: 'RGPD / datos en Europa', booksy: `${tableIcon('warn','text-amber-500')} USA (Booksy Inc.)`, agenda: `${tableIcon('check','text-green-600')} Servidores EU`, winner: 'agenda' },
@@ -92,17 +101,11 @@ const comparativa = [
 ];
 
 // Cálculos pre-computados (evitar expresiones aritméticas en template literals del frontmatter)
-const booksyMin1 = 20, booksyMax1 = 35;
-const s1min = booksyMin1, s1max = booksyMax1;
-const s2min = booksyMin1 * 2, s2max = booksyMax1 * 2, sv2min = s2min - svcPrice, sv2max = s2max - svcPrice;
-const s3min = booksyMin1 * 3, s3max = booksyMax1 * 3, sv3min = s3min - svcPrice, sv3max = s3max - svcPrice;
-const s5min = booksyMin1 * 5, s5max = booksyMax1 * 5, sv5min = s5min - svcPrice, sv5max = s5max - svcPrice;
-const savings = [
-  { size: '1 empleado',  booksyRange: `${s1min}-${s1max}€/mes`, saving: 'Empate o ahorro' },
-  { size: '2 empleados', booksyRange: `${s2min}-${s2max}€/mes`, saving: `Ahorras ${sv2min}-${sv2max}€` },
-  { size: '3 empleados', booksyRange: `${s3min}-${s3max}€/mes`, saving: `Ahorras ${sv3min}-${sv3max}€` },
-  { size: '5 empleados', booksyRange: `${s5min}-${s5max}€/mes`, saving: `Ahorras ${sv5min}-${sv5max}€` },
-];
+const savings = [1, 2, 3, 5].map((employees) => ({
+  size: employees === 1 ? '1 empleado' : `${employees} empleados`,
+  booksyRange: `${fmt(booksyCost(employees))}€/mes + IVA`,
+  saving: `Ahorras ${fmt(booksyCost(employees) - svcPrice)}€/mes`,
+}));
 ---
 
 <Layout title={pageTitle} description={pageDescription} canonicalUrl={canonicalUrl} schema={schema}>
@@ -113,13 +116,13 @@ const savings = [
     <section class="section-apple bg-white border-b border-gray-100">
       <div class="container-apple">
         <div class="text-center max-w-3xl mx-auto">
-          <span class="feature-bubble mb-4 inline-block">Comparativa verificada · Abril 2026</span>
+          <span class="feature-bubble mb-4 inline-block">Comparativa verificada · Noviembre 2026</span>
           <h1 class="text-headline text-gray-900 mb-6">
             Booksy vs Agenda de Reservas:<br/>
             <span class="text-blue-600">La comparativa que Booksy no quiere que veas</span>
           </h1>
           <p class="text-body text-lg mb-8">
-            Booksy cobra por empleado. Con 3 peluqueros en plantilla, pagas <strong class="text-red-600">hasta 105€/mes</strong>. Agenda de Reservas: <strong class="text-green-600"><span data-price-key="service_business.monthly">{svcPrice}</span>€/mes para todo tu equipo</strong>, sin límites.
+            Booksy cuesta {fmt(booksyBase)}€ + IVA al mes y suma {booksyExtra}€ por cada empleado extra. Con 3 peluqueros en plantilla, pagas <strong class="text-red-600">unos {fmt(booksyCost(3))}€/mes + IVA</strong>. Agenda de Reservas: <strong class="text-green-600"><span data-price-key="service_business.monthly">{svcPrice}</span>€/mes para todo tu equipo</strong>, sin límites.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="https://app.agendadereservas.com" class="btn-apple-primary px-8 py-4">
@@ -152,7 +155,7 @@ const savings = [
               </div>
             ))}
           </div>
-          <p class="text-center text-xs text-gray-400 mt-4">Precios Booksy verificados en booksy.com/es-es. Actualizado abril 2026.</p>
+          <p class="text-center text-xs text-gray-600 mt-4">Tarifa publicada por Booksy en biz.booksy.com/es-es/precios (sin IVA), consultada el 3 de noviembre de 2026. No incluye las comisiones de Boost ni las tarifas de pago.</p>
         </div>
       </div>
     </section>
@@ -183,7 +186,7 @@ const savings = [
               ))}
             </tbody>
           </table>
-          <p class="text-xs text-gray-400 mt-4 text-right">Precios verificados en webs oficiales. Abril 2026.</p>
+          <p class="text-xs text-gray-600 mt-4 text-right">Precios de Booksy (sin IVA) de biz.booksy.com/es-es/precios, 3 de noviembre de 2026.</p>
         </div>
       </div>
     </section>
@@ -197,7 +200,7 @@ const savings = [
             <ul class="space-y-3 text-sm text-gray-700">
               {[
                 'Quieres aparecer en el marketplace de Booksy para captar clientes nuevos',
-                'Trabajas solo (1 empleado) y el precio por usuario no te afecta',
+                'Trabajas solo y te compensa más su marketplace que la diferencia de precio',
                 'La mayoría de tus clientes ya usan la app de Booksy',
                 'No necesitas WhatsApp Business integrado'
               ].map(item => (
@@ -238,7 +241,7 @@ const savings = [
           {[
             {
               q: '¿Booksy cobra por empleado?',
-              a: 'Sí. Booksy cobra entre 20€ y 35€ por empleado al mes según el plan. Una peluquería con 3 empleados paga entre 60€ y 105€/mes. Agenda de Reservas cobra <span data-price-key="service_business.monthly">19</span>€/mes para todo tu equipo sin importar cuántos sois.'
+              a: `Sí, a partir del primer usuario. Booksy cuesta ${fmt(booksyBase)}€ + IVA al mes con un usuario y suma ${booksyExtra}€ + IVA al mes por cada empleado adicional. Una peluquería con 3 empleados paga unos ${fmt(booksyCost(3))}€/mes más IVA, y con 5 empleados unos ${fmt(booksyCost(5))}€. Agenda de Reservas cobra <span data-price-key="service_business.monthly">19</span>€/mes para todo tu equipo sin importar cuántos sois.`
             },
             {
               q: '¿Booksy tiene WhatsApp Business integrado?',
@@ -246,7 +249,7 @@ const savings = [
             },
             {
               q: '¿Cuál es más barato para una peluquería con 3 empleados?',
-              a: 'Agenda de Reservas: <span data-price-key="service_business.monthly">19</span>€/mes fijo. Booksy: 60-105€/mes (3 empleados × 20-35€). El ahorro anual es de 492€ a 1.032€.'
+              a: `Agenda de Reservas: <span data-price-key="service_business.monthly">19</span>€/mes fijo. Booksy: ${fmt(booksyCost(3))}€/mes + IVA (${fmt(booksyBase)}€ + 2 × ${booksyExtra}€). El ahorro anual con 3 empleados es de unos ${annualSaving3}€, sin contar las comisiones de Boost (30% de la primera visita de cada cliente nuevo de Booksy, máx. 50€) ni las tarifas de pago (2% + 0,15€ por pago móvil).`
             },
             {
               q: '¿Puedo migrar de Booksy a Agenda de Reservas sin perder datos?',

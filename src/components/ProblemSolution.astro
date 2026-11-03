@@ -1,6 +1,6 @@
 ---
 // ProblemSolution — Sección Antes/Después con datos verificados por vertical
-// Datos reales: TheFork 150-200€/mes + 1,5-2€/comensal | Booksy ~35€+20€/empleado | Bókun 49$/mes+1,5%
+// Datos reales: TheFork 150-200€/mes + 1,5-2€/comensal | Booksy 34,99€+IVA, +8€/empleado extra (biz.booksy.com/es-es/precios, 2026-11-03) | Bókun 49$/mes+1,5%
 import Icon from './Icon.astro';
 import {
   Scissors, UtensilsCrossed, Mountain,
@@ -20,7 +20,7 @@ const verticals = [
     problems: [
       { icon: Smartphone, title: "Llamadas sin parar", stat: "15+ llamadas/día", desc: "Reservas, cancelaciones y cambios de cita a cualquier hora interrumpen tu trabajo." },
       { icon: X, title: "No-shows que duelen", stat: "1 de cada 4 citas", desc: "Sin recordatorio automático, el 25% de tus clientes simplemente no aparecen." },
-      { icon: Users, title: "Precio por empleado", stat: "20€ extra/empleado", desc: "Booksy cobra ~35€ base + 20€ por cada empleado adicional. 3 empleados = 75€/mes." },
+      { icon: Users, title: "Precio por empleado", stat: "8€ extra/empleado", desc: "Booksy cobra 34,99€ + IVA con un usuario y 8€ + IVA por cada empleado adicional. 3 empleados = 50,99€/mes + IVA." },
       { icon: Ban, title: "Sin WhatsApp real", stat: "Solo email básico", desc: "Fresha, Booksy y similares no integran WhatsApp Business API. Tus mensajes no llegan." }
     ],
     solutions: [
@@ -29,7 +29,7 @@ const verticals = [
       { icon: InfinityIcon, benefit: "Usuarios ilimitados", highlight: "1 precio fijo para todo tu equipo, sin sorpresas" },
       { icon: MessageCircle, benefitPrefix: "WhatsApp (+", addonKey: "addon_whatsapp.monthly", addonPrice: 28, benefitSuffix: "€/mes)", highlight: "API Business oficial, tasa de apertura del 90%" }
     ],
-    saving: "vs 75-135€/mes de Booksy para 3 empleados",
+    saving: "vs 50,99€/mes + IVA de Booksy para 3 empleados",
     planKey: "service_business.monthly",
     priceMonthly: 19
   },
