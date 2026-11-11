@@ -6,34 +6,34 @@
   "heroSubtitle": "Bókun cobra 49$/mes + 1,5% por reserva. FareHarbor, hasta el 6%. Nosotros: 29€/mes fijo. Sin comisiones, sin letra pequeña.",
   "features": [
     {
-      "title": "Precios por persona o grupo",
-      "description": "Configura tarifas por adulto, niño, senior o precios fijos por grupo. El sistema calcula automáticamente según el número de reservas.",
-      "icon": "credit"
+      "icon": "credit",
+      "title": "Precios por persona, categoría o grupo",
+      "description": "Tarifas por adulto, niño o senior, o precio fijo por grupo, con extras reutilizables entre actividades. El sistema calcula el precio y los extras suben el ticket de cada reserva."
     },
     {
-      "title": "Gestión de capacidad",
-      "description": "Controla plazas disponibles en tiempo real. Overbooking controlado, lista de espera y gestión de grupos grandes.",
-      "icon": "users"
+      "icon": "credit",
+      "title": "Cobro en otras monedas",
+      "description": "Vende a visitantes extranjeros en su moneda (con Stripe), con precios explícitos por moneda que tú controlas."
     },
     {
-      "title": "Extras y suplementos",
-      "description": "Vende extras como recogida en hotel, comida, equipo de snorkel... Aumenta el ticket medio de cada reserva.",
-      "icon": "zap"
+      "icon": "credit",
+      "title": "Pagos online y reembolsos automáticos (módulo opcional, desde 18€/mes)",
+      "description": "Cobra al reservar con depósito o pago completo. Si el cliente cancela desde su enlace, el reembolso se hace según tu política de cancelación (Stripe; WebPay en CLP; Redsys en EUR)."
     },
     {
-      "title": "Calendario de disponibilidad",
-      "description": "Define qué días hay salidas, a qué horas, cuántas plazas. El cliente ve solo opciones disponibles en tiempo real.",
-      "icon": "calendar"
+      "icon": "calendar",
+      "title": "Calendario con días cerrados por actividad",
+      "description": "Define qué días hay salidas, a qué horas y cuántas plazas, y cierra una sola actividad sin tocar el resto."
     },
     {
-      "title": "Pagos online seguros (módulo opcional, desde 18€/mes)",
-      "description": "Stripe y Redsys para cobrar al reservar. Depósitos o pago completo. Reduce no-shows y asegura ingresos.",
-      "icon": "credit"
+      "icon": "smartphone",
+      "title": "Panel del día y manifiesto por salida",
+      "description": "Salidas de hoy, ocupación de plazas, ingresos estimados y lo que requiere acción. Los guías trabajan con una lista imprimible con check-in y no-show."
     },
     {
-      "title": "Panel de control operativo",
-      "description": "Lista de pasajeros por actividad, check-in digital, exportación a Excel. Todo lo que necesitas para el día de la excursión.",
-      "icon": "smartphone"
+      "icon": "zap",
+      "title": "Widget de reservas para tu web",
+      "description": "Un widget de reservas por actividad que puedes insertar en tu propia web y vender desde ella."
     }
   ],
   "testimonials": [

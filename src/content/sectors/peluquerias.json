@@ -6,34 +6,34 @@
   "heroSubtitle": "Olvídate de las llamadas a deshoras y las citas perdidas. Gestiona tu agenda online 24/7 con recordatorios automáticos y una página de reservas profesional que tus clientes adorarán.",
   "features": [
     {
-      "title": "Reservas online 24/7",
-      "description": "Tus clientes reservan cuando quieren, incluso a las 3 de la mañana. Tú despiertas con la agenda llena y organizada.",
-      "icon": "calendar"
+      "icon": "calendar",
+      "title": "Reservas online 24/7 con tu color",
+      "description": "Tus clientes reservan cuando quieren, incluso a las 3 de la mañana, en una página con los colores de tu marca (diseño Marea)."
     },
     {
-      "title": "Recordatorios automáticos",
-      "description": "Emails automáticos (y WhatsApp con el módulo adicional) que reducen las ausencias hasta un 80%. Sin que tú hagas nada.",
-      "icon": "bell"
+      "icon": "chart",
+      "title": "Agenda por profesional con huecos vendibles",
+      "description": "Vista diaria con una columna por profesional y barras de ocupación. Ves quién está libre y rellenas los huecos."
     },
     {
-      "title": "WhatsApp Business (módulo opcional, desde 28€/mes)",
-      "description": "Conecta tu WhatsApp y envía confirmaciones, recordatorios y follow-ups automáticamente. Tus clientes responden al instante.",
-      "icon": "message"
+      "icon": "zap",
+      "title": "Acciones rápidas en cada cita",
+      "description": "Confirma, marca llegada, completa o registra una ausencia en un toque. «Atender ahora» para quien llega sin cita, con la contabilidad al día."
     },
     {
-      "title": "Ficha de clientes completa",
-      "description": "Historial de cortes, coloraciones, preferencias, cumpleaños. Ofrece un trato personalizado que fideliza.",
-      "icon": "users"
+      "icon": "calendar",
+      "title": "Citas recurrentes",
+      "description": "Cada 1, 2 o 4 semanas: tus clientes habituales quedan reservados en un solo paso."
     },
     {
-      "title": "Calendario visual intuitivo",
-      "description": "Vista semanal y diaria con código de colores. Gestiona múltiples sillas de un vistazo. Nada se te escapa.",
-      "icon": "chart"
+      "icon": "message",
+      "title": "Recordatorios y confirmaciones por email y WhatsApp",
+      "description": "Elige el canal de cada reserva (email, WhatsApp o SMS) y llega a cada cliente donde responde. WhatsApp Business es un módulo opcional desde 28€/mes."
     },
     {
-      "title": "Setup en 2 minutos",
-      "description": "Al registrarte, elegimos el preset \"Peluquería\" y tendrás servicios de ejemplo listos para usar o modificar.",
-      "icon": "zap"
+      "icon": "users",
+      "title": "Estadísticas del servicio",
+      "description": "Ticket medio, tasa de ausencias, ocupación y recompra a 30/60 días, con tabla por puesto. Sabes dónde ajustar precios u horarios."
     }
   ],
   "testimonials": [

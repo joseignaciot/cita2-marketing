@@ -6,34 +6,34 @@
   "heroSubtitle": "TheFork cobra 150-200€/mes en cuota más 1,5-2€ por cada comensal. Nosotros: 24€/mes fijo. Sin sorpresas.",
   "features": [
     {
+      "icon": "credit",
       "title": "Reservas online sin comisiones",
-      "description": "Tu propia página de reservas con tu marca. Sin pagar el 12-15% de comisión a ElTenedor ni a TheFork.",
-      "icon": "credit"
+      "description": "Tu propia página de reservas con tu marca. Sin pagar el 12-15% de comisión a ElTenedor ni a TheFork."
     },
     {
-      "title": "Gestión de mesas y sala",
-      "description": "Mapa de tu sala con capacidad por mesa. Controla turnos de comida y cena. Visualiza ocupación en tiempo real.",
-      "icon": "chart"
+      "icon": "chart",
+      "title": "Plano de sala en vivo",
+      "description": "Mesas libres, ocupadas y reservadas con selector de hora. Decide en segundos si cabe un grupo antes de aceptar la reserva, y siéntalo sin papeleo con el walk-in rápido."
     },
     {
-      "title": "Lista de espera inteligente",
-      "description": "Cuando estás lleno, los clientes se apuntan a lista de espera. Si hay cancelación, se notifica automáticamente.",
-      "icon": "bell"
+      "icon": "bell",
+      "title": "Reserva en tres pantallas y lista de espera",
+      "description": "Tus clientes reservan en tres pantallas, se apuntan a la lista de espera cuando estás lleno y cambian fecha, hora o comensales desde su enlace. Menos llamadas, menos mesas vacías."
     },
     {
-      "title": "Depósitos para reservas",
-      "description": "Opcional: pide depósito al reservar. Reduce no-shows al 2% y asegura ingresos. Configurable por tamaño de grupo.",
-      "icon": "credit"
+      "icon": "smartphone",
+      "title": "Panel con el briefing del día",
+      "description": "Pendientes, llegadas y alertas antes del servicio. El responsable de sala ve qué resolver sin abrir informes."
     },
     {
-      "title": "Preferencias de clientes",
-      "description": "Ficha de cliente con alergias, preferencias de mesa, ocasiones especiales. Ofrece un servicio personalizado.",
-      "icon": "users"
+      "icon": "chart",
+      "title": "Estadísticas de comensales por día y turno",
+      "description": "Descubre qué turnos se llenan y dónde se quedan mesas vacías. Decide con datos de tu propia sala."
     },
     {
-      "title": "Estadísticas de ocupación",
-      "description": "Análisis de mesas vacías, ticket medio, rotación y días más demandados. Toma decisiones con datos reales.",
-      "icon": "chart"
+      "icon": "zap",
+      "title": "Carta digital con página propia",
+      "description": "Una carta que actualizas al instante y que es tuya, sin comisión por ella."
     }
   ],
   "testimonials": [
